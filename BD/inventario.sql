@@ -20,29 +20,25 @@ CREATE TABLE Usuario (
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
-    user VARCHAR(255) UNIQUE NOT NULL, 
+    correo VARCHAR(255) UNIQUE NOT NULL, 
 
     pass VARCHAR(255) NOT NULL, 
 
-    nombre VARCHAR(255) NOT NULL 
+    nombre VARCHAR(255) NOT NULL, 
+
+    id_rol INT,
+
+    FOREIGN KEY (id_rol) REFERENCES Rol(id), 
 
 ); 
 
   
 
-CREATE TABLE UsuarioRol ( 
+CREATE TABLE Rol ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
-    idUsuario INT NOT NULL, 
-
-    idRol INT NOT NULL, 
-
-    FOREIGN KEY (idUsuario) REFERENCES Usuario(id) ON DELETE CASCADE, 
-
-    FOREIGN KEY (idRol) REFERENCES Rol(id) ON DELETE CASCADE, 
-
-    UNIQUE (idUsuario, idRol) -- Un usuario no puede tener el mismo rol dos veces 
+    nombre VARCHAR(255) UNIQUE NOT NULL, 
 
 ); 
 
