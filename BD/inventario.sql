@@ -56,19 +56,11 @@ CREATE TABLE Material (
 
     modelo VARCHAR(100) NOT NULL, 
 
-    almacen BOOLEAN NOT NULL DEFAULT FALSE, -- Indica si está en el almacén o en un aula 
-
     idUbicacion INT NULL, 
 
     FOREIGN KEY (idUbicacion) REFERENCES Ubicacion(id) ON DELETE SET NULL 
 
-); 
-
-Nota: 
-
-Si almacen = TRUE, el material está en almacén y idAula es NULL. 
-
-Si almacen = FALSE, idAula se llena con el aula donde se encuentra. 
+);
 
  
 
