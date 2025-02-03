@@ -120,11 +120,15 @@ Si fechaSalida IS NULL, el material está en el almacén.
 
  
 
+ 
+
 CREATE TABLE Incidencia ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
     idUser INT NOT NULL, 
+
+    idAula INT NOT NULL, 
 
     asunto VARCHAR(255) NOT NULL, 
 
@@ -136,9 +140,13 @@ CREATE TABLE Incidencia (
 
     fechaCierre DATETIME NULL,  
 
-    FOREIGN KEY (idUser) REFERENCES Usuario(id) ON DELETE CASCADE 
+    FOREIGN KEY (idUser) REFERENCES Usuario(id) ON DELETE CASCADE, 
+
+    FOREIGN KEY (idAula) REFERENCES Aula(id) ON DELETE CASCADE 
 
 ); 
+
+ 
 
  
 
@@ -167,6 +175,32 @@ UPDATE Material SET almacen = FALSE, idAula = ?  WHERE id = ?;
 INSERT INTO Almacen (idMaterial) VALUES (?); 
 
 UPDATE Material SET almacen = TRUE, idAula = NULL  WHERE id = ?; 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
 
  
 
