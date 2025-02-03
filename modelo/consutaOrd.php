@@ -32,7 +32,6 @@ class consultaUsu{
         $conexion->close();
         return $result->fetch_assoc();
     }
-    
     public static function altaOrdenador($nombre, $correo, $contrasenya, $telefono){
         $conexion = conexionBD::conectar();
         $sql = "INSERT INTO usuarios (nombre, correo, contrasenya, telefono) VALUES ('$nombre', '$correo', '$contrasenya', $telefono)";

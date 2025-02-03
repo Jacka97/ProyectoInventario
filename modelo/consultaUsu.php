@@ -32,6 +32,14 @@ class consultaUsu{
         $conexion->close();
         return $result->fetch_assoc();
     }
+    // funcion para obtener el ususario por el id
+    public static function getUsuById($id){
+        $conexion = conexionBD::conectar();
+        $sql = "SELECT * FROM usuarios WHERE id_usuario = ". $id;
+        $result = $conexion->query($sql);
+        $conexion->close();
+        return $result->fetch_assoc();
+    }
     
     public static function altaUsu($nombre, $correo, $contrasenya, $telefono){
         $conexion = conexionBD::conectar();
