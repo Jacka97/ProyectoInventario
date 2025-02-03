@@ -58,9 +58,9 @@ CREATE TABLE Material (
 
     almacen BOOLEAN NOT NULL DEFAULT FALSE, -- Indica si está en el almacén o en un aula 
 
-    idAula INT NULL, 
+    idUbicacion INT NULL, 
 
-    FOREIGN KEY (idAula) REFERENCES Aula(id) ON DELETE SET NULL 
+    FOREIGN KEY (idUbicacion) REFERENCES Ubicacion(id) ON DELETE SET NULL 
 
 ); 
 
@@ -74,7 +74,7 @@ Si almacen = FALSE, idAula se llena con el aula donde se encuentra.
 
  
 
-CREATE TABLE Aula ( 
+CREATE TABLE Ubicaciones ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
