@@ -1,6 +1,7 @@
 /**********************************/
-/* USUARIOS */
+CREATE DATABASE Inventario;
 
+/* USUARIOS */
 CREATE TABLE Usuarios ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
@@ -15,17 +16,22 @@ CREATE TABLE Usuarios (
 
     id_rol INT,
 
-    FOREIGN KEY (id_rol) REFERENCES Roles(id), 
+    FOREIGN KEY (id_rol) REFERENCES Roles(id)
+
+    
+
 
 ); 
-
+INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('admin@admin.com','admin', 'admin', TRUE, 1);
+INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('usuario@usuario.com','usuario', 'usuario', TRUE, 2);
+INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('tecnico@tecnico.com','tecnico', 'tecnico', TRUE, 3);
   
 
 CREATE TABLE Roles ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
-    nombre VARCHAR(255) UNIQUE NOT NULL, 
+    nombre VARCHAR(255) UNIQUE NOT NULL
 
 ); 
 
@@ -39,7 +45,9 @@ INSERT INTO Roles (nombre) VALUES ('administrador'), ('usuario'), ('tecnico');
 /* tabla provisional de ordenadores */
 CREATE TABLE Ordenadores (
 
-    numero VARCHAR(100) PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    numero VARCHAR(100),
 
     idMarca INT NOT NULL,
 
@@ -78,6 +86,13 @@ CREATE TABLE Ordenadores (
 
 );
 
+INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numerioSerie, Red, MACLAN, IPLAN, MACWIFI, IPWIFI, HD1, HD2, Observaciones) VALUES 
+('PC001', 1, 'ThinkPad X1', 1, 'Ordenador Aula1', 'Portátil', 'SN123456', 'LAN1', '00:1A:2B:3C:4D:5E', '192.168.1.10', '00:1A:2B:3C:4D:5F', '192.168.1.20', 'SSD 512GB', 'HDD 1TB', 'Buen estado'),
+('PC002', 2, 'MSI GF63', 2, 'Ordenador Aula2', 'Portátil', 'SN654321', 'LAN2', '00:1A:2B:3C:4D:6E', '192.168.1.11', '00:1A:2B:3C:4D:6F', '192.168.1.21', 'SSD 1TB', 'HDD 2TB', 'Requiere limpieza'),
+('PC003', 3, 'HP EliteBook', 3, 'Ordenador Almacén', 'Portátil', 'SN789012', 'LAN3', '00:1A:2B:3C:4D:7E', '192.168.1.12', '00:1A:2B:3C:4D:7F', '192.168.1.22', 'SSD 256GB', 'N/A', 'En reparación'),
+('PC004', 4, 'ASUS ROG Strix', 4, 'Ordenador Taller1', 'Sobremesa', 'SN345678', 'LAN4', '00:1A:2B:3C:4D:8E', '192.168.1.13', '00:1A:2B:3C:4D:8F', '192.168.1.23', 'SSD 2TB', 'HDD 4TB', 'Uso en proyectos de diseño');
+
+
 CREATE TABLE Software (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -85,6 +100,11 @@ CREATE TABLE Software (
     nombre VARCHAR(100) NOT NULL
 
 );
+
+INSERT INTO Software (nombre) VALUES 
+('Linux'),
+('Windows'),
+('iOS');
 
 /* tabla de relacion entre software y ordenadores, registra el software que tiene cada ordenador y su fecha de instalacion */
 CREATE TABLE Software_PC (
@@ -112,7 +132,13 @@ CREATE TABLE Marcas (
 
 );
 
- 
+INSERT INTO Marcas (nombre) VALUES 
+('Thinkpad'),
+('MSI'),
+('HP'),
+('ASUS'),
+('Dell');
+
 
 CREATE TABLE Ubicaciones ( 
 
@@ -121,6 +147,14 @@ CREATE TABLE Ubicaciones (
     nombre VARCHAR(100) NOT NULL UNIQUE 
 
 ); 
+
+INSERT INTO Ubicaciones (nombre) VALUES 
+('aula1'),
+('aula2'),
+('almacen'),
+('taller1'),
+('taller2'),
+('pasillo1');
 
 
 (!) Inserts en esta tabla solo por trigger cuando se haga update en (ordenador, periferico, dispositivo de red) sobre la ubicacion
