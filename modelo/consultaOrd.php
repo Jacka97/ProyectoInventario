@@ -1,15 +1,16 @@
 <?php
 include "./dbConex.php";
-class consultaUsu{
+class consultaOrdenadores{
     private $id;
     private $nombre;
-    private $correo;
-    private $telefono;
-    private $contrasenya;
+    private $ubicacion;
+    private $marca;
+    private $precio;
+    private $fechaCompra;
     
     public static function getAllOrdenadores(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM usuarios";
+        $sql = "SELECT * FROM Ordenadores";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
@@ -17,31 +18,31 @@ class consultaUsu{
 
     public static function getOrdenadorByID($id){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM usuarios WHERE id_ordenador = " . $id;
+        $sql = "SELECT * FROM Ordenadores WHERE id_ordenador = " . $id;
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();
     }
-    public static function altaOrdenador($nombre, $correo, $contrasenya, $telefono){
+    public static function altaOrdenador($nombre, $ubicacion, $marca, $precio, $fechaCompra){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO usuarios (nombre, correo, contrasenya, telefono) VALUES ('$nombre', '$correo', '$contrasenya', $telefono)";
+        $sql = "INSERT INTO Ordenadores (nombre, ubicacion, marca, precio, fechaCompra) VALUES ('$nombre', '$ubicacion', '$marca', '$precio', '$fechaCompra')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
         
     }
-    public static function modificarOrdenador($id, $nombre, $correo, $contrasenya, $telefono){
+    public static function modificarOrdenador($id, $nombre, $ubicacion, $marca, $precio, $fechaCompra){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE usuarios SET nombre = '$nombre', correo = '$correo', contrasenya = '$contrasenya', telefono = $telefono WHERE id_usuario = $id";
+        $sql = "UPDATE Ordenadores SET nombre = '$nombre', ubicacion = '$ubicacion', marca = '$marca' precio = '$precio', fechaCompra = $fechaCompra WHERE id = $id";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
         
     }
    
-    public static function eliminarOrdenador($correo){
+    public static function eliminarOrdenador($id){
         $conexion = conexionBD::conectar();
-        $sql = "DELETE FROM usuarios WHERE correo = " . $correo;
+        $sql = "DELETE FROM Ordenadores WHERE id = " . $id;
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();

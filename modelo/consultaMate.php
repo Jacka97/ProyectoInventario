@@ -1,12 +1,9 @@
 <?php
 include "./dbConex.php";
-class consultaMateriales{
+class consultaMarca{
     private $id;
     private $tipo;
-    private $marca;
-    private $modelo;
-    private $ubicacion;
-    public static function getAllMats(){
+    public static function getAllMarcas(){
         $conexion = conexionBD::conectar();
         $sql = "SELECT * FROM Materiales";
         $result = $conexion->query($sql);
@@ -14,7 +11,7 @@ class consultaMateriales{
         return $result->fetch_all(MYSQLI_ASSOC);   
 }
 
-    public static function getMatById($id){
+    public static function getMarcaById($id){
         $conexion = conexionBD::conectar();
         $sql = "SELECT * FROM Materiales WHERE id_producto = $id";
         $result = $conexion->query($sql);
@@ -22,22 +19,22 @@ class consultaMateriales{
         return $result->fetch_assoc();
     }
     
-    public static function insertarMaterial($nombre, $correo, $contrasenya, $telefono){
+    public static function insertarMarca($nombre){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Materiales (nombre, correo, contrasenya, telefono) VALUES ('$nombre', '$correo', '$contrasenya', $telefono)";
+        $sql = "INSERT INTO Materiales (nombre) VALUES ('$nombre')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
         
     }
-    public static function actualizarMateriales($id, $tipo, $marca, $modelo, $ubicacion){
+    public static function actualizarMarca($id, $nombre){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Materiales SET tipo = '$tipo', marca = '$marca', modelo = '$modelo', ubicacion = '$ubicacion' WHERE id = $id";
+        $sql = "UPDATE Materiales SET nombre = '$nombre' WHERE id = $id";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
     }
-    public static function eliminarMaterial($id){
+    public static function eliminarMarca($id){
         $conexion = conexionBD::conectar();
         $sql = "DELETE FROM Materiales WHERE id = $id";
         $conexion->query($sql);

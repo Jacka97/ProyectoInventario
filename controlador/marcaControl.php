@@ -1,5 +1,5 @@
 <?php
-include '../modelo/consultaMate.php'; // Archivo para manejar las consultas de la base de datos.
+include '../modelo/consultaMarca.php'; // Archivo para manejar las consultas de la base de datos.
 // Configuración de CORS para permitir la comunicación con el cliente.
 // Este código deja todos los encabezados de CORS habilitados para cualquier origen.
 // En su lugar, puede establecer reglas más específicas según su necesidad.
@@ -17,25 +17,23 @@ switch ($method) {
             
             // Obtener un producto por ID.
             $id = (int) $_GET['id']; // Sanitizar el ID.
-            $product = consultaMateriales::getMatById($id);
+            $product = consultaMarca::getMarcaById($id);
             echo json_encode($product ?: ["error" => "Producto no encontrado"]);
         } else {
             
             // Obtener todos los pedidos.
-            $products = consultaMateriales::getAllMats();
+            $products = consultaMarca::getAllMarcas();
             echo json_encode($products);
         }
         break;
 
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['nombre'], $input['descripcion'], $input['precio'])) {
+        if (!empty($input) && isset($input['nombre'])) {
             // Crear un nuevo producto.
             $nombre = $input['nombre'];
-            $descripcion = $input['descripcion'];
-            $precio = (float) $input['precio']; // Asegurar tipo numérico.
 
-            $result = consultaMateriales::insertarMaterial($tipo, $marca, $modelo, $ubicacion);
+            $result = consultaMarca::insertarMarca($nombre);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
@@ -44,12 +42,12 @@ switch ($method) {
 
         case 'PUT':
             header("Content-Type: application/json; charset=UTF-8");
-            if (!empty($input) && isset($input['id']) && isset($input['nombre']) && isset($input['precio']) && isset($input['clave'])) {
+            if (!empty($input) && isset($input['id']) && isset($input['nombre'])) {
                 // Modificar un producto por ID.
                 $id = (int) $input['id']; // Sanitizar el ID.
                 $nombre = $input['nombre'];
     
-                $result = consultaMateriales::actualizarMateriales($id, $tipo, $marca, $modelo, $ubicacion);
+                $result = consultaMarca::actualizarMarca($id, $nombre);
                 echo json_encode(["success" => $result]);
             } else {
                 echo json_encode(["error" => "ID y/o datos inválidos"]);
@@ -63,7 +61,7 @@ switch ($method) {
         if (isset($_GET['id'])) {
             // Eliminar un producto por ID.
             $id = (int) $_GET['id']; // Sanitizar el ID.
-            $result= consultaMateriales::eliminarMaterial($id);
+            $result= consultaMarca::eliminarMarca($id);
             echo json_encode(["success" => $result]);
         } else {
             echo json_encode(["error" => "ID no proporcionado"]);

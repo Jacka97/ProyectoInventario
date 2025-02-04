@@ -35,7 +35,7 @@ switch ($method) {
             $descripcion = $input['descripcion'];
             $precio = (float) $input['precio']; // Asegurar tipo numérico.
 
-            $result = consultaOrdenadores::altaOrdenador($nombre, $ubicacion, $precio, $fechaCompra);
+            $result = consultaOrdenadores::altaOrdenador($nombre, $ubicacion, $marca, $precio, $fechaCompra);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
@@ -52,7 +52,7 @@ switch ($method) {
                 $nombre = $input['precio'];
                 $nombre = $input['fechaCompra'];
     
-                $result = consultaOrdenadores::modificarOrdenador($id, $nombre, $ubicacion, $precio, $fechaCompra);
+                $result = consultaOrdenadores::modificarOrdenador($id, $nombre, $ubicacion,$marca,  $precio, $fechaCompra);
                 echo json_encode(["success" => $result]);
             } else {
                 echo json_encode(["error" => "ID y/o datos inválidos"]);

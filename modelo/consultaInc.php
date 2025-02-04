@@ -6,17 +6,7 @@ class consultaUsu{
     private $correo;
     private $telefono;
     private $contrasenya;
-    // HU101: Login de usuario Como usuario quiero solicitar el registro y logearme en el sistema,
-    // así como cerrar la sesión
-    // HU102: Dar de alta usuarios Como administrador quiero entrar en el sistema para dar de alta al
-    // usuario, así como aceptar registros de usuarios
-    // HU103: Modificar datos de
-    // usuarios
-    // Como administrador poder editar y modificar los datos de los
-    // usuarios de la aplicación
-    // HU104: Dar de baja usuarios Como administrador quiero entrar en el sistema para dar de baja al
-    // usuario
-    // HU105: Listado de Usuarios Como administrador quiero obtener un listado de los usuarios
+    
     public static function getAll(){
         $conexion = conexionBD::conectar();
         $sql = "SELECT * FROM usuarios";
