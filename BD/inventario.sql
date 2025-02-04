@@ -55,8 +55,6 @@ CREATE TABLE Ordenadores (
 
     idUbicacion INT NULL, 
 
-    /*atributos secundarios*/
-
     nombre VARCHAR(100) NOT NULL, 
 
     tipo VARCHAR(100) NOT NULL, 
@@ -82,7 +80,7 @@ CREATE TABLE Ordenadores (
 
     FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL,
 
-    FOREIGN KEY (idMarca) REFERENCES Marcas(id) ON DELETE SET NULL
+    FOREIGN KEY (idMarca) REFERENCES Marcas(id)
 
 );
 
@@ -117,11 +115,16 @@ CREATE TABLE Software_PC (
 
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
-    FOREIGN KEY (numPC) REFERENCES Ordenadores(numero) ON DELETE SET NULL,
+    FOREIGN KEY (numPC) REFERENCES Ordenadores(numero),
 
-    FOREIGN KEY (idSoftware) REFERENCES Software(id) ON DELETE SET NULL
+    FOREIGN KEY (idSoftware) REFERENCES Software(id)
 
 );
+
+INSERT INTO Software_PC (numPC, idSoftware) VALUES 
+('PC001', 1),  -- Linux en ThinkPad X1 (PC001)
+('PC002', 2),  -- Windows en MSI GF63 (PC002)
+('PC004', 3);  -- iOS en ASUS ROG Strix (PC004)
 
 
 CREATE TABLE Marcas (
