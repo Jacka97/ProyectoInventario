@@ -1,22 +1,7 @@
-Esto es para la gestión de usuarios 
+/**********************************/
+/* USUARIOS */
 
- 
-
-CREATE TABLE Rol ( 
-
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-
-    tipo VARCHAR(50) UNIQUE NOT NULL 
-
-); 
-
-  
-
-INSERT INTO Rol (tipo) VALUES ('administrador'), ('usuario'), ('tecnico'); 
-
-  
-
-CREATE TABLE Usuario ( 
+CREATE TABLE Usuarios ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
@@ -28,13 +13,13 @@ CREATE TABLE Usuario (
 
     id_rol INT,
 
-    FOREIGN KEY (id_rol) REFERENCES Rol(id), 
+    FOREIGN KEY (id_rol) REFERENCES Roles(id), 
 
 ); 
 
   
 
-CREATE TABLE Rol ( 
+CREATE TABLE Roles ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
@@ -42,11 +27,13 @@ CREATE TABLE Rol (
 
 ); 
 
+INSERT INTO Roles (nombre) VALUES ('administrador'), ('usuario'), ('tecnico'); 
  
 
-/************************/ 
+/**********************************/
+/* MATERIALES Y UBICACIONES */
 
-CREATE TABLE Material ( 
+CREATE TABLE Materiales ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
@@ -58,10 +45,9 @@ CREATE TABLE Material (
 
     idUbicacion INT NULL, 
 
-    FOREIGN KEY (idUbicacion) REFERENCES Ubicacion(id) ON DELETE SET NULL 
+    FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL 
 
 );
-
  
 
  
@@ -74,41 +60,27 @@ CREATE TABLE Ubicaciones (
 
 ); 
 
- 
 
-Nota: 🔹 Función: Define las aulas donde puede estar el material. 
 
- 
-
-CREATE TABLE Almacen ( 
+CREATE TABLE Historico_Movimientos ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
     idMaterial INT NOT NULL, 
 
-    fechaEntrada DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    idUbicacion INT NOT NULL, 
 
-    fechaSalida DATETIME NULL,  
+    fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
-    FOREIGN KEY (idMaterial) REFERENCES Material(id) ON DELETE CASCADE 
+    FOREIGN KEY (idMaterial) REFERENCES Materiales(id) ON UPDATE CASCADE,
+
+    FOREIGN KEY (idUbicacion) REFERENCES Materiales(idUbicacion) ON UPDATE CASCADE 
 
 ); 
 
-Nota: Es para el historial del movimiento del almacen 
 
-Claves Primarias: id (autoincremental). 
-
-🔹 Gestión de Stock: 
-
-Cada vez que un material entra al almacén, se registra con fechaEntrada. 
-
-Cuando sale del almacén, se actualiza fechaSalida. 
-
-Si fechaSalida IS NULL, el material está en el almacén. 
-
- 
-
- 
+/**********************************/
+/* SIN TERMINAR */
 
 CREATE TABLE Incidencia ( 
 
@@ -135,37 +107,10 @@ CREATE TABLE Incidencia (
 ); 
 
  
+    1) Historico_Movimientos registrara cada movimiento de posicion que se haga en un material, es decir, si un material se 
+    mueve de ubicacion este registrara el id del material, la fecha de movimiento y la ubicacion atraves de trigger
 
- 
-
-Nota:  
-
-1)Consultas para Gestión del Stock en el Almacén (Para saber qué materiales están en el almacén) 
-
-SELECT m.id, m.tipo, m.marca, m.modelo  FROM Material m JOIN Almacen a ON m.id = a.idMaterial WHERE a.fechaSalida IS NULL; 
-
- 
-
-2) Si quieres mover un material del almacén a un aula, haz dos pasos: 
-
-Paso1: Actualizar Almacen para registrar su salida: 
-
-UPDATE Almacen SET fechaSalida = NOW() WHERE idMaterial = ? AND fechaSalida IS NULL; 
-
-Paso2: Actualizar Material para asignarlo a un aula 
-
-UPDATE Material SET almacen = FALSE, idAula = ?  WHERE id = ?; 
-
- 
-
-3)Devolver material al almacén 
-
-INSERT INTO Almacen (idMaterial) VALUES (?); 
-
-UPDATE Material SET almacen = TRUE, idAula = NULL  WHERE id = ?; 
-
- 
-
+    2) 
  
 
  
