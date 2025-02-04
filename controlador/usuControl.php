@@ -29,13 +29,13 @@ switch ($method) {
 
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['nombre'], $input['descripcion'], $input['precio'])) {
+        if (!empty($input) && isset($input['correo'], $input['contrasenya'], $input['nombre'])) {
             // Crear un nuevo producto.
-            $nombre = $input['nombre'];
-            $descripcion = $input['descripcion'];
-            $precio = (float) $input['precio']; // Asegurar tipo numérico.
+            $correo = $input['correo'];
+            $contrasenya = $input['contrasenya'];
+            $nombre = $input['nombre']; // Asegurar tipo numérico.
 
-            $result = consultaUsu::insertar($nombre, $correo, $telefono, $contrasenya);
+            $result = consultaUsu::altaUsu($nombre, $correo, $contrasenya);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
@@ -44,46 +44,18 @@ switch ($method) {
 
     case 'PUT':
         header("Content-Type: application/json; charset=UTF-8");
-    case 'PATCH':
-        header("Content-Type: application/json; charset=UTF-8");
         if (isset($_GET['id'])) {
             $id = (int) $_GET['id']; // Sanitizar el ID.
- 
+            $correo = $input['correo'];
+            $contrasenya = $input['contrasenya'];
+            $nombre = $input['nombre']; // Asegurar tipo numérico.
+            $result = consultaUsu::modificarUsu($id,$correo, $contrasenya, $nombre, $rol);
+            echo json_encode(["success" => $result]);
 
-            if ($input) {
-                // Construir la consulta dinámicamente
-                $fields = [];
-                if (isset($input['nombre'])) {
-                    $fields[] = "nombre='" . $conexion->real_escape_string($input['nombre']) . "'";
-                }
-                if (isset($input['correo'])) {
-                    $fields[] = "correo='" . $conexion->real_escape_string($input['correo']) . "'";
-                }
-                if (isset($input['telefono'])) {
-                    $fields[] = "telefono=" . $input['telefono'];
-                }
-
-                if (isset($input['contrasenya'])) {
-                    $fields[] = "contrasenya=" . $input['contrasenya'];
-                }
-
-                // Ejecutar la consulta solo si hay campos a actualizar
-                if (!empty($fields)) {
-                    $query = "UPDATE usuarios SET " . implode(', ', $fields) . " WHERE id_Usu = $id";
-                    $result = consultaUsu::actualizar($query);
-
-                    echo json_encode(["success" => $result]);
-                } else {
-                    echo json_encode(["error" => "No se proporcionaron campos válidos para actualizar"]);
-                }
-            } else {
-                echo json_encode(["error" => "Datos de entrada no válidos"]);
-            }
         } else {
             echo json_encode(["error" => "ID no proporcionado"]);
         }
         break;
-
 
 
     case 'DELETE':

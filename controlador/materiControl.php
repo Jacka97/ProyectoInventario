@@ -17,12 +17,12 @@ switch ($method) {
             
             // Obtener un producto por ID.
             $id = (int) $_GET['id']; // Sanitizar el ID.
-            $product = consultaUsu::getUsuById($id);
+            $product = consultaMateriales::getMatById($id);
             echo json_encode($product ?: ["error" => "Producto no encontrado"]);
         } else {
             
             // Obtener todos los pedidos.
-            $products = consultaUsu::getAllUsu();
+            $products = consultaMateriales::getAllMats();
             echo json_encode($products);
         }
         break;
@@ -35,54 +35,26 @@ switch ($method) {
             $descripcion = $input['descripcion'];
             $precio = (float) $input['precio']; // Asegurar tipo numérico.
 
-            $result = consultaUsu::insertar($nombre, $correo, $telefono, $contrasenya);
+            $result = consultaMateriales::insertarMaterial($tipo, $marca, $modelo, $ubicacion);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
         }
         break;
 
-    case 'PUT':
-        header("Content-Type: application/json; charset=UTF-8");
-    case 'PATCH':
-        header("Content-Type: application/json; charset=UTF-8");
-        if (isset($_GET['id'])) {
-            $id = (int) $_GET['id']; // Sanitizar el ID.
- 
-
-            if ($input) {
-                // Construir la consulta dinámicamente
-                $fields = [];
-                if (isset($input['nombre'])) {
-                    $fields[] = "nombre='" . $conexion->real_escape_string($input['nombre']) . "'";
-                }
-                if (isset($input['correo'])) {
-                    $fields[] = "correo='" . $conexion->real_escape_string($input['correo']) . "'";
-                }
-                if (isset($input['telefono'])) {
-                    $fields[] = "telefono=" . $input['telefono'];
-                }
-
-                if (isset($input['contrasenya'])) {
-                    $fields[] = "contrasenya=" . $input['contrasenya'];
-                }
-
-                // Ejecutar la consulta solo si hay campos a actualizar
-                if (!empty($fields)) {
-                    $query = "UPDATE usuarios SET " . implode(', ', $fields) . " WHERE id_Usu = $id";
-                    $result = consultaUsu::actualizar($query);
-
-                    echo json_encode(["success" => $result]);
-                } else {
-                    echo json_encode(["error" => "No se proporcionaron campos válidos para actualizar"]);
-                }
+        case 'PUT':
+            header("Content-Type: application/json; charset=UTF-8");
+            if (!empty($input) && isset($input['id']) && isset($input['nombre']) && isset($input['precio']) && isset($input['clave'])) {
+                // Modificar un producto por ID.
+                $id = (int) $input['id']; // Sanitizar el ID.
+                $nombre = $input['nombre'];
+    
+                $result = consultaMateriales::actualizarMateriales($id, $tipo, $marca, $modelo, $ubicacion);
+                echo json_encode(["success" => $result]);
             } else {
-                echo json_encode(["error" => "Datos de entrada no válidos"]);
+                echo json_encode(["error" => "ID y/o datos inválidos"]);
             }
-        } else {
-            echo json_encode(["error" => "ID no proporcionado"]);
-        }
-        break;
+            break;
 
 
 
@@ -91,7 +63,7 @@ switch ($method) {
         if (isset($_GET['id'])) {
             // Eliminar un producto por ID.
             $id = (int) $_GET['id']; // Sanitizar el ID.
-            $result= consultaUsu::eliminarUsu($id);
+            $result= consultaMateriales::eliminarMaterial($id);
             echo json_encode(["success" => $result]);
         } else {
             echo json_encode(["error" => "ID no proporcionado"]);

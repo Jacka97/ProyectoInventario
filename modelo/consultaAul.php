@@ -1,25 +1,11 @@
 <?php
 include "./dbConex.php";
-class consultaUsu{
+class consultaAula{
     private $id;
     private $nombre;
-    private $correo;
-    private $telefono;
-    private $contrasenya;
-    // HU101: Login de usuario Como usuario quiero solicitar el registro y logearme en el sistema,
-    // así como cerrar la sesión
-    // HU102: Dar de alta usuarios Como administrador quiero entrar en el sistema para dar de alta al
-    // usuario, así como aceptar registros de usuarios
-    // HU103: Modificar datos de
-    // usuarios
-    // Como administrador poder editar y modificar los datos de los
-    // usuarios de la aplicación
-    // HU104: Dar de baja usuarios Como administrador quiero entrar en el sistema para dar de baja al
-    // usuario
-    // HU105: Listado de Usuarios Como administrador quiero obtener un listado de los usuarios
     public static function getAllAulas(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM usuarios";
+        $sql = "SELECT * FROM Ubicaciones";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
@@ -27,23 +13,23 @@ class consultaUsu{
 
     public static function getAulaByNombre($nombre){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM aulas WHERE id_aula = " . $nombre;
+        $sql = "SELECT * FROM Ubicaciones WHERE nombre = " . $nombre;
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();
     }
-    
-    public static function insertarAula($nombre, $correo, $contrasenya, $telefono){
+
+    public static function modificarAula($id, $nombre){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO usuarios (nombre, correo, contrasenya, telefono) VALUES ('$nombre', '$correo', '$contrasenya', $telefono)";
+        $sql = "UPDATE Ubicaciones SET nombre = '$nombre' WHERE id = $id";
         $conexion->query($sql);
-        return $conexion->insert_id;
+        return $conexion->affected_rows;
         $conexion->close();
-        
     }
-    public static function altaAula($nombre, $correo, $contrasenya, $telefono){
+    
+    public static function insertarAula($nombre){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO usuarios (nombre, correo, contrasenya, telefono) VALUES ('$nombre', '$correo', '$contrasenya', $telefono)";
+        $sql = "INSERT INTO Ubicaciones (nombre) VALUES ('$nombre')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
@@ -51,7 +37,7 @@ class consultaUsu{
     }
     public static function eliminarAula($nombre){
         $conexion = conexionBD::conectar();
-        $sql = "DELETE FROM usuarios WHERE nombre = " . $nombre;
+        $sql = "DELETE FROM Ubicaciones WHERE nombre = " . $nombre;
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();

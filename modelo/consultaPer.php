@@ -1,25 +1,16 @@
 <?php
 include "./dbConex.php";
-class consultaUsu{
+class consultaPeriferico{
     private $id;
     private $nombre;
-    private $correo;
-    private $telefono;
-    private $contrasenya;
-    // HU101: Login de usuario Como usuario quiero solicitar el registro y logearme en el sistema,
-    // así como cerrar la sesión
-    // HU102: Dar de alta usuarios Como administrador quiero entrar en el sistema para dar de alta al
-    // usuario, así como aceptar registros de usuarios
-    // HU103: Modificar datos de
-    // usuarios
-    // Como administrador poder editar y modificar los datos de los
-    // usuarios de la aplicación
-    // HU104: Dar de baja usuarios Como administrador quiero entrar en el sistema para dar de baja al
-    // usuario
-    // HU105: Listado de Usuarios Como administrador quiero obtener un listado de los usuarios
+    private $ordenador_id;
+    private $marca;
+    private $precio;
+    private $fechaCompra;
+
     public static function getAllPerifericos(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM usuarios";
+        $sql = "SELECT * FROM Perifericos";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
@@ -27,30 +18,30 @@ class consultaUsu{
 
     public static function getPerifericoById($id){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM usuarios WHERE id_producto = $id";
+        $sql = "SELECT * FROM Perifericos WHERE id_producto = $id";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();
     }
     
-    public static function insertarPeriferico($nombre, $correo, $contrasenya, $telefono){
+    public static function insertarPeriferico($nombre, $ordenador_id, $marca,  $precio, $fechaCompra){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO usuarios (nombre, correo, contrasenya, telefono) VALUES ('$nombre', '$correo', '$contrasenya', $telefono)";
+        $sql = "INSERT INTO Perifericos (nombre, ordenador_id, marca, precio, fechaCompra) VALUES ('$nombre', '$ordenador_id','$marca', '$precio', $fechaCompra)";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
         
     }
-    public static function actualizarPeriferico(){
+    public static function actualizarPeriferico($id, $nombre, $ordenador_id, $marca,  $precio, $fechaCompra){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE FROM perifericos ";
+        $sql = "UPDATE Perifericos SET nombre = '$nombre', ordenador_id = '$ordenador_id', marca = '$marca', $precio = '$fechaCompra' WHERE id = $id";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
     }
     public static function eliminarPeriferico($id){
         $conexion = conexionBD::conectar();
-        $sql = "DELETE FROM usuarios WHERE id_usu = $id";
+        $sql = "DELETE FROM Perifericos WHERE id = $id";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
