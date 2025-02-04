@@ -2,11 +2,21 @@
 include "../modelo/dbConex.php";
 class consultaOrdenadores{
     private $id;
+    private $numero;
+    private $idMarca;
+    private $modelo;
+    private $idUbicacion;
     private $nombre;
-    private $ubicacion;
-    private $marca;
-    private $precio;
-    private $fechaCompra;
+    private $tipo;
+    private $numeroSerie;
+    private $red;
+    private $MACLAN;
+    private $IPLAN;
+    private $MACWIFI;
+    private $IPWIFI;
+    private $HD1;
+    private $HD2;
+    private $observaciones;
     
     public static function getAllOrdenadores(){
         $conexion = conexionBD::conectar();
@@ -23,17 +33,17 @@ class consultaOrdenadores{
         $conexion->close();
         return $result->fetch_assoc();
     }
-    public static function altaOrdenador($nombre, $ubicacion, $marca, $precio, $fechaCompra){
+    public static function altaOrdenador( $numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo,$numeroSerie,$red,$MACLAN,$IPLAN,$MACWIFI,$IPWIFI,$HD1,$HD2,$observaciones){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Ordenadores (nombre, ubicacion, marca, precio, fechaCompra) VALUES ('$nombre', '$ubicacion', '$marca', '$precio', '$fechaCompra')";
+        $sql = "INSERT INTO Ordenadores (nombre, idMarca, modelo, idUbicacion, nombre, tipo, numerioSerie, Red, MACLAN, IPLAN, MACWIFI, IP WIFI, HD1, HD2, Obversvaciones) VALUES ( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
         
     }
-    public static function modificarOrdenador($id, $nombre, $ubicacion, $marca, $precio, $fechaCompra){
+    public static function modificarOrdenador($id, $numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo,$numeroSerie,$red,$MACLAN,$IPLAN,$MACWIFI,$IPWIFI,$HD1,$HD2,$observaciones){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Ordenadores SET nombre = '$nombre', ubicacion = '$ubicacion', marca = '$marca' precio = '$precio', fechaCompra = $fechaCompra WHERE id = $id";
+        $sql = "UPDATE Ordenadores SET numero = '$numero', idMarca = '$idMarca', modelo = '$modelo', idUbicacion = '$idUbicacion', nombre = '$nombre', tipo = '$tipo', numerioSerie = '$numeroSerie', red = '$red', MACLAN = '$MACLAN', IPLAN = '$IPLAN', MACWIFI = '$MACWIFI', IPWIFI = '$IPWIFI', HD1 = '$HD1', HD2 = '$HD2', Observaciones = '$observaciones',WHERE id = $id";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();

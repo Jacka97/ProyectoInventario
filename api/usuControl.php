@@ -49,7 +49,8 @@ switch ($method) {
             $correo = $input['correo'];
             $contrasenya = $input['contrasenya'];
             $nombre = $input['nombre']; // Asegurar tipo numérico.
-            $result = consultaUsu::modificarUsu($id,$correo, $contrasenya, $nombre, $rol);
+            $activo = $input['activo'];
+            $result = consultaUsu::modificarUsu($id,$correo, $contrasenya, $nombre, $activo, $rol);
             echo json_encode(["success" => $result]);
 
         } else {

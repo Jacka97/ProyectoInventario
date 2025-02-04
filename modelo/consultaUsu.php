@@ -5,6 +5,7 @@ class consultaUsu{
     private $correo;
     private $contrasenya;
     private $nombre;
+    private $activo = true;  // por defecto el usuario está activo
     private $rol = null;
    
     public static function getAllUsu(){
@@ -33,15 +34,15 @@ class consultaUsu{
     
     public static function altaUsu($nombre, $correo, $contrasenya){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Usuarios (correo, contrasenya, nombre) VALUES ('$nombre', '$correo', '$contrasenya')";
+        $sql = "INSERT INTO Usuarios (correo, pass, nombre) VALUES ('$nombre', '$correo', '$contrasenya')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
         
     }
-    public static function modificarUsu($id, $nombre, $correo, $contrasenya, $rol){
+    public static function modificarUsu($id, $correo, $contrasenya, $nombre, $activo, $rol){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Usuarios SET correo = '$correo',contrasenya = '$contrasenya', nombre='$nombre', rol = '$rol' WHERE id = " . $id;
+        $sql = "UPDATE Usuarios SET correo = '$correo',pass = '$contrasenya', nombre='$nombre', rol = '$rol' WHERE id = " . $id;
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();

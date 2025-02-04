@@ -4,7 +4,7 @@ include '../modelo/consultaInc.php'; // Archivo para manejar las consultas de la
 // Este código deja todos los encabezados de CORS habilitados para cualquier origen.
 // En su lugar, puede establecer reglas más específicas según su necesidad.
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 $method = $_SERVER['REQUEST_METHOD'];

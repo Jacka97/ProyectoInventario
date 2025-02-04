@@ -3,8 +3,6 @@ include "../modelo/dbConex.php";
 class consultaSoft{
     private $id;
     private $nombre;
-    private $precio;
-    private $clave;
   
     public static function getAllSoftware(){
         $conexion = conexionBD::conectar();
@@ -22,17 +20,17 @@ class consultaSoft{
         return $result->fetch_assoc();
     }
     
-    public static function insertarSoftware($nombre, $precio, $clave){
+    public static function insertarSoftware($nombre){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Software (nombre, precio, clave) VALUES ('$nombre', '$precio', '$clave')";
+        $sql = "INSERT INTO Software (nombre, precio, clave) VALUES ('$nombre')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
         
     }
-    public static function modificarSoftw($id, $nombre, $precio, $clave){
+    public static function modificarSoftw($id, $nombre){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Software SET nombre = '$nombre', precio = '$precio', clave = '$clave' WHERE id = $id";
+        $sql = "UPDATE Software SET nombre = '$nombre' WHERE id = $id";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
