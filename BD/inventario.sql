@@ -35,25 +35,6 @@ INSERT INTO Roles (nombre) VALUES ('administrador'), ('usuario'), ('tecnico');
 /**********************************/
 /* MATERIALES Y UBICACIONES */
 
-CREATE TABLE Materiales ( 
-
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-
-    tipo VARCHAR(100) NOT NULL, 
-
-    marca VARCHAR(100) NOT NULL, 
-
-    modelo VARCHAR(100) NOT NULL, 
-
-    idUbicacion INT NULL, 
-
-    FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL 
-
-);
-
-(!) Falta hacerle una especializacion en ordenador para que este tenga el atributo software,
-de forma que se pueda saber que software usa cada ordenador, y de perifericos talvez
-
 
 /* tabla provisional de ordenadores */
 CREATE TABLE Ordenadores (
@@ -66,9 +47,34 @@ CREATE TABLE Ordenadores (
 
     idUbicacion INT NULL, 
 
+    /*atributos secundarios*/
+
+    nombre VARCHAR(100) NOT NULL, 
+
+    tipo VARCHAR(100) NOT NULL, 
+
+    numerioSerie VARCHAR(100) NOT NULL, 
+
+    Red VARCHAR(100) NOT NULL, 
+
+    MACLAN VARCHAR(100) NOT NULL, 
+
+    IPLAN VARCHAR(100) NOT NULL, 
+
+    MACWIFI VARCHAR(100) NOT NULL, 
+
+    IPWIFI VARCHAR(100) NOT NULL, 
+
+    HD1 VARCHAR(100) NOT NULL, 
+
+    HD2 VARCHAR(100) NOT NULL, 
+
+    Observaciones VARCHAR(100) NOT NULL, 
+
+
     FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL,
 
-    FOREIGN KEY (idMarca) REFERENCES Marcas(id) ON DELETE SET NULL,
+    FOREIGN KEY (idMarca) REFERENCES Marcas(id) ON DELETE SET NULL
 
 );
 
@@ -77,6 +83,23 @@ CREATE TABLE Software (
     id INT AUTO_INCREMENT PRIMARY KEY,
 
     nombre VARCHAR(100) NOT NULL
+
+);
+
+/* tabla de relacion entre software y ordenadores, registra el software que tiene cada ordenador y su fecha de instalacion */
+CREATE TABLE Software_PC (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    numPC VARCHAR(100) NOT NULL,
+
+    idSoftware INT NOT NULL,
+
+    fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+
+    FOREIGN KEY (numPC) REFERENCES Ordenadores(numero) ON DELETE SET NULL,
+
+    FOREIGN KEY (idSoftware) REFERENCES Software(id) ON DELETE SET NULL
 
 );
 
@@ -100,7 +123,7 @@ CREATE TABLE Ubicaciones (
 ); 
 
 
-
+(!) Inserts en esta tabla solo por trigger cuando se haga update en (ordenador, periferico, dispositivo de red) sobre la ubicacion
 CREATE TABLE Historico_Movimientos ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
@@ -109,16 +132,14 @@ CREATE TABLE Historico_Movimientos (
 
     idUbicacion INT NOT NULL, 
 
-    fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    fechaIncio DATETIME NOT NULL, 
 
-    FOREIGN KEY (idMaterial) REFERENCES Materiales(id) ON UPDATE CASCADE,
+    fechaFinal DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
     FOREIGN KEY (idUbicacion) REFERENCES Materiales(idUbicacion) ON UPDATE CASCADE 
 
 ); 
 
-
-/**********************************/
 /* SIN TERMINAR */
 
 CREATE TABLE Incidencia ( 
