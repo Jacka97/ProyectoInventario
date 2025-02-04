@@ -11,6 +11,8 @@ CREATE TABLE Usuarios (
 
     nombre VARCHAR(255) NOT NULL, 
 
+    activo BOOLEAN,
+
     id_rol INT,
 
     FOREIGN KEY (id_rol) REFERENCES Roles(id), 
@@ -48,7 +50,44 @@ CREATE TABLE Materiales (
     FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL 
 
 );
- 
+
+(!) Falta hacerle una especializacion en ordenador para que este tenga el atributo software,
+de forma que se pueda saber que software usa cada ordenador, y de perifericos talvez
+
+
+/* tabla provisional de ordenadores */
+CREATE TABLE Ordenadores (
+
+    numero VARCHAR(100) PRIMARY KEY,
+
+    idMarca INT NOT NULL,
+
+    modelo VARCHAR(100) NOT NULL, 
+
+    idUbicacion INT NULL, 
+
+    FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL,
+
+    FOREIGN KEY (idMarca) REFERENCES Marcas(id) ON DELETE SET NULL,
+
+);
+
+CREATE TABLE Software (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    nombre VARCHAR(100) NOT NULL
+
+);
+
+
+CREATE TABLE Marcas (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    nombre VARCHAR(100) NOT NULL
+
+);
 
  
 
@@ -88,7 +127,7 @@ CREATE TABLE Incidencia (
 
     idUser INT NOT NULL, 
 
-    idAula INT NOT NULL, 
+    idUbicacion INT NOT NULL, 
 
     asunto VARCHAR(255) NOT NULL, 
 
@@ -100,9 +139,9 @@ CREATE TABLE Incidencia (
 
     fechaCierre DATETIME NULL,  
 
-    FOREIGN KEY (idUser) REFERENCES Usuario(id) ON DELETE CASCADE, 
+    FOREIGN KEY (idUser) REFERENCES Usuarios(id) ON DELETE CASCADE, 
 
-    FOREIGN KEY (idAula) REFERENCES Aula(id) ON DELETE CASCADE 
+    FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE CASCADE 
 
 ); 
 
