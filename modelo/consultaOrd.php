@@ -1,5 +1,5 @@
 <?php
-include "./dbConex.php";
+include "../modelo/dbConex.php";
 class consultaOrdenadores{
     private $id;
     private $nombre;
@@ -18,7 +18,7 @@ class consultaOrdenadores{
 
     public static function getOrdenadorByID($id){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Ordenadores WHERE id_ordenador = " . $id;
+        $sql = "SELECT * FROM Ordenadores WHERE id = " . $id;
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();

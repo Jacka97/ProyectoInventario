@@ -1,5 +1,5 @@
 <?php
-include "./dbConex.php";
+include "../modelo/dbConex.php";
 class consultaUsu{
     private $id;
     private $correo;
@@ -9,7 +9,7 @@ class consultaUsu{
    
     public static function getAllUsu(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Usuario";
+        $sql = "SELECT * FROM Usuarios";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
@@ -17,7 +17,7 @@ class consultaUsu{
 
     public static function getUsuByCorreo($correo){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Usuario WHERE correo = " . $correo;
+        $sql = "SELECT * FROM Usuarios WHERE correo = " . $correo;
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();
@@ -25,7 +25,7 @@ class consultaUsu{
     // funcion para obtener el ususario por el id
     public static function getUsuById($id){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Usuario WHERE id = ". $id;
+        $sql = "SELECT * FROM Usuarios WHERE id = ". $id;
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();
@@ -33,7 +33,7 @@ class consultaUsu{
     
     public static function altaUsu($nombre, $correo, $contrasenya){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Usuario (correo, contrasenya, nombre) VALUES ('$nombre', '$correo', '$contrasenya')";
+        $sql = "INSERT INTO Usuarios (correo, contrasenya, nombre) VALUES ('$nombre', '$correo', '$contrasenya')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
@@ -41,7 +41,7 @@ class consultaUsu{
     }
     public static function modificarUsu($id, $nombre, $correo, $contrasenya, $rol){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Usuario SET correo = '$correo',contrasenya = '$contrasenya', nombre='$nombre', rol = '$rol' WHERE id = " . $id;
+        $sql = "UPDATE Usuarios SET correo = '$correo',contrasenya = '$contrasenya', nombre='$nombre', rol = '$rol' WHERE id = " . $id;
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();

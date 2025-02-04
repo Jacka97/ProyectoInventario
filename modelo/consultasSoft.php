@@ -1,5 +1,5 @@
 <?php
-include "./dbConex.php";
+include "../modelo/dbConex.php";
 class consultaSoft{
     private $id;
     private $nombre;

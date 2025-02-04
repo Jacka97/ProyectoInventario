@@ -1,5 +1,5 @@
 <?php
-include "./dbConex.php";
+include "../modelo/dbConex.php";
 class consultaUbicacion{
     private $id;
     private $nombre;

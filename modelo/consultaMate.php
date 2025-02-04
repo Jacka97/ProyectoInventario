@@ -1,11 +1,11 @@
 <?php
-include "./dbConex.php";
+include "../modelo/dbConex.php";
 class consultaMarca{
     private $id;
     private $tipo;
     public static function getAllMarcas(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Materiales";
+        $sql = "SELECT * FROM Marcas";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
@@ -13,7 +13,7 @@ class consultaMarca{
 
     public static function getMarcaById($id){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Materiales WHERE id_producto = $id";
+        $sql = "SELECT * FROM Marcas WHERE id = $id";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();
@@ -21,7 +21,7 @@ class consultaMarca{
     
     public static function insertarMarca($nombre){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Materiales (nombre) VALUES ('$nombre')";
+        $sql = "INSERT INTO Marcas (nombre) VALUES ('$nombre')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
@@ -29,14 +29,14 @@ class consultaMarca{
     }
     public static function actualizarMarca($id, $nombre){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Materiales SET nombre = '$nombre' WHERE id = $id";
+        $sql = "UPDATE Marcas SET nombre = '$nombre' WHERE id = $id";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
     }
     public static function eliminarMarca($id){
         $conexion = conexionBD::conectar();
-        $sql = "DELETE FROM Materiales WHERE id = $id";
+        $sql = "DELETE FROM Marcas WHERE id = $id";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();

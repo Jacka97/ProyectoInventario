@@ -1,8 +1,5 @@
 <?php
-include '../modelo/consultaSoft.php'; // Archivo para manejar las consultas de la base de datos.
-// Configuración de CORS para permitir la comunicación con el cliente.
-// Este código deja todos los encabezados de CORS habilitados para cualquier origen.
-// En su lugar, puede establecer reglas más específicas según su necesidad.
+include '../modelo/consultasSoft.php'; 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");

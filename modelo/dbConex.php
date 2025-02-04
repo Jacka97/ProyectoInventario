@@ -3,7 +3,7 @@
 class conexionBD {
 
     private static $hostname = "127.0.0.1";
-    private static $database = "Pruebas";
+    private static $database = "Inventario";
     private static $user = "phpmyadmin";
     private static $password = "1234";
 

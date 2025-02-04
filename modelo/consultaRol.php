@@ -1,12 +1,12 @@
 <?php
-include "./dbConex.php";
+include "../modelo/dbConex.php";
 class consultaRol{
     private $id;
     private $nombre;
     
     public static function getAllRoles(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Rol";
+        $sql = "SELECT * FROM Roles";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
@@ -14,7 +14,7 @@ class consultaRol{
 
     public static function getRolByID($id){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Rol WHERE id = " . $id;
+        $sql = "SELECT * FROM Roles WHERE id = " . $id;
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();

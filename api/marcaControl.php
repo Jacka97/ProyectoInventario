@@ -1,5 +1,5 @@
 <?php
-include '../modelo/consultaMarca.php'; // Archivo para manejar las consultas de la base de datos.
+include '../modelo/consultaMate.php'; // Archivo para manejar las consultas de la base de datos.
 // Configuración de CORS para permitir la comunicación con el cliente.
 // Este código deja todos los encabezados de CORS habilitados para cualquier origen.
 // En su lugar, puede establecer reglas más específicas según su necesidad.
