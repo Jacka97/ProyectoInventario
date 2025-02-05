@@ -19,7 +19,8 @@ export class RegistroComponent {
   ngOnInit(): void {
 
     this.nombreControl = new FormControl('', [Validators.required]);
-    this.emailControl = new FormControl('', [Validators.required, emailValidator()])
+    this.emailControl = new FormControl('', [Validators.required, emailValidator()]);
+    this.contrasenyaControl = new FormControl('', [Validators.required, Validators.pattern('^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$')])
     this.registroForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       email: ['', [Validators.required, emailValidator()]],

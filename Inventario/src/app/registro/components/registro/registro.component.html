@@ -1,9 +1,9 @@
-<form [formGroup]="registroForm">
+<form>
     <h2>Registro de usuario</h2>
     <label for="nombre">Nombre: </label>
     <input type="text" name="nombre" formControlName="nombre"><br><br>
-    <div *ngIf="registroForm.get('nombre').invalid && registroForm.get('nombre').touched">
-        <div *ngIf="registroForm.get('nombre').errors.required" class="errores">
+    <div *ngIf="nombreControl.invalid && nombreControl.touched">
+        <div *ngIf="nombreControl.errors.required" class="errores">
             El nombre es obligatorio
         </div>
     </div>
