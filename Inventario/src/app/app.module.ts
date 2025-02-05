@@ -9,6 +9,7 @@ import { BienvenidoComponent } from './bienvenido/bienvenido.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { LoginModule } from './login/login.module';
+import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoginModule } from './login/login.module';
     BrowserModule,
     AppRoutingModule,
     MarcaModule,
+    UbicacionesModule,
     LoginModule,
     ToastrModule.forRoot()  
   ],
