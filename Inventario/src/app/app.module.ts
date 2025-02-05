@@ -10,6 +10,7 @@ import { BienvenidoComponent } from './bienvenido/bienvenido.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { LoginModule } from './login/login.module';
+
 import { AuthModule } from './registro/registro.module';
 import { OrdenadoresModule } from './ordenadores/ordenadores.module';
 import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
@@ -33,6 +34,8 @@ import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
     UbicacionesModule,
     BrowserAnimationsModule,
     LoginModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
     AuthModule,
     OrdenadoresModule,
     ToastrModule.forRoot(),
