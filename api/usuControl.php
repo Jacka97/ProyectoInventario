@@ -32,7 +32,7 @@ switch ($method) {
         if (!empty($input) && isset($input['correo'], $input['pass'], $input['nombre'], $input['activo'], $input['id_rol'])) {
             // Crear un nuevo producto.
             $correo = $input['correo'];
-            $contrasenya = $input['contrasenya'];
+            $contrasenya = $input['pass'];
             $nombre = $input['nombre']; // Asegurar tipo numérico.
 
             $result = consultaUsu::altaUsu($correo, $contrasenya, $nombre, $activo, $id_rol);
@@ -47,7 +47,7 @@ switch ($method) {
         if (isset($_GET['id'])) {
             $id = (int) $_GET['id']; // Sanitizar el ID.
             $correo = $input['correo'];
-            $contrasenya = $input['contrasenya'];
+            $contrasenya = $input['pass'];
             $nombre = $input['nombre']; // Asegurar tipo numérico.
             $activo = $input['activo'];
             $rol = $input['id_rol'];
