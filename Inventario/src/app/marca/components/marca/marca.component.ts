@@ -75,7 +75,7 @@ export class MarcaComponent {
             }
           },
           error: (error) => {
-            this.toastr.error(error.error.errores, 'Error guardando marca');
+            this.toastr.error(error.error/*.errores*/, 'Error guardando marca');
           },
           complete: () => {
             console.log('Operación completada.');
@@ -92,11 +92,11 @@ export class MarcaComponent {
               );
               this._route.navigate(['/marcas']);
             } else {
-              this.toastr.error(resultado.errores, 'Error modificando marca');
+              this.toastr.error(resultado, 'Error modificando marca');
             }
           },
           error: (error) => {
-            this.toastr.error(error.error.errores, 'Error modificando marca');
+            this.toastr.error(error.error/*.errores*/, 'Error modificando marca');
           },
           complete: () => {
             console.log('Operación completada.');
@@ -107,7 +107,7 @@ export class MarcaComponent {
           next: (resultado) => {
             if (resultado) {
               this.toastr.success(
-                'Se ha eliminado ' + resultado.nombre,
+                'Se ha eliminado ' + this.marcaact.nombre,
                 'Marca eliminada correctamente!'
               );
               this._route.navigate(['/marcas']);
