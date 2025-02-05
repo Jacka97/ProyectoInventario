@@ -7,8 +7,8 @@ import { Marca } from './marca';
   providedIn: 'root'
 })
 export class MarcasService {
-  urlPhp=''/*'http://test-php.jtarrega.es/';*/;
-  urlApi=''/*'http://test-api25s.jtarrega.es/api/empleados';*/;
+  urlPhp='https://uat-inventarios.proyectos-2daw.es/';
+  urlApi='https://uat-inventarios.proyectos-2daw.es/api/marcaControl.php';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':'application/json'
