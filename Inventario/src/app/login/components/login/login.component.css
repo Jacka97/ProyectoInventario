@@ -1,0 +1,9 @@
+.centrado{
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.errores {
+    color: red;
+    font-size: small;
+}

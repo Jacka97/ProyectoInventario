@@ -7,17 +7,21 @@ import { MarcaModule } from './marca/marca.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BienvenidoComponent } from './bienvenido/bienvenido.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
+import { BienvenidaComponent } from './bienvenida/bienvenida.component';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     BienvenidoComponent,
-    EncabezadoComponent  
+    EncabezadoComponent,
+    BienvenidaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MarcaModule,
+    LoginModule,
     ToastrModule.forRoot()  
   ],
   providers: [],

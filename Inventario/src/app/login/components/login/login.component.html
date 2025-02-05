@@ -1,0 +1,14 @@
+<h2>Debes identificarte para acceder a la aplicación</h2>
+<div class="centrado">
+    <form [formGroup]="loginForm" (ngSubmit)="compruebaUsuario()" novalidate>
+        <label>Correo Electronico: </label>
+        <input type="email" formControlName="email">
+        <div *ngIf="loginForm.get('email')?.dirty && loginForm.get('email')?.invalid " class="errores">
+            El texto debe ser un correo electronico.
+        </div><br><br>
+        <label>Contraseña: </label>
+        <input type="password" formControlName="contrasenya"><br>
+        <br><br>
+        <input type="submit" name="aceptar" value="Aceptar">
+    </form>
+</div>
