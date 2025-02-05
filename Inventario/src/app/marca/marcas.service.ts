@@ -23,12 +23,12 @@ export class MarcasService {
     return this.http.post<any>(`${this.urlApi}`, JSON.stringify(marca), this.httpOptions);
   }
   obtengoMarcaApi(nmarca:number):Observable<any> {
-    return this.http.get(`${this.urlApi}/${nmarca}`);
+    return this.http.get(`${this.urlApi}/?id=${nmarca}`);
   }
   modificaMarcaApi(nmarca:number, marca:Marca): Observable<any>{
     return this.http.put<any>(`${this.urlApi}/${nmarca}`, JSON.stringify(marca), this.httpOptions);
   }
   borraMarcaApi(nmarca:number): Observable<any>{
-    return this.http.delete(`${this.urlApi}/${nmarca}`);
+    return this.http.delete(`${this.urlApi}/?id=${nmarca}`);
   }
 }

@@ -64,9 +64,9 @@ export class MarcaComponent {
       if (this.tipo == 0) {
         this._marcasService.guardaNuevaMarcaApi(this.marcaact).subscribe({
           next: (resultado) => {
-            if (resultado.mensaje == 'OK') {
+            if (resultado) {
               this.toastr.success(
-                'Se ha agregado ' + resultado.datos.nombre,
+                'Se ha agregado ' + resultado.nombre,
                 'Marca agregada correctamente!'
               );
               this._route.navigate(['/marcas']);
@@ -84,6 +84,7 @@ export class MarcaComponent {
       } else if (this.tipo == 1) {
         this._marcasService.modificaMarcaApi(this.id, this.marcaact).subscribe({
           next: (resultado) => {
+            console.log(resultado);
             if (resultado) {
               this.toastr.success(
                 'Se ha modificado ' + resultado.nombre,
@@ -104,9 +105,9 @@ export class MarcaComponent {
       } else if (this.tipo == 2) {
         this._marcasService.borraMarcaApi(this.id).subscribe({
           next: (resultado) => {
-            if (resultado.mensaje == 'OK') {
+            if (resultado) {
               this.toastr.success(
-                'Se ha eliminado ' + resultado.datos.nombre,
+                'Se ha eliminado ' + resultado.nombre,
                 'Marca eliminada correctamente!'
               );
               this._route.navigate(['/marcas']);

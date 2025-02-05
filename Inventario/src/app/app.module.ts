@@ -9,6 +9,7 @@ import { BienvenidoComponent } from './bienvenido/bienvenido.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { LoginModule } from './login/login.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginModule } from './login/login.module';
     AppRoutingModule,
     MarcaModule,
     LoginModule,
-    ToastrModule.forRoot()  
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]
