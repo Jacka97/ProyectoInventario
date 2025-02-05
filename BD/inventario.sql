@@ -16,7 +16,7 @@ CREATE TABLE Usuarios (
 
     id_rol INT,
 
-    FOREIGN KEY (id_rol) REFERENCES Roles(id)
+    FOREIGN KEY (id_rol) REFERENCES Roles(id) ON DELETE SET NULL,
 
     
 
@@ -49,7 +49,7 @@ CREATE TABLE Ordenadores (
 
     numero VARCHAR(100),
 
-    idMarca INT NOT NULL,
+    idMarca INT NULL,
 
     modelo VARCHAR(100) NOT NULL, 
 
@@ -80,7 +80,7 @@ CREATE TABLE Ordenadores (
 
     FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL,
 
-    FOREIGN KEY (idMarca) REFERENCES Marcas(id)
+    FOREIGN KEY (idMarca) REFERENCES Marcas(id) ON DELETE SET NULL,
 
 );
 
@@ -115,7 +115,7 @@ CREATE TABLE Software_PC (
 
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
-    FOREIGN KEY (numPC) REFERENCES Ordenadores(numero),
+    FOREIGN KEY (numPC) REFERENCES Ordenadores(id),
 
     FOREIGN KEY (idSoftware) REFERENCES Software(id)
 
