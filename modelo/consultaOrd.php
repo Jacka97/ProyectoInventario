@@ -35,7 +35,7 @@ class consultaOrdenadores{
     }
     public static function altaOrdenador( $numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo,$numeroSerie,$red,$MACLAN,$IPLAN,$MACWIFI,$IPWIFI,$HD1,$HD2,$observaciones){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Ordenadores (nombre, idMarca, modelo, idUbicacion, nombre, tipo, numerioSerie, Red, MACLAN, IPLAN, MACWIFI, IP WIFI, HD1, HD2, Obversvaciones) VALUES ( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numerioSerie, Red, MACLAN, IPLAN, MACWIFI, IP WIFI, HD1, HD2, Obversvaciones) VALUES ( '$numero','$idMarca','$modelo','$idUbicacion','$nombre','$tipo','$numeroSerie','$red', '$MACLAN', '$IPLAN', '$MACWIFI', '$IPWIFI', '$HD1', '$HD2', '$observaciones)";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();

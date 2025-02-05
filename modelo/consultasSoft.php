@@ -22,7 +22,7 @@ class consultaSoft{
     
     public static function insertarSoftware($nombre){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Software (nombre, precio, clave) VALUES ('$nombre')";
+        $sql = "INSERT INTO Software (nombre) VALUES ('$nombre')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();

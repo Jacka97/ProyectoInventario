@@ -29,13 +29,13 @@ switch ($method) {
 
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['correo'], $input['contrasenya'], $input['nombre'])) {
+        if (!empty($input) && isset($input['correo'], $input['pass'], $input['nombre'], $input['activo'], $input['id_rol'])) {
             // Crear un nuevo producto.
             $correo = $input['correo'];
             $contrasenya = $input['contrasenya'];
             $nombre = $input['nombre']; // Asegurar tipo numérico.
 
-            $result = consultaUsu::altaUsu($nombre, $correo, $contrasenya);
+            $result = consultaUsu::altaUsu($correo, $contrasenya, $nombre, $activo, $id_rol);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
@@ -50,6 +50,7 @@ switch ($method) {
             $contrasenya = $input['contrasenya'];
             $nombre = $input['nombre']; // Asegurar tipo numérico.
             $activo = $input['activo'];
+            $rol = $input['id_rol'];
             $result = consultaUsu::modificarUsu($id,$correo, $contrasenya, $nombre, $activo, $rol);
             echo json_encode(["success" => $result]);
 

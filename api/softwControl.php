@@ -26,13 +26,12 @@ switch ($method) {
 
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['nombre'], $input['descripcion'], $input['precio'])) {
+        if (!empty($input) && isset($input['nombre'])) {
             // Crear un nuevo producto.
             $nombre = $input['nombre'];
-            $descripcion = $input['descripcion'];
-            $precio = (float) $input['precio']; // Asegurar tipo numérico.
+           
 
-            $result = consultaSoft::insertarSoftware($id, $nombre, $precio, $clave);
+            $result = consultaSoft::insertarSoftware($nombre);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
@@ -46,7 +45,7 @@ switch ($method) {
                 $id = (int) $input['id']; // Sanitizar el ID.
                 $nombre = $input['nombre'];
     
-                $result = consultaSoft::modificarSoftw($id, $nombre, $precio, $clave);
+                $result = consultaSoft::modificarSoftw($id, $nombre);
                 echo json_encode(["success" => $result]);
             } else {
                 echo json_encode(["error" => "ID y/o datos inválidos"]);

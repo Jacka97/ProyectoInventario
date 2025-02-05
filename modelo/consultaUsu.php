@@ -32,9 +32,9 @@ class consultaUsu{
         return $result->fetch_assoc();
     }
     
-    public static function altaUsu($nombre, $correo, $contrasenya){
+    public static function altaUsu($nombre, $correo, $contrasenya, $activo, $rol){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Usuarios (correo, pass, nombre) VALUES ('$nombre', '$correo', '$contrasenya')";
+        $sql = "INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES ('$correo', '$contrasenya','$nombre','$activo','$rol')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
@@ -42,7 +42,7 @@ class consultaUsu{
     }
     public static function modificarUsu($id, $correo, $contrasenya, $nombre, $activo, $rol){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Usuarios SET correo = '$correo',pass = '$contrasenya', nombre='$nombre', rol = '$rol' WHERE id = " . $id;
+        $sql = "UPDATE Usuarios SET correo = '$correo',pass = '$contrasenya', nombre='$nombre',activo = '$activo' id_rol = '$rol' WHERE id = " . $id;
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();

@@ -27,39 +27,79 @@ switch ($method) {
         }
         break;
 
-    case 'POST':
-        header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['nombre'], $input['ubicacion'], $input['precio'], $input['fechaCompra'])) {
-            // Crear un nuevo producto.
-            $nombre = $input['nombre'];
-            $descripcion = $input['descripcion'];
-            $precio = (float) $input['precio']; // Asegurar tipo numérico.
-
-            $result = consultaOrdenadores::altaOrdenador($nombre, $ubicacion, $marca, $precio, $fechaCompra);
-            echo json_encode(["id" => $result]);
-        } else {
-            echo json_encode(["error" => "Datos inválidos"]);
-        }
-        break;
-
-    case 'PUT':
+        case 'POST':
             header("Content-Type: application/json; charset=UTF-8");
-            if (!empty($input) && isset($input['id'])) {
-                // Modificar un producto por ID.
-                $id = (int) $input['id']; // Sanitizar el ID.
+        
+            if (!empty($input) && isset($input['nombre'], $input['idMarca'], $input['modelo'], $input['idUbicacion'], $input['tipo'], $input['numeroSerie'], $input['red'], $input['MACLAN'], $input['IPLAN'], $input['MACWIFI'], $input['IPWIFI'], $input['HD1'], $input['HD2'], $input['observaciones'])) {
+                
+                // Extraer datos del JSON recibido
                 $nombre = $input['nombre'];
-                $nombre = $input['ubicacion'];
-                $nombre = $input['precio'];
-                $nombre = $input['fechaCompra'];
-    
-                $result = consultaOrdenadores::modificarOrdenador($id, $nombre, $ubicacion,$marca,  $precio, $fechaCompra);
-                echo json_encode(["success" => $result]);
+                $idMarca = $input['idMarca'];
+                $modelo = $input['modelo'];
+                $idUbicacion = $input['idUbicacion'];
+                $tipo = $input['tipo'];
+                $numeroSerie = $input['numeroSerie'];
+                $red = $input['red'];
+                $MACLAN = $input['MACLAN'];
+                $IPLAN = $input['IPLAN'];
+                $MACWIFI = $input['MACWIFI'];
+                $IPWIFI = $input['IPWIFI'];
+                $HD1 = $input['HD1'];
+                $HD2 = $input['HD2'];
+                $observaciones = $input['observaciones'];
+                $numero = $input['numero'];
+        
+                // Llamar a la función para insertar el ordenador
+                $result = consultaOrdenadores::altaOrdenador($numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo, $numeroSerie, $red, $MACLAN, $IPLAN, $MACWIFI, $IPWIFI, $HD1, $HD2, $observaciones);
+        
+                if ($result) {
+                    echo json_encode(["id" => $result]);
+                } else {
+                    echo json_encode(["error" => "No se pudo crear el ordenador"]);
+                }
             } else {
-                echo json_encode(["error" => "ID y/o datos inválidos"]);
+                echo json_encode(["error" => "Datos inválidos o incompletos"]);
             }
             break;
+        
 
-
+            case 'PUT':
+                header("Content-Type: application/json; charset=UTF-8");
+            
+                if (!empty($input) && isset($input['id'], $input['numero'], $input['idMarca'], $input['modelo'], $input['idUbicacion'], $input['nombre'], $input['tipo'], $input['numeroSerie'], $input['red'], $input['MACLAN'], $input['IPLAN'], $input['MACWIFI'], $input['IPWIFI'], $input['HD1'], $input['HD2'], $input['observaciones'])) {
+                    
+                    // Extraer y sanitizar datos
+                    $id = (int) $input['id'];
+                    $numero = (int) $input['numero'];
+                    $idMarca = (int) $input['idMarca'];
+                    $modelo = $input['modelo'];
+                    $idUbicacion = (int) $input['idUbicacion'];
+                    $nombre = $input['nombre'];
+                    $tipo = $input['tipo'];
+                    $numeroSerie = $input['numeroSerie'];
+                    $red = $input['red'];
+                    $MACLAN = $input['MACLAN'];
+                    $IPLAN = $input['IPLAN'];
+                    $MACWIFI = $input['MACWIFI'];
+                    $IPWIFI = $input['IPWIFI'];
+                    $HD1 = $input['HD1'];
+                    $HD2 = $input['HD2'];
+                    $observaciones = $input['observaciones'];
+            
+                    // Llamar a la función de actualización
+                    $result = consultaOrdenadores::modificarOrdenador($id, $numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo, $numeroSerie, $red, $MACLAN, $IPLAN, $MACWIFI, $IPWIFI, $HD1, $HD2, $observaciones);
+            
+                    // Verificar el resultado
+                    if ($result) {
+                        echo json_encode(["success" => true]);
+                    } else {
+                        echo json_encode(["error" => "No se pudo actualizar el ordenador"]);
+                    }
+                } else {
+                    echo json_encode(["error" => "Datos inválidos o incompletos"]);
+                }
+                break;
+            
     case 'DELETE':
         header("Content-Type: application/json; charset=UTF-8");
         if (isset($_GET['id'])) {
