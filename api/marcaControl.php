@@ -60,7 +60,7 @@ switch ($method) {
         header("Content-Type: application/json; charset=UTF-8");
         if (isset($_GET['id'])) {
             // Eliminar un producto por ID.
-            $id = (int) $_GET['id']; // Sanitizar el ID.
+           $id = (int) $_GET['id']; // Sanitizar el ID.
             $result= consultaMarca::eliminarMarca($id);
             echo json_encode(["success" => $result]);
         } else {
