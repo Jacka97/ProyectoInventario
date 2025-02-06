@@ -29,6 +29,6 @@ export class MarcasService {
     return this.http.put<any>(`${this.urlApi}/${nmarca}`, JSON.stringify(marca), this.httpOptions);
   }
   borraMarcaApi(nmarca:number): Observable<any>{
-    return this.http.delete(`${this.urlApi}/${nmarca}`);
+    return this.http.delete(`${this.urlApi}/?id=${nmarca}`);
   }
 }
