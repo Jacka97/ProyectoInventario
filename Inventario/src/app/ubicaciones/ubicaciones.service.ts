@@ -23,12 +23,12 @@ export class UbicacionesService {
     return this.http.post<any>(`${this.urlApi}`, JSON.stringify(ubicacion), this.httpOptions);
   }
   obtengoUbicacionApi(nubi:number):Observable<any> {
-    return this.http.get(`${this.urlApi}/${nubi}`);
+    return this.http.get(`${this.urlApi}/?id=${nubi}`);
   }
   modificaUbicacionApi(nubi:number, ubicacion:Ubicacion): Observable<any>{
-    return this.http.put<any>(`${this.urlApi}/${nubi}`, JSON.stringify(ubicacion), this.httpOptions);
+    return this.http.put<any>(`${this.urlApi}/?id=${nubi}`, JSON.stringify(ubicacion), this.httpOptions);
   }
   borraUbicacionApi(nubi:number): Observable<any>{
-    return this.http.delete(`${this.urlApi}/${nubi}`);
+    return this.http.delete(`${this.urlApi}/?id=${nubi}`);
   }
 }

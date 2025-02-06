@@ -5,6 +5,11 @@
             <h5 class="card-title">Introduce los datos de la ubicacion</h5>
             <form #ubicacionForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaUbicacion()" novalidate>
                 <div class="row mb-3">
+                    <!--<div class="col-12 mt-2 col-md-4 mt-md-0">
+                        <label for="edad" class="form-label"></label>
+                        <input type="number" id="edad" name="edad" class="form-control" placeholder="Introduce edad"
+                            [(ngModel)]="ubicacionact.edad" [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
+                    </div>-->
                     <div class="col-12 col-md-8">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Introduce nombre"
