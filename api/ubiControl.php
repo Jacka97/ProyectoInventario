@@ -13,11 +13,11 @@ $input = json_decode(file_get_contents('php://input'), true);
 switch ($method) {
     case 'GET':
         header("Content-Type: application/json; charset=UTF-8");
-        if (isset($_GET['nombre'])) {
+        if (isset($_GET['id'])) {
             
             // Obtener un producto por ID.
-            $nombre = $_GET['nombre']; // Sanitizar el ID.
-            $product = consultaUbicacion::getAulaByNombre($nombre);
+            $id = $_GET['id']; // Sanitizar el ID.
+            $product = consultaUbicacion::getAulaByNombre($id);
             echo json_encode($product ?: ["error" => "Producto no encontrado"]);
         } else {
             
