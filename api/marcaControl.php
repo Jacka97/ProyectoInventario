@@ -61,7 +61,7 @@ switch ($method) {
         if (isset($_GET['id'])) {
             // Eliminar un producto por ID.
            $id = (int) $_GET['id']; // Sanitizar el ID.
-            $result= consultaMarca::eliminarMarca(1);
+            $result= consultaMarca::eliminarMarca($id);
             echo json_encode(["success" => $result]);
         } else {
             echo json_encode(["error" => "ID no proporcionado"]);
