@@ -16,12 +16,10 @@ CREATE TABLE Usuarios (
 
     id_rol INT,
 
-    FOREIGN KEY (id_rol) REFERENCES Roles(id) ON DELETE SET NULL,
-
-    
-
+    FOREIGN KEY (id_rol) REFERENCES Roles(id) ON DELETE SET NULL
 
 ); 
+
 INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('admin@admin.com','admin', 'admin', TRUE, 1);
 INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('usuario@usuario.com','usuario', 'usuario', TRUE, 2);
 INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('tecnico@tecnico.com','tecnico', 'tecnico', TRUE, 3);
@@ -80,9 +78,10 @@ CREATE TABLE Ordenadores (
 
     FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL,
 
-    FOREIGN KEY (idMarca) REFERENCES Marcas(id) ON DELETE SET NULL,
+    FOREIGN KEY (idMarca) REFERENCES Marcas(id) ON DELETE SET NULL
 
 );
+(i) Al borrar una marca de la tabla Marcas los ordenadores que tenian esa marca se quedan con idMarca = null, pensar si esto es lo mejor
 
 INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numerioSerie, Red, MACLAN, IPLAN, MACWIFI, IPWIFI, HD1, HD2, Observaciones) VALUES 
 ('PC001', 1, 'ThinkPad X1', 1, 'Ordenador Aula1', 'Portátil', 'SN123456', 'LAN1', '00:1A:2B:3C:4D:5E', '192.168.1.10', '00:1A:2B:3C:4D:5F', '192.168.1.20', 'SSD 512GB', 'HDD 1TB', 'Buen estado'),
@@ -109,22 +108,23 @@ CREATE TABLE Software_PC (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
 
-    numPC VARCHAR(100) NOT NULL,
+    idPC INT,
 
-    idSoftware INT NOT NULL,
+    idSoftware INT,
 
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
-    FOREIGN KEY (numPC) REFERENCES Ordenadores(id),
+    FOREIGN KEY (idPC) REFERENCES Ordenadores(id) ON DELETE SET NULL,
 
-    FOREIGN KEY (idSoftware) REFERENCES Software(id)
+    FOREIGN KEY (idSoftware) REFERENCES Software(id) ON DELETE SET NULL
 
 );
+/* tal vez haga falta un trigger para que al borrar uno de los dos se borren todos los registros de esta tabla */
 
-INSERT INTO Software_PC (numPC, idSoftware) VALUES 
-('PC001', 1),  -- Linux en ThinkPad X1 (PC001)
-('PC002', 2),  -- Windows en MSI GF63 (PC002)
-('PC004', 3);  -- iOS en ASUS ROG Strix (PC004)
+INSERT INTO Software_PC (idPC, idSoftware) VALUES 
+(2, 1),
+(2, 2),
+(3, 3);
 
 
 CREATE TABLE Marcas (
