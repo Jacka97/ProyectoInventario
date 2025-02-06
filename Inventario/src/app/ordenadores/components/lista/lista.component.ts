@@ -39,10 +39,10 @@ export class ListaComponent {
     
     this._ordenadoresService.obtengoOrdenadores().subscribe({
       next: (resultado) => {
-        if (resultado.success) {
-          this.ordenadores = resultado.data;
+        if (resultado) {
+          this.ordenadores = resultado;
         } else {
-          console.error('Error al recibir los datos: ', resultado.message);
+          console.error('Error al recibir los datos: ', resultado);
         }
       },
       error: (error) => {

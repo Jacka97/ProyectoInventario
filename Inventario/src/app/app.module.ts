@@ -33,7 +33,8 @@ import { OrdenadoresModule } from './ordenadores/ordenadores.module';
     LoginModule,
     AuthModule,
     OrdenadoresModule,
-    ToastrModule.forRoot()  
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

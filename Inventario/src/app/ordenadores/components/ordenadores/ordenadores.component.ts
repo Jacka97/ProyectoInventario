@@ -33,10 +33,10 @@ export class OrdenadoresComponent {
   private traeOrdenador() {
     this._ordenadoresService.obtengoOrdenadores().subscribe({
       next: (resultado) => {
-        if (resultado.mensaje == "OK") {
-          this.ordenadorAct = resultado.datos;
+        if (resultado == "OK") {
+          this.ordenadorAct = resultado;
         } else {
-          this.toastr.error(resultado.mensaje, 'Error al obtener el ordenador');
+          this.toastr.error(resultado, 'Error al obtener el ordenador');
         }
       },
       error: (error) => {
