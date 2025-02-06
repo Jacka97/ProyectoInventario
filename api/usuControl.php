@@ -34,6 +34,8 @@ switch ($method) {
             $correo = $input['correo'];
             $contrasenya = $input['pass'];
             $nombre = $input['nombre']; // Asegurar tipo numérico.
+            $activo = $input['activo'];
+            $id_rol = $input['id_rol']; // Asegurar tipo numérico.
 
             $result = consultaUsu::altaUsu($correo, $contrasenya, $nombre, $activo, $id_rol);
             echo json_encode(["id" => $result]);
