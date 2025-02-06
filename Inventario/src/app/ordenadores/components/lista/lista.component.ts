@@ -9,7 +9,7 @@ import { Config } from 'datatables.net';
 })
 export class ListaComponent {
 
-  public filterSearch : string = '';
+  // public filterSearch : string = '';
   ordenadores:any;
   dtOptions: Config = {};
 
@@ -50,7 +50,7 @@ export class ListaComponent {
       },
       complete: () => {
         console.log('Operacion completada.');
-      }
+      },
     });
   }
 }

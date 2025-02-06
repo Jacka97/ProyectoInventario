@@ -19,8 +19,12 @@ export class OrdenadoresService {
     private ordenadores: Ordenadores[] = [];
 
     obtengoOrdenadores(): Observable<any> {
-        return this.http.get(`${this.urlAPI}/ordeControl.php`);
+        return this.http.get(`${this.urlAPI}`);
       }
+
+    obtengoOrdenadoresArr() : Ordenadores[] {
+        return this.ordenadores;
+    }
     //   guardaNuevoEmpleadoPhp( ordenadores:Ordenadores): Observable<any> {
     //     return this.http.post<any>(`${this.urlAPI}/alta.php`, JSON.stringify(ordenadores));
     //   }
