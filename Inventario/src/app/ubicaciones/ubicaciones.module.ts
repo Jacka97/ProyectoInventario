@@ -14,7 +14,14 @@ import { RouterModule } from '@angular/router';
     ListaComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    FormsModule,
+    RouterModule
+  ],
+  providers: [provideHttpClient()],
+  exports: [
+    UbicacionComponent,
+    ListaComponent
+  ],
 })
 export class UbicacionesModule { }
