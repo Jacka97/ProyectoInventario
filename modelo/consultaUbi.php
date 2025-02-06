@@ -11,9 +11,9 @@ class consultaUbicacion{
         return $result->fetch_all(MYSQLI_ASSOC);   
 }
 
-    public static function getAulaByNombre($nombre){
+    public static function getAulaByNombre($id){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Ubicaciones WHERE nombre = " . $nombre;
+        $sql = "SELECT * FROM Ubicaciones WHERE id = " . $id;
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();
