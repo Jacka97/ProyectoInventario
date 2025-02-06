@@ -19,9 +19,21 @@
             No hay datos para mostrar
           </h5>
           <div *ngIf="marcas.length > 0" class="table-responsive">
+            <div class="row">
+                <div class="col-2 d-flex justify-content-around">
+                    <button (click)="descargarPDF()" class="btn btn-primary mt-3">
+                        <i class="fa-regular fa-file-pdf"></i>
+                    </button>
+                    <button (click)="descargarExcel()" class="btn btn-primary mt-3">
+                        <i class="fa-regular fa-file-excel"></i>
+                    </button>
+                </div>
+               
+        </div>
             <table
               datatable
               [dtOptions]="dtOptions"
+              id="tbmarcas"
               class="table table-striped table-hover table-bordered"
             >
               <thead>

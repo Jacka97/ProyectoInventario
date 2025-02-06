@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MarcasService } from '../../marcas.service';
 import { Config } from 'datatables.net';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-lista',
@@ -46,26 +48,32 @@ this._marcasService.obtengoMarcasApi().subscribe({
   },
 });
 }
-}
 
-/*export class ListaComponent {
- // public filterSearch:string = '';
-  public cargando:boolean = true;
-  public marcas: any;
-  constructor(private _marcasService: MarcasService) { }
-  ngOnInit() {
-    this._marcasService.obtengoMarcasApi().subscribe({
-      next: (resultado) => {        
-        if (resultado){
-          this.marcas = resultado;
-        }else{
-          console.error('Error al recibir datos:', resultado.error);
-        }
-      },
-      error: (error) => {
-        console.error('Error al recibir datos:', error);
-      },
-      
-    });
+/*descargar pdf */
+descargarPDF() {
+  const doc = new jsPDF(); // Crear instancia de jsPDF
+  // Agregar título o texto opcional
+  doc.text('Listado de marcas', 14, 10);
+  // Seleccionar la tabla y convertirla a un formato adecuado
+  autoTable(doc, {
+  html: '#tbmarcas', // Selecciona la tabla por su ID
+  startY: 20, // Define la posición inicial en Y
+  });
+  // Guardar el PDF con un nombre
+  doc.save('marcas.pdf');
   }
-}*/
+
+  /*descargar excel */
+descargarExcel() {
+  const doc = new jsPDF(); // Crear instancia de jsPDF
+  // Agregar título o texto opcional
+  doc.text('Listado de marcas', 14, 10);
+  // Seleccionar la tabla y convertirla a un formato adecuado
+  autoTable(doc, {
+  html: '#tbmarcas', // Selecciona la tabla por su ID
+  startY: 20, // Define la posición inicial en Y
+  });
+  // Guardar el PDF con un nombre
+  doc.save('marcas.pdf');
+  }
+}
