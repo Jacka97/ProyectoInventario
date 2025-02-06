@@ -1,6 +1,6 @@
-<form>
+<form [formGroup]="registroForm" (ngSubmit)="enviarFormulario()">
     <h2>Registro de usuario</h2>
-    <label for="nombre">Nombre: </label>
+    <label>Nombre: </label>
     <input type="text" name="nombre" formControlName="nombre"><br><br>
     <div *ngIf="nombreControl.invalid && nombreControl.touched">
         <div *ngIf="nombreControl.errors.required" class="errores">
@@ -9,14 +9,14 @@
     </div>
     <label>Correo Electronico: </label>
     <input type="email" name="email" formControlName="email"><br><br>
-    <div *ngIf="registroForm.get('email').invalid && registroForm.get('email').touched">
-        <div *ngIf="registroForm.get('email').errors.required" class="errores">
+    <div *ngIf="emailControl.invalid && emailControl.touched">
+        <div *ngIf="emailControl.errors.required" class="errores">
             El email es obligatorio
         </div>
     </div>
     <label>Contraseña: </label>
     <input type="password" name="contrasenya" formControlName="contrasenya"><br><br>
-    <label>Confirmar contraseña: </label>
-    <input type="password" name="confirm"><br><br>
+    <!-- <label>Confirmar contraseña: </label>
+    <input type="password" name="confirm"><br><br> -->
     <input type="submit" name="aceptar" value="Registrarse">
 </form>

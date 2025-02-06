@@ -1,18 +1,32 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  constructor() { }
-  private email: string = 'admin@admin.com';
-  private contrasenya: string = 'admin';
-  private identificado: boolean = false;
+  private urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/usuControl.php';
+  constructor(private http: HttpClient) { }
+
+  login(email: string, password: string): Observable <any> {
+    return this.http.post<any>(`${this.urlAPI}/login`, {email, password});
+  }
+
+  getToken():string | null {
+    return localStorage.getItem('token');
+  }
+
+  saveToken(token: string): void {
+    localStorage.setItem('token', token); // Guarda el token
+  }
+
   estaIdentificado(): boolean {
-    return this.identificado;
+    return this.getToken() !== null; // Verifica si el token existe
   }
-  compruebaUsuario(email: string, contrasenya: string): boolean {
-    this.identificado = email == this.email && contrasenya == this.contrasenya;
-    return this.identificado;
+
+  salirAplicacion(): void {
+    localStorage.removeItem('token'); // Elimina el token
   }
+  
 }

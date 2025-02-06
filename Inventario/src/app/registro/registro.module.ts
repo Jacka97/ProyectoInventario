@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RegistroComponent } from '../registro/components/registro/registro.component';
 import { registroService } from './registro.service';
 
@@ -8,6 +8,7 @@ import { registroService } from './registro.service';
   declarations: [RegistroComponent],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [registroService]
