@@ -1,15 +1,19 @@
 <div class="container d-flex align-items-center justify-content-center contenedor-formulario">
     <div class="col-10 col-md-8 card text-center my-3">
-        <div class="card-header titulos">MARCAS - {{ titulo }}</div>
+        <div class="card-header titulos">UBICACIONES - {{ titulo }}</div>
         <div class="card-body">
-            <h5 class="card-title">Introduce los datos de la marca</h5>
-            <form #marcaForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaMarca()" novalidate>
+            <h5 class="card-title">Introduce los datos de la ubicacion</h5>
+            <form #ubicacionForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaUbicacion()" novalidate>
                 <div class="row mb-3">
-                   
+                    <!--<div class="col-12 mt-2 col-md-4 mt-md-0">
+                        <label for="edad" class="form-label"></label>
+                        <input type="number" id="edad" name="edad" class="form-control" placeholder="Introduce edad"
+                            [(ngModel)]="ubicacionact.edad" [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
+                    </div>-->
                     <div class="col-12 col-md-8">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Introduce nombre"
-                            [(ngModel)]="marcaact.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
+                            [(ngModel)]="ubicacionact.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                             minlength="2" maxlength="60" required #descModel="ngModel"
                             [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')">
                         <span *ngIf="descModel.touched && descModel.invalid">(Debe tener como mínimo 2
@@ -19,7 +23,7 @@
                 </div>
                 <div class="my-3 text-center">
                     <button name="cancelar" class="btn btn-secondary btn-lg me-3"
-                        [routerLink]="['/marcas']">Cancelar</button>
+                        [routerLink]="['/ubicaciones']">Cancelar</button>
                     <input type="submit" class="btn btn-dark btn-lg" value="{{ txtBtn }}">
                 </div>
             </form>
