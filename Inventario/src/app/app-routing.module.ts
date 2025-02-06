@@ -9,6 +9,7 @@ import { LogoutComponent } from './login/components/logout/logout.component';
 import { RegistroComponent } from './registro/components/registro/registro.component';
 // import { OrdenadoresComponent } from './ordenadores/components/ordenadores/ordenadores.component';
 import { ListaComponent as ListaOrdenadores} from './ordenadores/components/lista/lista.component';
+import { OrdenadoresComponent } from './ordenadores/components/ordenadores/ordenadores.component';
 
 const routes: Routes = [
   { path : 'bienvenida', component : BienvenidaComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'bienvenido', component: BienvenidoComponent /*canActivate: [loginGuard]*/ },
   { path: 'marcas', component: ListaMarcas /*canActivate: [loginGuard]*/ },
   { path: 'ordenadores', component: ListaOrdenadores },
+  { path: 'ordenadores/:tipo/:id', component: OrdenadoresComponent},
   // { path: 'ordenadores', component: OrdenadoresComponent },
   { path: 'marcas/:tipo/:id', component: MarcaComponent, /*canActivate: [loginGuard, empleadoGuard],
 canDeactivate: [abandonarPaginaGuard],*/ },
