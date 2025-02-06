@@ -11,7 +11,8 @@ import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { LoginModule } from './login/login.module';
 import { AuthModule } from './registro/registro.module';
-import { OrdenadoresComponent } from './ordenadores/components/ordenadores.component';
+import { OrdenadoresComponent } from './ordenadores/components/ordenadores/ordenadores.component';
+import { ListaComponent } from './components/lista/lista.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { OrdenadoresComponent } from './ordenadores/components/ordenadores.compo
     BienvenidoComponent,
     EncabezadoComponent,
     BienvenidaComponent,
-    OrdenadoresComponent
+    OrdenadoresComponent,
+    ListaComponent
   ],
   imports: [
     BrowserModule,

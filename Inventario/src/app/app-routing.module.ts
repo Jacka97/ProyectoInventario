@@ -7,7 +7,7 @@ import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { LoginComponent } from './login/components/login/login.component';
 import { LogoutComponent } from './login/components/logout/logout.component';
 import { RegistroComponent } from './registro/components/registro/registro.component';
-import { OrdenadoresComponent } from './ordenadores/components/ordenadores.component';
+import { OrdenadoresComponent } from './ordenadores/components/ordenadores/ordenadores.component';
 
 const routes: Routes = [
   { path : 'bienvenida', component : BienvenidaComponent },
