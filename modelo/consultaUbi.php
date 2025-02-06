@@ -35,9 +35,9 @@ class consultaUbicacion{
         $conexion->close();
         
     }
-    public static function eliminarAula($nombre){
+    public static function eliminarAula($id){
         $conexion = conexionBD::conectar();
-        $sql = "DELETE FROM Ubicaciones WHERE nombre = " . $nombre;
+        $sql = "DELETE FROM Ubicaciones WHERE id = " . $id;
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();

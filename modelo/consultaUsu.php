@@ -49,9 +49,9 @@ class consultaUsu{
         
     }
    
-    public static function eliminarUsu($correo){
+    public static function eliminarUsu($id){
         $conexion = conexionBD::conectar();
-        $sql = "DELETE FROM Usuario WHERE correo = " . $correo;
+        $sql = "DELETE FROM Usuario WHERE id = " . $id;
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
