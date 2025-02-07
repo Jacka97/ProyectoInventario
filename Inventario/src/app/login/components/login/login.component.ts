@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailValidator } from '../../../validadores';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -13,6 +14,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
+  estaIdentificado(): boolean {
+    return this._loginService.estaIdentificado();
+  }
+  
   public loginForm: FormGroup;
   constructor(private _loginService: LoginService, private _route:Router, private _fb: FormBuilder, private toastr: ToastrService) { 
     this.loginForm = this._fb.group({

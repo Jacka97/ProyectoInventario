@@ -16,10 +16,9 @@ import { ListaUsersComponent } from './users/components/lista/lista.component';
 import { loginGuard } from './login/login.guard';
 
 const routes: Routes = [
-  { path : 'bienvenida', component : BienvenidaComponent },
+  // { path : 'bienvenida', component : BienvenidaComponent },
   { path : 'login', component: LoginComponent },
-  { path : 'logout', component: LogoutComponent },
-  { path : 'registro', component: RegistroComponent },
+  // { path : 'registro', component: RegistroComponent },
   { path: 'bienvenido', component: BienvenidoComponent, canActivate: [loginGuard] },
   { path: 'marcas', component: ListaMarcas, canActivate: [loginGuard]},
   { path: 'ordenadores', component: ListaOrdenadores, canActivate: [loginGuard] }, 
@@ -30,8 +29,8 @@ const routes: Routes = [
   { path: 'marcas/:tipo/:id', component: MarcaComponent, canActivate: [loginGuard] },
   { path: 'ubicaciones', component: ListaUbicaciones , canActivate: [loginGuard] },
   { path: 'ubicaciones/:tipo/:id', component: UbicacionComponent, canActivate: [loginGuard] },
-  { path: '', redirectTo: '/bienvenida', pathMatch: 'full' },
-  { path: '**', redirectTo: '/bienvenida', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

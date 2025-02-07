@@ -20,7 +20,7 @@
                 <h2>Gestión de Inventarios e Incidencias</h2>
                 <img src="../../../../assets/images/inicio.jpg" class="card-img-top d-lg-none" alt="Imagen de Inventario">
             </div>
-            <div class="card-body">
+            <div class="card-body" *ngIf="!estaIdentificado()">
                 <form [formGroup]="loginForm" (ngSubmit)="compruebaUsuario()" novalidate>
                     <!-- Campo de Email -->
                     <div class="mb-3">
@@ -50,7 +50,7 @@
     </div>
 
     <!-- Sección de la imagen -->
-    <div class="d-none d-lg-block col-lg-8 d-flex align-items-center justify-content-center">
+    <div class="d-none d-lg-block col-lg-8 d-flex align-items-center justify-content-center mt-4">
         <img src="../../../../assets/images/inicio.jpg" class="img-fluid d-block mx-auto" alt="Imagen de inicio">
     </div>
 </div>
