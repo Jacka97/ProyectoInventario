@@ -12,6 +12,8 @@ import { RegistroComponent } from './registro/components/registro/registro.compo
 // import { OrdenadoresComponent } from './ordenadores/components/ordenadores/ordenadores.component';
 import { ListaComponent as ListaOrdenadores} from './ordenadores/components/lista/lista.component';
 import { OrdenadoresComponent } from './ordenadores/components/ordenadores/ordenadores.component';
+import { UsersComponent } from './users/components/user/user.component';
+import { ListaUsersComponent } from './users/components/lista/lista.component';
 
 const routes: Routes = [
   { path : 'bienvenida', component : BienvenidaComponent },
@@ -22,9 +24,11 @@ const routes: Routes = [
   { path: 'marcas', component: ListaMarcas /*canActivate: [loginGuard]*/ },
   { path: 'ordenadores', component: ListaOrdenadores },
   { path: 'ordenadores/:tipo/:id', component: OrdenadoresComponent},
-  // { path: 'ordenadores', component: OrdenadoresComponent },
-  { path: 'marcas/:tipo/:id', component: MarcaComponent, /*canActivate: [loginGuard, empleadoGuard],
-canDeactivate: [abandonarPaginaGuard],*/ },
+  { path: 'users', component: ListaUsersComponent},
+  { path: 'users/:tipo/:id', component: UsersComponent},
+ 
+  { path: 'marcas/:tipo/:id', component: MarcaComponent}, /*canActivate: [loginGuard, empleadoGuard],
+canDeactivate: [abandonarPaginaGuard],*/ 
 
 { path: 'ubicaciones', component: ListaUbicaciones /*, canActivate: [loginGuard] */ },
 { path: 'ubicaciones/:tipo/:id', component: UbicacionComponent /*, canActivate: [loginGuard, empleadoGuard], canDeactivate: [abandonarPaginaGuard] */ },
