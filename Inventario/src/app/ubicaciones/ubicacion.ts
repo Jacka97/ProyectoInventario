@@ -1,4 +1,4 @@
-export class Marca{
+export class Ubicacion{
 
     constructor(
         public id:number,

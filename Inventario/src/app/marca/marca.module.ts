@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ListaComponent } from './components/lista/lista.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { provideHttpClient } from '@angular/common/http';
+/*import { provideHttpClient } from '@angular/common/http';*/
 import { MarcaComponent } from './components/marca/marca.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -16,9 +17,10 @@ import { MarcaComponent } from './components/marca/marca.component';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    DataTablesModule
   ],
-  providers: [provideHttpClient()],
+ /* providers: [provideHttpClient()],*/
   exports: [
     MarcaComponent,
     ListaComponent

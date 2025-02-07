@@ -66,7 +66,7 @@ export class MarcaComponent {
           next: (resultado) => {
             if (resultado) {
               this.toastr.success(
-                'Se ha agregado ' + resultado.nombre,
+                'Se ha agregado ' + this.marcaact.nombre,
                 'Marca agregada correctamente!'
               );
               this._route.navigate(['/marcas']);
@@ -87,7 +87,7 @@ export class MarcaComponent {
             console.log(resultado);
             if (resultado) {
               this.toastr.success(
-                'Se ha modificado ' + resultado.nombre,
+                'Se ha modificado ' + this.marcaact.nombre,
                 'Marca modificada correctamente!'
               );
               this._route.navigate(['/marcas']);
@@ -96,7 +96,7 @@ export class MarcaComponent {
             }
           },
           error: (error) => {
-            this.toastr.error(error.error/*.errores*/, 'Error modificando marca');
+            this.toastr.error(error.error, 'Error modificando marca');
           },
           complete: () => {
             console.log('Operación completada.');
@@ -112,11 +112,11 @@ export class MarcaComponent {
               );
               this._route.navigate(['/marcas']);
             } else {
-              this.toastr.error(resultado.errores, 'Error eliminando marca');
+              this.toastr.error(resultado, 'Error eliminando marca');
             }
           },
           error: (error) => {
-            this.toastr.error(error.error.errores, 'Error eliminando marca');
+            this.toastr.error(error.error, 'Error eliminando marca');
           },
           complete: () => {
             console.log('Operación completada.');
