@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './Users';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +33,8 @@ export class UserService {
   }
   
   modificaUserApi(nuser: number, user: User): Observable<any> {
-    const cleanUser = this.removeUserWrapper(user); // Quitar "user"
+    const cleanUser = this.removeUserWrapper(user); 
+    
     console.log(cleanUser);
     return this.http.put<any>(`${this.urlApi}?id=${nuser}`, JSON.stringify(cleanUser), this.httpOptions);
   }
