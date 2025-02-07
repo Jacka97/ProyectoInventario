@@ -12,6 +12,7 @@ import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { RegistroComponent } from './registro/components/registro/registro.component';
 import { OrdenadoresModule } from './ordenadores/ordenadores.module';
 import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
+import { UsersModule } from './users/users.module';
 
 
 
@@ -36,7 +37,8 @@ import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
     BrowserAnimationsModule,
     OrdenadoresModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule  
+    BrowserAnimationsModule,
+    UsersModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,6 +11,8 @@ import { LogoutComponent } from './login/components/logout/logout.component';
 import { RegistroComponent } from './registro/components/registro/registro.component';
 import { ListaComponent as ListaOrdenadores} from './ordenadores/components/lista/lista.component';
 import { OrdenadoresComponent } from './ordenadores/components/ordenadores/ordenadores.component';
+import { UsersComponent } from './users/components/user/user.component';
+import { ListaUsersComponent } from './users/components/lista/lista.component';
 import { loginGuard } from './login/login.guard';
 
 const routes: Routes = [
@@ -18,15 +20,21 @@ const routes: Routes = [
   { path : 'login', component: LoginComponent },
   { path : 'logout', component: LogoutComponent },
   { path : 'registro', component: RegistroComponent },
-  { path: 'bienvenido', component: BienvenidoComponent, canActivate: [loginGuard]},
-  { path: 'marcas', component: ListaMarcas, canActivate: [loginGuard]},
-  { path: 'ordenadores', component: ListaOrdenadores, canActivate: [loginGuard] },
-  { path: 'ordenadores/:tipo/:id', component: OrdenadoresComponent, canActivate: [loginGuard] },
-  { path: 'marcas/:tipo/:id', component: MarcaComponent,canActivate: [loginGuard] },
-  { path: 'ubicaciones', component: ListaUbicaciones, canActivate: [loginGuard] },
-  { path: 'ubicaciones/:tipo/:id', component: UbicacionComponent, canActivate: [loginGuard]},
-  { path: '', redirectTo: '/bienvenida', pathMatch: 'full' },
-  { path: '**', redirectTo: '/bienvenida', pathMatch: 'full' }  
+  { path: 'bienvenido', component: BienvenidoComponent /*canActivate: [loginGuard]*/ },
+  { path: 'marcas', component: ListaMarcas /*canActivate: [loginGuard]*/ },
+  { path: 'ordenadores', component: ListaOrdenadores },
+  { path: 'ordenadores/:tipo/:id', component: OrdenadoresComponent},
+  { path: 'users', component: ListaUsersComponent},
+  { path: 'users/:tipo/:id', component: UsersComponent},
+ 
+  { path: 'marcas/:tipo/:id', component: MarcaComponent}, /*canActivate: [loginGuard, empleadoGuard],
+canDeactivate: [abandonarPaginaGuard],*/ 
+
+{ path: 'ubicaciones', component: ListaUbicaciones /*, canActivate: [loginGuard] */ },
+{ path: 'ubicaciones/:tipo/:id', component: UbicacionComponent /*, canActivate: [loginGuard, empleadoGuard], canDeactivate: [abandonarPaginaGuard] */ },
+
+{ path: '', redirectTo: '/bienvenida', pathMatch: 'full' },
+{ path: '**', redirectTo: '/bienvenida', pathMatch: 'full' }
 ];
 
 @NgModule({
