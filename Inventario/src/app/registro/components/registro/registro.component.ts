@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { emailValidator } from '../../../validadores';
 import { ToastrService } from 'ngx-toastr';
+import { registroService } from '../../registro.service';
 
 @Component({
   selector: 'app-registro',
@@ -11,11 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 export class RegistroComponent {
 
   registroForm:any = FormGroup;
-  nombreControl:any = FormGroup;
-  emailControl:any = FormGroup;
-  contrasenyaControl:any = FormGroup;
+  nombreControl:any = FormControl;
+  emailControl:any = FormControl;
+  contrasenyaControl:any = FormControl;
 
-  constructor(private formBuilder: FormBuilder, private toastr: ToastrService) {}
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private _registroService: registroService) {}
 
   ngOnInit(): void {
     this.nombreControl = new FormControl('', [Validators.required]);
