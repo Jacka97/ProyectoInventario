@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { UsersModule } from './users/users.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MarcaModule } from './marca/marca.module';
@@ -9,10 +9,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BienvenidoComponent } from './bienvenido/bienvenido.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
-import { RegistroComponent } from './registro/components/registro/registro.component';
+import { LoginModule } from './login/login.module';
+import { AuthModule } from './registro/registro.module';
 import { OrdenadoresModule } from './ordenadores/ordenadores.module';
 import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
-import { UsersModule } from './users/users.module';
 
 
 
@@ -22,7 +22,6 @@ import { UsersModule } from './users/users.module';
 @NgModule({
   declarations: [
     AppComponent,
-    RegistroComponent,
     BienvenidoComponent,
     EncabezadoComponent,
     BienvenidaComponent,
@@ -31,14 +30,16 @@ import { UsersModule } from './users/users.module';
     BrowserModule,
     AppRoutingModule,
     MarcaModule,
+    UsersModule,
+    AuthModule,
+    LoginModule,
     UbicacionesModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     OrdenadoresModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule,
-    UsersModule,
+    BrowserAnimationsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

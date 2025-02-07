@@ -6,7 +6,7 @@ export const loginGuard: CanActivateFn = (route, state) => {
   const _router = inject(Router);
   const _loginService = inject(LoginService);
   if (!_loginService.estaIdentificado()) {
-    return _router.navigateByUrl('/login');
+    return _router.navigateByUrl('/bienvenida');
   }
   return true;
 };

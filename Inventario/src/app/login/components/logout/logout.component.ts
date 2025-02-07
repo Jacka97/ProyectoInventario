@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class LogoutComponent {
   constructor(private _loginService: LoginService, private _route: Router) { }
-  // ngOnInit() {
-  //   this._loginService.salirAplicacion();
-  // }
+  ngOnInit() {
+    this._loginService.salirAplicacion();
+  }
   
   volverAentrar() {
-    this._route.navigate(['/login']);
+    this._route.navigate(['/bienvenida']);
   }
 }

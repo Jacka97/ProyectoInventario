@@ -20,21 +20,18 @@ const routes: Routes = [
   { path : 'login', component: LoginComponent },
   { path : 'logout', component: LogoutComponent },
   { path : 'registro', component: RegistroComponent },
-  { path: 'bienvenido', component: BienvenidoComponent /*canActivate: [loginGuard]*/ },
-  { path: 'marcas', component: ListaMarcas /*canActivate: [loginGuard]*/ },
-  { path: 'ordenadores', component: ListaOrdenadores },
+  { path: 'bienvenido', component: BienvenidoComponent, canActivate: [loginGuard] },
+  { path: 'marcas', component: ListaMarcas, canActivate: [loginGuard]},
+  { path: 'ordenadores', component: ListaOrdenadores, canActivate: [loginGuard] }, 
   { path: 'ordenadores/:tipo/:id', component: OrdenadoresComponent},
-  { path: 'users', component: ListaUsersComponent},
-  { path: 'users/:tipo/:id', component: UsersComponent},
- 
-  { path: 'marcas/:tipo/:id', component: MarcaComponent}, /*canActivate: [loginGuard, empleadoGuard],
-canDeactivate: [abandonarPaginaGuard],*/ 
-
-{ path: 'ubicaciones', component: ListaUbicaciones /*, canActivate: [loginGuard] */ },
-{ path: 'ubicaciones/:tipo/:id', component: UbicacionComponent /*, canActivate: [loginGuard, empleadoGuard], canDeactivate: [abandonarPaginaGuard] */ },
-
-{ path: '', redirectTo: '/bienvenida', pathMatch: 'full' },
-{ path: '**', redirectTo: '/bienvenida', pathMatch: 'full' }
+  { path: 'logout', component: LogoutComponent },
+  { path: 'users', component: ListaUsersComponent, canActivate: [loginGuard]},
+  { path: 'users/:tipo/:id', component: UsersComponent, canActivate: [loginGuard]},
+  { path: 'marcas/:tipo/:id', component: MarcaComponent, canActivate: [loginGuard] },
+  { path: 'ubicaciones', component: ListaUbicaciones , canActivate: [loginGuard] },
+  { path: 'ubicaciones/:tipo/:id', component: UbicacionComponent, canActivate: [loginGuard] },
+  { path: '', redirectTo: '/bienvenida', pathMatch: 'full' },
+  { path: '**', redirectTo: '/bienvenida', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 <div id="pagina" class="container-fluid">
-  <app-encabezado titulo="{{ title }}"></app-encabezado>
+  <app-encabezado titulo="{{ title }}" *ngIf="estaIdentificado()"></app-encabezado>
   <div id="resto" class="container-fluid">
       <router-outlet></router-outlet>
   </div>
