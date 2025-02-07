@@ -16,25 +16,24 @@ export class OrdenadoresService {
   }
 
   constructor(private http: HttpClient) { }
-  private ordenadores: Ordenadores[] = [];
 
   obtengoOrdenadores(): Observable<any> {
     return this.http.get(`${this.urlAPI}`);
   }
 
-  obtengoOrdenadoresArr(): Ordenadores[] {
-    return this.ordenadores;
-  }
   guardaNuevoOrdenador(ordenadores: Ordenadores): Observable<any> {
-    return this.http.post<any>(`${this.urlAPI}`, JSON.stringify(ordenadores));
+    return this.http.post<any>(`${this.urlAPI}`, JSON.stringify(ordenadores), this.httpOptions);
   }
+
   modificaOrdenador(nordenadores: number, ordenadores: Ordenadores): Observable<any> {
-    return this.http.post<any>(`${this.urlAPI}`, { 'id': nordenadores, 'numero': ordenadores.numero, 'idMarca': ordenadores.idMarca, 'modelo': ordenadores.modelo, 'idUbicacion': ordenadores.idUbicacion, 'nombre': ordenadores.nombre, 'tipo': ordenadores.tipo, 'numeroSerie': ordenadores.numeroSerie, 'red': ordenadores.red, 'MACLAN': ordenadores.macLAN, 'MACWIFI': ordenadores.macWifi, 'HD1': ordenadores.hd1, 'HD2': ordenadores.hd2, 'Observaciones': ordenadores.observaciones });
+    return this.http.put<any>(`${this.urlAPI}/${nordenadores}`, JSON.stringify(ordenadores), this.httpOptions);
   }
+
   obtengoOrdenador(nordenadores: number): Observable<any> {
     return this.http.get(`${this.urlAPI}?id=${nordenadores}`);
   }
+
   borraOrdenador(nordenadores: number): Observable<any> {
-    return this.http.get(`${this.urlAPI}?id=${nordenadores}`);
+    return this.http.delete(`${this.urlAPI}?id=${nordenadores}`);
   }
 }
