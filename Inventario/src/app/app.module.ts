@@ -14,6 +14,7 @@ import { LoginModule } from './login/login.module';
 import { AuthModule } from './registro/registro.module';
 import { OrdenadoresModule } from './ordenadores/ordenadores.module';
 import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
+import { UsersModule } from './users/users.module';
 
 
 
@@ -39,7 +40,8 @@ import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
     AuthModule,
     OrdenadoresModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule  
+    BrowserAnimationsModule,
+    UsersModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
