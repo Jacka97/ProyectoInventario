@@ -1,4 +1,4 @@
-<h2>Debes identificarte para acceder a la aplicación</h2>
+<!--<h2>Debes identificarte para acceder a la aplicación</h2>
 <div class="centrado">
     <form [formGroup]="loginForm" (ngSubmit)="compruebaUsuario()" novalidate>
         <label>Correo Electronico: </label>
@@ -11,4 +11,51 @@
         <br><br>
         <input type="submit" name="aceptar" value="Aceptar">
     </form>
+</div>-->
+<div class="row vh-100">
+    <!-- Sección del formulario -->
+    <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
+        <div class="card w-100" style="max-width: 400px;">
+            <div class="card-header text-center">
+                <h2>Gestión de Inventarios e Incidencias</h2>
+                <img src="../../../../assets/images/inicio.jpg" class="card-img-top d-lg-none" alt="Imagen de Inventario">
+            </div>
+            <div class="card-body">
+                <form [formGroup]="loginForm" (ngSubmit)="compruebaUsuario()" novalidate>
+                    <!-- Campo de Email -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" formControlName="email" class="form-control" placeholder="email@ejemplo.com" required>
+                        <div *ngIf="loginForm.get('email')?.dirty && loginForm.get('email')?.invalid" class="text-danger">
+                            El texto debe ser un correo electrónico válido.
+                        </div>
+                    </div>
+
+                    <!-- Campo de Contraseña -->
+                    <div class="mb-3">
+                        <label for="pass" class="form-label">Password</label>
+                        <input type="password" id="pass" formControlName="contrasenya" class="form-control" aria-describedby="passwordHelpBlock" required>
+                        <div id="passwordHelpBlock" class="form-text">
+                            Debe tener entre 8 y 20 caracteres.
+                        </div>
+                    </div>
+
+                    <!-- Botón de Entrar -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+
+                    <!-- Botón de Registrarse -->
+                    <div class="d-flex justify-content-end mt-2">
+                        <a href="#" class="btn btn-link">Registrarse</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de la imagen -->
+    <div class="d-none d-lg-block col-lg-8 d-flex align-items-center justify-content-center">
+        <img src="../../../../assets/images/inicio.jpg" class="img-fluid d-block mx-auto" alt="Imagen de inicio">
+    </div>
 </div>
