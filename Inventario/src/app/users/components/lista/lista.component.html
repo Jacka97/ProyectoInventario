@@ -5,6 +5,7 @@ contenedor-listado">
             <div class="card-header titulos">Usuarios</div>
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-2">
+                    <h5 class="card-title">Listado de usuarios</h5>
                     <button class="btn btn-primary" [routerLink]="['/users', 0, 0]"><i
                         class="fa-solid fa-square-plus"></i></button>
                 </div>
@@ -20,7 +21,7 @@ contenedor-listado">
                                     <i class="fa-regular fa-file-excel"></i>
                                 </button>
                             </div>
-                        <table datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered">
+                        <table id="usuarios"datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
