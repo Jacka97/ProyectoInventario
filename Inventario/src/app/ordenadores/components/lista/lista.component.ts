@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { OrdenadoresService } from '../../ordenadores.service';
 import { Config } from 'datatables.net';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+/*para descargar excel */
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-lista',
@@ -11,10 +16,10 @@ import { Config } from 'datatables.net';
 export class ListaComponent {
 
   // public filterSearch : string = '';
-  ordenadores:any;
+  ordenadores: any;
   dtOptions: Config = {};
 
-  constructor(private _ordenadoresService: OrdenadoresService) {}
+  constructor(private _ordenadoresService: OrdenadoresService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -37,7 +42,7 @@ export class ListaComponent {
         info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
       },
     };
-    
+
     this._ordenadoresService.obtengoOrdenadores().subscribe({
       next: (resultado) => {
         if (resultado) {
@@ -54,4 +59,33 @@ export class ListaComponent {
       },
     });
   }
+
+  descargarPDF() {
+    const doc = new jsPDF('l', 'pt', 'a4'); //Doy formato al documento para que se muestre en tipo landscape y el tamaño de folio estandar (Din-A4)
+    doc.text('Listado de ordenadores', 50, 30);
+    
+    autoTable(doc, {
+      html: '#tbordenadores', 
+      startY: 50,
+      styles: {fontSize: 8}
+    });
+    doc.save('listadoOrdenadores.pdf');
+  }
+
+  descargarExcel() {
+    let element = document.getElementById('tbordenadores');
+
+    const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    
+    const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de ordenadores');
+
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const data: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    saveAs(data, 'listadoOrdenadores.xlsx');
+
+
+  }
 }
+

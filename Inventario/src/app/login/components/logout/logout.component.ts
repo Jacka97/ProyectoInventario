@@ -20,6 +20,6 @@ export class LogoutComponent {
   volverAentrar() {
     this._loginService.salirAplicacion();
     this._route.navigate(['/login']);
-    this.toastr.success('Sesión abandonada', 'Has abandonado tu sesión', {positionClass: 'toast-bottom-right'});
+    this.toastr.success('Sesión abandonada', 'Hasta pronto', {positionClass: 'toast-bottom-right'});
   }
 }

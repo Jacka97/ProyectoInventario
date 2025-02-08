@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailValidator } from '../../../validadores';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -36,7 +36,7 @@ export class LoginComponent {
       this._loginService.login(this.loginForm.get('email')?.value, this.loginForm.get('contrasenya')?.value).subscribe({
         next: (resultado) => {
           this._loginService.saveToken(resultado.token);
-          this.toastr.success('Usuario autentificado correctamente', 'Usuario autentificado',  {positionClass: 'toast-bottom-right'});
+          this.toastr.success('Usuario autentificado correctamente', 'Bienvenido',  {positionClass: 'toast-bottom-right'});
           this._route.navigate(['/bienvenido']);
         },
         error: (error) => {
