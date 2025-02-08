@@ -35,9 +35,19 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this._loginService.login(this.loginForm.get('email')?.value, this.loginForm.get('contrasenya')?.value).subscribe({
         next: (resultado) => {
-          this._loginService.saveToken(resultado.token);
-          this.toastr.success('Usuario autentificado correctamente', 'Bienvenido',  {positionClass: 'toast-bottom-right'});
-          this._route.navigate(['/bienvenido']);
+          console.log(resultado);
+          if(resultado.success){
+            this._loginService.saveToken(resultado.token);
+            this.toastr.success('Usuario autentificado correctamente', 'Bienvenido',  {positionClass: 'toast-bottom-right'});
+            this._route.navigate(['/bienvenido']);
+          }else{
+            this.toastr.error(resultado.message);
+            this.loginForm.setValue({
+              usuario: '',
+              contrasenya: '',
+            });
+          }
+
         },
         error: (error) => {
           console.error('Error al hacer el login:', error);
