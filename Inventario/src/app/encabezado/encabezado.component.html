@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand mx-2" href="#">Aplicación {{ titulo }}</a>
+        <a class="navbar-brand mx-2">Aplicación {{ titulo }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -28,11 +28,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/comentarios']" [routerLinkActive]="['active']">Comentarios</a>
-                </li>
+                </li> -->
                
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/logout']" [routerLinkActive]="['active']">Salir</a>
-                </li>-->
+                    <a class="btn btn-danger" [routerLink]="['/logout']" [routerLinkActive]="['active']"><i class="fa-solid fa-power-off"></i> Salir</a>
+                </li>
             </ul>
         </div>
     </div>

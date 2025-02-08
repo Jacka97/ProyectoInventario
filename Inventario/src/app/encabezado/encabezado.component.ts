@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-encabezado',
   standalone: false,
@@ -8,5 +9,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './encabezado.component.css'
 })
 export class EncabezadoComponent {
+
   @Input() titulo: string="";
+  
 }

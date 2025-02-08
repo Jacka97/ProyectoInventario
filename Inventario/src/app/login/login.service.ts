@@ -10,7 +10,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable <any> {
-    return this.http.post<any>(`${this.urlAPI}/login`, {email, password});
+    return this.http.post<any>(`${this.urlAPI}`, {email, password});
   }
 
   getToken():string | null {
@@ -22,6 +22,7 @@ export class LoginService {
   }
 
   estaIdentificado(): boolean {
+    console.log(this.getToken());
     return this.getToken() !== null; // Verifica si el token existe
   }
 

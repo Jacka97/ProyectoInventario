@@ -8,6 +8,7 @@ import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-ordenadores',
+  standalone: false,
   templateUrl: './ordenadores.component.html',
   styleUrl: './ordenadores.component.css'
 })

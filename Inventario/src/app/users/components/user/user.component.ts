@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { User } from '../../Users';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../users.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user',
@@ -21,7 +22,7 @@ export class UsersComponent {
   public formularioCambiado: boolean = false;
   public inputChecked: boolean = false;
 
-  constructor(private _aroute: ActivatedRoute, private _usersService: UserService, private _route: Router) { }
+  constructor(private _aroute: ActivatedRoute, private _usersService: UserService, private _route: Router, private toastr: ToastrService) { }
   ngOnInit() {
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id']; // Recibimos parámetro
@@ -41,11 +42,11 @@ export class UsersComponent {
           this.useract = resultado;
           this.inputChecked = this.useract.activo == 1;
         } else {
-          console.error('Error al obtener el usuario:', resultado);
+          this.toastr.error('Error al obtener el usuario:', resultado);
         }
       },
       error: (error) => {
-        console.error('Error al obtener el usuario:', error);
+        this.toastr.error('Error al obtener el usuario:', error);
       },
       complete: () => {
         console.log('Operación completada.');
@@ -66,60 +67,60 @@ export class UsersComponent {
       this._usersService.crearUserApi(this.useract).subscribe({
         next: (resultado) => {
           if (resultado) {
-            console.log("Usuario creado:", resultado);
+            this.toastr.success("Usuario creado:", resultado);
             this._route.navigate(["/users"]); // Redirección corregida
           } else {
-            console.error("Error al crear el usuario:", resultado);
+            this.toastr.error("Error al crear el usuario:", resultado);
           }
         },
         error: (error) => {
-          console.error("Error al crear el usuario:", error.error?.errores || error);
+          this.toastr.error("Error al crear el usuario:", error.error?.errores || error);
         },
         complete: () => {
-          console.log("Operación completada.");
+          this.toastr.success("Operación completada.");
         },
       });
     } else if (this.tipo === 1) {
-      console.log(this.id);
+      this.toastr.success(`Usuario modificado: ${this.id}`);
       // Modificar usuario
       this.useract.activo = this.inputChecked? 1 : 0;
       this._usersService.modificaUserApi(this.id, this.useract).subscribe({
         
         next: (resultado) => {
           if (resultado) {
-            console.log("Usuario modificado:", resultado);
+            this.toastr.success("Usuario modificado:", resultado);
             this._route.navigate(["/users"]); // Redirección corregida
           } else {
-            console.error("Error al modificar el usuario:", resultado);
+            this.toastr.error("Error al modificar el usuario:", resultado);
           }
         },
         error: (error) => {
-          console.error("Error al modificar el usuario:", error.error?.errores || error);
+          this.toastr.error("Error al modificar el usuario:", error.error?.errores || error);
         },
         complete: () => {
-          console.log("Operación completada.");
+          this.toastr.success("Operación completada.");
         },
       });
     }
   
-  
+    // this.toastr.success(`Usuario modificado: ${this.id}`);
       else if (this.tipo == 2) {
         this.useract.activo = this.inputChecked? 1 : 0;
         console.log(this.id);
         this._usersService.borraUserApi(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              console.log('Valor eliminado:', resultado);
+              this.toastr.success('Valor eliminado:', resultado);
               this._route.navigate(['/users']);
             } else {
-              console.error('Error al eliminar el usuario:', resultado);
+              this.toastr.error('Error al eliminar el usuario:', resultado);
             }
           },
           error: (error) => {
-            console.error('Error al borrar el usuario:', error.error.errores);
+            this.toastr.error('Error al borrar el usuario:', error.error.errores);
           },
           complete: () => {
-            console.log('Operación completada.');
+            this.toastr.success('Operación completada.');
           },
         });
       

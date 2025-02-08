@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { UsersModule } from './users/users.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MarcaModule } from './marca/marca.module';
@@ -8,13 +8,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BienvenidoComponent } from './bienvenido/bienvenido.component';
 import { EncabezadoComponent } from './encabezado/encabezado.component';
-import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { LoginModule } from './login/login.module';
-
-import { AuthModule } from './registro/registro.module';
 import { OrdenadoresModule } from './ordenadores/ordenadores.module';
 import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
-import { UsersModule } from './users/users.module';
 
 
 
@@ -26,22 +22,19 @@ import { UsersModule } from './users/users.module';
     AppComponent,
     BienvenidoComponent,
     EncabezadoComponent,
-    BienvenidaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MarcaModule,
+    UsersModule,
+    LoginModule,
     UbicacionesModule,
     BrowserAnimationsModule,
-    LoginModule,
-    ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    AuthModule,
     OrdenadoresModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule,
-    UsersModule,
+    BrowserAnimationsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

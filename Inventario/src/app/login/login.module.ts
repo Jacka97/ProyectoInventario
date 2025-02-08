@@ -6,6 +6,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 
 
 
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -13,7 +14,7 @@ import { LogoutComponent } from './components/logout/logout.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class LoginModule { }

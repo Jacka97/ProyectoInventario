@@ -6,6 +6,7 @@ import { emailValidator } from '../../../validadores';
 import { ToastrService } from 'ngx-toastr';
 
 
+
 @Component({
   selector: 'app-login',
   standalone: false,
@@ -13,6 +14,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
+  estaIdentificado(): boolean {
+    return this._loginService.estaIdentificado();
+  }
+  
   public loginForm: FormGroup;
   constructor(private _loginService: LoginService, private _route:Router, private _fb: FormBuilder, private toastr: ToastrService) { 
     this.loginForm = this._fb.group({
@@ -30,7 +36,7 @@ export class LoginComponent {
       this._loginService.login(this.loginForm.get('email')?.value, this.loginForm.get('contrasenya')?.value).subscribe({
         next: (resultado) => {
           this._loginService.saveToken(resultado.token);
-          this.toastr.success('Usuario autentificado correctamente', 'Usuario autentificado',  {positionClass: 'toast-bottom-right'});
+          this.toastr.success('Usuario autentificado correctamente', 'Bienvenido',  {positionClass: 'toast-bottom-right'});
           this._route.navigate(['/bienvenido']);
         },
         error: (error) => {
