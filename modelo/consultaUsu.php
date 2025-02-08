@@ -58,11 +58,23 @@ class consultaUsu{
         
     }
 
-    public static function logincheck($correo, $contrasenya){
+    public static function logincheck($correo, $contrasenya) {
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Usuarios WHERE correo = '$correo' AND pass = '$contrasenya' AND activo = 1";
-        $conexion->query($sql);
-        return $conexion->affected_rows;
+    
+        // Usar una consulta preparada para evitar inyección SQL
+        $sql = "SELECT id FROM Usuarios WHERE correo = ? AND pass = ? AND activo = 1";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("ss", $correo, $contrasenya);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+    
+        if ($resultado->num_rows > 0) {
+            return true;  // Usuario autenticado correctamente
+        } else {
+            return false; // Credenciales incorrectas
+        }
+    
+        $stmt->close();
         $conexion->close();
     }
 }
