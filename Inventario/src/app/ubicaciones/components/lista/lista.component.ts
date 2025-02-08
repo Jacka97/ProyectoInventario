@@ -83,35 +83,15 @@ export class ListaComponent {
   descargarExcel(){
     let element = document.getElementById('tbubicaciones') as HTMLTableElement; // Seleccionar la tabla en el DOM
 
-    // proceso para eliminar la tabla Acciones
-    let clonedTable = element.cloneNode(true) as HTMLTableElement; // Clonar la tabla para no afectar la original
-
-    // Buscar el índice de la columna "Acción"
-    let headerCells = clonedTable.rows[0].cells;
-    let accionIndex = -1;
-
-    for (let i = 0; i < headerCells.length; i++) {
-      if (headerCells[i].textContent?.trim().toLowerCase() === 'acción') {
-        accionIndex = i;
-        break;
-      }
-    }
-
-    // Si se encontró la columna "Acción", eliminarla en todas las filas
-    if (accionIndex !== -1) {
-      Array.from(clonedTable.rows).forEach(row => row.deleteCell(accionIndex));
-    }
-
-
-    const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(clonedTable);
+    const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
     
     // Crear un libro de Excel y añadir la hoja
     const workbook: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de Marcas');
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de Ubicaciones');
   
     // Guardar el archivo
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
     const data: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-    saveAs(data, 'marcas.xlsx');
+    saveAs(data, 'ubicacions.xlsx');
   }
 }
