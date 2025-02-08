@@ -57,6 +57,14 @@ class consultaUsu{
         $conexion->close();
         
     }
+
+    public static function logincheck($correo, $contrasenya){
+        $conexion = conexionBD::conectar();
+        $sql = "SELECT * FROM Usuarios WHERE correo = '$correo' AND pass = '$contrasenya' AND activo = 1";
+        $conexion->query($sql);
+        return $conexion->affected_rows;
+        $conexion->close();
+    }
 }
 
 ?>
