@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-marca',
+  standalone: false,
   templateUrl: './marca.component.html',
   styleUrl: './marca.component.css',
 })

@@ -10,6 +10,7 @@ import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-lista',
+  standalone: false,
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.css'
 })

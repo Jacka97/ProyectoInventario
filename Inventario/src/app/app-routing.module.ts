@@ -5,10 +5,8 @@ import { MarcaComponent } from './marca/components/marca/marca.component';
 import { ListaComponent as ListaUbicaciones  } from './ubicaciones/components/lista/lista.component';
 import { UbicacionComponent } from './ubicaciones/components/ubicacion/ubicacion.component';
 import { BienvenidoComponent } from './bienvenido/bienvenido.component';
-import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { LoginComponent } from './login/components/login/login.component';
 import { LogoutComponent } from './login/components/logout/logout.component';
-import { RegistroComponent } from './registro/components/registro/registro.component';
 import { ListaComponent as ListaOrdenadores} from './ordenadores/components/lista/lista.component';
 import { OrdenadoresComponent } from './ordenadores/components/ordenadores/ordenadores.component';
 import { UsersComponent } from './users/components/user/user.component';
@@ -16,13 +14,11 @@ import { ListaUsersComponent } from './users/components/lista/lista.component';
 import { loginGuard } from './login/login.guard';
 
 const routes: Routes = [
-  // { path : 'bienvenida', component : BienvenidaComponent },
   { path : 'login', component: LoginComponent },
-  // { path : 'registro', component: RegistroComponent },
   { path: 'bienvenido', component: BienvenidoComponent, canActivate: [loginGuard] },
   { path: 'marcas', component: ListaMarcas, canActivate: [loginGuard]},
   { path: 'ordenadores', component: ListaOrdenadores, canActivate: [loginGuard] }, 
-  { path: 'ordenadores/:tipo/:id', component: OrdenadoresComponent},
+  { path: 'ordenadores/:tipo/:id', component: OrdenadoresComponent, canActivate: [loginGuard]},
   { path: 'logout', component: LogoutComponent },
   { path: 'users', component: ListaUsersComponent, canActivate: [loginGuard]},
   { path: 'users/:tipo/:id', component: UsersComponent, canActivate: [loginGuard]},

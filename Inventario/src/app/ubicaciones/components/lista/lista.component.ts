@@ -3,6 +3,7 @@ import { UbicacionesService } from '../../ubicaciones.service';
 
 @Component({
   selector: 'app-lista',
+  standalone: false,
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.css'
 })
