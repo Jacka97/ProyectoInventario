@@ -29,6 +29,13 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm.get('email')?.valueChanges.subscribe(notif => this.updateNotifMethod(notif));
+    this.redirige();
+  }
+
+  redirige(): any {
+    if(this.estaIdentificado()){
+      return this._route.navigate(['/bienvenido']);
+    }
   }
 
   compruebaUsuario(): void {

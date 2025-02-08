@@ -20,7 +20,7 @@
                 <h2>Gestión de Inventarios e Incidencias</h2>
                 <img src="../../../../assets/images/inicio.jpg" class="card-img-top d-lg-none" alt="Imagen de Inventario">
             </div>
-            <div class="card-body" *ngIf="!estaIdentificado()">
+            <div class="card-body">
                 <form [formGroup]="loginForm" (ngSubmit)="compruebaUsuario()" novalidate>
                     <!-- Campo de Email -->
                     <div class="mb-3">

@@ -29,7 +29,6 @@ export class LoginService {
   }
 
   estaIdentificado(): boolean {
-    console.log(this.getToken());
     return this.getToken() !== null; // Verifica si el token existe
   }
 
