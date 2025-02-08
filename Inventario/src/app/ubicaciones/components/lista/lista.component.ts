@@ -18,46 +18,56 @@ import { saveAs } from 'file-saver';
   styleUrl: './lista.component.css'
 })
 export class ListaComponent {
- // public filterSearch:string = '';
+  // Definición del array que almacenará las ubicaciones obtenidas del servicio
   public ubicaciones: any;
+
+  // Configuración de opciones para la tabla de datos
   dtOptions: Config = {};
 
+  // Inyección del servicio UbicacionesService
   constructor(private _ubicacionesService: UbicacionesService) { }
 
   ngOnInit() {
 
-    this.dtOptions = { pagingType: 'full_numbers', language: {
-      processing: "Procesando...",
-      lengthMenu: "Mostrar _MENU_ registros",
-      zeroRecords: "No se encontraron resultados",
-      emptyTable: "Ningún dato disponible en esta tabla",
-      infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
-      infoFiltered: "(filtrado de un total de _MAX_ registros)",
-      search: "Buscar:",
-      loadingRecords: "Cargando...",
-
-      paginate: {
-        first: "Primero",
-        last: "Último",
-        next: "Siguiente",
-        previous: "Anterior"
+    // Configuración de la paginación y del idioma para la tabla de datos
+    this.dtOptions = {
+      pagingType: 'full_numbers', // Tipo de paginación
+      language: { // Configuración del idioma para los mensajes en la tabla
+        processing: "Procesando...",
+        lengthMenu: "Mostrar _MENU_ registros",
+        zeroRecords: "No se encontraron resultados",
+        emptyTable: "Ningún dato disponible en esta tabla",
+        infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+        infoFiltered: "(filtrado de un total de _MAX_ registros)",
+        search: "Buscar:",
+        loadingRecords: "Cargando...",
+        paginate: { // Configuración de los botones de paginación
+          first: "Primero",
+          last: "Último",
+          next: "Siguiente",
+          previous: "Anterior"
+        },
+        info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
       },
-      info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
-    },
-  };
+    };
 
+    // Llamada al servicio para obtener las ubicaciones desde la API
     this._ubicacionesService.obtengoUbicacionesApi().subscribe({
       next: (resultado) => {        
-        if (resultado){
+        // Si se recibe un resultado válido, se asigna a la variable ubicaciones
+        if (resultado) {
           this.ubicaciones = resultado;
-        }else{
+        } else {
+          // Si hay un error en los datos recibidos, se muestra en la consola
           console.error('Error al recibir datos:', resultado.error);
         }
       },
       error: (error) => {
+        // Si ocurre un error en la petición, se muestra en la consola
         console.error('Error al recibir datos:', error);
       },
       complete: () => {
+        // Mensaje de confirmación cuando la operación ha finalizado correctamente
         console.log('Operación completada.');
       },
     });
