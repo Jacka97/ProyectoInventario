@@ -27,7 +27,7 @@ export class OrdenadoresService {
     return this.http.post<any>(`${this.urlAPI}`, JSON.stringify(ordenadores), this.httpOptions);
   }
 
-  //Modifica registros de los ordenadores en la ap
+  //Modifica registros de los ordenadores en la api
   modificaOrdenador(nordenadores: number, ordenadores: Ordenadores): Observable<any> {
     return this.http.put<any>(`${this.urlAPI}/${nordenadores}`, JSON.stringify(ordenadores), this.httpOptions);
   }
