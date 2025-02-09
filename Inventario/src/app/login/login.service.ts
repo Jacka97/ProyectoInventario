@@ -15,6 +15,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  //Nos traemos los datos de los usuarios almacenados en la BBDD
   login(correo: string, pass: string): Observable<any> {
     const body = { correo, pass };
     return this.http.post<any>(`${this.urlAPI}`, JSON.stringify(body), this.httpOptions);
