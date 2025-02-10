@@ -61,51 +61,51 @@ export class OrdenadoresComponent {
         this._ordenadoresService.guardaNuevoOrdenador(this.ordenadorAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              console.log('Ordenador Agregado', resultado);
+              this.toastr.success('Ordenador Agregado');
               this._route.navigate(['/ordenadores']);
             } else {
-              this.toastr.error('Error al agregar el ordenador: ', resultado);
+              this.toastr.error('Error al agregar el ordenador');
             }
           },
           error: (error) => {
             this.toastr.error('Error al agregar el ordenador: ', error);
           },
           complete: () => {
-            console.log('Operacion completada');
+            this.toastr.success('Operacion completada');
           },
         });
       } else if (this.tipo == 1) {
         this._ordenadoresService.modificaOrdenador(this.id, this.ordenadorAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              console.log('Datos modificados', resultado);
+              this.toastr.success('Datos modificados');
               this._route.navigate(['/ordenadores']);
             } else {
-              this.toastr.error('Error al modificar el ordenador: ', resultado);
+              this.toastr.error('Error al modificar el ordenador');
             }
           },
           error: (error) => {
             this.toastr.error('Error al modificar el ordenador: ', error);
           },
           complete: () => {
-            console.log('Modificacion completada');
+            this.toastr.success('Modificacion completada');
           },
         });
       } else if (this.tipo == 2) {
         this._ordenadoresService.borraOrdenador(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              console.log('Ordenador eliminado: ', resultado);
+              this.toastr.success('Ordenador eliminado');
               this._route.navigate(['/ordenadores']);
             } else {
-              this.toastr.error('Error al eliminar el ordenador: ', resultado);
+              this.toastr.error('Error al eliminar el ordenador');
             }
           },
           error: (error) => {
             this.toastr.error('Error al eliminar el ordenador:', error);
           },
           complete: () => {
-            console.log('Borrado realizado');
+            this.toastr.success('Borrado realizado');
           },
         });
       }    

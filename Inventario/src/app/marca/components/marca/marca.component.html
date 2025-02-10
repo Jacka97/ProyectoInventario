@@ -12,7 +12,7 @@
                             [(ngModel)]="marcaact.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                             minlength="2" maxlength="60" required #descModel="ngModel"
                             [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')">
-                        <span *ngIf="descModel.touched && descModel.invalid">(Debe tener como mínimo 2
+                            <span *ngIf="descModel.touched && descModel.invalid">(Debe tener como mínimo 2
                             caracteres)</span>
                     </div>
                     
