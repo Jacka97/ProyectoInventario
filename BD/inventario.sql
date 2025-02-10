@@ -75,6 +75,8 @@ CREATE TABLE Ordenadores (
 
     Observaciones VARCHAR(100) NOT NULL, 
 
+    precio DECIMAL(10,2) NOT NULL , 
+
 
     FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL,
 
