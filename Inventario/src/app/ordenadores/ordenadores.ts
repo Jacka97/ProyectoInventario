@@ -1,6 +1,6 @@
 export class Ordenadores {
     constructor (
-        public id : number,
+        
         public numero : string,
         public idMarca : number,
         public modelo : string,
@@ -8,13 +8,14 @@ export class Ordenadores {
         public nombre : string, 
         public tipo : string,
         public numeroSerie : string,
-        public red : string,
-        public macLAN : string,
-        public macWifi : string,
-        public ipWifi : string,
-        public hd1 : string,
-        public hd2 : string,
-        public observaciones : string,
+        public Red : string,
+        public MACLAN : string,
+        public IPLAN : string,
+        public MACWIFI : string,
+        public IPWIFI : string,
+        public HD1 : string,
+        public HD2 : string,
+        public Observaciones : string,
         public precio : number
     ) {}
 }

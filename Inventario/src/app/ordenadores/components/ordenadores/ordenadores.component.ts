@@ -15,7 +15,7 @@ import { NgForm, NgModel } from '@angular/forms';
 export class OrdenadoresComponent {
   @ViewChild('ordenadorForm', { static: true }) ordenadorForm: NgForm | undefined;
   public ordenadorAct: Ordenadores = {
-    id: 0,
+    
     numero: '',
     idMarca: 0,
     modelo: '',
@@ -23,13 +23,14 @@ export class OrdenadoresComponent {
     nombre: '',
     tipo: '',
     numeroSerie: '',
-    red: '',
-    macLAN: '',
-    macWifi: '',
-    ipWifi: '',
-    hd1: '',
-    hd2: '',
-    observaciones: '',
+    Red: '',
+    MACLAN: '',
+    IPLAN: '',
+    MACWIFI: '',
+    IPWIFI: '',
+    HD1: '',
+    HD2: '',
+    Observaciones: '',
     precio: 0
   };
   public titulo: string = 'Alta de un nuevo ordenador';
@@ -58,7 +59,10 @@ export class OrdenadoresComponent {
 
   //Se cotejan los resultados obtenidos de la api y se agrega el ordenador al listado
   guardaOrdenador(): void {
+    console.log('Formulario válido:', this.ordenadorForm?.valid);
+    console.log('Datos del ordenador:', this.ordenadorAct);
     if (this.ordenadorForm!.valid || this.tipo == 2) {
+      console.log('Enviando datos al servicio...');
       this.formularioCambiado = false;
 
       if (this.tipo == 0) {
@@ -82,6 +86,8 @@ export class OrdenadoresComponent {
         this._ordenadoresService.modificaOrdenador(this.id, this.ordenadorAct).subscribe({
           next: (resultado) => {
             if (resultado) {
+              console.log(resultado);
+              console.log(this.ordenadorAct);
               this.toastr.success('Datos modificados');
               this._route.navigate(['/ordenadores']);
             } else {

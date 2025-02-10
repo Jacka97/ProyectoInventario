@@ -7,14 +7,14 @@
                 <div class="row mb-3">
                     <div class="col-12 col-md-8">
                         <label for="nombre" class="formlabel">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Introduce nombre"
+                        <input type="text" id="nombre" name="nombre" class="form-control" 
                         [(ngModel)]="ordenadorAct.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                          required />
                     </div>
                     <div class="col-12 mt-2 col-md-4 mt-md-0">
                         <label for="numero" class="form-label">Numero</label>
                         <input type="text" id="numero" name="numero" class="form-control"
-                        placeholder="Introduce el numero de PC" [(ngModel)]="ordenadorAct.numero"
+                         [(ngModel)]="ordenadorAct.numero"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
                     </div>
                 </div>
@@ -22,86 +22,110 @@
                     <div class="col-12 col-md-6">
                         <label for="tipo" class="form-label">Tipo</label>
                         <input type="text" id="tipo" name="tipo" class="form-control"
-                        placeholder="Introduce tipo de ordenador" [(ngModel)]="ordenadorAct.tipo"
+                         [(ngModel)]="ordenadorAct.tipo"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
-                        <label for="tipo" class="form-label">Modelo</label>
-                        <input type="text" id="tipo" name="tipo" class="form-control"
-                        placeholder="Introduce modelo del ordenador" [(ngModel)]="ordenadorAct.modelo"
+                        <label for="modelo" class="form-label">Modelo</label>
+                        <input type="text" id="modelo" name="modelo" class="form-control"
+                         [(ngModel)]="ordenadorAct.modelo"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
-                        <label for="tipo" class="form-label">Nº de serie</label>
-                        <input type="text" id="tipo" name="tipo" class="form-control"
-                        placeholder="Introduce el numero de serie" [(ngModel)]="ordenadorAct.numeroSerie"
+                        <label for="numeroSerie" class="form-label">Nº de serie</label>
+                        <input type="text" id="numeroSerie" name="numeroSerie" class="form-control"
+                         [(ngModel)]="ordenadorAct.numeroSerie"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
-                        <label for="tipo" class="form-label">Red</label>
-                        <input type="text" id="tipo" name="tipo" class="form-control" placeholder="Introduce la red"
-                        [(ngModel)]="ordenadorAct.red" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
+                        <label for="Red" class="form-label">Red</label>
+                        <input type="text" id="Red" name="Red" class="form-control" 
+                        [(ngModel)]="ordenadorAct.Red" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                          required />
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
-                        <label for="tipo" class="form-label">MAC LAN</label>
-                        <input type="text" id="tipo" name="tipo" class="form-control"
-                        placeholder="Introduce la MAC del LAN" [(ngModel)]="ordenadorAct.macLAN"
+                        <label for="MACLAN" class="form-label">MAC LAN</label>
+                        <input type="text" id="MACLAN" name="MACLAN" class="form-control"
+                        [(ngModel)]="ordenadorAct.MACLAN"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
-                        <label for="tipo" class="form-label">MAC Wifi</label>
-                        <input type="text" id="tipo" name="tipo" class="form-control"
-                        placeholder="Introduce la MAC del Wifi" [(ngModel)]="ordenadorAct.macWifi"
+                        <label for="MACWIFI" class="form-label">MAC WIFI</label>
+                        <input type="text" id="MACWIFI" name="MACWIFI" class="form-control"
+                         [(ngModel)]="ordenadorAct.MACWIFI"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
-                        <label for="tipo" class="form-label">IP LAN</label>
-                        <input type="text" id="tipo" name="tipo" class="form-control" placeholder="Introduce la red"
-                        [(ngModel)]="ordenadorAct.ipWifi" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
+                        <label for="IPWIFI" class="form-label">IP WIFI</label>
+                        <input type="text" id="IPWIFI" name="IPWIFI" class="form-control"
+                         [(ngModel)]="ordenadorAct.IPWIFI"
+                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 col-md-6">
+                        <label for="IPLAN" class="form-label">IP LAN</label>
+                        <input type="text" id="IPLAN" name="IPLAN" class="form-control" 
+                        [(ngModel)]="ordenadorAct.IPLAN" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                         required />
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
-                        <label for="tipo" class="form-label">HD 1</label>
-                        <input type="text" id="tipo" name="tipo" class="form-control"
-                        placeholder="Introduce el disco duro 1" [(ngModel)]="ordenadorAct.hd1"
+                        <label for="HD1" class="form-label">HD 1</label>
+                        <input type="text" id="HD1" name="HD1" class="form-control"
+                        [(ngModel)]="ordenadorAct.HD1"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
-                        <label for="tipo" class="form-label">HD 2</label>
-                        <input type="text" id="tipo" name="tipo" class="form-control"
-                        placeholder="Introduce el disco duro 2" [(ngModel)]="ordenadorAct.hd2"
+                        <label for="hd2" class="form-label">HD 2</label>
+                        <input type="text" id="hd2" name="hd2" class="form-control"
+                         [(ngModel)]="ordenadorAct.HD2"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()"  required />
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
-                        <label for="tipo" class="form-label">Observaciones</label>
-                        <textarea id="tipo" name="tipo" class="form-control" placeholder="Observaciones..."
-                        [(ngModel)]="ordenadorAct.observaciones" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
+                        <label for="Observaciones" class="form-label">Observaciones</label>
+                        <textarea id="Observaciones" name="Observaciones" class="form-control" 
+                        [(ngModel)]="ordenadorAct.Observaciones" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                         required></textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
-                        <label for="tipo" class="form-label">Precio</label>
-                        <input id="tipo" name="tipo" class="form-control" placeholder="Observaciones..."
+                        <label for="idMarca" class="form-label">ID marca</label>
+                        <textarea id="idMarca" name="idMarca" class="form-control" 
+                        [(ngModel)]="ordenadorAct.idMarca" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
+                        required></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 col-md-6">
+                        <label for="idUbicacion" class="form-label">ID Ubicacion</label>
+                        <textarea id="idUbicacion" name="idUbicacion" class="form-control" 
+                        [(ngModel)]="ordenadorAct.idUbicacion" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
+                        required></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 col-md-6">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input id="precio" name="precio" class="form-control" 
                         [(ngModel)]="ordenadorAct.precio" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                         required>
                     </div>
