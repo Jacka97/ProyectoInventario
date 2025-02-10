@@ -10,7 +10,7 @@ class consultaUsu{
    
     public static function getAllUsu(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Usuarios";
+        $sql = "SELECT Usuarios.*, Roles.nombre as 'rol' FROM Usuarios inner join Roles";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
