@@ -167,13 +167,15 @@ CREATE TABLE Historico_Movimientos (
 
     idMaterial INT NOT NULL, 
 
+    tipoMaterial VARCHAR NOT NULL,
+
     idUbicacion INT NOT NULL, 
 
     fechaIncio DATETIME NOT NULL, 
 
     fechaFinal DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
-    FOREIGN KEY (idUbicacion) REFERENCES Materiales(idUbicacion) ON UPDATE CASCADE 
+    FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(idUbicacion) ON UPDATE CASCADE 
 
 ); 
 
