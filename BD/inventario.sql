@@ -165,15 +165,17 @@ CREATE TABLE Historico_Movimientos (
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
+    TipoMovimiento ENUM('insercion', 'actualizacion', 'borrado') NOT NULL DEFAULT 'insercion', 
+
+    fecha DATE NOT NULL, 
+
+    /* datos del material a registrar en el historico */
+
     idMaterial INT NOT NULL, 
 
     tipoMaterial VARCHAR NOT NULL,
 
     idUbicacion INT NOT NULL, 
-
-    fechaIncio DATETIME NOT NULL, 
-
-    fechaFinal DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
     FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(idUbicacion) ON UPDATE CASCADE 
 
