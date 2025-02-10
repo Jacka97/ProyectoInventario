@@ -36,7 +36,7 @@ class consultaOrdenadores{
     }
     public static function altaOrdenador( $numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo,$numeroSerie,$red,$MACLAN,$IPLAN,$MACWIFI,$IPWIFI,$HD1,$HD2,$observaciones, $precio){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numerioSerie, Red, MACLAN, IPLAN, MACWIFI, IP WIFI, HD1, HD2, Obversvaciones, Precio) VALUES ( '$numero','$idMarca','$modelo','$idUbicacion','$nombre','$tipo','$numeroSerie','$red', '$MACLAN', '$IPLAN', '$MACWIFI', '$IPWIFI', '$HD1', '$HD2', '$observaciones', '$precio')";
+        $sql = "INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numeroSerie, Red, MACLAN, IPLAN, MACWIFI, IPWIFI, HD1, HD2, Observaciones, precio) VALUES ( '$numero','$idMarca','$modelo','$idUbicacion','$nombre','$tipo','$numeroSerie','$red', '$MACLAN', '$IPLAN', '$MACWIFI', '$IPWIFI', '$HD1', '$HD2', '$observaciones', '$precio')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
@@ -44,7 +44,7 @@ class consultaOrdenadores{
     }
     public static function modificarOrdenador($id, $numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo,$numeroSerie,$red,$MACLAN,$IPLAN,$MACWIFI,$IPWIFI,$HD1,$HD2,$observaciones, $precio){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Ordenadores SET numero = '$numero', idMarca = '$idMarca', modelo = '$modelo', idUbicacion = '$idUbicacion', nombre = '$nombre', tipo = '$tipo', numerioSerie = '$numeroSerie', red = '$red', MACLAN = '$MACLAN', IPLAN = '$IPLAN', MACWIFI = '$MACWIFI', IPWIFI = '$IPWIFI', HD1 = '$HD1', HD2 = '$HD2', Observaciones = '$observaciones' , Precio = '$precio' WHERE id = $id";
+        $sql = "UPDATE Ordenadores SET numero = '$numero', idMarca = '$idMarca', modelo = '$modelo', idUbicacion = '$idUbicacion', nombre = '$nombre', tipo = '$tipo', numeroSerie = '$numeroSerie', Red = '$red', MACLAN = '$MACLAN', IPLAN = '$IPLAN', MACWIFI = '$MACWIFI', IPWIFI = '$IPWIFI', HD1 = '$HD1', HD2 = '$HD2', Observaciones = '$observaciones' , precio = '$precio' WHERE id = $id";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
