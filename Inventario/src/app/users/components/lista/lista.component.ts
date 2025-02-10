@@ -65,7 +65,7 @@ export class ListaUsersComponent{
 descargarPDF() {
   const doc = new jsPDF(); // Crear instancia de jsPDF
   // Agregar título o texto opcional
-  doc.text('Listado de marcas', 14, 10);
+  doc.text('Listado de Usuarios', 14, 10);
   // Seleccionar la tabla y convertirla a un formato adecuado
   autoTable(doc, {
   html: '#usuarios', // Selecciona la tabla por su ID

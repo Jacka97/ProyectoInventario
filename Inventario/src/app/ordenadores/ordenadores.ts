@@ -14,6 +14,7 @@ export class Ordenadores {
         public ipWifi : string,
         public hd1 : string,
         public hd2 : string,
-        public observaciones : string
+        public observaciones : string,
+        public precio : number
     ) {}
 }

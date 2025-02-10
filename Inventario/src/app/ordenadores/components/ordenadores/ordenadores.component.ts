@@ -29,7 +29,8 @@ export class OrdenadoresComponent {
     ipWifi: '',
     hd1: '',
     hd2: '',
-    observaciones: ''
+    observaciones: '',
+    precio: 0
   };
   public titulo: string = 'Alta de un nuevo ordenador';
   public txtBtn: string = 'Guardar';

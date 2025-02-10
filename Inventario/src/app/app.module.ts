@@ -11,6 +11,7 @@ import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { LoginModule } from './login/login.module';
 import { OrdenadoresModule } from './ordenadores/ordenadores.module';
 import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
+import { PerifeModule } from './perifericos/perifericos.module';
 
 
 
@@ -34,7 +35,8 @@ import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
     BrowserAnimationsModule,
     OrdenadoresModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule  
+    BrowserAnimationsModule,
+    PerifeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
