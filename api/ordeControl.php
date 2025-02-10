@@ -30,7 +30,7 @@ switch ($method) {
         case 'POST':
             header("Content-Type: application/json; charset=UTF-8");
         
-            if (!empty($input) && isset($input['nombre'], $input['idMarca'], $input['modelo'], $input['idUbicacion'], $input['tipo'], $input['numeroSerie'], $input['red'], $input['MACLAN'], $input['IPLAN'], $input['MACWIFI'], $input['IPWIFI'], $input['HD1'], $input['HD2'], $input['observaciones'])) {
+            if (!empty($input) && isset($input['nombre'], $input['idMarca'], $input['modelo'], $input['idUbicacion'], $input['tipo'], $input['numeroSerie'], $input['red'], $input['MACLAN'], $input['IPLAN'], $input['MACWIFI'], $input['IPWIFI'], $input['HD1'], $input['HD2'], $input['observaciones'], $input['precio'])) {
                 
                 // Extraer datos del JSON recibido
                 $nombre = $input['nombre'];
@@ -47,10 +47,11 @@ switch ($method) {
                 $HD1 = $input['HD1'];
                 $HD2 = $input['HD2'];
                 $observaciones = $input['observaciones'];
+                $precio = (float) $input['precio'];
                 $numero = $input['numero'];
         
                 // Llamar a la función para insertar el ordenador
-                $result = consultaOrdenadores::altaOrdenador($numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo, $numeroSerie, $red, $MACLAN, $IPLAN, $MACWIFI, $IPWIFI, $HD1, $HD2, $observaciones);
+                $result = consultaOrdenadores::altaOrdenador($numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo, $numeroSerie, $red, $MACLAN, $IPLAN, $MACWIFI, $IPWIFI, $HD1, $HD2, $observaciones, $precio);
         
                 if ($result) {
                     echo json_encode(["id" => $result]);
@@ -66,7 +67,7 @@ switch ($method) {
             case 'PUT':
                 header("Content-Type: application/json; charset=UTF-8");
             
-                if (!empty($input) && isset($input['id'], $input['numero'], $input['idMarca'], $input['modelo'], $input['idUbicacion'], $input['nombre'], $input['tipo'], $input['numeroSerie'], $input['red'], $input['MACLAN'], $input['IPLAN'], $input['MACWIFI'], $input['IPWIFI'], $input['HD1'], $input['HD2'], $input['observaciones'])) {
+                if (!empty($input) && isset($input['id'], $input['numero'], $input['idMarca'], $input['modelo'], $input['idUbicacion'], $input['nombre'], $input['tipo'], $input['numeroSerie'], $input['red'], $input['MACLAN'], $input['IPLAN'], $input['MACWIFI'], $input['IPWIFI'], $input['HD1'], $input['HD2'], $input['observaciones'], $input['precio'])) {
                     
                     // Extraer y sanitizar datos
                     $id = (int) $input['id'];
@@ -85,9 +86,10 @@ switch ($method) {
                     $HD1 = $input['HD1'];
                     $HD2 = $input['HD2'];
                     $observaciones = $input['observaciones'];
+                    $precio = (float) $input['precio']; // Convertir a número decimal si es posible.
             
                     // Llamar a la función de actualización
-                    $result = consultaOrdenadores::modificarOrdenador($id, $numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo, $numeroSerie, $red, $MACLAN, $IPLAN, $MACWIFI, $IPWIFI, $HD1, $HD2, $observaciones);
+                    $result = consultaOrdenadores::modificarOrdenador($id, $numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo, $numeroSerie, $red, $MACLAN, $IPLAN, $MACWIFI, $IPWIFI, $HD1, $HD2, $observaciones, $precio);
             
                     // Verificar el resultado
                     if ($result) {

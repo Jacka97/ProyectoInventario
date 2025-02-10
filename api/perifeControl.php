@@ -26,15 +26,14 @@ switch ($method) {
 
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['nombre'], $input['ordenador_id'], $input['marca_id'], $input['precio'], $input['fechaCompra'])) {
+        if (!empty($input) && isset($input['nombre'], $input['ordenador_id'], $input['marca_id'], $input['precio'])) {
             // Crear un nuevo producto.
             $nombre = $input['nombre'];
             $ordenador_id = $input['ordenador_id'];
             $marca_id = $input['marca_id'];
             $precio = $input['precio'];
-            $fechaCompra = $input['fechaCompra'];
 
-            $result = consultaPeriferico::insertarPeriferico($nombre, $ordenador_id, $marca_id, $precio, $fechaCompra);
+            $result = consultaPeriferico::insertarPeriferico($nombre, $ordenador_id, $marca_id, $precio);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
@@ -52,7 +51,6 @@ switch ($method) {
                 $ordenador_id = isset($input['ordenador_id']) ? (int) $input['ordenador_id'] : null;
                 $marca_id = isset($input['marca_id']) ? (int) $input['marca_id'] : null;
                 $precio = isset($input['precio']) ? (float) $input['precio'] : null;
-                $fechaCompra = !empty($input['fechaCompra']) ? date('Y-m-d', strtotime($input['fechaCompra'])) : NULL;
         
                 // Validar que el ID sea válido
                 if ($id <= 0) {
@@ -61,7 +59,7 @@ switch ($method) {
                 }
         
                 // Llamar a la función para actualizar
-                $result = consultaPeriferico::actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $precio, $fechaCompra);
+                $result = consultaPeriferico::actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $precio);
         
                 // Verificar si la actualización fue exitosa
                 if ($result) {
