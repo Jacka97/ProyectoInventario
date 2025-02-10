@@ -1,8 +1,5 @@
 <?php
-include '../modelo/consultaPer.php'; // Archivo para manejar las consultas de la base de datos.
-// Configuración de CORS para permitir la comunicación con el cliente.
-// Este código deja todos los encabezados de CORS habilitados para cualquier origen.
-// En su lugar, puede establecer reglas más específicas según su necesidad.
+include "../modelo/consultaPeriferico.php";
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -29,13 +26,15 @@ switch ($method) {
 
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['nombre'], $input['ordenador_id'], $input['marca'])) {
+        if (!empty($input) && isset($input['nombre'], $input['ordenador_id'], $input['marca_id'], $input['precio'], $input['fechaCompra'])) {
             // Crear un nuevo producto.
             $nombre = $input['nombre'];
-            $descripcion = $input['descripcion'];
-            $precio = (float) $input['precio']; // Asegurar tipo numérico.
+            $ordenador_id = $input['ordenador_id'];
+            $marca_id = $input['marca_id'];
+            $precio = $input['precio'];
+            $fechaCompra = $input['fechaCompra'];
 
-            $result = consultaPeriferico::insertarPeriferico($id, $nombre, $ordenador_id, $precio, $fechaCompra);
+            $result = consultaPeriferico::insertarPeriferico($nombre, $ordenador_id, $marca_id, $precio, $fechaCompra);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
@@ -43,27 +42,45 @@ switch ($method) {
         break;
         // $nombre, $ordenador_id, $marca,  $precio, $fechaCompra
 
-    case 'PUT':
+        case 'PUT':
             header("Content-Type: application/json; charset=UTF-8");
-            if (!empty($input) && isset($input['id']) && isset($input['nombre']) && isset($input['precio']) && isset($input['clave'])) {
-                // Modificar un producto por ID.
-                $id = (int) $input['id']; // Sanitizar el ID.
-                $nombre = $input['nombre'];
-    
-                $result = consultaSoft::modificarSoftw($id, $nombre, $precio, $clave);
-                echo json_encode(["success" => $result]);
+        
+            // Verificar que el JSON se haya recibido correctamente
+            if (!empty($input) && isset($_GET['id'])) {
+                $id = (int) $_GET['id']; // ID desde el JSON
+                $nombre = isset($input['nombre']) ? $input['nombre'] : null;
+                $ordenador_id = isset($input['ordenador_id']) ? (int) $input['ordenador_id'] : null;
+                $marca_id = isset($input['marca_id']) ? (int) $input['marca_id'] : null;
+                $precio = isset($input['precio']) ? (float) $input['precio'] : null;
+                $fechaCompra = !empty($input['fechaCompra']) ? date('Y-m-d', strtotime($input['fechaCompra'])) : NULL;
+        
+                // Validar que el ID sea válido
+                if ($id <= 0) {
+                    echo json_encode(["error" => "ID inválido"]);
+                    exit();
+                }
+        
+                // Llamar a la función para actualizar
+                $result = consultaPeriferico::actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $precio, $fechaCompra);
+        
+                // Verificar si la actualización fue exitosa
+                if ($result) {
+                    echo json_encode(["success" => true, "message" => "Periférico actualizado correctamente"]);
+                } else {
+                    echo json_encode(["error" => "Error al actualizar el periférico", "data" => $result]);
+                }
             } else {
-                echo json_encode(["error" => "ID y/o datos inválidos"]);
+                echo json_encode(["error" => "Datos inválidos o incompletos"]);
             }
             break;
-
-
+        
+        
     case 'DELETE':
         header("Content-Type: application/json; charset=UTF-8");
         if (isset($_GET['id'])) {
             // Eliminar un producto por ID.
             $id = (int) $_GET['id']; // Sanitizar el ID.
-            $result= consultaSoft::eliminarSoftware($id);
+            $result= consultaPeriferico::eliminarPeriferico($id);
             echo json_encode(["success" => $result]);
         } else {
             echo json_encode(["error" => "ID no proporcionado"]);
