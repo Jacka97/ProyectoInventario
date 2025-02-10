@@ -30,7 +30,7 @@ switch ($method) {
         case 'POST':
             header("Content-Type: application/json; charset=UTF-8");
         
-            if (!empty($input) && isset($input['nombre'], $input['idMarca'], $input['modelo'], $input['idUbicacion'], $input['tipo'], $input['numeroSerie'], $input['red'], $input['MACLAN'], $input['IPLAN'], $input['MACWIFI'], $input['IPWIFI'], $input['HD1'], $input['HD2'], $input['observaciones'], $input['precio'])) {
+            if (!empty($input) && isset($input['nombre'], $input['idMarca'], $input['modelo'], $input['idUbicacion'], $input['tipo'], $input['numeroSerie'], $input['Red'], $input['MACLAN'], $input['IPLAN'], $input['MACWIFI'], $input['IPWIFI'], $input['HD1'], $input['HD2'], $input['Observaciones'], $input['precio'])) {
                 
                 // Extraer datos del JSON recibido
                 $nombre = $input['nombre'];
@@ -39,14 +39,14 @@ switch ($method) {
                 $idUbicacion = $input['idUbicacion'];
                 $tipo = $input['tipo'];
                 $numeroSerie = $input['numeroSerie'];
-                $red = $input['red'];
+                $red = $input['Red'];
                 $MACLAN = $input['MACLAN'];
                 $IPLAN = $input['IPLAN'];
                 $MACWIFI = $input['MACWIFI'];
                 $IPWIFI = $input['IPWIFI'];
                 $HD1 = $input['HD1'];
                 $HD2 = $input['HD2'];
-                $observaciones = $input['observaciones'];
+                $observaciones = $input['Observaciones'];
                 $precio = (float) $input['precio'];
                 $numero = $input['numero'];
         
@@ -67,26 +67,26 @@ switch ($method) {
             case 'PUT':
                 header("Content-Type: application/json; charset=UTF-8");
             
-                if (!empty($input) && isset($input['id'], $input['numero'], $input['idMarca'], $input['modelo'], $input['idUbicacion'], $input['nombre'], $input['tipo'], $input['numeroSerie'], $input['red'], $input['MACLAN'], $input['IPLAN'], $input['MACWIFI'], $input['IPWIFI'], $input['HD1'], $input['HD2'], $input['observaciones'], $input['precio'])) {
+                if (!empty($input) && isset($input['id'], $input['numero'], $input['idMarca'], $input['modelo'], $input['idUbicacion'], $input['nombre'], $input['tipo'], $input['numeroSerie'], $input['Red'], $input['MACLAN'], $input['IPLAN'], $input['MACWIFI'], $input['IPWIFI'], $input['HD1'], $input['HD2'], $input['Observaciones'], $input['precio'])) {
                     
                     // Extraer y sanitizar datos
                     $id = (int) $input['id'];
-                    $numero = (int) $input['numero'];
-                    $idMarca = (int) $input['idMarca'];
-                    $modelo = $input['modelo'];
-                    $idUbicacion = (int) $input['idUbicacion'];
                     $nombre = $input['nombre'];
+                    $idMarca = $input['idMarca'];
+                    $modelo = $input['modelo'];
+                    $idUbicacion = $input['idUbicacion'];
                     $tipo = $input['tipo'];
                     $numeroSerie = $input['numeroSerie'];
-                    $red = $input['red'];
+                    $red = $input['Red'];
                     $MACLAN = $input['MACLAN'];
                     $IPLAN = $input['IPLAN'];
                     $MACWIFI = $input['MACWIFI'];
                     $IPWIFI = $input['IPWIFI'];
                     $HD1 = $input['HD1'];
                     $HD2 = $input['HD2'];
-                    $observaciones = $input['observaciones'];
-                    $precio = (float) $input['precio']; // Convertir a número decimal si es posible.
+                    $observaciones = $input['Observaciones'];
+                    $precio = (float) $input['precio'];
+                    $numero = $input['numero'];
             
                     // Llamar a la función de actualización
                     $result = consultaOrdenadores::modificarOrdenador($id, $numero, $idMarca, $modelo, $idUbicacion, $nombre, $tipo, $numeroSerie, $red, $MACLAN, $IPLAN, $MACWIFI, $IPWIFI, $HD1, $HD2, $observaciones, $precio);

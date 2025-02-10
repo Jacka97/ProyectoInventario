@@ -17,6 +17,7 @@ class consultaOrdenadores{
     private $HD1;
     private $HD2;
     private $observaciones;
+    private $precio;
     
     public static function getAllOrdenadores(){
         $conexion = conexionBD::conectar();
