@@ -15,10 +15,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent {
 
+  //Funcion que corrobora que estas identificado, como esta creado en el service lo traes aqui para que pueda ser llamado desde el html de este component.
   estaIdentificado(): boolean {
     return this._loginService.estaIdentificado();
   }
   
+
+  //Valida los campos del formulario
   public loginForm: FormGroup;
   constructor(private _loginService: LoginService, private _route:Router, private _fb: FormBuilder, private toastr: ToastrService) { 
     this.loginForm = this._fb.group({
@@ -29,15 +32,34 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm.get('email')?.valueChanges.subscribe(notif => this.updateNotifMethod(notif));
+    this.redirige();
   }
 
+  //Si el usuario borra la ruta de la app, te redirige por defecto a la pagina principal
+  redirige(): any {
+    if(this.estaIdentificado()){
+      return this._route.navigate(['/bienvenido']);
+    }
+  }
+
+  //Comprobacion de que los datos que llegan del formulario coinciden con los que se traen de la api donde estan los usuarios registrados en la BBDD
   compruebaUsuario(): void {
     if (this.loginForm.valid) {
       this._loginService.login(this.loginForm.get('email')?.value, this.loginForm.get('contrasenya')?.value).subscribe({
         next: (resultado) => {
-          this._loginService.saveToken(resultado.token);
-          this.toastr.success('Usuario autentificado correctamente', 'Bienvenido',  {positionClass: 'toast-bottom-right'});
-          this._route.navigate(['/bienvenido']);
+          console.log(resultado);
+          if(resultado.success){
+            this._loginService.saveToken(resultado.token);
+            this.toastr.success('Usuario autentificado correctamente', 'Bienvenido',  {positionClass: 'toast-bottom-right'});
+            this._route.navigate(['/bienvenido']);
+          }else{
+            this.toastr.error(resultado.message);
+            this.loginForm.setValue({
+              usuario: '',
+              contrasenya: '',
+            });
+          }
+
         },
         error: (error) => {
           console.error('Error al hacer el login:', error);

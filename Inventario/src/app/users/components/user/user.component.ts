@@ -140,7 +140,7 @@ export class UsersComponent {
   }
   cancelar(event: Event): void {
     event.preventDefault(); // Previene que el formulario intente enviarse
-    this._route.navigate(['/comentarios'], { queryParams: {} });
+    this._route.navigate(['/users'], { queryParams: {} });
     }
 
 }

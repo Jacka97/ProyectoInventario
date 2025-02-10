@@ -11,6 +11,6 @@ import { Title } from '@angular/platform-browser';
 export class BienvenidoComponent {
   constructor(private _titleService:Title){}
   ngOnInit(){
-    this._titleService.setTitle('Bienvenido a Angular app!!!')
+    this._titleService.setTitle('Gestion de inventario e incidencias')
   }
 }

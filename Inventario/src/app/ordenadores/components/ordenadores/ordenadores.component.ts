@@ -39,6 +39,8 @@ export class OrdenadoresComponent {
 
   constructor(private _ordenadoresService: OrdenadoresService, private _aroute: ActivatedRoute, private _route: Router, private toastr: ToastrService) { }
 
+
+  //Distigue que tipo de accion vamos a realizar dentro de la lista
   ngOnInit() {
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
@@ -53,6 +55,7 @@ export class OrdenadoresComponent {
     }
   }
 
+  //Se cotejan los resultados obtenidos de la api y se agrega el ordenador al listado
   guardaOrdenador(): void {
     if (this.ordenadorForm!.valid || this.tipo == 2) {
       this.formularioCambiado = false;
@@ -115,6 +118,7 @@ export class OrdenadoresComponent {
     
   }
 
+  //Funcion en la que le entra el id del ordenador por parametro y trae el ordenador correspondiente a la funcion que sea (modificar,borrar)
   private traeOrdenador(id: number) {
     this._ordenadoresService.obtengoOrdenador(id).subscribe({
       next: (resultado) => {
@@ -138,6 +142,7 @@ export class OrdenadoresComponent {
     this.formularioCambiado = true;
   }
 
+  //Funcion para poder realizar validaciones en los formularios de forma visual
   validClasses(ngModel: NgModel, validClass: string, errorClass: string) {
     return {
       [validClass]: ngModel.touched && ngModel.valid,

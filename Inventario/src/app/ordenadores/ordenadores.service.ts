@@ -17,22 +17,27 @@ export class OrdenadoresService {
 
   constructor(private http: HttpClient) { }
 
+  //Obtengo los datos de los ordenadores a traves de la api
   obtengoOrdenadores(): Observable<any> {
     return this.http.get(`${this.urlAPI}`);
   }
 
+  //Se almacenan nuevos datos de los ordenadores en la api
   guardaNuevoOrdenador(ordenadores: Ordenadores): Observable<any> {
     return this.http.post<any>(`${this.urlAPI}`, JSON.stringify(ordenadores), this.httpOptions);
   }
 
+  //Modifica registros de los ordenadores en la api
   modificaOrdenador(nordenadores: number, ordenadores: Ordenadores): Observable<any> {
     return this.http.put<any>(`${this.urlAPI}/${nordenadores}`, JSON.stringify(ordenadores), this.httpOptions);
   }
 
+  //Se obtienen datos de los ordenadores a traves del id del ordenador
   obtengoOrdenador(nordenadores: number): Observable<any> {
     return this.http.get(`${this.urlAPI}?id=${nordenadores}`);
   }
 
+  //Se borra un ordenador con el id del ordenador como parametro de la funcion
   borraOrdenador(nordenadores: number): Observable<any> {
     return this.http.delete(`${this.urlAPI}?id=${nordenadores}`);
   }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,28 +6,35 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/usuControl.php';
+  private urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/login.php';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':'application/json'
+    })
+  }
+
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable <any> {
-    return this.http.post<any>(`${this.urlAPI}`, {email, password});
+  //Nos traemos los datos de los usuarios almacenados en la BBDD
+  login(correo: string, pass: string): Observable<any> {
+    const body = { correo, pass };
+    return this.http.post<any>(`${this.urlAPI}`, JSON.stringify(body), this.httpOptions);
   }
 
   getToken():string | null {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   saveToken(token: string): void {
-    localStorage.setItem('token', token); // Guarda el token
+    sessionStorage.setItem('token', token); // Guarda el token
   }
 
   estaIdentificado(): boolean {
-    console.log(this.getToken());
     return this.getToken() !== null; // Verifica si el token existe
   }
 
   salirAplicacion(): void {
-    localStorage.removeItem('token'); // Elimina el token
+    sessionStorage.removeItem('token'); // Elimina el token
   }
   
 }
