@@ -40,6 +40,8 @@ import { DispositivosRedModule } from './dispositivos-red/dispositivos-red.modul
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     PerifeModule,
+    MaterialModule,
+    DispositivosRedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
