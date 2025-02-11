@@ -1,5 +1,5 @@
 <?php
-include "./dbConex.php";
+include "../modelo/dbConex.php";
 class consultaDispoRed{
     private $id;
     private $nombre;
@@ -15,6 +15,7 @@ class consultaDispoRed{
     private $tipoDisp;
     private $observaciones;
     private $precio;
+
     public static function getAllDispRed(){
         $conexion = conexionBD::conectar();
         $sql = "SELECT * FROM DispRed";
