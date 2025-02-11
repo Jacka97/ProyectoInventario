@@ -171,15 +171,17 @@ CREATE TABLE Historico_Movimientos (
 
     fecha DATE NOT NULL, 
 
-    /* datos del material a registrar en el historico */
+    /* datos del material a registrar en el historico (se ponen por trigger para evitar borrado) */
 
     idMaterial INT NOT NULL, 
 
+    nombreMaterial VARCHAR(100) NOT NULL,
+
     tipoMaterial VARCHAR NOT NULL,
 
-    idUbicacion INT NOT NULL, 
+    idUbicacion INT NOT NULL,
 
-    FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(idUbicacion) ON UPDATE CASCADE 
+    nombreUbicacion VARCHAR(100) NOT NULL
 
 ); 
 
