@@ -7,6 +7,9 @@ import { ToastrService } from 'ngx-toastr';
 import { PeriService } from '../../perifericos.service';
 import { Periferico } from '../../perifericos';
 import { data } from 'jquery';
+import { Ordenadores } from '../../ordenadores';
+import { Marca } from '../../marca';
+import { Ubicacion } from '../../ubicacion';
 
 @Component({
   selector: 'app-user',
@@ -17,7 +20,31 @@ import { data } from 'jquery';
 })
 export class PerifeComponent {
   @ViewChild('perifeForm', { static: true }) userForm: NgForm | undefined;
-  public periact: Periferico = {nombre: '', ordenador_id: 0, marca_id: 0, precio: 0};
+  public periact: Periferico = {nombre: '', ordenador_id: 0, marca_id: 0, idUbicacion: 0, precio: 0, numeroSerie: 0};
+  public ordenadorAct: Ordenadores = {
+    id: 0,
+    numero: '',
+    idMarca: 0,
+    modelo: '',
+    idUbicacion: 0,
+    nombre: '',
+    tipo: '',
+    numeroSerie: '',
+    Red: '',
+    MACLAN: '',
+    IPLAN: '',
+    MACWIFI: '',
+    IPWIFI: '',
+    HD1: '',
+    HD2: '',
+    Observaciones: '',
+    precio: 0
+  };
+  public ordenadores: Ordenadores[] = [];
+  public marcaat: Marca = {id: 0, nombre: ''};
+  public marcas: Marca[] = []; 
+  public ubiact: Ubicacion = {id: 0, nombre: ''};
+  public ubis: Ubicacion[] = []; 
   public titulo: string = 'Nuevo Periferico';
   public tipo: number = 0;
   public id: number = 0;
@@ -27,6 +54,9 @@ export class PerifeComponent {
 
   constructor(private _aroute: ActivatedRoute, private _perifeService: PeriService, private _route: Router, private toastr: ToastrService) { }
   ngOnInit() {
+    this.traerMarcas();
+    this.traerOrdenadores();
+    this.traerUbicaciones();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id']; // Recibimos parámetro
     if (this.tipo == 1) {
@@ -38,17 +68,68 @@ export class PerifeComponent {
       this.traePeri(this.id);
     }
   }
+  private traerOrdenadores() {
+    this._perifeService.obtengoOrdenadores().subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.ordenadores = resultado;
+        } else {
+          this.toastr.error('Error al obtener el ordenador:', resultado);
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al obtener el ordenador:', error);
+      },
+      complete: () => {
+        console.log('Operación completada.');
+      },
+    });
+  }
+  private traerUbicaciones() {
+    this._perifeService.obtengoUbicaciones().subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.ubis = resultado;
+        } else {
+          this.toastr.error('Error al obtener la ubicacion:', resultado);
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al obtener la ubicacion:', error);
+      },
+      complete: () => {
+        console.log('Operación completada.');
+      },
+    });
+  }
+  private traerMarcas() {
+    this._perifeService.obtengoMarcas().subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.marcas = resultado;
+        } else {
+          this.toastr.error('Error al obtener las marcas:', resultado);
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al obtener las marcas:', error);
+      },
+      complete: () => {
+        console.log('Operación completada.');
+      },
+    });
+  }
   private traePeri(id: number) {
     this._perifeService.obtengoPeriAPI(id).subscribe({
       next: (resultado) => {
         if (resultado) {
           this.periact = resultado;
         } else {
-          this.toastr.error('Error al obtener el usuario:', resultado);
+          this.toastr.error('Error al obtener el periferico:', resultado);
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el usuario:', error);
+        this.toastr.error('Error al obtener el periferico:', error);
       },
       complete: () => {
         console.log('Operación completada.');
@@ -56,7 +137,9 @@ export class PerifeComponent {
     });
   }
   guardaPeri(): void {
-
+    if (!this.periact.ordenador_id) {
+      this.periact.ordenador_id = 0; //REVISAR
+    }
   
     this.formularioCambiado = false;
   

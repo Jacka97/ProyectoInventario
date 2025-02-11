@@ -8,7 +8,7 @@ import { Ubicacion } from './ubicacion';
 })
 export class UbicacionesService {
 
-  urlPhp='https://uat-inventarios.proyectos-2daw.es/';
+ 
   urlApi='https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
   httpOptions = {
     headers: new HttpHeaders({

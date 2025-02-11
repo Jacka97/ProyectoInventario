@@ -11,16 +11,54 @@
                             [(ngModel)]="periact.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()" minlength="3" maxlength="50" required>
                     </div>
                     <div class="col-12 mt-2 col-md-6 mt-md-0">
-                        <label for="ordenador_id" class="form-label">ID Ordenador:</label>
-                        <input type="text" id="ordenador_id" name="pordenador_idass" class="form-control" [(ngModel)]="periact.ordenador_id" required
+                        <label for="numeroSerie" class="form-label">Numero de Serie:</label>
+                        <input type="number" id="numeroSerie" name="numeroSerie" class="form-control" [(ngModel)]="periact.numeroSerie"
                             [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
+                    </div>
+                    <div class="col-12 mt-2 col-md-6 mt-md-0">
+                        <label for="ordenador_id" class="form-label">Ordenador:</label>
+                        <select 
+                          id="ordenador_id" 
+                          name="ordenador_id" 
+                          class="form-control" 
+                          [(ngModel)]="periact.ordenador_id"
+                          (ngModelChange)="cambiado()" 
+                          required 
+                          [disabled]="tipo == 2">
+                          <option value="" disabled>Selecciona un ordenador</option>
+                          <option value="">Ningun ordenador</option>
+                          <option *ngFor="let ordenador of ordenadores" [value]="ordenador.id">{{ ordenador.nombre }}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 mt-2 col-md-6 mt-md-0">
-                        <label for="marca_id" class="form-label">ID Marca:</label>
-                        <input type="text" id="marca_id" name="marca_id" class="form-control" [(ngModel)]="periact.marca_id"
-                            [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
+                        <label for="marca_id" class="form-label">Marca:</label>
+                        <select 
+                          id="marca_id" 
+                          name="marca_id" 
+                          class="form-control" 
+                          [(ngModel)]="periact.marca_id"
+                          (ngModelChange)="cambiado()" 
+                          required 
+                          [disabled]="tipo == 2">
+                          <option value="" disabled>Selecciona una marca</option>
+                          <option *ngFor="let marca of marcas" [value]="marca.id">{{ marca.nombre }}</option>
+                        </select>
+                    </div>
+                    <div class="col-12 mt-2 col-md-6 mt-md-0">
+                        <label for="id_rol" class="form-label">Ubicacion:</label>
+                        <select 
+                          id="idUbicacion" 
+                          name="idUbicacion" 
+                          class="form-control" 
+                          [(ngModel)]="periact.idUbicacion" 
+                          (ngModelChange)="cambiado()" 
+                          required 
+                          [disabled]="tipo == 2">
+                          <option value="" disabled>Selecciona una ubicacion</option>
+                          <option *ngFor="let ubi of ubis" [value]="ubi.id">{{ ubi.nombre }}</option>
+                        </select>
                     </div>
                     <div class="col-12 mt-2 col-md-6 mt-md-0">
                         <label for="precio" class="form-label">Precio:</label>

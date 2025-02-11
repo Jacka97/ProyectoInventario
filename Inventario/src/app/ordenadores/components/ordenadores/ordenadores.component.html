@@ -106,21 +106,49 @@
                         required></textarea>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <!-- <div class="row mb-3">
                     <div class="col-12 col-md-6">
                         <label for="idMarca" class="form-label">ID marca</label>
                         <textarea id="idMarca" name="idMarca" class="form-control" 
                         [(ngModel)]="ordenadorAct.idMarca" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                         required></textarea>
                     </div>
+                </div> -->
+                <div class="col-12 mt-2 col-md-6 mt-md-0">
+                    <label for="idMarca" class="form-label">Marca:</label>
+                    <select 
+                      id="idMarca" 
+                      name="idMarca" 
+                      class="form-control" 
+                      [(ngModel)]="ordenadorAct.idMarca"
+                      (ngModelChange)="cambiado()" 
+                      required 
+                      [disabled]="tipo == 2">
+                      <option value="" disabled>Selecciona una marca</option>
+                      <option *ngFor="let marca of marcas" [value]="marca.id">{{ marca.nombre }}</option>
+                    </select>
                 </div>
-                <div class="row mb-3">
+                <!-- <div class="row mb-3">
                     <div class="col-12 col-md-6">
                         <label for="idUbicacion" class="form-label">ID Ubicacion</label>
                         <textarea id="idUbicacion" name="idUbicacion" class="form-control" 
                         [(ngModel)]="ordenadorAct.idUbicacion" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                         required></textarea>
                     </div>
+                </div> -->
+                <div class="col-12 mt-2 col-md-6 mt-md-0">
+                    <label for="idUbicacion" class="form-label">Ubicacion:</label>
+                    <select 
+                      id="idUbicacion" 
+                      name="idUbicacion" 
+                      class="form-control" 
+                      [(ngModel)]="ordenadorAct.idUbicacion" 
+                      (ngModelChange)="cambiado()" 
+                      required 
+                      [disabled]="tipo == 2">
+                      <option value="" disabled>Selecciona una ubicacion</option>
+                      <option *ngFor="let ubi of ubis" [value]="ubi.id">{{ ubi.nombre }}</option>
+                    </select>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">

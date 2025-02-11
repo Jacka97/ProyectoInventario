@@ -34,8 +34,10 @@
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col" class="text-nowrap">Nombre</th>
+                                            <th scope="col">Nº Serie</th>
                                             <th scope="col">ID Ordenador</th>
                                             <th scope="col">ID Marca</th>
+                                            <th scope="col">ID Ubicacion</th>
                                             <th scope="col">Precio</th>
                                             <th scope="col">Acciones</th>
                                         </tr>
@@ -44,8 +46,10 @@
                                         <tr *ngFor="let elemento of users">
                                             <th scope="row">{{ elemento.id }}</th>
                                             <td>{{ elemento.nombre }}</td>
+                                            <td>{{ elemento.numeroSerie }}</td>
                                             <td>{{ elemento.ordenador_id }}</td>
                                             <td>{{ elemento.marca_id }}</td>
+                                            <td>{{ elemento.idUbicacion }}</td>
                                             <td>{{ elemento.precio }}</td>  <!-- Formateo de moneda -->
                                             <td>
                                                 <button class="btn btn-sm btn-warning ms-1" 
