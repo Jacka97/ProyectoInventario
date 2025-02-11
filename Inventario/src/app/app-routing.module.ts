@@ -15,6 +15,7 @@ import { loginGuard } from './login/login.guard';
 import { PerifeComponent } from './perifericos/component/perifericos/perifericos.component';
 import { ListaPerifeComponent } from './perifericos/component/lista/lista.component';
 import { ListaComponent } from './material/components/lista/lista.component';
+import { MaterialComponent } from './material/components/material/material.component';
 
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'ubicaciones', component: ListaUbicaciones , canActivate: [loginGuard] },
   { path: 'ubicaciones/:tipo/:id', component: UbicacionComponent, canActivate: [loginGuard] },
   { path: 'materiales', component: ListaComponent, canActivate: [loginGuard]},
+  { path: 'materialesCambioUbicacion', component: MaterialComponent, canActivate: [loginGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];
