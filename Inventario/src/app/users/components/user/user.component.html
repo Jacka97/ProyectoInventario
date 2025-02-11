@@ -3,12 +3,12 @@
         <div class="card-header titulos">Usuarios</div>
         <div class="card-body">
             <h5 class="card-title">Datos del Usuario</h5>
-            <form #commentForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaUser()" novalidate>
+            <form #userForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaUser()">
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
                         <label for="correo" class="form-label">Correo</label>
                         <input type="text" id="correo" name="correo" class="form-control"
-                            [(ngModel)]="useract.correo" [readonly]="tipo == 2" (ngModelChange)="cambiado()" minlength="3" maxlength="50" required>
+                            [(ngModel)]="useract.correo" [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
                     </div>
                     <div class="col-12 mt-2 col-md-6 mt-md-0">
                         <label for="pass" class="form-label">Password:</label>
