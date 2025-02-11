@@ -41,11 +41,11 @@ export class ListaComponent {
         infoFiltered: "(filtrado de un total de _MAX_ registros)",
         search: "Buscar:",
         loadingRecords: "Cargando...",
-        paginate: { // Configuración de los botones de paginación
-          first: "Primero",
-          last: "Último",
-          next: "Siguiente",
-          previous: "Anterior"
+        paginate: {
+          first: '«',
+          last: '»',
+          next: '›',
+          previous: '‹'
         },
         info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
       },

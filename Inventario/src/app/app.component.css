@@ -1,3 +1,10 @@
-/*#pagina {
-    background-image: url(../assets/images/.png);
-}*/
+#pagina {
+    background-image: url(../assets/images/fondo.jpg);
+    min-height: 100vh;
+    background-size: cover;
+}
+
+html{
+    overflow-y: scroll;
+    overflow-x: scroll;
+}

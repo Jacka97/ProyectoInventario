@@ -35,10 +35,10 @@ export class ListaPerifeComponent{
         search: "Buscar:",
         loadingRecords: "Cargando...",
         paginate: {
-          first: "Primero",
-          last: "Último",
-          next: "Siguiente",
-          previous: "Anterior"
+          first: '«',
+          last: '»',
+          next: '›',
+          previous: '‹'
         },
         info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
       }

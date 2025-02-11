@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<!--<nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand mx-2">Aplicación {{ titulo }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -26,12 +26,7 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/ubicaciones']" [routerLinkActive]="['active']">Ubicaciones</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/nominas']" [routerLinkActive]="['active']">Nóminas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/comentarios']" [routerLinkActive]="['active']">Comentarios</a>
-                </li> -->
+              
                
                 <li class="nav-item">
                     <a class="btn btn-danger" [routerLink]="['/logout']" [routerLinkActive]="['active']"><i class="fa-solid fa-power-off"></i> Salir</a>
@@ -39,4 +34,182 @@
             </ul>
         </div>
     </div>
+</nav>-->
+<nav class="navbar navbar-expand-lg" style="background-color: #023e73">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img
+        src="../../assets/images/logo.png"
+        alt="Logo"
+        class="d-inline-block align-text-top"
+        style="max-width: 70px"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-light"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Configuración
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/users']"
+                [routerLinkActive]="['active']"
+                >Usuarios</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/marcas']"
+                [routerLinkActive]="['active']"
+                >Marcas</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/ubicaciones']"
+                [routerLinkActive]="['active']"
+                >Ubicaciones</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-light"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Activos
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/ordenadores']"
+                [routerLinkActive]="['active']"
+                >Ordenadores</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/perifericos']"
+                [routerLinkActive]="['active']"
+                >Periféricos</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/#']"
+                [routerLinkActive]="['active']"
+                >Dispositivos de Red</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Otros</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-light"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Gestión de Material
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Trasladar Material</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="#">Listar Salidas de Material</a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="#">Listar Entrada de Maerial</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-light"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Gestión de Software
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Softwares</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#"> Instalar Software</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-light"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Gestión de Incidencias
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">ssss</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">sssss</a></li>
+            <li><hr class="dropdown-divider" /></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="#"
+            [routerLink]="['/logout']"
+            [routerLinkActive]="['active']"
+            ><i class="fa-solid fa-power-off text-danger"></i
+          ></a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
