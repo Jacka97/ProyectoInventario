@@ -39,7 +39,7 @@ switch ($method) {
             $ipLan = isset($input['IPLAN']) ? $input['IPLAN'] : null;
             $tipoConexion = isset($input['tipoConexion']) ? $input['tipoConexion'] : null;
             $tipoDisp = isset($input['tipoDisp']) ? $input['tipoDisp'] : null;
-            $observaciones = isset($input['Observable']) ? $input['Observaciones'] : null;
+            $observaciones = isset($input['Observaciones']) ? $input['Observaciones'] : null;
             $precio = isset($input['precio']) ? $input['precio'] : null;
 
 
@@ -71,7 +71,7 @@ switch ($method) {
             $ipLan = isset($input['IPLAN']) ? $input['IPLAN'] : null;
             $tipoConexion = isset($input['tipoConexion']) ? $input['tipoConexion'] : null;
             $tipoDisp = isset($input['tipoDisp']) ? $input['tipoDisp'] : null;
-            $observaciones = isset($input['Observable']) ? $input['Observaciones'] : null;
+            $observaciones = isset($input['Observaciones']) ? $input['Observaciones'] : null;
             $precio = isset($input['precio']) ? $input['precio'] : null;
 
             $result = consultaDispoRed::actualizarDispositivoRed($id, $nombre, $idUbicacion, $idMarca, $modelo, $red, $macWifi, $ipWifi, $macLAN, $ipLAN, $tipoConexion, $tipoDisp, $observaciones, $precio);
