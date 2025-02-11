@@ -57,7 +57,7 @@ CREATE TABLE Ordenadores (
 
     tipo VARCHAR(100) NOT NULL, 
 
-    numerioSerie VARCHAR(100) NOT NULL, 
+    numeroSerie VARCHAR(100) NOT NULL, 
 
     Red VARCHAR(100) NULL, 
 
@@ -85,11 +85,11 @@ CREATE TABLE Ordenadores (
 );
 (i) Al borrar una marca de la tabla Marcas los ordenadores que tenian esa marca se quedan con idMarca = null, pensar si esto es lo mejor
 
-INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numerioSerie, Red, MACLAN, IPLAN, MACWIFI, IPWIFI, HD1, HD2, Observaciones) VALUES 
-('PC001', 1, 'ThinkPad X1', 1, 'Ordenador Aula1', 'Portátil', 'SN123456', 'LAN1', '00:1A:2B:3C:4D:5E', '192.168.1.10', '00:1A:2B:3C:4D:5F', '192.168.1.20', 'SSD 512GB', 'HDD 1TB', 'Buen estado'),
-('PC002', 2, 'MSI GF63', 2, 'Ordenador Aula2', 'Portátil', 'SN654321', 'LAN2', '00:1A:2B:3C:4D:6E', '192.168.1.11', '00:1A:2B:3C:4D:6F', '192.168.1.21', 'SSD 1TB', 'HDD 2TB', 'Requiere limpieza'),
-('PC003', 3, 'HP EliteBook', 3, 'Ordenador Almacén', 'Portátil', 'SN789012', 'LAN3', '00:1A:2B:3C:4D:7E', '192.168.1.12', '00:1A:2B:3C:4D:7F', '192.168.1.22', 'SSD 256GB', 'N/A', 'En reparación'),
-('PC004', 4, 'ASUS ROG Strix', 4, 'Ordenador Taller1', 'Sobremesa', 'SN345678', 'LAN4', '00:1A:2B:3C:4D:8E', '192.168.1.13', '00:1A:2B:3C:4D:8F', '192.168.1.23', 'SSD 2TB', 'HDD 4TB', 'Uso en proyectos de diseño');
+INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numeroSerie, Red, MACLAN, IPLAN, MACWIFI, IPWIFI, HD1, HD2, Observaciones) VALUES 
+('PC001', 1, 'ThinkPad X1', 1, 'Ordenador1', 'Portátil', 'SN123456', 'LAN1', '00:1A:2B:3C:4D:5E', '192.168.1.10', '00:1A:2B:3C:4D:5F', '192.168.1.20', 'SSD 512GB', 'HDD 1TB', 'Buen estado'),
+('PC002', 2, 'MSI GF63', 2, 'Ordenador2', 'Portátil', 'SN654321', 'LAN2', '00:1A:2B:3C:4D:6E', '192.168.1.11', '00:1A:2B:3C:4D:6F', '192.168.1.21', 'SSD 1TB', 'HDD 2TB', 'Requiere limpieza'),
+('PC003', 3, 'HP EliteBook', 3, 'Ordenador3', 'Portátil', 'SN789012', 'LAN3', '00:1A:2B:3C:4D:7E', '192.168.1.12', '00:1A:2B:3C:4D:7F', '192.168.1.22', 'SSD 256GB', 'N/A', 'En reparación'),
+('PC004', 4, 'ASUS ROG Strix', 4, 'Ordenador4', 'Sobremesa', 'SN345678', 'LAN4', '00:1A:2B:3C:4D:8E', '192.168.1.13', '00:1A:2B:3C:4D:8F', '192.168.1.23', 'SSD 2TB', 'HDD 4TB', 'Uso en proyectos de diseño');
 
 
 CREATE TABLE Software (
@@ -188,7 +188,7 @@ CREATE TABLE DispRed (
 
     tipoConexion VARCHAR(100) NULL, /*si va por cable o por wifi*/
 
-    tipoDisp VARCHAR(100) NOT NULL, /*si es un switch, un router, etc*/
+    tipoDisp VARCHAR(100) NOT NULL, /*si es un switch, un router, Access Point, etc*/
 
     Observaciones VARCHAR(100) NULL, 
 
@@ -199,6 +199,18 @@ CREATE TABLE DispRed (
     FOREIGN KEY (idMarca) REFERENCES Marcas(id) ON DELETE SET NULL
 
 );
+
+(!)Uso de tipoDisp:
+    Router → Dispositivos que gestionan la conexión a internet.
+    Switch → Dispositivos que conectan varios ordenadores por cable.
+    Access Point → Dispositivos que extienden la red WiFi.
+
+INSERT INTO DispRed (nombre, idUbicacion, idMarca, modelo, Red, MACWIFI, IPWIFI, MACLAN, IPLAN, tipoConexion, tipoDisp, Observaciones, precio) VALUES 
+('Router1', 1, 34, 'TP-Link Archer C7', 'LAN1', '00:1B:2C:3D:4E:5F', '192.168.1.1', NULL, NULL, 'WiFi', 'Router', 'Suministra WiFi al aula', 120.50),
+('Switch1', 2, 35, 'Cisco SG350', 'LAN2', NULL, NULL, '00:1B:2C:3D:4E:6F', '192.168.1.2', 'Cable', 'Switch', 'Conectado a los ordenadores del aula', 250.00),
+('Access Point', 6, 37, 'Ubiquiti UAP-AC-LR', 'LAN3', '00:1B:2C:3D:4E:7F', '192.168.1.3', NULL, NULL, 'WiFi', 'Access Point', 'Extiende la cobertura WiFi', 180.75),
+('Router2', 4, 36, 'MikroTik hEX', 'LAN4', NULL, NULL, '00:1B:2C:3D:4E:8F', '192.168.1.4', 'Cable', 'Router', 'Gestiona la red del taller', 140.00);
+
 
 
 (!) Inserts en esta tabla solo por trigger cuando se haga update en (ordenador, periferico, dispositivo de red) sobre la ubicacion
@@ -228,6 +240,7 @@ CREATE TABLE Historico_Movimientos (
 
 /* En Ordenadores */
 
+/*insert*/
 DELIMITER //
 
 CREATE TRIGGER after_ordenadores_insert
@@ -235,14 +248,14 @@ AFTER INSERT ON Ordenadores
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, NEW.tipo, NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
+    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, "Ordenador", NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
 END;
 
 //
 
 DELIMITER ;
 
-
+/*update*/
 DELIMITER //
 
 CREATE TRIGGER after_ordenadores_update
@@ -250,14 +263,14 @@ AFTER UPDATE ON Ordenadores
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, NEW.tipo, NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
+    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, "Ordenador", NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
 END;
 
 //
 
 DELIMITER ;
 
-
+/*delete*/
 DELIMITER //
 
 CREATE TRIGGER after_ordenadores_delete
@@ -265,7 +278,7 @@ AFTER DELETE ON Ordenadores
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, OLD.tipo, OLD.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
+    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, "Ordenador", OLD.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
 END;
 
 //
@@ -276,7 +289,53 @@ DELIMITER ;
 
 
 /* En Disp Red */
+/*insert*/
+DELIMITER //
 
+CREATE TRIGGER after_dispred_insert
+AFTER INSERT ON DispRed
+FOR EACH ROW
+BEGIN
+    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
+    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, "Dispositivo de Red", NEW.idUbicacion, 
+            (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
+END;
+
+//
+
+DELIMITER ;
+
+/*update*/
+DELIMITER //
+
+CREATE TRIGGER after_dispred_update
+AFTER UPDATE ON DispRed
+FOR EACH ROW
+BEGIN
+    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
+    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, "Dispositivo de Red", NEW.idUbicacion, 
+            (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
+END;
+
+//
+
+DELIMITER ;
+
+/*delete*/
+DELIMITER //
+
+CREATE TRIGGER after_dispred_delete
+AFTER DELETE ON DispRed
+FOR EACH ROW
+BEGIN
+    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
+    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, "Dispositivo de Red", OLD.idUbicacion, 
+            (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
+END;
+
+//
+
+DELIMITER ;
 
 
 CREATE TABLE Perifericos ( 
