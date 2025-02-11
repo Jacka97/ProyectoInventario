@@ -9,6 +9,8 @@ import { dispositivosRed } from './dispositivos-red';
 export class DispositivosRedService {
 
   urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/redControl.php';
+  urlUBI='https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
+  urlMAR = 'https://uat-inventarios.proyectos-2daw.es/api/marcaControl.php';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'applicantion/json'
@@ -17,27 +19,34 @@ export class DispositivosRedService {
 
   constructor(private http: HttpClient) { }
 
-  //Obtengo los datos de los ordenadores a traves de la api
+  obtengoMarcas(): Observable<any>{
+    return this.http.get(`${this.urlMAR}`);
+  }
+  obtengoUbicaciones(): Observable<any>{
+    return this.http.get(`${this.urlUBI}`);
+  }
+
+  //Obtengo los datos de los dispositivos de red a traves de la api
   obtengoDispoRed(): Observable<any> {
     return this.http.get(`${this.urlAPI}`);
   }
 
-  //Se almacenan nuevos datos de los ordenadores en la api
-  guardaNuevoDispoRed(dipositivoRed: dispositivosRed): Observable<any> {
-    return this.http.post<any>(`${this.urlAPI}`, JSON.stringify(dipositivoRed), this.httpOptions);
+  //Se almacenan nuevos datos de los dispositivos de red en la api
+  guardaNuevoDispoRed(dispositivoRed: dispositivosRed): Observable<any> {
+    return this.http.post<any>(`${this.urlAPI}`, JSON.stringify(dispositivoRed), this.httpOptions);
   }
 
-  //Modifica registros de los ordenadores en la api
+  //Modifica registros de los dispositivos de red en la api
   modificaDispoRed(ndispoRed: number, dispositivoRed: dispositivosRed): Observable<any> {
     return this.http.put<any>(`${this.urlAPI}/${ndispoRed}`, JSON.stringify(dispositivoRed), this.httpOptions);
   }
 
-  //Se obtienen datos de los ordenadores a traves del id del ordenador
+  //Se obtienen datos de los dispositivos a traves del id del dispositivo
   obtengoDispoRedID(ndispoRed: number): Observable<any> {
     return this.http.get(`${this.urlAPI}?id=${ndispoRed}`);
   }
 
-  //Se borra un ordenador con el id del ordenador como parametro de la funcion
+  //Se borra un ordenador con el id del dispositivo como parametro de la funcion
   borraDispoRed(ndispoRed: number): Observable<any> {
     return this.http.delete(`${this.urlAPI}?id=${ndispoRed}`);
   }

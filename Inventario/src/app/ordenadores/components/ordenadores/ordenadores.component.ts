@@ -50,8 +50,8 @@ export class OrdenadoresComponent {
 
   //Distigue que tipo de accion vamos a realizar dentro de la lista
   ngOnInit() {
-      this.traerMarcas();
-      this.traerUbis();
+    this.traerMarcas();
+    this.traerUbis();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
 

@@ -16,6 +16,7 @@ import { PerifeComponent } from './perifericos/component/perifericos/perifericos
 import { ListaPerifeComponent } from './perifericos/component/lista/lista.component';
 import { ListaComponent as listadoDispoRed} from './dispositivos-red/components/lista/lista.component';
 import { ListaComponent as listadoMateriales } from './marca/components/lista/lista.component';
+import { DispositivosComponent } from './dispositivos-red/components/dispositivos/dispositivos.component';
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
   { path: 'bienvenido', component: BienvenidoComponent, canActivate: [loginGuard] },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'users', component: ListaUsersComponent, canActivate: [loginGuard]},
   { path: 'users/:tipo/:id', component: UsersComponent, canActivate: [loginGuard]},
   { path: 'dispositivos-red', component: listadoDispoRed, canActivate: [loginGuard]},
+  { path: 'dispositivos-red/:tipo/:id', component: DispositivosComponent, canActivate: [loginGuard]},
   { path: 'perifericos', component: ListaPerifeComponent, canActivate: [loginGuard]},
   { path: 'perifericos/:tipo/:id', component: PerifeComponent, canActivate: [loginGuard]},
   { path: 'marcas/:tipo/:id', component: MarcaComponent, canActivate: [loginGuard] },

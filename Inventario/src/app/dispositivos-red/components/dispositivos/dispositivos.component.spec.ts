@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DipositivosComponent } from './dipositivos.component';
+import { DipositivosComponent } from './dispositivos.component';
 
 describe('DipositivosComponent', () => {
   let component: DipositivosComponent;

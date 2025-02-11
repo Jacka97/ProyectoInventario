@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
-import { DipositivosComponent } from './components/dipositivos/dipositivos.component';
+import { DispositivosComponent } from './components/dispositivos/dispositivos.component';
 import { ListaComponent as listadoDispoRed} from './components/lista/lista.component';
 
 
 
 @NgModule({
   declarations: [
-    DipositivosComponent,
+    DispositivosComponent,
     listadoDispoRed
   ],
   imports: [
