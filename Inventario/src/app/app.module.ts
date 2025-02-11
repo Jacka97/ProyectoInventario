@@ -12,6 +12,7 @@ import { LoginModule } from './login/login.module';
 import { OrdenadoresModule } from './ordenadores/ordenadores.module';
 import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
 import { PerifeModule } from './perifericos/perifericos.module';
+import { MaterialModule } from './material/material.module';
 
 
 
@@ -37,6 +38,7 @@ import { PerifeModule } from './perifericos/perifericos.module';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     PerifeModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
