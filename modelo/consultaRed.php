@@ -33,7 +33,7 @@ class consultaDispoRed{
     
     public static function insertarDisRed($nombre, $idUbicacion, $idMarca, $modelo, $red, $macWifi, $ipWifi, $macLAN, $ipLAN, $tipoConexion, $tipoDisp, $observaciones, $precio){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO DispositivosRed (nombre, instalado, ip, id_ubicacion) VALUES ('$nombre', '$idUbicacion', '$idMarca', '$modelo', '$red', '$macWifi', '$ipWifi, '$macLAN', '$ipLAN', '$tipoConexion', '$tipoDisp', '$observaciones', '$precio')";
+        $sql = "INSERT INTO DispositivosRed (nombre, idUbicacion, idMarca, modelo, Red, MACWIFI, IPWIFI, MACLAN, IPLAN, tipoConexion, tipoDisp, Observaciones, precio) VALUES ('$nombre', '$idUbicacion', '$idMarca', '$modelo', '$red', '$macWifi', '$ipWifi, '$macLAN', '$ipLAN', '$tipoConexion', '$tipoDisp', '$observaciones', '$precio')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
