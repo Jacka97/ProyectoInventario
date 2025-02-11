@@ -177,13 +177,64 @@ CREATE TABLE Historico_Movimientos (
 
     nombreMaterial VARCHAR(100) NOT NULL,
 
-    tipoMaterial VARCHAR NOT NULL,
+    tipoMaterial VARCHAR(100) NOT NULL,
 
     idUbicacion INT NOT NULL,
 
     nombreUbicacion VARCHAR(100) NOT NULL
 
 ); 
+
+(!)Trigger para su correcto funcionamiento
+
+/* En Ordenadores */
+
+DELIMITER //
+
+CREATE TRIGGER after_ordenadores_insert
+AFTER INSERT ON Ordenadores
+FOR EACH ROW
+BEGIN
+    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
+    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, NEW.tipo, NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
+END;
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER after_ordenadores_update
+AFTER UPDATE ON Ordenadores
+FOR EACH ROW
+BEGIN
+    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
+    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, NEW.tipo, NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
+END;
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER after_ordenadores_delete
+AFTER DELETE ON Ordenadores
+FOR EACH ROW
+BEGIN
+    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
+    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, OLD.tipo, OLD.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
+END;
+
+//
+
+DELIMITER ;
+
+
+
+
+/* En Disp Red */
 
 
 
