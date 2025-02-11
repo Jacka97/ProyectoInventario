@@ -40,7 +40,7 @@ switch ($method) {
             $tipoConexion = isset($input['tipoConexion']) ? $input['tipoConexion'] : null;
             $tipoDisp = isset($input['tipoDisp']) ? $input['tipoDisp'] : null;
             $observaciones = isset($input['Observable']) ? $input['Observaciones'] : null;
-            $precio = isset($input(['precio'])) ? $input['precio'] : null;
+            $precio = isset($input['precio']) ? $input['precio'] : null;
 
 
             $result = consultaDispoRed::insertarDisRed($nombre, $idUbicacion, $idMarca, $modelo, $red, $macWifi, $ipWifi, $macLAN, $ipLAN, $tipoConexion, $tipoDisp, $observaciones, $precio);
@@ -72,7 +72,7 @@ switch ($method) {
             $tipoConexion = isset($input['tipoConexion']) ? $input['tipoConexion'] : null;
             $tipoDisp = isset($input['tipoDisp']) ? $input['tipoDisp'] : null;
             $observaciones = isset($input['Observable']) ? $input['Observaciones'] : null;
-            $precio = isset($input(['precio'])) ? $input['precio'] : null;
+            $precio = isset($input['precio']) ? $input['precio'] : null;
 
             $result = consultaDispoRed::actualizarDispositivoRed($id, $nombre, $idUbicacion, $idMarca, $modelo, $red, $macWifi, $ipWifi, $macLAN, $ipLAN, $tipoConexion, $tipoDisp, $observaciones, $precio);
 
