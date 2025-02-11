@@ -27,20 +27,20 @@ switch ($method) {
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
 
-        if (!empty($input) &&  isset($input['nombre'], $input['idUbicacion'], $input['idMarca'], $input['modelo'], $input['Red'], $input['MACWIFI'], $input['IPWIFI'], $input['MACLAN'], $input['IPLAN'], $input['tipoConexion'], $input['tipoDisp'], $input['Observaciones'], $input['precio'])) {
-            $nombre = $input['nombre'];
-            $idMarca = $input['idMarca'];
-            $modelo = $input['modelo'];
-            $idUbicacion = $input['id_ubicacion'];
-            $red = $input['Red'];
-            $macWifi = $input['MACWIFI'];
-            $ipWifi = $input['IPWIFI'];
-            $macLAN = $input['MACLAN'];
-            $ipLan = $input['IPLAN'];
-            $tipoConexion = $input['tipoConexion'];
-            $tipoDisp = $input['tipoDisp'];
-            $observaciones = $input['Observaciones'];
-            $precio = $input['precio'];
+        if (!empty($input)) {
+            $nombre = isset($input['nombre']) ? $input['nombre'] : null;
+            $idMarca = isset($input['idMarca']) ? (int) $input['idMarca'] : null;
+            $modelo = isset($input['modelo']) ? $input['modelo'] : null;
+            $idUbicacion = isset($input['idUbicacion']) ? $input['idUbicacion'] : null;
+            $red = isset($input['Red']) ? $input['Red'] : null;
+            $macWifi = isset($input['MACWIFI']) ? $input['MACWIFI'] : null;
+            $ipWifi = isset($input['IPWIFI']) ? $input['IPWIFI'] : null;
+            $macLAN = isset($input['MACLAN']) ? $input['MACLAN'] : null;
+            $ipLan = isset($input['IPLAN']) ? $input['IPLAN'] : null;
+            $tipoConexion = isset($input['tipoConexion']) ? $input['tipoConexion'] : null;
+            $tipoDisp = isset($input['tipoDisp']) ? $input['tipoDisp'] : null;
+            $observaciones = isset($input['Observable']) ? $input['Observaciones'] : null;
+            $precio = isset($input(['precio'])) ? $input['precio'] : null;
 
 
             $result = consultaDispoRed::insertarDisRed($nombre, $idUbicacion, $idMarca, $modelo, $red, $macWifi, $ipWifi, $macLAN, $ipLAN, $tipoConexion, $tipoDisp, $observaciones, $precio);
@@ -58,21 +58,21 @@ switch ($method) {
     case 'PUT':
         header("Content-Type: application/json; charset=UTF-8");
 
-        if (!empty($input) &&  isset($_GET['id'], $input['nombre'], $input['idUbicacion'], $input['idMarca'], $input['modelo'], $input['Red'], $input['MACWIFI'], $input['IPWIFI'], $input['MACLAN'], $input['IPLAN'], $input['tipoConexion'], $input['tipoDisp'], $input['Observaciones'], $input['precio'])) {
+        if (!empty($input) && isset($_GET['id'])) {
             $id = $_GET['id'];
-            $nombre = $input['nombre'];
-            $idMarca = $input['idMarca'];
-            $modelo = $input['modelo'];
-            $idUbicacion = $input['id_ubicacion'];
-            $red = $input['Red'];
-            $macWifi = $input['MACWIFI'];
-            $ipWifi = $input['IPWIFI'];
-            $macLAN = $input['MACLAN'];
-            $ipLan = $input['IPLAN'];
-            $tipoConexion = $input['tipoConexion'];
-            $tipoDisp = $input['tipoDisp'];
-            $observaciones = $input['Observaciones'];
-            $precio = $input['precio'];
+            $nombre = isset($input['nombre']) ? $input['nombre'] : null;
+            $idMarca = isset($input['idMarca']) ? (int) $input['idMarca'] : null;
+            $modelo = isset($input['modelo']) ? $input['modelo'] : null;
+            $idUbicacion = isset($input['idUbicacion']) ? $input['idUbicacion'] : null;
+            $red = isset($input['Red']) ? $input['Red'] : null;
+            $macWifi = isset($input['MACWIFI']) ? $input['MACWIFI'] : null;
+            $ipWifi = isset($input['IPWIFI']) ? $input['IPWIFI'] : null;
+            $macLAN = isset($input['MACLAN']) ? $input['MACLAN'] : null;
+            $ipLan = isset($input['IPLAN']) ? $input['IPLAN'] : null;
+            $tipoConexion = isset($input['tipoConexion']) ? $input['tipoConexion'] : null;
+            $tipoDisp = isset($input['tipoDisp']) ? $input['tipoDisp'] : null;
+            $observaciones = isset($input['Observable']) ? $input['Observaciones'] : null;
+            $precio = isset($input(['precio'])) ? $input['precio'] : null;
 
             $result = consultaDispoRed::actualizarDispositivoRed($id, $nombre, $idUbicacion, $idMarca, $modelo, $red, $macWifi, $ipWifi, $macLAN, $ipLAN, $tipoConexion, $tipoDisp, $observaciones, $precio);
 
