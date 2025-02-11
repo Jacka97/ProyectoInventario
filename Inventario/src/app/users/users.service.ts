@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './Users';
+import { Rol } from './Roles';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { User } from './Users';
 })
 export class UserService {
   // URL del API donde se encuentran los usuarios.  (https://uat-inventarios.proyectos-2daw.es/api/usuControl.php)
-
+  urlROL = 'https://uat-inventarios.proyectos-2daw.es/api/rolControl.php';
   urlApi = 'https://uat-inventarios.proyectos-2daw.es/api/usuControl.php';
   // Cabeceras HTTP para el uso del API.  (Content-Type: application/json)
   httpOptions = {
@@ -28,6 +29,11 @@ export class UserService {
   // Funcion para obtener todos los usuarios.
   obtengoAllUsersApi(): Observable<any> {
     return this.http.get(`${this.urlApi}`);
+  }
+  
+  // Funcion para obtener todos los roles.
+  obtengoAllRolesApi(): Observable<any> {
+    return this.http.get(`${this.urlROL}`);
   }
   
   // Funcion para obtener un usuario por su id.  (nuser: number) es el id del usuario.

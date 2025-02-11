@@ -4,6 +4,7 @@ import { User } from '../../Users';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../users.service';
 import { ToastrService } from 'ngx-toastr';
+import { Rol } from '../../Roles';
 
 @Component({
   selector: 'app-user',
@@ -15,6 +16,8 @@ import { ToastrService } from 'ngx-toastr';
 export class UsersComponent {
   @ViewChild('userForm', { static: true }) userForm: NgForm | undefined;
   public useract: User = {correo: '', pass: '', nombre: '', activo: 0, id_rol: 2,};
+  public rolact: Rol = {id: "", nombre: ''};
+  public roles: Rol[] = [];  // Asegúrate de que la variable esté correctamente tipada como un array de objetos Rol
   public titulo: string = 'Nuevo Comentario';
   public tipo: number = 0;
   public id: number = 0;
@@ -24,6 +27,7 @@ export class UsersComponent {
 
   constructor(private _aroute: ActivatedRoute, private _usersService: UserService, private _route: Router, private toastr: ToastrService) { }
   ngOnInit() {
+    this.traerRoles();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id']; // Recibimos parámetro
     if (this.tipo == 1) {
@@ -34,6 +38,23 @@ export class UsersComponent {
       this.txtBtn = 'BORRAR';
       this.traeUsuario(this.id);
     }
+  }
+  private traerRoles(){
+    this._usersService.obtengoAllRolesApi().subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.roles = resultado;
+        } else {
+          this.toastr.error('Error al obtener los roles:', resultado);
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al obtener los roles:', error);
+      },
+      complete: () => {
+        console.log('Operación completada.');
+      },
+    });
   }
   private traeUsuario(id: number) {
     this._usersService.obtengoUserApi(id).subscribe({
@@ -97,7 +118,7 @@ export class UsersComponent {
         error: (error) => {
           this.toastr.error("Error al modificar el usuario:", error.error?.errores || error);
         },
-        complete: () => {
+        complete: () => {this.useract.activo = this.inputChecked? 1 : 0;
           this.toastr.success("Operación completada.");
         },
       });
