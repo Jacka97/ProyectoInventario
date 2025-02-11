@@ -390,7 +390,7 @@ DELIMITER ;
 
 
 
-(!)Si ordenador_id != null entonces idUbicacion == ordenador_id.ubicacion (trigger)
+(!)Si ordenador_id != null entonces idUbicacion == ordenador_id.idUbicacion (trigger)
 CREATE TABLE Perifericos ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
@@ -411,6 +411,77 @@ CREATE TABLE Perifericos (
     FOREIGN KEY (marca_id) REFERENCES Marcas(id) ON DELETE SET NULL,
     FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL
 );
+
+(!)Trigger para su correcto funcionamiento
+
+/*Para Perifericos*/
+/*insert*/
+DELIMITER $$
+CREATE TRIGGER before_insert_perifericos
+BEFORE INSERT ON Perifericos
+FOR EACH ROW
+BEGIN
+    -- Declarar la variable al inicio del bloque
+    DECLARE ubicacion_ordenador INT DEFAULT NULL;
+
+    -- Verificar si ordenador_id no es NULL
+    IF NEW.ordenador_id IS NOT NULL THEN
+        -- Obtener la idUbicacion del ordenador asociado
+        SELECT idUbicacion INTO ubicacion_ordenador 
+        FROM Ordenadores 
+        WHERE id = NEW.ordenador_id
+        LIMIT 1;
+
+        -- Asignar la misma idUbicacion al periférico
+        SET NEW.idUbicacion = ubicacion_ordenador;
+    END IF;
+END $$
+
+DELIMITER ;
+
+/*update*/
+DELIMITER $$
+
+CREATE TRIGGER before_update_perifericos
+BEFORE UPDATE ON Perifericos
+FOR EACH ROW
+BEGIN
+    -- Declarar la variable al inicio del bloque
+    DECLARE ubicacion_ordenador INT DEFAULT NULL;
+
+    -- Verificar si ordenador_id no es NULL
+    IF NEW.ordenador_id IS NOT NULL THEN
+        -- Obtener la idUbicacion del ordenador asociado
+        SELECT idUbicacion INTO ubicacion_ordenador 
+        FROM Ordenadores 
+        WHERE id = NEW.ordenador_id
+        LIMIT 1;
+
+        -- Asignar la misma idUbicacion al periférico
+        SET NEW.idUbicacion = ubicacion_ordenador;
+    END IF;
+END $$
+
+DELIMITER ;
+
+/*Para Ordenador*/
+DELIMITER $$
+
+CREATE TRIGGER after_update_ordenador_ubicacion
+AFTER UPDATE ON Ordenadores
+FOR EACH ROW
+BEGIN
+    -- Si la ubicación del ordenador ha cambiado
+    IF OLD.idUbicacion <> NEW.idUbicacion THEN
+        -- Actualizar la ubicación de los periféricos asociados
+        UPDATE Perifericos
+        SET idUbicacion = NEW.idUbicacion
+        WHERE ordenador_id = NEW.id;
+    END IF;
+END $$
+
+DELIMITER ;
+
 
 
 /* SIN TERMINAR */
