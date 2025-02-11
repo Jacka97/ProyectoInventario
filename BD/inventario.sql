@@ -59,21 +59,21 @@ CREATE TABLE Ordenadores (
 
     numerioSerie VARCHAR(100) NOT NULL, 
 
-    Red VARCHAR(100) NOT NULL, 
+    Red VARCHAR(100) NULL, 
 
-    MACLAN VARCHAR(100) NOT NULL, 
+    MACLAN VARCHAR(100) NULL, 
 
-    IPLAN VARCHAR(100) NOT NULL, 
+    IPLAN VARCHAR(100) NULL, 
 
-    MACWIFI VARCHAR(100) NOT NULL, 
+    MACWIFI VARCHAR(100) NULL, 
 
-    IPWIFI VARCHAR(100) NOT NULL, 
+    IPWIFI VARCHAR(100) NULL, 
 
-    HD1 VARCHAR(100) NOT NULL, 
+    HD1 VARCHAR(100) NULL, 
 
-    HD2 VARCHAR(100) NOT NULL, 
+    HD2 VARCHAR(100) NULL, 
 
-    Observaciones VARCHAR(100) NOT NULL, 
+    Observaciones VARCHAR(100) NULL, 
 
     precio DECIMAL(10,2) NOT NULL , 
 
@@ -162,6 +162,45 @@ INSERT INTO Ubicaciones (nombre) VALUES
 ('pasillo1');
 
 
+CREATE TABLE DispRed (
+    
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+
+    nombre VARCHAR(100) NOT NULL,
+
+    idUbicacion INT NULL, 
+
+    idMarca INT NULL,
+
+    modelo VARCHAR(100) NOT NULL, 
+
+    Red VARCHAR(100) NULL,  
+
+/*opcionales*/
+    MACWIFI VARCHAR(100) NULL, 
+
+    IPWIFI VARCHAR(100) NULL, 
+
+    MACLAN VARCHAR(100) NULL, 
+
+    IPLAN VARCHAR(100) NULL, 
+/**/
+
+    tipoConexion VARCHAR(100) NULL, /*si va por cable o por wifi*/
+
+    tipoDisp VARCHAR(100) NOT NULL, /*si es un switch, un router, etc*/
+
+    Observaciones VARCHAR(100) NULL, 
+
+    precio DECIMAL(10,2) NOT NULL,
+
+    FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL,
+
+    FOREIGN KEY (idMarca) REFERENCES Marcas(id) ON DELETE SET NULL
+
+);
+
+
 (!) Inserts en esta tabla solo por trigger cuando se haga update en (ordenador, periferico, dispositivo de red) sobre la ubicacion
 CREATE TABLE Historico_Movimientos ( 
 
@@ -203,6 +242,7 @@ END;
 
 DELIMITER ;
 
+
 DELIMITER //
 
 CREATE TRIGGER after_ordenadores_update
@@ -216,6 +256,7 @@ END;
 //
 
 DELIMITER ;
+
 
 DELIMITER //
 
