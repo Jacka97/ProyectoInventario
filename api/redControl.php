@@ -27,13 +27,23 @@ switch ($method) {
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
 
-        if (!empty($input) &&  isset($input['nombre'], $input['instalado'], $input['ip'], $input['id_ubicacion'])) {
+        if (!empty($input) &&  isset($input['nombre'], $input['idUbicacion'], $input['idMarca'], $input['modelo'], $input['Red'], $input['MACWIFI'], $input['IPWIFI'], $input['MACLAN'], $input['IPLAN'], $input['tipoConexion'], $input['tipoDisp'], $input['Observaciones'], $input['precio'])) {
             $nombre = $input['nombre'];
-            $instalado = $input['instalado'];
-            $ip = $input['ip'];
-            $id_ubicacion = $input['id_ubicacion'];
+            $idMarca = $input['idMarca'];
+            $modelo = $input['modelo'];
+            $idUbicacion = $input['id_ubicacion'];
+            $red = $input['Red'];
+            $macWifi = $input['MACWIFI'];
+            $ipWifi = $input['IPWIFI'];
+            $macLAN = $input['MACLAN'];
+            $ipLan = $input['IPLAN'];
+            $tipoConexion = $input['tipoConexion'];
+            $tipoDisp = $input['tipoDisp'];
+            $observaciones = $input['Observaciones'];
+            $precio = $input['precio'];
 
-            $result = consultaDispoRed::insertarDisRed($nombre, $instalado, $ip, $id_ubicacion);
+
+            $result = consultaDispoRed::insertarDisRed($nombre, $idUbicacion, $idMarca, $modelo, $red, $macWifi, $ipWifi, $macLAN, $ipLAN, $tipoConexion, $tipoDisp, $observaciones, $precio);
 
             if ($result) {
                 echo json_encode(["id" => $result]);
@@ -48,13 +58,13 @@ switch ($method) {
     case 'PUT':
         header("Content-Type: application/json; charset=UTF-8");
 
-        if (!empty($input) &&  isset($input['nombre'], $input['instalado'], $input['ip'], $input['id_ubicacion'])) {
+        if (!empty($input) &&  isset($input['nombre'], $input['idUbicacion'], $input['idMarca'], $input['modelo'], $input['Red'], $input['MACWIFI'], $input['IPWIFI'], $input['MACLAN'], $input['IPLAN'], $input['tipoConexion'], $input['tipoDisp'], $input['Observaciones'], $input['precio'])) {
             $nombre = $input['nombre'];
             $instalado = $input['instalado'];
             $ip = $input['ip'];
             $id_ubicacion = (int) $input['id_ubicacion'];
 
-            $result = consultaDispoRed::insertarDisRed($nombre, $instalado, $ip, $id_ubicacion);
+            $result = consultaDispoRed::insertarDisRed($nombre, $idUbicacion, $idMarca, $modelo, $red, $macWifi, $ipWifi, $macLAN, $ipLAN, $tipoConexion, $tipoDisp, $observaciones, $precio);
 
             if ($result) {
                 echo json_encode(["success" => true]);
