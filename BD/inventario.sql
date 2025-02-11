@@ -404,6 +404,8 @@ CREATE TABLE Perifericos (
     idUbicacion INT NULL, 
 
     precio DECIMAL(10,2) NOT NULL ,
+
+    numeroSerie VARCHAR(100) NOT NULL, 
     
     FOREIGN KEY (ordenador_id) REFERENCES Ordenadores(id) ON DELETE SET NULL,
     FOREIGN KEY (marca_id) REFERENCES Marcas(id) ON DELETE SET NULL,
