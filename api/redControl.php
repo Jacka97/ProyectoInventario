@@ -31,7 +31,7 @@ switch ($method) {
             $nombre = isset($input['nombre']) ? $input['nombre'] : null;
             $idMarca = isset($input['idMarca']) ? (int) $input['idMarca'] : null;
             $modelo = isset($input['modelo']) ? $input['modelo'] : null;
-            $idUbicacion = isset($input['idUbicacion']) ? $input['idUbicacion'] : null;
+            $idUbicacion = isset($input['idUbicacion']) ? (int) $input['idUbicacion'] : null;
             $red = isset($input['Red']) ? $input['Red'] : null;
             $macWifi = isset($input['MACWIFI']) ? $input['MACWIFI'] : null;
             $ipWifi = isset($input['IPWIFI']) ? $input['IPWIFI'] : null;
@@ -40,7 +40,7 @@ switch ($method) {
             $tipoConexion = isset($input['tipoConexion']) ? $input['tipoConexion'] : null;
             $tipoDisp = isset($input['tipoDisp']) ? $input['tipoDisp'] : null;
             $observaciones = isset($input['Observaciones']) ? $input['Observaciones'] : null;
-            $precio = isset($input['precio']) ? $input['precio'] : null;
+            $precio = isset($input['precio']) ? (float) $input['precio'] : null;
 
 
             $result = consultaDispoRed::insertarDisRed($nombre, $idUbicacion, $idMarca, $modelo, $red, $macWifi, $ipWifi, $macLAN, $ipLAN, $tipoConexion, $tipoDisp, $observaciones, $precio);
