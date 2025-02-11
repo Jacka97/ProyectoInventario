@@ -337,7 +337,7 @@ END;
 
 DELIMITER ;
 
-
+(!)Si ordenador_id != null entonces idUbicacion == ordenador_id.ubicacion (trigger)
 CREATE TABLE Perifericos ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
@@ -348,12 +348,15 @@ CREATE TABLE Perifericos (
 
     marca_id INT NULL,
 
+    idUbicacion INT NULL, 
+
     precio DECIMAL(10,2) NOT NULL ,
 
     fechaCompra DATE NOT NULL, 
     
     FOREIGN KEY (ordenador_id) REFERENCES Ordenadores(id) ON DELETE SET NULL,
-    FOREIGN KEY (marca_id) REFERENCES Marcas(id) ON DELETE SET NULL
+    FOREIGN KEY (marca_id) REFERENCES Marcas(id) ON DELETE SET NULL,
+    FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE SET NULL
 );
 
 
