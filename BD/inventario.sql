@@ -337,6 +337,59 @@ END;
 
 DELIMITER ;
 
+
+
+/* En Perifericos */
+/*insert*/
+DELIMITER //
+
+CREATE TRIGGER after_perifericos_insert
+AFTER INSERT ON Perifericos
+FOR EACH ROW
+BEGIN
+    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
+    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, 'Periférico', NEW.idUbicacion, 
+            (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
+END;
+
+//
+
+DELIMITER ;
+
+/*update*/
+DELIMITER //
+
+CREATE TRIGGER after_perifericos_update
+AFTER UPDATE ON Perifericos
+FOR EACH ROW
+BEGIN
+    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
+    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, 'Periférico', NEW.idUbicacion, 
+            (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
+END;
+
+//
+
+DELIMITER ;
+
+/*delete*/
+DELIMITER //
+
+CREATE TRIGGER after_perifericos_delete
+AFTER DELETE ON Perifericos
+FOR EACH ROW
+BEGIN
+    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
+    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, 'Periférico', OLD.idUbicacion, 
+            (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
+END;
+
+//
+
+DELIMITER ;
+
+
+
 (!)Si ordenador_id != null entonces idUbicacion == ordenador_id.ubicacion (trigger)
 CREATE TABLE Perifericos ( 
 
@@ -351,8 +404,6 @@ CREATE TABLE Perifericos (
     idUbicacion INT NULL, 
 
     precio DECIMAL(10,2) NOT NULL ,
-
-    fechaCompra DATE NOT NULL, 
     
     FOREIGN KEY (ordenador_id) REFERENCES Ordenadores(id) ON DELETE SET NULL,
     FOREIGN KEY (marca_id) REFERENCES Marcas(id) ON DELETE SET NULL,
