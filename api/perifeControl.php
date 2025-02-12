@@ -34,7 +34,7 @@ switch ($method) {
             $precio = $input['precio'];
             $idUbicacion = $input['idUbicacion'];
             if ($input['ordenador_id'] == "-1"){
-                $ordenador_id = null;
+                $ordenador_id = 'null';
             }else{
                 $ordenador_id = (int) $input['ordenador_id'];
             }
@@ -56,9 +56,8 @@ switch ($method) {
                 $nombre = isset($input['nombre']) ? $input['nombre'] : null;
                 $ordenador_id = isset($input['ordenador_id']) ? (int) $input['ordenador_id'] : null;
                 $marca_id = isset($input['marca_id']) ? (int) $input['marca_id'] : null;
-                var_dump($input);
                 if ($input['ordenador_id'] == "-1"){
-                    $ordenador_id = null;
+                    $ordenador_id = 'null';
                 }else{
                     $ordenador_id = (int) $input['ordenador_id'];
                 }
@@ -71,7 +70,7 @@ switch ($method) {
                     echo json_encode(["error" => "ID inválido"]);
                     exit();
                 }
-                var_dump($ordenador_id);
+               
                 // Llamar a la función para actualizar
                 $result = consultaPeriferico::actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $idUbicacion, $precio);
         
