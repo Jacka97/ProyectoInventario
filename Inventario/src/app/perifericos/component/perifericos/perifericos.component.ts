@@ -19,7 +19,7 @@ import { Ubicacion } from '../../ubicacion';
   styleUrl: './perifericos.component.css'
 })
 export class PerifeComponent {
-  @ViewChild('perifeForm', { static: true }) userForm: NgForm | undefined;
+  @ViewChild('perifeForm', { static: true }) perifeForm: NgForm | undefined;
   public periact: Periferico = {nombre: '', ordenador_id: 0, marca_id: 0, idUbicacion: 0, precio: 0, numeroSerie: 0};
   public ordenadorAct: Ordenadores = {
     id: 0,
