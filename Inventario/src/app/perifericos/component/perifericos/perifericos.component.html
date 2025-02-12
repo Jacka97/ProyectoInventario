@@ -26,7 +26,7 @@
                           required 
                           [disabled]="tipo == 2">
                           <option value="" disabled>Selecciona un ordenador</option>
-                          <option value="">Ningun ordenador</option>
+                          <option value="-1">Ningun ordenador</option>
                           <option *ngFor="let ordenador of ordenadores" [value]="ordenador.id">{{ ordenador.nombre }}</option>
                         </select>
                     </div>
