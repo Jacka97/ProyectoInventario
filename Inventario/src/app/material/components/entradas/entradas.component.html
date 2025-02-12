@@ -7,9 +7,6 @@
       <div class="card-body">
         <div class="d-flex justify-content-between mb-2">
           <h5 class="card-title">Relación de entradas</h5>
-          <button class="btn btn-primary" [routerLink]="['/entradas', 0, 0]">
-            <i class="fa-solid fa-square-plus"></i> Nueva Entrada
-          </button>
         </div>
         <div *ngIf="entradas">
           <h5
@@ -39,32 +36,19 @@
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Acciones</th>
+                  <th scope="col">Material</th>
+                  <th scope="col">Ubicacion</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">tipoMovimiento</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let elemento of entradas">
                   <th scope="row">{{ elemento.id }}</th>
-                  <td>{{ elemento.nombre }}</td>
-                  <td>
-                    <button
-                      class="btn btn-sm btn-warning ms-1"
-                      data-bs-toggle="tooltip"
-                      title="Modificar registro {{ elemento.id }}"
-                      [routerLink]="['/entradas', 1, elemento.id]"
-                    >
-                      <i class="fa-regular fa-pen-to-square"></i>
-                    </button>
-                    <button
-                      class="btn btn-sm btn-danger ms-1"
-                      data-bs-toggle="tooltip"
-                      title="Eliminar registro {{ elemento.id }}"
-                      [routerLink]="['/entradas', 2, elemento.id]"
-                    >
-                      <i class="fa-regular fa-trash-can"></i>
-                    </button>
-                  </td>
+                  <td>{{ elemento.nombreMaterial }}</td>
+                  <td>{{ elemento.nombreUbicacion }}</td>
+                  <td>{{ elemento.fecha }}</td>
+                  <td>{{ elemento.TipoMovimiento }}</td>
                 </tr>
               </tbody>
             </table>
