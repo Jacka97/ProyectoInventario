@@ -26,20 +26,21 @@ switch ($method) {
 
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['nombre'],$input['ordenador_id'], $input['idUbicacion'], $input['marca_id'], $input['precio'])) {
+        if (!empty($input) && isset($input['nombre'],$input['ordenador_id'], $input['idUbicacion'], $input['marca_id'], $input['precio'], $input['numeroSerie'])) {
             // Crear un nuevo producto.
             $nombre = $input['nombre'];
             $ordenador_id = $input['ordenador_id'];
             $marca_id = $input['marca_id'];
             $precio = $input['precio'];
             $idUbicacion = $input['idUbicacion'];
+            $numeroSerie = $input['numeroSerie'];
             if ($input['ordenador_id'] == "-1"){
                 $ordenador_id = 'null';
             }else{
                 $ordenador_id = (int) $input['ordenador_id'];
             }
 
-            $result = consultaPeriferico::insertarPeriferico($nombre, $ordenador_id, $marca_id, $idUbicacion, $precio);
+            $result = consultaPeriferico::insertarPeriferico($nombre, $numeroSerie, $ordenador_id, $marca_id, $idUbicacion, $precio);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);

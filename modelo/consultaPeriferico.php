@@ -7,6 +7,7 @@ class consultaPeriferico{
     private $marca;
     private $precio;
     private $idUbicacion;
+    private $numeroSerie;
 
     public static function getAllPerifericos(){
         $conexion = conexionBD::conectar();
@@ -24,10 +25,10 @@ class consultaPeriferico{
         return $result->fetch_assoc();
     }
     
-    public static function insertarPeriferico($nombre, $ordenador_id, $marca, $idUbicacion, $precio){
+    public static function insertarPeriferico($nombre, $numeroSerie, $ordenador_id, $marca, $idUbicacion, $precio){
         $conexion = conexionBD::conectar();
-        
-        $sql = "INSERT INTO Perifericos (nombre, ordenador_id, marca_id, idUbicacion, precio) VALUES ('$nombre', '$ordenador_id','$marca', '$idUbicacion', '$precio')";
+        var_dump($ordenador_id);
+        $sql = "INSERT INTO Perifericos (nombre, numeroSerie, ordenador_id, marca_id, idUbicacion, precio) VALUES ('$nombre', '$numeroSerie', '$ordenador_id','$marca', '$idUbicacion', '$precio')";
         var_dump($sql);
         $conexion->query($sql);
         
