@@ -26,14 +26,20 @@ switch ($method) {
 
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['nombre'], $input['ordenador_id'], $input['marca_id'], $input['precio'])) {
+        if (!empty($input) && isset($input['nombre'],$input['ordenador_id'], $input['idUbicacion'], $input['marca_id'], $input['precio'])) {
             // Crear un nuevo producto.
             $nombre = $input['nombre'];
             $ordenador_id = $input['ordenador_id'];
             $marca_id = $input['marca_id'];
             $precio = $input['precio'];
+            $ubicacion = $input['idUbicacion'];
+            if ($input['ordenador_id'] == -1){
+                $ordenador_id = null;
+            }else{
+                $ordenador_id = (int) $input['ordenador_id'];
+            }
 
-            $result = consultaPeriferico::insertarPeriferico($nombre, $ordenador_id, $marca_id, $precio);
+            $result = consultaPeriferico::insertarPeriferico($nombre, $ordenador_id, $marca_id, $idUbicacion, $precio);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
@@ -50,6 +56,7 @@ switch ($method) {
                 $nombre = isset($input['nombre']) ? $input['nombre'] : null;
                 $ordenador_id = isset($input['ordenador_id']) ? (int) $input['ordenador_id'] : null;
                 $marca_id = isset($input['marca_id']) ? (int) $input['marca_id'] : null;
+                $idUbicacion = isset($input['idUbicacion'])? (int) $input['idUbicacion'] : null;
                 $precio = isset($input['precio']) ? (float) $input['precio'] : null;
         
                 // Validar que el ID sea válido
@@ -59,7 +66,7 @@ switch ($method) {
                 }
         
                 // Llamar a la función para actualizar
-                $result = consultaPeriferico::actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $precio);
+                $result = consultaPeriferico::actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $idUbicacion, $precio);
         
                 // Verificar si la actualización fue exitosa
                 if ($result) {
