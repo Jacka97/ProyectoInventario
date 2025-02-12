@@ -16,12 +16,17 @@ import { saveAs } from 'file-saver';
 export class EntradasComponent {
   entradas: any;
 
-  fechamin = null;
-  fechamax = null;
+  fechamin: string | null = null;
+  fechamax: string | null = null;
+  tipo = "insercion";
 
   dtOptions: Config = {};
   constructor(private _movimientosService: MaterialesService) { }
   ngOnInit() {
+    // Pedir fechas al usuario
+    this.fechamin = window.prompt("Ingrese la fecha mínima (YYYY-MM-DD):", "2024-01-01");
+    this.fechamax = window.prompt("Ingrese la fecha máxima (YYYY-MM-DD):", "2024-12-31");
+    
     this.dtOptions = {
       pagingType: 'full_numbers', language: {
         processing: "Procesando...",
@@ -41,7 +46,7 @@ export class EntradasComponent {
         info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
       },
     };
-    this._movimientosService.obtengoMovimientosApi("insercion",this.fechamin,this.fechamax).subscribe({
+    this._movimientosService.obtengoMovimientosApi(this.tipo,this.fechamin,this.fechamax).subscribe({
       next: (resultado) => {
         if (resultado) {
           this.entradas = resultado;
