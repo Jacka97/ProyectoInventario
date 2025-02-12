@@ -39,7 +39,7 @@ switch ($method) {
                 $numeroSerie = isset($input['numeroSerie']);
                 $idUbicacion = isset($input['idUbicacion'])? (int) $input['idUbicacion'] : null;
                 $precio = isset($input['precio']) ? (float) $input['precio'] : null;
-            var_dump($input);
+            
             $result = consultaPeriferico::insertarPeriferico($nombre, $numeroSerie, $ordenador_id, $marca_id, $idUbicacion, $precio);
             echo json_encode(["id" => $result]);
         } else {
