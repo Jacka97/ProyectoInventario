@@ -32,8 +32,8 @@ switch ($method) {
             $ordenador_id = $input['ordenador_id'];
             $marca_id = $input['marca_id'];
             $precio = $input['precio'];
-            $ubicacion = $input['idUbicacion'];
-            if ($input['ordenador_id'] == -1){
+            $idUbicacion = $input['idUbicacion'];
+            if ($input['ordenador_id'] == "-1"){
                 $ordenador_id = null;
             }else{
                 $ordenador_id = (int) $input['ordenador_id'];
@@ -56,6 +56,12 @@ switch ($method) {
                 $nombre = isset($input['nombre']) ? $input['nombre'] : null;
                 $ordenador_id = isset($input['ordenador_id']) ? (int) $input['ordenador_id'] : null;
                 $marca_id = isset($input['marca_id']) ? (int) $input['marca_id'] : null;
+                if ($input['ordenador_id'] == "-1"){
+                    $ordenador_id = null;
+                }else{
+                    $ordenador_id = (int) $input['ordenador_id'];
+                }
+
                 $idUbicacion = isset($input['idUbicacion'])? (int) $input['idUbicacion'] : null;
                 $precio = isset($input['precio']) ? (float) $input['precio'] : null;
         
