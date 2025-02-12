@@ -1,4 +1,4 @@
-export class hist_materiales{
+export class Movimiento{
 
     constructor(
         public id:number,
