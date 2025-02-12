@@ -15,6 +15,10 @@ import { saveAs } from 'file-saver';
 })
 export class EntradasComponent {
   entradas: any;
+
+  fechamin = null;
+  fechamax = null;
+
   dtOptions: Config = {};
   constructor(private _movimientosService: MaterialesService) { }
   ngOnInit() {
@@ -37,7 +41,7 @@ export class EntradasComponent {
         info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
       },
     };
-    this._movimientosService.obtengoMovimientosApi().subscribe({
+    this._movimientosService.obtengoMovimientosApi("insercion",this.fechamin,this.fechamax).subscribe({
       next: (resultado) => {
         if (resultado) {
           this.entradas = resultado;

@@ -15,10 +15,14 @@ export class MaterialesService {
   }
   constructor(private http: HttpClient) { };
    //Obtengo los datos de los movimientos a traves de la api
-  obtengoMovimientosApi(): Observable<any> {
+  obtengoMovimientosApi(tmove: string, fechamin?: string, fechamax?: string): Observable<any> {
     console.log(`${this.urlApi}`);
-    return this.http.get(`${this.urlApi}`);
+    return this.http.get(`${this.urlApi}/?tipo=${tmove}&fechamin=${fechamin}&fechamax=${fechamax}`);
   }
+  
+
+  /*
+
   //Se almacenan nuevos datos de los movimientos en la api
   guardaNuevaMovimientoApi(movimiento:Movimiento): Observable<any> {
     return this.http.post<any>(`${this.urlApi}`, JSON.stringify(movimiento), this.httpOptions);
@@ -36,4 +40,6 @@ export class MaterialesService {
   borraMovimientoApi(nmove:number): Observable<any>{
     return this.http.delete(`${this.urlApi}/?id=${nmove}`);
   }
+
+  */
 }
