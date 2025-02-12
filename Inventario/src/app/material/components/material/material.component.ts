@@ -12,6 +12,8 @@ export class MaterialComponent implements OnInit {
   dtOptions: Config = {};
   opcionSelect: string = '1';
   datos: any[] = []; // lo inicializo como un array
+  ordenadores: any;
+  perifericos: any;
 
   constructor(
     private _ordenadoresService: OrdenadoresService,
@@ -46,15 +48,18 @@ export class MaterialComponent implements OnInit {
 
   cargarTabla() {
     //this.opcionSelect = option;
-    console.log(this.opcionSelect);
-    this.datos=[];
+    //console.log(this.opcionSelect);
+    //this.datos=[];
+    this.ordenadores = [];
+    this.perifericos = [];
     switch (this.opcionSelect) {
       case '1': // Ordenadores
         this._ordenadoresService.obtengoOrdenadores().subscribe({
           next: (resultado) => {
-            this.datos = resultado || []; // Si resultado es null, asigna un array vacío
-            this.cdRef.detectChanges(); // Fuerza que detecte los cambios al producirse el cambio en el checbox (al generarse el 
-      //evento. Tengo que hacerlo dentro del subscribe()
+            // this.datos = resultado || []; // Si resultado es null, asigna un array vacío
+            this.ordenadores = resultado;
+            this.cdRef.detectChanges(); // Fuerza que detecte los cambios al producirse el cambio en el checbox (al generarse el
+            //evento. Tengo que hacerlo dentro del subscribe()
           },
           error: (error) => console.error('Error al recibir los datos:', error),
           complete: () => console.log('Carga de ordenadores completada'),
@@ -64,7 +69,8 @@ export class MaterialComponent implements OnInit {
       case '2': // Periféricos
         this._periService.obtengoAllPeriAPI().subscribe({
           next: (resultado) => {
-            this.datos = resultado || [];
+            this.perifericos = resultado;
+            //this.datos = resultado || [];
             this.cdRef.detectChanges();
           },
           error: (error) => console.error('Error al recibir datos:', error),
@@ -78,4 +84,6 @@ export class MaterialComponent implements OnInit {
         break;
     }
   }
+
+ 
 }
