@@ -71,7 +71,7 @@ switch ($method) {
                     echo json_encode(["error" => "ID inválido"]);
                     exit();
                 }
-        
+                var_dump($ordenador_id);
                 // Llamar a la función para actualizar
                 $result = consultaPeriferico::actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $idUbicacion, $precio);
         
