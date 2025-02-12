@@ -26,20 +26,20 @@ switch ($method) {
 
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['nombre'],$input['ordenador_id'], $input['idUbicacion'], $input['marca_id'], $input['precio'], $input['numeroSerie'])) {
+        if (!empty($input)) {
             // Crear un nuevo producto.
-            $nombre = $input['nombre'];
-            $ordenador_id = $input['ordenador_id'];
-            $marca_id = $input['marca_id'];
-            $precio = $input['precio'];
-            $idUbicacion = $input['idUbicacion'];
-            $numeroSerie = $input['numeroSerie'];
-            if ($input['ordenador_id'] == "-1"){
-                $ordenador_id = 'null';
-            }else{
-                $ordenador_id = (int) $input['ordenador_id'];
-            }
-
+            $nombre = isset($input['nombre']) ? $input['nombre'] : null;
+                $ordenador_id = isset($input['ordenador_id']) ? (int) $input['ordenador_id'] : null;
+                $marca_id = isset($input['marca_id']) ? (int) $input['marca_id'] : null;
+                if ($input['ordenador_id'] == "-1"){
+                    $ordenador_id = 'null';
+                }else{
+                    $ordenador_id = (int) $input['ordenador_id'];
+                }
+                $numeroSerie = isset($input['numeroSerie']);
+                $idUbicacion = isset($input['idUbicacion'])? (int) $input['idUbicacion'] : null;
+                $precio = isset($input['precio']) ? (float) $input['precio'] : null;
+            var_dump($input);
             $result = consultaPeriferico::insertarPeriferico($nombre, $numeroSerie, $ordenador_id, $marca_id, $idUbicacion, $precio);
             echo json_encode(["id" => $result]);
         } else {

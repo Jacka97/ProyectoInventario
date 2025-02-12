@@ -28,7 +28,7 @@ class consultaPeriferico{
     public static function insertarPeriferico($nombre, $numeroSerie, $ordenador_id, $marca, $idUbicacion, $precio){
         $conexion = conexionBD::conectar();
         var_dump($ordenador_id);
-        $sql = "INSERT INTO Perifericos (nombre, numeroSerie, ordenador_id, marca_id, idUbicacion, precio) VALUES ('$nombre', '$numeroSerie', '$ordenador_id','$marca', '$idUbicacion', '$precio')";
+        $sql = "INSERT INTO Perifericos (nombre, numeroSerie, ordenador_id, marca_id, idUbicacion, precio) VALUES ('$nombre', '$numeroSerie', $ordenador_id,'$marca', '$idUbicacion', '$precio')";
         var_dump($sql);
         $conexion->query($sql);
         
@@ -38,9 +38,9 @@ class consultaPeriferico{
     }
     public static function actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $idUbicacion,  $precio){
         $conexion = conexionBD::conectar();
-   
+        var_dump($ordenador_id);
         $sql = "UPDATE Perifericos SET nombre = '$nombre', ordenador_id = $ordenador_id, marca_id = '$marca_id', idUbicacion = '$idUbicacion', precio = '$precio' WHERE id = '$id';";
-    
+        var_dump($sql);
         $conexion->query($sql);
         return $conexion->affected_rows;  // devuelve el número de filas afectadas por la operación SQL. 0 si no se realizó ninguna actualización. 1 si se realizó una actualización. 2 si se realizó una actualización en más de una fila.  -1 si se produjo un error.  -2 si se produjo un error de sintaxis.  -3 si se produ
         $conexion->close();
