@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MaterialesService } from '../../materiales.service';
 import { Config } from 'datatables.net';
 /*para descargar pdf */
@@ -22,7 +22,7 @@ export class EntradasComponent {
   tipo = "insercion";
 
   dtOptions: Config = {};
-  constructor(private _movimientosService: MaterialesService) { }
+  constructor(private _movimientosService: MaterialesService, private cdRef: ChangeDetectorRef) { }
   ngOnInit() {
     
     this.dtOptions = {
@@ -59,6 +59,7 @@ export class EntradasComponent {
       next: (resultado) => {
         if (resultado) {
           this.entradas = resultado;
+          this.cdRef.detectChanges(); // Forzar actualización en la UI
         } else {
           console.error('Error al recibir datos:', resultado.error);
         }
