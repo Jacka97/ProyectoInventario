@@ -1,28 +1,32 @@
-import { Component, ChangeDetectorRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { MaterialesService } from '../../materiales.service';
 import { Config } from 'datatables.net';
-import * as $ from 'jquery'; // Importar jQuery
+/*para descargar pdf */
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+/*para descargar excel */
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-entradas',
   templateUrl: './entradas.component.html',
   styleUrl: './entradas.component.css'
 })
-export class EntradasComponent implements AfterViewInit, OnDestroy {
-  entradas: any[] = [];
+export class EntradasComponent {
+  entradas: any;
+
   fechamin: string | null = null;
   fechamax: string | null = null;
+
   tipo = "insercion";
+
   dtOptions: Config = {};
-  dtInitialized = false;
-
-  constructor(private _movimientosService: MaterialesService, private cdRef: ChangeDetectorRef) {}
-
+  constructor(private _movimientosService: MaterialesService) { }
   ngOnInit() {
+    
     this.dtOptions = {
-      pagingType: 'full_numbers',
-      destroy: true, // Permite reiniciar DataTables
-      language: {
+      pagingType: 'full_numbers', language: {
         processing: "Procesando...",
         lengthMenu: "Mostrar _MENU_ registros",
         zeroRecords: "No se encontraron resultados",
@@ -41,56 +45,61 @@ export class EntradasComponent implements AfterViewInit, OnDestroy {
       },
     };
 
-    this.fechamin = "2025-02-11";
-    this.fechamax = "2025-02-12";
-    this.recibirDatos();
+    //this.recibirDatos();
   }
 
-  ngAfterViewInit() {
-    this.initDataTable();
-  }
-
-  recibirDatos() {
-    this._movimientosService.obtengoMovimientosApi(this.tipo, this.fechamin, this.fechamax).subscribe({
+  recibirDatos(){
+    //vacia array
+    this.entradas = [];
+    //hace la llamada para recibir los datos
+    this._movimientosService.obtengoMovimientosApi(this.tipo,this.fechamin,this.fechamax).subscribe({
       next: (resultado) => {
-        if (Array.isArray(resultado)) {
-          this.entradas = [...resultado]; // Clonar el array para asegurar la actualización
-          this.cdRef.detectChanges(); // Forzar la actualización en la UI
-          this.reloadDataTable(); // Recargar DataTable
+        if (resultado) {
+          this.entradas = resultado;
         } else {
-          console.error('Error: la API no devolvió un array.', resultado);
-          this.entradas = [];
+          console.error('Error al recibir datos:', resultado.error);
         }
       },
       error: (error) => {
         console.error('Error al recibir datos:', error);
-        this.entradas = [];
       },
-      complete: () => console.log('Operación completada.')
+      complete: () => {
+        console.log('Operación completada.');
+      },
     });
   }
 
-  initDataTable() {
-    if (!this.dtInitialized) {
-      setTimeout(() => {
-        ($('#tbentradas') as any).DataTable(this.dtOptions);
-        this.dtInitialized = true;
-      }, 100);
-    }
+/*descargar pdf */
+descargarPDF() {
+  const doc = new jsPDF(); // Crear instancia de jsPDF
+  // Agregar título o texto opcional
+  doc.text('Listado de marcas', 14, 10);
+  // Seleccionar la tabla y convertirla a un formato adecuado
+  autoTable(doc, {
+  html: '#tbmarcas', // Selecciona la tabla por su ID
+  startY: 20, // Define la posición inicial en Y
+  });
+  // Guardar el PDF con un nombre
+  doc.save('marcas.pdf');
   }
 
-  reloadDataTable() {
-    if (this.dtInitialized) {
-      ($('#tbentradas') as any).DataTable().destroy(); // Destruir tabla anterior
-      this.dtInitialized = false;
-    }
-    this.cdRef.detectChanges(); // Asegurar que los datos están en el DOM
-    this.initDataTable(); // Volver a inicializar DataTable con los nuevos datos
-  }
-
-  ngOnDestroy() {
-    if (this.dtInitialized) {
-      ($('#tbentradas') as any).DataTable().destroy();
-    }
+  /*descargar excel */
+descargarExcel() {
+    // Seleccionar la tabla en el DOM
+    let element = document.getElementById('tbmarcas');
+    
+    // Convertir la tabla a una hoja de Excel
+    const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    
+    // Crear un libro de Excel y añadir la hoja
+    const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de Marcas');
+  
+    // Guardar el archivo
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const data: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    saveAs(data, 'marcas.xlsx');
+  
+  
   }
 }
