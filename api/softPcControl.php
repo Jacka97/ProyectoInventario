@@ -32,7 +32,7 @@ switch ($method) {
             $idSoftware = $input['idSoftware'];
            
 
-            $result = consultaSoft::insertarSoftware($idPC, $idSoftware);
+            $result = consultaSoft::insertarSoftwarePC($idPC, $idSoftware);
             echo json_encode(["id" => $result]);
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
@@ -41,12 +41,13 @@ switch ($method) {
 
     case 'PUT':
             header("Content-Type: application/json; charset=UTF-8");
-            if (!empty($input) && isset($_GET['id'], $input['id'], $input['idSoftware'])) {
+            if (!empty($input) && isset($_GET['id'])) {
                 // Modificar un producto por ID.
                 $id = (int) $input['id']; // Sanitizar el ID.
                 $idSoftware = $input['idSoftware'];
+                $icPC = $input['idPC'];
     
-                $result = consultaSoft::modificarSoftw($id, $idSoftware);
+                $result = consultaSoft::modificarSoftwPC($id, $idPC, $idSoftware);
                 echo json_encode(["success" => $result]);
             } else {
                 echo json_encode(["error" => "ID y/o datos inválidos"]);
