@@ -30,9 +30,9 @@ class consultaSoft{
         $conexion->close();
         
     }
-    public static function modificarSoftwPC($idSoft){
+    public static function modificarSoftwPC($id, $idPC, $idSoft){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Software_PC SET idSoftware = '$idSoft' WHERE idSoftware = " . $idSoft;
+        $sql = "UPDATE Software_PC SET idPC = '$idPC', idSoftware = '$idSoft' WHERE id = " . $id;
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
