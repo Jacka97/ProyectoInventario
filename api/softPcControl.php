@@ -28,7 +28,7 @@ switch ($method) {
         header("Content-Type: application/json; charset=UTF-8");
         if (!empty($input) && isset($input['idPC'], $input['idSoftware'])) {
             // Crear un nuevo producto.
-            $idPC = isset($input['idPC']) ? $input['idPC'] : null;
+            $idPC = $input['idPC'];
             $idSoftware = $input['idSoftware'];
            
 
@@ -41,7 +41,7 @@ switch ($method) {
 
     case 'PUT':
             header("Content-Type: application/json; charset=UTF-8");
-            if (!empty($input) && isset($input['id'])) {
+            if (!empty($input) && isset($_GET['id'], $input['id'], $input['idSoftware'])) {
                 // Modificar un producto por ID.
                 $id = (int) $input['id']; // Sanitizar el ID.
                 $idSoftware = $input['idSoftware'];
