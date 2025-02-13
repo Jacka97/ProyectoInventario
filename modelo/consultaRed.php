@@ -47,6 +47,15 @@ class consultaDispoRed{
         return $conexion->affected_rows;
         $conexion->close();
     }
+    public static function actualizarUbicacion($id, $idUbicacion){
+        $conexion = conexionBD::conectar();
+        $sql = "UPDATE DispRed SET idUbicacion = '$idUbicacion' WHERE id = $id";
+        $conexion->query($sql);
+        return $conexion->affected_rows;
+        $conexion->close();
+        
+ 
+    }
     public static function eliminarDisRed($id){
         $conexion = conexionBD::conectar();
         $sql = "DELETE FROM DispRed WHERE id = $id";

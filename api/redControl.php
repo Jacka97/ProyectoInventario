@@ -1,7 +1,7 @@
 <?php
 include '../modelo/consultaRed.php';
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -85,6 +85,24 @@ switch ($method) {
             echo json_encode(["error" => "Datos inválidos o incompletos"]);
         }
         break;
+
+        case 'PATCH':
+            header("Content-Type: application/json; charset=UTF-8");
+            if (isset($_GET['id'])) {
+                // Actualizar un producto por ID.
+                $id = (int) $_GET['id']; // Sanitizar el ID.
+                $input = json_decode(file_get_contents('php://input'), true);
+    
+                // Extraer y sanitizar datos
+             
+                $idUbicacion = $input['idUbicacion'];
+                $result = consultaDispoRed::actualizarUbicacion($id, $idUbicacion);
+                echo json_encode(["success" => $result]);
+    
+            } else {
+                echo json_encode(["error" => "ID no proporcionado"]);
+            }
+            break;
 
     case 'DELETE':
         header("Content-Type: application/json; charset=UTF-8");
