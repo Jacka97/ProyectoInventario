@@ -54,6 +54,7 @@ export class EntradasComponent {
   recibirDatos(){
     //obtiene las fechas de los inputs
 
+    //hace la llamada para recibir los datos
     this._movimientosService.obtengoMovimientosApi(this.tipo,this.fechamin,this.fechamax).subscribe({
       next: (resultado) => {
         if (resultado) {

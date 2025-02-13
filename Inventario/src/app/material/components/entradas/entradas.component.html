@@ -9,9 +9,9 @@
           <h5 class="card-title">Relación de entradas</h5>
           <form action="" class="mt-4">
             <label for="fechaminima">Fecha minima: </label>
-            <input type="text" name="fechaminima">
+            <input type="text" name="fechaminima" [(ngModel)]="fechamin">
             <label for="fechamaxima">Fecha maxima: </label>
-            <input type="text" name="fechamaxima">
+            <input type="text" name="fechamaxima"  [(ngModel)]="fechamax">
             <button (click)="recibirDatos()"></button>
           </form>
         </div>
