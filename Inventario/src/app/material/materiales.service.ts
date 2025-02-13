@@ -16,6 +16,7 @@ export class MaterialesService {
   constructor(private http: HttpClient) { };
    //Obtengo los datos de los movimientos a traves de la api
   obtengoMovimientosApi(tmove: string, fechamin: any, fechamax: any): Observable<any> {
+    console.log(`${this.urlApi}/?tipo=${tmove}&fechamin=${fechamin}&fechamax=${fechamax}`);
     return this.http.get(`${this.urlApi}/?tipo=${tmove}&fechamin=${fechamin}&fechamax=${fechamax}`);
   }
   

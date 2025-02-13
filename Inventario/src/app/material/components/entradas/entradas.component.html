@@ -7,6 +7,13 @@
       <div class="card-body">
         <div class="d-flex justify-content-between mb-2">
           <h5 class="card-title">Relación de entradas</h5>
+          <form action="" class="mt-4">
+            <label for="fechaminima">Fecha minima: </label>
+            <input type="text" name="fechaminima">
+            <label for="fechamaxima">Fecha maxima: </label>
+            <input type="text" name="fechamaxima">
+            <button (click)="recibirDatos()"></button>
+          </form>
         </div>
         <div *ngIf="entradas">
           <h5

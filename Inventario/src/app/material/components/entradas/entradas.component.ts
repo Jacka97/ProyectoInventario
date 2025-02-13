@@ -18,14 +18,12 @@ export class EntradasComponent {
 
   fechamin: string | null = null;
   fechamax: string | null = null;
+
   tipo = "insercion";
 
   dtOptions: Config = {};
   constructor(private _movimientosService: MaterialesService) { }
   ngOnInit() {
-    // Pedir fechas al usuario
-    this.fechamin = window.prompt("Ingrese la fecha mínima (YYYY-MM-DD):", "2024-01-01");
-    this.fechamax = window.prompt("Ingrese la fecha máxima (YYYY-MM-DD):", "2024-12-31");
     
     this.dtOptions = {
       pagingType: 'full_numbers', language: {
@@ -46,6 +44,16 @@ export class EntradasComponent {
         info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
       },
     };
+
+    this.fechamin = "2025-02-11";
+    this.fechamax = "2025-02-12";
+
+    this.recibirDatos();
+  }
+
+  recibirDatos(){
+    //obtiene las fechas de los inputs
+
     this._movimientosService.obtengoMovimientosApi(this.tipo,this.fechamin,this.fechamax).subscribe({
       next: (resultado) => {
         if (resultado) {
@@ -62,8 +70,6 @@ export class EntradasComponent {
       },
     });
   }
-
-  
 
 /*descargar pdf */
 descargarPDF() {
