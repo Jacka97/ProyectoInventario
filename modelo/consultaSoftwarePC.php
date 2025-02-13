@@ -7,7 +7,9 @@ class consultaSoft{
   
     public static function getAllSoftwarePC(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Software_PC";
+        $sql = "SELECT Software_PC.*, Software.nombre as softnombre, Ordenadores.nombre as pcnombre from Software_PC 
+            left join Software on Software.id = Software_PC.idSoftware 
+            left join Ordenadores on Ordenadores.id = Software_PC.idPC";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
