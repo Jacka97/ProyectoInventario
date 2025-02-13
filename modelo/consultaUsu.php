@@ -18,7 +18,7 @@ class consultaUsu{
 
     public static function getRolByCorreo($correo){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT id_rol FROM Usuarios WHERE correo = " . '$correo';
+        $sql = "SELECT id_rol FROM Usuarios WHERE correo = $correo";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();

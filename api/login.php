@@ -22,6 +22,8 @@ if ($method === 'POST') {
     $pass = $input['pass'];
 
     if (consultaUsu::logincheck($correo, $pass)) {
+        //forzar correo como string
+        $correo = (string) $correo;
         $tipo = consultaUsu::getRolByCorreo($correo);
         echo json_encode(["success" => true, "message" => "Login exitoso"]);
         echo json_encode(["Rol" => $tipo]);
