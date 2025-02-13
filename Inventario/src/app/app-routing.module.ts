@@ -17,6 +17,8 @@ import { ListaPerifeComponent } from './perifericos/component/lista/lista.compon
 import { ListaComponent as listadoDispoRed} from './dispositivos-red/components/lista/lista.component';
 import { ListaComponent as listadoMateriales } from './marca/components/lista/lista.component';
 import { DispositivosComponent } from './dispositivos-red/components/dispositivos/dispositivos.component';
+import { ListaComponent as listadoSoftware } from './software/components/lista/lista.component';
+import { SoftwareComponent } from './software/components/software/software.component';
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
   { path: 'bienvenido', component: BienvenidoComponent, canActivate: [loginGuard] },
@@ -34,6 +36,8 @@ const routes: Routes = [
   { path: 'ubicaciones', component: ListaUbicaciones , canActivate: [loginGuard] },
   { path: 'ubicaciones/:tipo/:id', component: UbicacionComponent, canActivate: [loginGuard] },
   { path: 'materiales', component: listadoMateriales, canActivate: [loginGuard]},
+  { path: 'software', component: listadoSoftware, canActivate: [loginGuard] },
+  { path: 'software/:tipo/:id', component: SoftwareComponent, canActivate: [loginGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];

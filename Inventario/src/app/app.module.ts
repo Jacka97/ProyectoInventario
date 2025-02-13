@@ -14,11 +14,7 @@ import { UbicacionesModule } from './ubicaciones/ubicaciones.module';
 import { PerifeModule } from './perifericos/perifericos.module';
 import { MaterialModule } from './material/material.module';
 import { DispositivosRedModule } from './dispositivos-red/dispositivos-red.module';
-
-
-
-
-
+import { SoftwareModule } from './software/software.module';
 
 
 @NgModule({
@@ -41,7 +37,8 @@ import { DispositivosRedModule } from './dispositivos-red/dispositivos-red.modul
     BrowserAnimationsModule,
     PerifeModule,
     MaterialModule,
-    DispositivosRedModule
+    DispositivosRedModule,
+    SoftwareModule
   ],
   providers: [],
   bootstrap: [AppComponent]
