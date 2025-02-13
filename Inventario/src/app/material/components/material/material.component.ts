@@ -5,6 +5,7 @@ import { PeriService } from '../../../perifericos/perifericos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm, NgModel } from '@angular/forms';
+import { UbicacionesService } from '../../../ubicaciones/ubicaciones.service';
 
 @Component({
   selector: 'app-material',
@@ -17,14 +18,18 @@ export class MaterialComponent implements OnInit {
   datos: any[] = []; // lo inicializo como un array
   ordenadores: any;
   perifericos: any;
- // public nuevaUbicacion: number = 0; //nueva ubicación
- // public id: number = 0; //elemento al que le voy a cambiar la ubicación
+  ubicaciones: any[] = [];
+  // public nuevaUbicacion: number = 0; //nueva ubicación
+  // public id: number = 0; //elemento al que le voy a cambiar la ubicación
 
   constructor(
     private _ordenadoresService: OrdenadoresService,
     private _periService: PeriService,
+    private _ubicacionesService: UbicacionesService,
     private cdRef: ChangeDetectorRef, //para forzar que detecte los cambios
-    private _aroute: ActivatedRoute, private _route: Router, private toastr: ToastrService
+    private _aroute: ActivatedRoute,
+    private _route: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -48,14 +53,44 @@ export class MaterialComponent implements OnInit {
         info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
       },
     };
+    //cargar ubicaciones
+    this.ubicaciones = [];
+    // Llamada al servicio para obtener las ubicaciones desde la API
+    this._ubicacionesService.obtengoUbicacionesApi().subscribe({
+      next: (resultado) => {
+        // Si se recibe un resultado válido, se asigna a la variable ubicaciones
+        if (resultado) {
+          this.ubicaciones = resultado;
+        } else {
+          // Si hay un error en los datos recibidos, se muestra en la consola
+          console.error('Error al recibir datos:', resultado.error);
+        }
+      },
+      error: (error) => {
+        // Si ocurre un error en la petición, se muestra en la consola
+        console.error('Error al recibir datos:', error);
+      },
+      complete: () => {
+        // Mensaje de confirmación cuando la operación ha finalizado correctamente
+        console.log('Operación completada.');
+      },
+    });
 
     this.cargarTabla(); // llamo la función para que por defecto cargue los ordenadores
-
-
   }
 
+  //buscar el nombre de la ubicacion donde está cada dispositivo
+ /* getNombreUbicacion(id: number): string {
+    this.ubicaciones.forEach((ubicacion) => {
+      if (ubicacion.id == id) {
+        return ubicacion.nombre;
+      }
+    })
+    return 'desconocido';
+  }
+*/
   cargarTabla() {
-
+    //cargar materiales
     this.ordenadores = []; //vacío los arrays para que al cargar los datos nuevos como lo hace de forma asíncrona no tenga datos
     this.perifericos = [];
     switch (this.opcionSelect) {
@@ -90,16 +125,16 @@ export class MaterialComponent implements OnInit {
     }
   }
 
-
-/**************Para modificar**************/
-cambiarUbicacion(id:number, nuevaUbicacion:number) {
-  switch (this.opcionSelect) {
-    case '1': // Ordenadores
-  /*  this._ordenadoresService.modificaUbicacionOrdenador(id, nuevaUbicacion).subscribe({
+  /**************Para modificar**************/
+  cambiarUbicacion(id: number, nuevaUbicacion: number) {
+    switch (this.opcionSelect) {
+      case '1': // Ordenadores
+        this._ordenadoresService.modificaOrdenadorUbicacion(id, nuevaUbicacion).subscribe({
       next: (resultado) => {
         if (resultado) {
           this.toastr.success('Datos modificados');
-          this._route.navigate(['/materialesCambioUbicacion']);
+          this.cargarTabla();
+          //this._route.navigate(['/materialesCambioUbicacion']);
         } else {
           this.toastr.error('Error al cambiar la ubicación');
         }
@@ -110,19 +145,14 @@ cambiarUbicacion(id:number, nuevaUbicacion:number) {
       complete: () => {
         this.toastr.success('Modificacion completada');
       },
-    });*/
-      break;
+    });
+        break;
 
-    case '2': // Periféricos
+      case '2': // Periféricos
+        break;
 
-      break;
-
-    case '3': // Dispositivos de red (aún sin datos)
-
-      break;
+      case '3': // Dispositivos de red (aún sin datos)
+        break;
+    }
+  }
 }
-}
-
-}
-
-

@@ -81,11 +81,14 @@
                   <th scope="row">{{ elemento.id }}</th>
                   <td>{{ elemento.modelo }}</td>
                   <td>{{ elemento.numeroSerie}}</td>
-                  <td>{{ elemento.idUbicacion }}</td>
+                  <td>
+                   <!-- {{ getNombreUbicacion(elemento.idUbicacion) }}-->
+                   {{elemento.idUbicacion}}
+                  </td>
                  <td><select class="form-select" [(ngModel)]="elemento.nuevaUbicacion">
-                 <!-- <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
-                    {{ ubicacion.nombre }}
-                  </option>-->
+                 <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
+                    {{ ubicacion.id}} -> {{ubicacion.nombre }}
+                  </option>
                 </select></td>
                 <td> <button
                   class="btn btn-sm btn-warning ms-1"

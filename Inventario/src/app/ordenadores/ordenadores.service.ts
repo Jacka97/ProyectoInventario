@@ -32,6 +32,13 @@ export class OrdenadoresService {
     return this.http.put<any>(`${this.urlAPI}/${nordenadores}`, JSON.stringify(ordenadores), this.httpOptions);
   }
 
+  //Modifica registros de los ordenadores en la api
+  modificaOrdenadorUbicacion(nordenadores:number, UbicacionId:number): Observable<any> {   
+    const body = { idUbicacion: UbicacionId };
+    console.log(body);
+    return this.http.patch<any>(`${this.urlAPI}/?id=${nordenadores}`, JSON.stringify(body), this.httpOptions);
+  }
+
   //Se obtienen datos de los ordenadores a traves del id del ordenador
   obtengoOrdenador(nordenadores: number): Observable<any> {
     return this.http.get(`${this.urlAPI}?id=${nordenadores}`);
