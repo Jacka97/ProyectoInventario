@@ -3,6 +3,7 @@ include "../modelo/dbConex.php";
 class consultaSoft{
     private $id;
     private $nombre;
+    private $fecha;
   
     public static function getAllSoftware(){
         $conexion = conexionBD::conectar();
@@ -30,7 +31,7 @@ class consultaSoft{
     }
     public static function modificarSoftw($id, $nombre){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Software SET nombre = '$nombre' WHERE id = ".$id;
+        $sql = "UPDATE Software SET nombre = '$nombre' WHERE id = " . $id;
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
