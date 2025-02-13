@@ -14,7 +14,7 @@ import { saveAs } from 'file-saver';
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.css'
 })
-export class ListaComponent {
+export class listadoMateriales {
   ordenadores: any;
   perifericos:any;
   dtOptions: Config = {};
