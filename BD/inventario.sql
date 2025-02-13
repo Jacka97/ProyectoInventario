@@ -4,7 +4,7 @@ CREATE DATABASE Inventario;
 /* USUARIOS */
 CREATE TABLE Usuarios ( 
 
-    id INT AUTO_INCREMENT PRIMARY KEY, 
+    id INT AUTO_I  NCREMENT PRIMARY KEY, 
 
     correo VARCHAR(255) UNIQUE NOT NULL, 
 
@@ -446,23 +446,27 @@ CREATE TRIGGER before_update_perifericos
 BEFORE UPDATE ON Perifericos
 FOR EACH ROW
 BEGIN
-    -- Declarar la variable al inicio del bloque
     DECLARE ubicacion_ordenador INT DEFAULT NULL;
 
-    -- Verificar si ordenador_id no es NULL
+    -- Si el ordenador_id no es NULL, obtener la idUbicacion del ordenador asociado
     IF NEW.ordenador_id IS NOT NULL THEN
-        -- Obtener la idUbicacion del ordenador asociado
         SELECT idUbicacion INTO ubicacion_ordenador 
         FROM Ordenadores 
         WHERE id = NEW.ordenador_id
         LIMIT 1;
 
-        -- Asignar la misma idUbicacion al periférico
-        SET NEW.idUbicacion = ubicacion_ordenador;
+        -- Si el usuario no está cambiando manualmente idUbicacion, actualizarlo
+        IF OLD.idUbicacion = NEW.idUbicacion THEN
+            SET NEW.idUbicacion = ubicacion_ordenador;
+        ELSE
+            -- Si el usuario quiere cambiar idUbicacion, eliminar la asociación con el ordenador
+            SET NEW.ordenador_id = NULL;
+        END IF;
     END IF;
 END $$
 
 DELIMITER ;
+
 
 /*Para Ordenador*/
 DELIMITER $$
