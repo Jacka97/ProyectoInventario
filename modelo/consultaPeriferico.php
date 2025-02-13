@@ -45,6 +45,15 @@ class consultaPeriferico{
         return $conexion->affected_rows;  // devuelve el número de filas afectadas por la operación SQL. 0 si no se realizó ninguna actualización. 1 si se realizó una actualización. 2 si se realizó una actualización en más de una fila.  -1 si se produjo un error.  -2 si se produjo un error de sintaxis.  -3 si se produ
         $conexion->close();
     }
+    public static function actualizarUbicacion($id, $idUbicacion){
+        $conexion = conexionBD::conectar();
+        $sql = "UPDATE Perifericos SET idUbicacion = '$idUbicacion' WHERE id = $id";
+        $conexion->query($sql);
+        return $conexion->affected_rows;
+        $conexion->close();
+        
+ 
+    }
     public static function eliminarPeriferico($id){
         $conexion = conexionBD::conectar();
         $sql = "DELETE FROM Perifericos WHERE id = $id";
