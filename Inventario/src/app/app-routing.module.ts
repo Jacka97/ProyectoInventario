@@ -21,7 +21,7 @@ const routes: Routes = [
   { path : 'login', component: LoginComponent },
   { path: 'bienvenido', component: BienvenidoComponent, canActivate: [loginGuard] },
   { path: 'marcas', component: ListaMarcas, canActivate: [loginGuard]},
-  { path: 'ordenadores', component: ListaOrdenadores, canActivate: [loginGuard] }, 
+  { path: 'ordenadores', component: ListaOrdenadores, canActivate: [loginGuard] },
   { path: 'ordenadores/:tipo/:id', component: OrdenadoresComponent, canActivate: [loginGuard]},
   { path: 'logout', component: LogoutComponent },
   { path: 'users', component: ListaUsersComponent, canActivate: [loginGuard]},

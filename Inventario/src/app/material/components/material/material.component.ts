@@ -2,6 +2,9 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Config } from 'datatables.net';
 import { OrdenadoresService } from '../../../ordenadores/ordenadores.service';
 import { PeriService } from '../../../perifericos/perifericos.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-material',
@@ -10,15 +13,18 @@ import { PeriService } from '../../../perifericos/perifericos.service';
 })
 export class MaterialComponent implements OnInit {
   dtOptions: Config = {};
-  opcionSelect: string = '1';
+  opcionSelect: string = '1'; //por defecto va a cargar los ordenadores
   datos: any[] = []; // lo inicializo como un array
   ordenadores: any;
   perifericos: any;
+ // public nuevaUbicacion: number = 0; //nueva ubicación
+ // public id: number = 0; //elemento al que le voy a cambiar la ubicación
 
   constructor(
     private _ordenadoresService: OrdenadoresService,
     private _periService: PeriService,
-    private cdRef: ChangeDetectorRef //para forzar que detecte los cambios
+    private cdRef: ChangeDetectorRef, //para forzar que detecte los cambios
+    private _aroute: ActivatedRoute, private _route: Router, private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -44,13 +50,13 @@ export class MaterialComponent implements OnInit {
     };
 
     this.cargarTabla(); // llamo la función para que por defecto cargue los ordenadores
+
+
   }
 
   cargarTabla() {
-    //this.opcionSelect = option;
-    //console.log(this.opcionSelect);
-    //this.datos=[];
-    this.ordenadores = [];
+
+    this.ordenadores = []; //vacío los arrays para que al cargar los datos nuevos como lo hace de forma asíncrona no tenga datos
     this.perifericos = [];
     switch (this.opcionSelect) {
       case '1': // Ordenadores
@@ -70,7 +76,6 @@ export class MaterialComponent implements OnInit {
         this._periService.obtengoAllPeriAPI().subscribe({
           next: (resultado) => {
             this.perifericos = resultado;
-            //this.datos = resultado || [];
             this.cdRef.detectChanges();
           },
           error: (error) => console.error('Error al recibir datos:', error),
@@ -85,5 +90,39 @@ export class MaterialComponent implements OnInit {
     }
   }
 
- 
+
+/**************Para modificar**************/
+cambiarUbicacion(id:number, nuevaUbicacion:number) {
+  switch (this.opcionSelect) {
+    case '1': // Ordenadores
+  /*  this._ordenadoresService.modificaUbicacionOrdenador(id, nuevaUbicacion).subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.toastr.success('Datos modificados');
+          this._route.navigate(['/materialesCambioUbicacion']);
+        } else {
+          this.toastr.error('Error al cambiar la ubicación');
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al modificar la ubicación: ', error);
+      },
+      complete: () => {
+        this.toastr.success('Modificacion completada');
+      },
+    });*/
+      break;
+
+    case '2': // Periféricos
+
+      break;
+
+    case '3': // Dispositivos de red (aún sin datos)
+
+      break;
 }
+}
+
+}
+
+
