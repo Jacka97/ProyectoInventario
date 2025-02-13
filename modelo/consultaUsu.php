@@ -16,13 +16,7 @@ class consultaUsu{
         return $result->fetch_all(MYSQLI_ASSOC);   
 }
 
-    public static function getRolByCorreo($correo){
-        $conexion = conexionBD::conectar();
-        $sql = "SELECT id_rol FROM Usuarios WHERE correo = $correo";
-        $result = $conexion->query($sql);
-        $conexion->close();
-        return $result->fetch_assoc();
-    }
+ 
     // funcion para obtener el ususario por el id
     public static function getUsuById($id){
         $conexion = conexionBD::conectar();
@@ -76,6 +70,26 @@ class consultaUsu{
     
         $stmt->close();
         $conexion->close();
+    }
+    public static function getRolByCorreo($correo) {
+        $conexion = conexionBD::conectar();
+        
+        // Usar consulta preparada para evitar inyección SQL
+        $sql = "SELECT id_rol FROM Usuarios WHERE correo = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("s", $correo);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            $stmt->close();
+            $conexion->close();
+            return $row['id_rol'];
+        } else {
+            $stmt->close();
+            $conexion->close();
+            return null; // Si el correo no existe
+        }
     }
 }
 
