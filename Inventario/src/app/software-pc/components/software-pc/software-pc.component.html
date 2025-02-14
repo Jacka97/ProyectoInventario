@@ -1,1 +1,48 @@
-<p>software-pc works!</p>
+<div class="container d-flex align-items-center justify-content-center contenedor-formulario">
+    <div class="col-10 col-md-8 card text-center my-3">
+        <div class="card-header titulos">Asignacion de software</div>
+        <div class="card-body">
+            <h5 class="card-title">Asigna un software a un ordenador</h5>
+            <form #softPcForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaSoftwarePC()" novalidate>
+                <div class="row mb-3">
+                    <div class="col-12 mt-2 col-md-6 mt-md-0">
+                        <label for="idSoftware" class="form-label">Software:</label>
+                        <select 
+                          id="idSoftware" 
+                          name="idSoftware" 
+                          class="form-control" 
+                          [(ngModel)]="softwarePcAct.idSoftware"
+                          (ngModelChange)="cambiado()" 
+                          required 
+                          [disabled]="tipo == 2">
+                          <option value="" disabled>Selecciona un Software</option>
+                          <option value="">Ningun Software</option>
+                          <option *ngFor="let softwarepc of softwarePcAct" [value]="softwarepc.id">{{ softwarepc.nombre }}</option>
+                        </select>
+                    </div>
+                    <div class="col-12 mt-2 col-md-6 mt-md-0">
+                        <label for="idPC" class="form-label">Ordenador:</label>
+                        <select 
+                          id="idPC" 
+                          name="idPC" 
+                          class="form-control" 
+                          [(ngModel)]="softwarePcAct.idPC"
+                          (ngModelChange)="cambiado()" 
+                          required 
+                          [disabled]="tipo == 2">
+                          <option value="" disabled>Selecciona un ordenador</option>
+                          <option value="">Ningun ordenador</option>
+                          <option *ngFor="let ordenador of ordenadoresAct" [value]="ordenador.id">{{ ordenador.modelo }}</option>
+                        </select>
+                    </div>
+                </div>
+                
+               
+                <div class="my-3 text-center">
+                    <input type="submit" class="btn btn-dark btn-lg" value="{{ txtBtn }}">
+                    <button name="cancelar" class="btn btn-secondary btn-lg me-3" (click)="cancelar($event)">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -35,18 +35,17 @@
                                             <th scope="col" class="text-center">Fecha</th>
                                             <th scope="col">Software</th>
                                             <th scope="col">Ordenador</th>
-                                            <th scope="col">Tipo</th>
                                             <th scope="col">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let elemento of ordenadores">
-                                            <td>{{ elemento.modelo }}</td>
-                                            <td>{{ elemento.tipo }}</td>
-                                        </tr>
                                         <tr *ngFor="let elemento of softwarePC">
                                             <td class="text-center">{{ elemento.fecha }}</td>
                                             <td>{{ elemento.softnombre }}</td>
+                                            
+                                        </tr>
+                                        <tr *ngFor="let elemento of ordenadores">
+                                            <td>{{ elemento.modelo }}</td>
                                             <td>
                                                 <button class="btn btn-sm btn-warning ms-1" 
                                                         data-bs-toggle="tooltip" 

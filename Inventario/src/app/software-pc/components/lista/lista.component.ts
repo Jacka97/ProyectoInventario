@@ -23,8 +23,6 @@ export class ListaComponent {
     this.ordenadores=[];
   }
 
- 
-
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
