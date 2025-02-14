@@ -15,36 +15,12 @@ import { SoftwareService } from '../../software.service';
 })
 export class ListaComponent {
   software: any;
-  softwarePC: any;
   dtOptions: Config = {};
-  dtOptionsPC: Config = {};
-
 
   constructor(private _softwareService : SoftwareService) {}
 
   ngOnInit () {
     this.dtOptions = {
-      pagingType: 'full_numbers',
-      language: {
-        processing: "Procesando...",
-        lengthMenu: "Mostrar _MENU_ registros",
-        zeroRecords: "No se encontraron resultados",
-        emptyTable: "Ningún dato disponible en esta tabla",
-        infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
-        infoFiltered: "(filtrado de un total de _MAX_ registros)",
-        search: "Buscar:",
-        loadingRecords: "Cargando...",
-        paginate: {
-          first: '«',
-          last: '»',
-          next: '›',
-          previous: '‹'
-        },
-        info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
-      }
-    };
-
-    this.dtOptionsPC = {
       pagingType: 'full_numbers',
       language: {
         processing: "Procesando...",
@@ -80,23 +56,6 @@ export class ListaComponent {
         console.log('Operacion completada');
       },
     })
-
-    this._softwareService.obtengoSoftwarePC().subscribe({
-      next: (resultado) => {
-        if (resultado) {
-          this.softwarePC = resultado;
-        } else {
-          console.error('Error al recibir los datos: ', resultado);
-        }
-      },
-      error: (error) => {
-        console.error('Error al recibir los datos: ', error);
-      },
-      complete: () => {
-        console.log('Operacion completada');
-      },
-    })
-
   }
 
   descargarPDF() {

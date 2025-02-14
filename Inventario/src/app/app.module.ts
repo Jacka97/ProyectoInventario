@@ -15,6 +15,8 @@ import { PerifeModule } from './perifericos/perifericos.module';
 import { MaterialModule } from './material/material.module';
 import { DispositivosRedModule } from './dispositivos-red/dispositivos-red.module';
 import { SoftwareModule } from './software/software.module';
+import { SoftwarePcModule } from './software-pc/software-pc.module';
+
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { SoftwareModule } from './software/software.module';
     PerifeModule,
     MaterialModule,
     DispositivosRedModule,
-    SoftwareModule
+    SoftwareModule,
+    SoftwarePcModule
   ],
   providers: [],
   bootstrap: [AppComponent]

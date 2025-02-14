@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm, NgModel } from '@angular/forms';
 import { SoftwareService } from '../../software.service';
-import { SoftwarePC } from '../../softwarePC';
-import { Ordenadores } from '../../ordenadores';
+import { SoftwarePC } from '../../../software-pc/softwarePC';
+import { Ordenadores } from '../../../software-pc/ordenadores';
 import { Software } from '../../software';
 
 @Component({
