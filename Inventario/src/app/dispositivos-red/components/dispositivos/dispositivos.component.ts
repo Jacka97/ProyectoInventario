@@ -20,8 +20,11 @@ export class DispositivosComponent {
   public ubis: Ubicacion[] = [];
   public dispoRedAct: dispositivosRed = {
 
+    dispositivo_nombre: '',
     nombre: '',
     idUbicacion: 0,
+    ubicacion_nombre: '',
+    marca_nombre: '',
     idMarca: 0,
     modelo: '',
     Red: '',

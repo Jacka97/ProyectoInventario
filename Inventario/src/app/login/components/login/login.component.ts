@@ -14,11 +14,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
+  correo: string = '';
+  pass: string = '';
+  errorMessage: string = '';
+  successMessage: string = '';
+  rol: number = 0;
   //Funcion que corrobora que estas identificado, como esta creado en el service lo traes aqui para que pueda ser llamado desde el html de este component.
-  estaIdentificado(): boolean {
-    return this._loginService.estaIdentificado();
-  }
+ 
   
 
   //Valida los campos del formulario
@@ -32,9 +34,12 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm.get('email')?.valueChanges.subscribe(notif => this.updateNotifMethod(notif));
+
     this.redirige();
   }
-
+  estaIdentificado(): boolean {
+    return this._loginService.estaIdentificado();
+  }
   //Si el usuario borra la ruta de la app, te redirige por defecto a la pagina principal
   redirige(): any {
     if(this.estaIdentificado()){
@@ -50,6 +55,7 @@ export class LoginComponent {
           console.log(resultado);
           if(resultado.success){
             this._loginService.saveToken(resultado.token);
+            sessionStorage.setItem('userRole', resultado.Rol.toString());
             this.toastr.success('Usuario autentificado correctamente', 'Bienvenido',  {positionClass: 'toast-bottom-right'});
             this._route.navigate(['/bienvenido']);
           }else{

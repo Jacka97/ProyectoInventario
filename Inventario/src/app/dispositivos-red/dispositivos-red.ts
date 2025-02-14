@@ -1,7 +1,10 @@
 export class dispositivosRed {
     constructor (
-        public nombre : string,
+        public dispositivo_nombre : string,
+        public nombre: string,
         public idUbicacion : number,
+        public ubicacion_nombre : string,
+        public marca_nombre : string,
         public idMarca : number,
         public modelo : string,
         public Red : string,

@@ -15,13 +15,15 @@ import { loginGuard } from './login/login.guard';
 import { PerifeComponent } from './perifericos/component/perifericos/perifericos.component';
 import { ListaPerifeComponent } from './perifericos/component/lista/lista.component';
 import { ListaComponent as listadoDispoRed} from './dispositivos-red/components/lista/lista.component';
+import { EntradasComponent } from './material/components/entradas/entradas.component';
+import { SalidasComponent } from './material/components/salidas/salidas.component';
 import { DispositivosComponent } from './dispositivos-red/components/dispositivos/dispositivos.component';
-import { listadoMateriales } from './material/components/lista/lista.component';
 import { MaterialComponent } from './material/components/material/material.component';
 import { ListaComponent as listadoSoftware } from './software/components/lista/lista.component';
 import { SoftwareComponent } from './software/components/software/software.component';
 import { SoftwarePcComponent } from './software-pc/components/software-pc/software-pc.component';
 import { ListaComponent as ListaSoftwarePC} from './software-pc/components/lista/lista.component';
+import { listadoMateriales } from './material/components/lista/lista.component';
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
   { path: 'bienvenido', component: BienvenidoComponent, canActivate: [loginGuard] },
@@ -44,6 +46,8 @@ const routes: Routes = [
   { path: 'software/:tipo/:id', component: SoftwareComponent, canActivate: [loginGuard]},
   { path: 'software-pc', component: ListaSoftwarePC, canActivate: [loginGuard] },
   { path: 'sofware-pc/:tipo/:id', component: SoftwarePcComponent, canActivate: [loginGuard]},
+  { path: 'entradas', component: EntradasComponent, canActivate: [loginGuard]},
+  { path: 'salidas', component: SalidasComponent, canActivate: [loginGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];

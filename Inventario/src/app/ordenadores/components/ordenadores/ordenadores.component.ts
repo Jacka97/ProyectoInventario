@@ -24,8 +24,11 @@ export class OrdenadoresComponent {
     
     numero: '',
     idMarca: 0,
+    marca_nombre: '',
     modelo: '',
     idUbicacion: 0,
+    ubicacion_nombre: '',
+    ordenador_nombre: '',
     nombre: '',
     tipo: '',
     numeroSerie: '',
