@@ -44,6 +44,7 @@ switch ($method) {
             if (!empty($input) && isset($_GET['id'], $input['idPC'], $input['idSoftware'])) {
                 // Modificar un producto por ID.
                 $id = $_GET['id'];
+                $idPC = $input['idPC'];
                 $idSoftware = $input['idSoftware'];
     
                 $result = consultaSoft::modificarSoftwPC($id, $idPC, $idSoftware);
