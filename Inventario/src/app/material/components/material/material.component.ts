@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm, NgModel } from '@angular/forms';
 import { UbicacionesService } from '../../../ubicaciones/ubicaciones.service';
+import { DispositivosRedService } from '../../../dispositivos-red/dispositivos-red.service';
 
 @Component({
   selector: 'app-material',
@@ -19,6 +20,7 @@ export class MaterialComponent implements OnInit {
   ordenadores: any;
   perifericos: any;
   ubicaciones: any[] = [];
+  dispRed:any;
   // public nuevaUbicacion: number = 0; //nueva ubicación
   // public id: number = 0; //elemento al que le voy a cambiar la ubicación
 
@@ -29,7 +31,8 @@ export class MaterialComponent implements OnInit {
     private cdRef: ChangeDetectorRef, //para forzar que detecte los cambios
     private _aroute: ActivatedRoute,
     private _route: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _dispositivosRedService: DispositivosRedService
   ) {}
 
   ngOnInit() {
@@ -93,6 +96,7 @@ export class MaterialComponent implements OnInit {
     //cargar materiales
     this.ordenadores = []; //vacío los arrays para que al cargar los datos nuevos como lo hace de forma asíncrona no tenga datos
     this.perifericos = [];
+    this.dispRed=[];
     switch (this.opcionSelect) {
       case '1': // Ordenadores
         this._ordenadoresService.obtengoOrdenadores().subscribe({
@@ -119,8 +123,22 @@ export class MaterialComponent implements OnInit {
         break;
 
       case '3': // Dispositivos de red (aún sin datos)
-        this.datos = [];
-        this.cdRef.detectChanges();
+      this._dispositivosRedService.obtengoDispoRed().subscribe({
+        next: (resultado) => {
+          if (resultado) {
+            this.dispRed = resultado;
+            this.cdRef.detectChanges();
+          } else {
+            console.error('Error al recibir los datos: ', resultado);
+          }
+        },
+        error: (error) => {
+          console.error('Error al recibir los datos:', error);
+        },
+        complete: () => {
+          console.log('Operacion completada.');
+        },
+      });
         break;
     }
   }
@@ -169,6 +187,22 @@ export class MaterialComponent implements OnInit {
         break;
 
       case '3': // Dispositivos de red (aún sin datos)
+      this._dispositivosRedService.modificaDispRedUbicacion(id, nuevaUbicacion).subscribe({
+        next: (resultado) => {
+          if (resultado) {
+            this.toastr.success('Datos modificados');
+            this.cargarTabla();
+          } else {
+            this.toastr.error('Error al cambiar la ubicación');
+          }
+        },
+        error: (error) => {
+          this.toastr.error('Error al modificar la ubicación: ', error);
+        },
+        complete: () => {
+          this.toastr.success('Modificacion completada');
+        },
+      });
         break;
     }
   }
