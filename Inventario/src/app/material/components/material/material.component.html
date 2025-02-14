@@ -84,11 +84,10 @@
                   <td>{{ elemento.numeroSerie}}</td>
                   <td>
                    <!-- {{ getNombreUbicacion(elemento.idUbicacion) }}-->
-                   {{elemento.idUbicacion}}
+                   {{elemento.ubicacion_nombre}}
                   </td>
                  <td><select class="form-select" [(ngModel)]="elemento.nuevaUbicacion">
-                 <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
-                    {{ ubicacion.id}} -> {{ubicacion.nombre }}
+                 <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">{{ubicacion.nombre }}
                   </option>
                 </select></td>
                 <td> <button
@@ -129,10 +128,9 @@
                     <th scope="row">{{ elemento.id }}</th>
                     <td>{{ elemento.nombre }}</td>
                     <td>{{ elemento.numeroSerie }}</td>
-                    <td>{{ elemento.idUbicacion }}</td>
+                    <td>{{ elemento.ubicacion_nombre }}</td>
                     <td><select class="form-select" [(ngModel)]="elemento.nuevaUbicacion">
-                      <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
-                         {{ ubicacion.id}} -> {{ubicacion.nombre }}
+                      <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">{{ubicacion.nombre }}
                        </option>
                      </select></td>
                      <td> <button
@@ -171,10 +169,9 @@
                   <tr *ngFor="let elemento of dispRed">
                       <th scope="row">{{ elemento.id }}</th>
                       <td>{{ elemento.modelo }}</td>
-                      <td>{{ elemento.idUbicacion }}</td>
+                      <td>{{ elemento.ubicacion_nombre }}</td>
                       <td><select class="form-select" [(ngModel)]="elemento.nuevaUbicacion">
-                        <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
-                           {{ ubicacion.id}} -> {{ubicacion.nombre }}
+                        <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">{{ubicacion.nombre }}
                          </option>
                        </select></td>
                        <td> <button

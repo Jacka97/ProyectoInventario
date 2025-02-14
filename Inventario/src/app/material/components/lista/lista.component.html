@@ -47,31 +47,31 @@
               <tbody>
                 <tr *ngFor="let elemento of ordenadores">
                   <th scope="row">{{ elemento.id }}</th>
-                  <td>{{ elemento.idMarca }}</td>
+                  <td>{{ elemento.marca_nombre }}</td>
                   <td>{{ elemento.modelo }}</td>
                   <td>ORDENADOR</td>
                   <td>{{ elemento.numeroSerie}}</td>
-                  <td>{{ elemento.idUbicacion }}</td>
+                  <td>{{ elemento.ubicacion_nombre }}</td>
                   <td>{{ elemento.precio }}</td>
 
                 </tr>
                 <tr *ngFor="let elemento of perifericos">
                     <th scope="row">{{ elemento.id }}</th>
-                    <td>{{ elemento.marca_id }}</td>
+                    <td>{{ elemento.marca_nombre }}</td>
                     <td>{{ elemento.nombre }}</td>
                     <td>PERIFÉRICO</td>
                     <td></td>
-                    <td></td>
+                    <td>{{ elemento.ubicacion_nombre }}</td>
                     <td>{{ elemento.precio }}</td>
                   </tr>
 
                   <tr *ngFor="let elemento of dRed">
                     <th scope="row">{{ elemento.id }}</th>
-                    <td>{{ elemento.idMarca }}</td>
+                    <td>{{ elemento.marca_nombre }}</td>
                     <td>{{ elemento.modelo }}</td>
                     <td>DISPOSITIVO DE RED</td>
                     <td></td>
-                    <td></td>
+                    <td>{{ elemento.ubicacion_nombre }}</td>
                     <td>{{ elemento.precio }}</td>
                   </tr>
               </tbody>
