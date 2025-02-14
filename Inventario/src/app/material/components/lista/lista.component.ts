@@ -9,6 +9,7 @@ import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { DispositivosRedService } from '../../../dispositivos-red/dispositivos-red.service';
+import { Ordenadores } from '../../../ordenadores/ordenadores';
 
 @Component({
   selector: 'app-lista',
@@ -20,7 +21,13 @@ export class listadoMateriales {
   perifericos:any;
   dRed:any;
   dtOptions: Config = {};
-  constructor(private _ordenadoresService: OrdenadoresService, private _periService: PeriService,private _dispositivosRedService: DispositivosRedService) { }
+  constructor(private _ordenadoresService: OrdenadoresService, private _periService: PeriService,private _dispositivosRedService: DispositivosRedService) {
+    /*vacío los arrays */
+this.ordenadores=[];
+this.perifericos=[];
+this.dRed=[];
+
+  }
   ngOnInit() {
   this.dtOptions = {  pagingType: 'full_numbers', language: {
   processing: "Procesando...",
@@ -41,8 +48,10 @@ export class listadoMateriales {
   },
   };
 
+
   /*obtengo los ordenadores */
 this._ordenadoresService.obtengoOrdenadores().subscribe({
+
   next: (resultado) => {
     if (resultado){
       this.ordenadores = resultado;
@@ -111,19 +120,19 @@ descargarPDF() {
 descargarExcel() {
     // Seleccionar la tabla en el DOM
     let element = document.getElementById('tbmateriales');
-    
+
     // Convertir la tabla a una hoja de Excel
     const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    
+
     // Crear un libro de Excel y añadir la hoja
     const workbook: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de Materiales');
-  
+
     // Guardar el archivo
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
     const data: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
     saveAs(data, 'materiales.xlsx');
 
-  
-  }  
+
+  }
 }
