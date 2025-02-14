@@ -5,12 +5,14 @@
       <div class="card-body">
         <div class="d-flex justify-content-between mb-2">
           <h5 class="card-title">Relación de entradas</h5>
-          <form action="" class="mt-4">
-            <label for="fechamin">Fecha mínima: </label>
-            <input type="text" id="fechamin" name="fechamin" [(ngModel)]="fechamin">
-            <label for="fechamax">Fecha máxima: </label>
-            <input type="text" id="fechamax" name="fechamax" [(ngModel)]="fechamax">
-            <button (click)="recibirDatos()">Filtrar</button>
+          <form action="" class="mt-4 d-flex align-items-center gap-2">
+            <label for="fechamin" class="me-2">Fecha mínima:</label>
+            <input type="date" id="fechamin" name="fechamin" [(ngModel)]="fechamin" class="form-control">
+
+            <label for="fechamax" class="me-2">Fecha máxima:</label>
+            <input type="date" id="fechamax" name="fechamax" [(ngModel)]="fechamax" class="form-control">
+
+            <button type="button" (click)="recibirDatos()" class="btn btn-primary ms-2">Filtrar</button>
           </form>
         </div>
 
