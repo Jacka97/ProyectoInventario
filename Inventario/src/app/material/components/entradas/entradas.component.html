@@ -16,11 +16,6 @@
 
         <!-- Si hay entradas definidas, mostramos el contenido -->
         <div *ngIf="entradas">
-          
-          <!-- Mostrar mensaje si no hay datos -->
-          <h5 *ngIf="entradas.length === 0" class="mt-3 mb-5 border p-4 w-75 mx-auto">
-            No hay datos para mostrar
-          </h5>
 
           <!-- Mostrar tabla si hay datos -->
           <div *ngIf="entradas.length > 0" class="table-responsive">
@@ -57,6 +52,11 @@
               </tbody>
             </table>
           </div>
+
+          <!-- Mostrar mensaje si no hay datos -->
+          <h5 *ngIf="entradas.length === 0" class="mt-3 mb-5 border p-4 w-75 mx-auto">
+            No hay datos para mostrar
+          </h5>
 
         </div> <!-- Cierre de *ngIf="entradas" -->
       </div>

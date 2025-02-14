@@ -16,8 +16,8 @@ import { saveAs } from 'file-saver';
 export class EntradasComponent {
   entradas: any[] = [];
 
-  fechamin: string | null = null;
-  fechamax: string | null = null;
+  fechamin: string = "";
+  fechamax: string = "";
 
   tipo = "insercion";
 
@@ -45,7 +45,7 @@ export class EntradasComponent {
       },
     };
 
-    //this.recibirDatos();
+    this.recibirDatos();
   }
 
   recibirDatos() {
