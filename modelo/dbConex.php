@@ -3,12 +3,12 @@
 class conexionBD {
 
     private static $hostname = "127.0.0.1";
-    // private static $database = "Inventario";
-    private static $database = "inventario";
-    // private static $user = "inventarios"; 
-    // private static $password = "Q00dIr[8R*x";  
-    private static $user = "root";
-    private static $password = "";
+    private static $database = "Inventario";
+    // private static $database = "inventario";
+    private static $user = "inventarios"; 
+    private static $password = "Q00dIr[8R*x";  
+    // private static $user = "phpmyadmin";
+    // private static $password = "1234";
    
     public static function conectar(){
         try {
