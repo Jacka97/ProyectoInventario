@@ -3,9 +3,11 @@ export class Ordenadores {
         
         public numero : string,
         public idMarca : number,
+        public marca_nombre: string,
         public modelo : string,
         public idUbicacion : number,
-        public nombre : string, 
+        public ubicacion_nombre : string,
+        public ordenador_nombre : string, 
         public tipo : string,
         public numeroSerie : string,
         public Red : string,

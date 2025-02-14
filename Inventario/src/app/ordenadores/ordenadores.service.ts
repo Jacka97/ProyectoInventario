@@ -33,6 +33,7 @@ export class OrdenadoresService {
 
   //Obtengo los datos de los ordenadores a traves de la api
   obtengoOrdenadores(): Observable<any> {
+    console.log(this.http.get(`${this.urlAPI}`));
     return this.http.get(`${this.urlAPI}`);
   }
 
