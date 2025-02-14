@@ -28,8 +28,8 @@
                         <!-- Tabla Responsive -->
                         <div class="col-12">
                             <div class="table-responsive">
-                                <table datatable [dtOptions]="dtOptions" id="tbsoftwarePC" 
-                                       class="table table-striped table-hover table-bordered align-middle text-center">
+                                <table datatable [dtOptions]="dtOptions" id="tbsoftwarePC"
+                                    class="table table-striped table-hover table-bordered align-middle text-center">
                                     <thead>
                                         <tr>
                                             <th scope="col" class="text-center">Fecha</th>
@@ -42,21 +42,19 @@
                                         <tr *ngFor="let elemento of softwarePC">
                                             <td class="text-center">{{ elemento.fecha }}</td>
                                             <td>{{ elemento.softnombre }}</td>
-                                            
+
                                         </tr>
                                         <tr *ngFor="let elemento of ordenadores">
                                             <td>{{ elemento.modelo }}</td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning ms-1" 
-                                                        data-bs-toggle="tooltip" 
-                                                        title="Modificar {{ elemento.id }}" 
-                                                        [routerLink]="['/software-pc', 1, elemento.id]">
+                                                <button class="btn btn-sm btn-warning ms-1" data-bs-toggle="tooltip"
+                                                    title="Modificar {{ elemento.id }}"
+                                                    [routerLink]="['/software-pc', 1, elemento.id]">
                                                     <i class="fa-regular fa-pen-to-square"></i>
                                                 </button>
-                                                <button class="btn btn-sm btn-danger ms-1" 
-                                                        data-bs-toggle="tooltip" 
-                                                        title="Eliminar {{ elemento.id }}" 
-                                                        [routerLink]="['/software-pc', 2, elemento.id]">
+                                                <button class="btn btn-sm btn-danger ms-1" data-bs-toggle="tooltip"
+                                                    title="Eliminar {{ elemento.id }}"
+                                                    [routerLink]="['/software-pc', 2, elemento.id]">
                                                     <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </td>
@@ -64,7 +62,7 @@
                                     </tbody>
                                 </table>
                             </div> <!-- Fin de table-responsive -->
-                        </div> 
+                        </div>
                     </div> <!-- Fin de row -->
                 </div>
             </div>
