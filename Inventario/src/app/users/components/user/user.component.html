@@ -23,35 +23,22 @@
                         <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="useract.nombre"
                             [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
                     </div>
-                    <!-- <div class="col-12 mt-2 col-md-6 mt-md-0"> -->
-                        <!-- <label for="id_rol" class="form-label">Rol:</label>
-                        <select
-                          id="id_rol" name="id_rol" class="form-control" [(ngModel)]="useract.id_rol" (ngModelChange)="cambiado()" required[readonly]="tipo == 2">
-                          <option value="" disabled>Selecciona un rol</option>
-                          <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</option>
-                        </select>
-                      </div> -->
-                      <!-- <div class="col-12 mt-2 col-md-6 mt-md-0">
-                        <label for="id_rol" class="form-label">Rol:</label>
-                        <input type="number" id="id_rol" name="id_rol" class="form-control" [(ngModel)]="useract.id_rol"
-                            [readonly]="tipo == 2" (ngModelChange)="cambiado()" required min = 1 max = 3>
-                        </div> -->
-                        <div class="col-12 mt-2 col-md-6 mt-md-0">
+                             <div class="col-12 mt-2 col-md-6 mt-md-0">
                             <label for="id_rol" class="form-label">Rol:</label>
-                            <select 
-                              id="id_rol" 
-                              name="id_rol" 
-                              class="form-control" 
-                              [(ngModel)]="useract.id_rol" 
-                              (ngModelChange)="cambiado()" 
-                              required 
+                            <select
+                              id="id_rol"
+                              name="id_rol"
+                              class="form-control"
+                              [(ngModel)]="useract.id_rol"
+                              (ngModelChange)="cambiado()"
+                              required
                               [disabled]="tipo == 2">
                               <option value="" disabled>Selecciona un rol</option>
                               <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</option>
                             </select>
                           </div>
-                          
-                    
+
+
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 mt-4 col-md-4 ms-4 mt-md-5 form-check form-switch">
@@ -60,10 +47,10 @@
                             (ngModelChange)="cambiado()">
                         <label class="form-check-label" for="contratado">Activo (SI/NO)</label>
                     </div>
-                    
+
                 </div>
                 <div class="my-3 text-center">
-                    <input type="submit" class="btn btn-dark btn-lg" value="{{ txtBtn }}">
+                    <input type="submit" class="btn btn-primary btn-lg me-3" value="{{ txtBtn }}">
                     <button name="cancelar" class="btn btn-secondary btn-lg me-3" (click)="cancelar($event)">Cancelar</button>
                 </div>
             </form>

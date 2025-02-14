@@ -26,8 +26,8 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/ubicaciones']" [routerLinkActive]="['active']">Ubicaciones</a>
                 </li>
-              
-               
+
+
                 <li class="nav-item">
                     <a class="btn btn-danger" [routerLink]="['/logout']" [routerLinkActive]="['active']"><i class="fa-solid fa-power-off"></i> Salir</a>
                 </li>
@@ -154,7 +154,10 @@
             Gestión de Material
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Trasladar Material</a></li>
+            <li><a class="dropdown-item" href="#" [routerLink]="['/materialesCambioUbicacion']"
+              [routerLinkActive]="['active']">Trasladar Material</a>
+
+            </li>
             <li><hr class="dropdown-divider" /></li>
             <li>
               <a class="dropdown-item" href="#">Listar Salidas de Material</a>
@@ -162,10 +165,12 @@
             <li><hr class="dropdown-divider" /></li>
             <li>
               <a class="dropdown-item" href="#">Listar Entrada de Material</a>
-            </li>   
-            <li><hr class="dropdown-divider" /></li>         
-            <li><a class="dropdown-item" href="#" [routerLink]="['/materiales']"
-              [routerLinkActive]="['active']">Listar Todos los Materiales</a></li>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="#"  [routerLink]="['/materiales']"
+              [routerLinkActive]="['active']">Listar Todos los Materiales</a>
+            </li>
           </ul>
         </li>
         <li class="nav-item dropdown">

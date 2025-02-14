@@ -41,6 +41,13 @@ export class DispositivosRedService {
     return this.http.put<any>(`${this.urlAPI}?id=${ndispoRed}`, JSON.stringify(dispositivoRed), this.httpOptions);
   }
 
+  //Modifica registros de los ordenadores en la api
+  modificaDispRedUbicacion(ndispoRed:number, UbicacionId:number): Observable<any> {
+    const body = { idUbicacion: UbicacionId };
+    console.log(body);
+    return this.http.patch<any>(`${this.urlAPI}/?id=${ndispoRed}`, JSON.stringify(body), this.httpOptions);
+  }
+
   //Se obtienen datos de los dispositivos a traves del id del dispositivo
   obtengoDispoRedID(ndispoRed: number): Observable<any> {
     return this.http.get(`${this.urlAPI}?id=${ndispoRed}`);

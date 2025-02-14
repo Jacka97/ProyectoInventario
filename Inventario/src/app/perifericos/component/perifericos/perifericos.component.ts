@@ -137,15 +137,15 @@ export class PerifeComponent {
     });
   }
   guardaPeri(): void {
-    if (!this.periact.ordenador_id) {
-      this.periact.ordenador_id = 0; //REVISAR
-    }
+    if (this.perifeForm!.valid || this.tipo == 2) {
+      //El borrado era readonly
+      this.formularioCambiado = false;
   
-    this.formularioCambiado = false;
+      
   
     if (this.tipo === 0) {
       // Crear usuario
-
+      console.log(this.periact);
       // Enviamos el nuevo usuario al API para crearlo en la base de datos
      
       this._perifeService.crearPeriAPI(this.periact).subscribe({
@@ -165,20 +165,23 @@ export class PerifeComponent {
         },
       });
     } else if (this.tipo === 1) {
-      this.toastr.success(`Periferico modificado: ${this.id}`);
-      // Modificar usuario
-     
+      console.log(this.periact);
+
+      console.log(this.id);
       this._perifeService.modificaPeriAPI(this.id, this.periact).subscribe({
         
         next: (resultado) => {
           if (resultado) {
+            
             this.toastr.success("Periferico modificado:", resultado);
             this._route.navigate(["/perifericos"]); // Redirección corregida
           } else {
+            
             this.toastr.error("Error al modificar el periferico:", resultado);
           }
         },
         error: (error) => {
+          console.log(error);
           this.toastr.error("Error al modificar el periferico:", error.error?.errores || error);
         },
         complete: () => {
@@ -209,6 +212,7 @@ export class PerifeComponent {
       
     } else alert("El formulario tiene campos inválidos");
   }
+}
   cambiado(): void {
     this.formularioCambiado = true;
   }

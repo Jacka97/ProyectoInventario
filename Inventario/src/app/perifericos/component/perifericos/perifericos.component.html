@@ -1,77 +1,135 @@
-<div class="container d-flex align-items-center justify-content-center contenedor-formulario">
-    <div class="col-10 col-md-8 card text-center my-3">
-        <div class="card-header titulos">Perifericos</div>
-        <div class="card-body">
-            <h5 class="card-title">Datos del Periferico</h5>
-            <form #perifeForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaPeri()" novalidate>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-6">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control"
-                            [(ngModel)]="periact.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()" minlength="3" maxlength="50" required>
-                    </div>
-                    <div class="col-12 mt-2 col-md-6 mt-md-0">
-                        <label for="numeroSerie" class="form-label">Numero de Serie:</label>
-                        <input type="number" id="numeroSerie" name="numeroSerie" class="form-control" [(ngModel)]="periact.numeroSerie"
-                            [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
-                    </div>
-                    <div class="col-12 mt-2 col-md-6 mt-md-0">
-                        <label for="ordenador_id" class="form-label">Ordenador:</label>
-                        <select 
-                          id="ordenador_id" 
-                          name="ordenador_id" 
-                          class="form-control" 
-                          [(ngModel)]="periact.ordenador_id"
-                          (ngModelChange)="cambiado()" 
-                          required 
-                          [disabled]="tipo == 2">
-                          <option value="" disabled>Selecciona un ordenador</option>
-                          <option value="">Ningun ordenador</option>
-                          <option *ngFor="let ordenador of ordenadores" [value]="ordenador.id">{{ ordenador.nombre }}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12 mt-2 col-md-6 mt-md-0">
-                        <label for="marca_id" class="form-label">Marca:</label>
-                        <select 
-                          id="marca_id" 
-                          name="marca_id" 
-                          class="form-control" 
-                          [(ngModel)]="periact.marca_id"
-                          (ngModelChange)="cambiado()" 
-                          required 
-                          [disabled]="tipo == 2">
-                          <option value="" disabled>Selecciona una marca</option>
-                          <option *ngFor="let marca of marcas" [value]="marca.id">{{ marca.nombre }}</option>
-                        </select>
-                    </div>
-                    <div class="col-12 mt-2 col-md-6 mt-md-0">
-                        <label for="id_rol" class="form-label">Ubicacion:</label>
-                        <select 
-                          id="idUbicacion" 
-                          name="idUbicacion" 
-                          class="form-control" 
-                          [(ngModel)]="periact.idUbicacion" 
-                          (ngModelChange)="cambiado()" 
-                          required 
-                          [disabled]="tipo == 2">
-                          <option value="" disabled>Selecciona una ubicacion</option>
-                          <option *ngFor="let ubi of ubis" [value]="ubi.id">{{ ubi.nombre }}</option>
-                        </select>
-                    </div>
-                    <div class="col-12 mt-2 col-md-6 mt-md-0">
-                        <label for="precio" class="form-label">Precio:</label>
-                        <input type="number" id="precio" name="precio" class="form-control" [(ngModel)]="periact.precio"
-                            [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
-                    </div>
-                </div>
-               
-                <div class="my-3 text-center">
-                    <input type="submit" class="btn btn-dark btn-lg" value="{{ txtBtn }}">
-                    <button name="cancelar" class="btn btn-secondary btn-lg me-3" (click)="cancelar($event)">Cancelar</button>
-                </div>
-            </form>
+<div
+  class="container d-flex align-items-center justify-content-center contenedor-formulario"
+>
+  <div class="col-10 col-md-8 card text-center my-3">
+    <div class="card-header titulos">Periféricos</div>
+    <div class="card-body">
+      <h5 class="card-title">Datos del Periférico</h5>
+      <form
+        #perifeForm="ngForm"
+        class="mt-4 text-start d-flex flex-wrap justify-content-center gap-3"
+        (ngSubmit)="guardaPeri()"
+        novalidate
+      >
+        <div class="col-12 col-md-5">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            class="form-control"
+            [(ngModel)]="periact.nombre"
+            [readonly]="tipo == 2"
+            (ngModelChange)="cambiado()"
+            minlength="3"
+            maxlength="50"
+            required
+          />
         </div>
+
+        <div class="col-12 col-md-5">
+          <label for="numeroSerie" class="form-label">Numero de Serie:</label>
+          <input
+            type="number"
+            id="numeroSerie"
+            name="numeroSerie"
+            class="form-control"
+            [(ngModel)]="periact.numeroSerie"
+            [readonly]="tipo == 2"
+            (ngModelChange)="cambiado()"
+            required
+          />
+        </div>
+
+        <div class="col-12 col-md-5">
+          <label for="ordenador_id" class="form-label">Ordenador:</label>
+          <select
+            id="ordenador_id"
+            name="ordenador_id"
+            class="form-control"
+            [(ngModel)]="periact.ordenador_id"
+            (ngModelChange)="cambiado()"
+            required
+            [disabled]="tipo == 2"
+          >
+            <option value="" disabled>Selecciona un ordenador</option>
+            <option value="-1">Ningun ordenador</option>
+            <option
+              *ngFor="let ordenador of ordenadores"
+              [value]="ordenador.id"
+            >
+              {{ ordenador.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <label for="marca_id" class="form-label">Marca:</label>
+          <select
+            id="marca_id"
+            name="marca_id"
+            class="form-control"
+            [(ngModel)]="periact.marca_id"
+            (ngModelChange)="cambiado()"
+            required
+            [disabled]="tipo == 2"
+          >
+            <option value="" disabled>Selecciona una marca</option>
+            <option *ngFor="let marca of marcas" [value]="marca.id">
+              {{ marca.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <label for="id_rol" class="form-label">Ubicacion:</label>
+          <select
+            id="idUbicacion"
+            name="idUbicacion"
+            class="form-control"
+            [(ngModel)]="periact.idUbicacion"
+            (ngModelChange)="cambiado()"
+            required
+            [disabled]="tipo == 2"
+          >
+            <option value="" disabled>Selecciona una ubicacion</option>
+            <option *ngFor="let ubi of ubis" [value]="ubi.id">
+              {{ ubi.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <label for="precio" class="form-label">Precio:</label>
+          <input
+            type="number"
+            id="precio"
+            name="precio"
+            class="form-control"
+            [(ngModel)]="periact.precio"
+            [readonly]="tipo == 2"
+            (ngModelChange)="cambiado()"
+            required
+          />
+        </div>
+
+        <div class="col-12">
+          <div class="my-3 text-center">
+          <input
+            type="submit"
+            class="btn btn-primary btn-lg me-3"
+            value="{{ txtBtn }}"
+          />
+          <button
+            name="cancelar"
+            class="btn btn-secondary btn-lg me-3"
+            (click)="cancelar($event)"
+          >
+            Cancelar
+          </button>
+        </div>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
