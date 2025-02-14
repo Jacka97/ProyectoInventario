@@ -113,20 +113,33 @@
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Marca</th>
                   <th scope="col">Modelo</th>
                   <th scope="col">No. Serie</th>
-                  <th scope="col">Ubicación</th>
+                  <th scope="col">Ubicación Actual</th>
+                  <th scope="col">Nueva Ubicación</th>
+                  <th scope="col">Cambiar Ubicación</th>
                 </tr>
               </thead>
               <tbody>
 
                 <tr *ngFor="let elemento of perifericos">
                     <th scope="row">{{ elemento.id }}</th>
-                    <td>{{ elemento.marca_id }}</td>
                     <td>{{ elemento.nombre }}</td>
                     <td>{{ elemento.numeroSerie }}</td>
                     <td>{{ elemento.idUbicacion }}</td>
+                    <td><select class="form-select" [(ngModel)]="elemento.nuevaUbicacion">
+                      <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
+                         {{ ubicacion.id}} -> {{ubicacion.nombre }}
+                       </option>
+                     </select></td>
+                     <td> <button
+                       class="btn btn-sm btn-warning ms-1"
+                       data-bs-toggle="tooltip"
+                       title="ActualizarUbicacion {{ elemento.id }}"
+                       (click)="cambiarUbicacion(elemento.id, elemento.nuevaUbicacion)"
+                     >
+                     <i class="fa-solid fa-wrench"></i>
+                     </button></td>
                   </tr>
               </tbody>
             </table>

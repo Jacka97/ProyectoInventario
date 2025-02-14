@@ -28,32 +28,40 @@ export class PeriService {
   // removeUserWrapper<T>(jsonResponse: { user: T } | T): T {
   //   return (jsonResponse as any).user ? (jsonResponse as any).user : jsonResponse;
   // }
-  
+
   // Funcion para obtener todos los usuarios.
   obtengoAllPeriAPI(): Observable<any> {
     return this.http.get(`${this.urlApi}`);
   }
-  
+
   // Funcion para obtener un usuario por su id.  (nuser: number) es el id del usuario.
   obtengoPeriAPI(nuser: number): Observable<any> {
     return this.http.get(`${this.urlApi}?id=${nuser}`);
   }
-  
+
   // Funcion para crear un nuevo usuario. (user: User) es el objeto User con los datos del nuevo usuario.
   crearPeriAPI(per: Periferico): Observable<any> {
 
     return this.http.post<any>(this.urlApi, JSON.stringify(per), this.httpOptions);
   }
-  
+
   // Funcion para modificar un usuario. (nuser: number, user: User) es el id del usuario y el objeto User con los nuevos datos del usuario.  (removeUserWrapper es una función que se encarga de quitar el "user" que viene en la respuesta del API y devolver solo el objeto User.)  (JSON.stringify convierte un objeto a una cadena de texto)  (this.httpOptions es las cabec
   modificaPeriAPI(nper: number, per: Periferico): Observable<any> {
- 
+
     return this.http.put<any>(`${this.urlApi}?id=${nper}`, JSON.stringify(per), this.httpOptions);
   }
-  
+
+
+  //Modifica registros de los ordenadores en la api
+  modificaPerifericoUbicacion(nper:number, UbicacionId:number): Observable<any> {
+    const body = { idUbicacion: UbicacionId };
+    console.log(body);
+    return this.http.patch<any>(`${this.urlApi}/?id=${nper}`, JSON.stringify(body), this.httpOptions);
+  }
+
   // Funcion para borrar un usuario. (nuser: number) es el id del usuario.
   borraPeriAPI(nper: number): Observable<any> {
-    
+
     return this.http.delete(`${this.urlApi}?id=${nper}`);
   }
 

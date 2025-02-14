@@ -149,6 +149,23 @@ export class MaterialComponent implements OnInit {
         break;
 
       case '2': // Periféricos
+        this._periService.modificaPerifericoUbicacion(id, nuevaUbicacion).subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.toastr.success('Datos modificados');
+          this.cargarTabla();
+          //this._route.navigate(['/materialesCambioUbicacion']);
+        } else {
+          this.toastr.error('Error al cambiar la ubicación');
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al modificar la ubicación: ', error);
+      },
+      complete: () => {
+        this.toastr.success('Modificacion completada');
+      },
+    });
         break;
 
       case '3': // Dispositivos de red (aún sin datos)
