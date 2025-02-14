@@ -13,7 +13,7 @@ import { Marca } from '../../marca';
   styleUrl: './dispositivos.component.css'
 })
 export class DispositivosComponent {
-  @ViewChild('ordenadorForm', { static: true }) dispoRedForm: NgForm | undefined;
+  @ViewChild('dispoRedForm', { static: true }) dispoRedForm: NgForm | undefined;
   public marcaat: Marca = { id: 0, nombre: '' };
   public marcas: Marca[] = [];
   public ubiact: Ubicacion = { id: 0, nombre: '' };
@@ -139,6 +139,7 @@ export class DispositivosComponent {
           },
         });
       } else if (this.tipo == 1) {
+        console.log(this.dispoRedAct);
         this._dispositivosRedService.modificaDispoRed(this.id, this.dispoRedAct).subscribe({
           next: (resultado) => {
             if (resultado) {

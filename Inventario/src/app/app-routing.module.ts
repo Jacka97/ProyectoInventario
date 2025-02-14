@@ -19,11 +19,12 @@ import { ListaComponent as listadoMateriales } from './marca/components/lista/li
 import { EntradasComponent } from './material/components/entradas/entradas.component';
 import { SalidasComponent } from './material/components/salidas/salidas.component';
 import { DispositivosComponent } from './dispositivos-red/components/dispositivos/dispositivos.component';
+import { MaterialComponent } from './material/components/material/material.component';
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
   { path: 'bienvenido', component: BienvenidoComponent, canActivate: [loginGuard] },
   { path: 'marcas', component: ListaMarcas, canActivate: [loginGuard]},
-  { path: 'ordenadores', component: ListaOrdenadores, canActivate: [loginGuard] }, 
+  { path: 'ordenadores', component: ListaOrdenadores, canActivate: [loginGuard] },
   { path: 'ordenadores/:tipo/:id', component: OrdenadoresComponent, canActivate: [loginGuard]},
   { path: 'logout', component: LogoutComponent },
   { path: 'users', component: ListaUsersComponent, canActivate: [loginGuard]},
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'marcas/:tipo/:id', component: MarcaComponent, canActivate: [loginGuard] },
   { path: 'ubicaciones', component: ListaUbicaciones , canActivate: [loginGuard] },
   { path: 'ubicaciones/:tipo/:id', component: UbicacionComponent, canActivate: [loginGuard] },
+  { path: 'materialesCambioUbicacion', component: MaterialComponent, canActivate: [loginGuard]},
   { path: 'materiales', component: listadoMateriales, canActivate: [loginGuard]},
   { path: 'entradas', component: EntradasComponent, canActivate: [loginGuard]},
   { path: 'salidas', component: SalidasComponent, canActivate: [loginGuard]},
