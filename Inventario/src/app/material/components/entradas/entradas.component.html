@@ -3,18 +3,29 @@
     <div class="card text-center my-3">
       <div class="card-header titulos">ENTRADAS</div>
       <div class="card-body">
-        <div class="d-flex justify-content-between mb-2">
-          <h5 class="card-title">Relación de entradas</h5>
-          <form action="" class="mt-4 d-flex align-items-center gap-2">
-            <label for="fechamin" class="me-2">Fecha mínima:</label>
-            <input type="date" id="fechamin" name="fechamin" [(ngModel)]="fechamin" class="form-control">
-
-            <label for="fechamax" class="me-2">Fecha máxima:</label>
-            <input type="date" id="fechamax" name="fechamax" [(ngModel)]="fechamax" class="form-control">
-
-            <button type="button" (click)="recibirDatos()" class="btn btn-primary ms-2">Filtrar</button>
-          </form>
-        </div>
+        <div class="row align-items-center">
+          <div class="col-12 col-md-4 text-center text-md-start">
+            <h5 class="card-title">Relación de entradas</h5>
+          </div>
+      
+          <div class="col-12 col-md-8">
+            <form class="row g-2">
+              <div class="col-12 col-sm-5 col-md-4">
+                <label for="fechamin" class="form-label">Fecha mínima:</label>
+                <input type="date" id="fechamin" name="fechamin" [(ngModel)]="fechamin" class="form-control">
+              </div>
+      
+              <div class="col-12 col-sm-5 col-md-4">
+                <label for="fechamax" class="form-label">Fecha máxima:</label>
+                <input type="date" id="fechamax" name="fechamax" [(ngModel)]="fechamax" class="form-control">
+              </div>
+      
+              <div class="col-12 col-sm-2 col-md-4 d-flex align-items-end">
+                <button type="button" (click)="recibirDatos()" class="btn btn-primary w-100">Filtrar</button>
+              </div>
+            </form>
+          </div>
+      </div>
 
         <!-- Si hay entradas definidas, mostramos el contenido -->
         <div *ngIf="entradas">
@@ -40,7 +51,6 @@
                   <th scope="col">Material</th>
                   <th scope="col">Ubicación</th>
                   <th scope="col">Fecha</th>
-                  <th scope="col">Tipo Movimiento</th>
                 </tr>
               </thead>
               <tbody>
@@ -49,7 +59,6 @@
                   <td>{{ elemento.nombreMaterial }}</td>
                   <td>{{ elemento.nombreUbicacion }}</td>
                   <td>{{ elemento.fecha }}</td>
-                  <td>{{ elemento.TipoMovimiento }}</td>
                 </tr>
               </tbody>
             </table>

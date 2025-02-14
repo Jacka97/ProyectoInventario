@@ -75,32 +75,32 @@ export class EntradasComponent {
 descargarPDF() {
   const doc = new jsPDF(); // Crear instancia de jsPDF
   // Agregar título o texto opcional
-  doc.text('Listado de marcas', 14, 10);
+  doc.text('Listado de entradas', 14, 10);
   // Seleccionar la tabla y convertirla a un formato adecuado
   autoTable(doc, {
-  html: '#tbmarcas', // Selecciona la tabla por su ID
+  html: '#tbentradas', // Selecciona la tabla por su ID
   startY: 20, // Define la posición inicial en Y
   });
   // Guardar el PDF con un nombre
-  doc.save('marcas.pdf');
+  doc.save('entradas.pdf');
   }
 
   /*descargar excel */
 descargarExcel() {
     // Seleccionar la tabla en el DOM
-    let element = document.getElementById('tbmarcas');
+    let element = document.getElementById('tbentradas');
     
     // Convertir la tabla a una hoja de Excel
     const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
     
     // Crear un libro de Excel y añadir la hoja
     const workbook: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de Marcas');
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de Entradas');
   
     // Guardar el archivo
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
     const data: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-    saveAs(data, 'marcas.xlsx');
+    saveAs(data, 'entradas.xlsx');
   
   
   }
