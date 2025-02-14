@@ -8,6 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class OrdenadoresService {
+  urlUBI='https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
+  urlMAR = 'https://uat-inventarios.proyectos-2daw.es/api/marcaControl.php';
   urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/ordeControl.php';
   httpOptions = {
     headers: new HttpHeaders({
@@ -17,6 +19,18 @@ export class OrdenadoresService {
 
   constructor(private http: HttpClient) { }
 
+  obtengoMarcas(): Observable<any>{
+    return this.http.get(`${this.urlMAR}`);
+  }
+  obtengoUbicaciones(): Observable<any>{
+    return this.http.get(`${this.urlUBI}`);
+  }
+
+
+
+
+
+
   //Obtengo los datos de los ordenadores a traves de la api
   obtengoOrdenadores(): Observable<any> {
     return this.http.get(`${this.urlAPI}`);
@@ -24,6 +38,7 @@ export class OrdenadoresService {
 
   //Se almacenan nuevos datos de los ordenadores en la api
   guardaNuevoOrdenador(ordenadores: Ordenadores): Observable<any> {
+    console.log(JSON.stringify(ordenadores));
     return this.http.post<any>(`${this.urlAPI}`, JSON.stringify(ordenadores), this.httpOptions);
   }
 

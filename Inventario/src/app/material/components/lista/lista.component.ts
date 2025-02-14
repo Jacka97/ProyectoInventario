@@ -8,17 +8,19 @@ import autoTable from 'jspdf-autotable';
 /*para descargar excel */
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { DispositivosRedService } from '../../../dispositivos-red/dispositivos-red.service';
 
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.css'
 })
-export class ListaComponent {
+export class listadoMateriales {
   ordenadores: any;
   perifericos:any;
+  dRed:any;
   dtOptions: Config = {};
-  constructor(private _ordenadoresService: OrdenadoresService, private _periService: PeriService) { }
+  constructor(private _ordenadoresService: OrdenadoresService, private _periService: PeriService,private _dispositivosRedService: DispositivosRedService) { }
   ngOnInit() {
   this.dtOptions = {  pagingType: 'full_numbers', language: {
   processing: "Procesando...",
@@ -72,8 +74,26 @@ this._periService.obtengoAllPeriAPI().subscribe({
     console.log('Operación completada.');
   },
 });
-}
 
+
+/*obtengo dispositivos de red */
+
+this._dispositivosRedService.obtengoDispoRed().subscribe({
+  next: (resultado) => {
+    if (resultado) {
+      this.dRed = resultado;
+    } else {
+      console.error('Error al recibir los datos: ', resultado);
+    }
+  },
+  error: (error) => {
+    console.error('Error al recibir los datos:', error);
+  },
+  complete: () => {
+    console.log('Operacion completada.');
+  },
+});
+}
 descargarPDF() {
   const doc = new jsPDF(); // Crear instancia de jsPDF
   // Agregar título o texto opcional

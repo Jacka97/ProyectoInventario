@@ -15,6 +15,7 @@ export class PeriService {
   urlApi = 'https://uat-inventarios.proyectos-2daw.es/api/perifeControl.php';
   urlMarcas = 'https://uat-inventarios.proyectos-2daw.es/api/marcaControl.php';
   urlOrdenadores = 'https://uat-inventarios.proyectos-2daw.es/api/ordeControl.php';
+  urlUBI='https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
   // Cabeceras HTTP para el uso del API.  (Content-Type: application/json)
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,7 +29,16 @@ export class PeriService {
   // removeUserWrapper<T>(jsonResponse: { user: T } | T): T {
   //   return (jsonResponse as any).user ? (jsonResponse as any).user : jsonResponse;
   // }
+  obtengoMarcas(): Observable<any>{
+    return this.http.get(`${this.urlMarcas}`);
+  }
+  obtengoUbicaciones(): Observable<any>{
+    return this.http.get(`${this.urlUBI}`);
+  }
+  obtengoOrdenadores(): Observable<any>{
+    return this.http.get(`${this.urlOrdenadores}`);
 
+  }
   // Funcion para obtener todos los usuarios.
   obtengoAllPeriAPI(): Observable<any> {
     return this.http.get(`${this.urlApi}`);

@@ -4,6 +4,8 @@ import { OrdenadoresService } from '../../ordenadores.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm, NgModel } from '@angular/forms';
+import { Ubicacion } from '../../ubicacion';
+import { Marca } from '../../marca';
 
 
 @Component({
@@ -14,6 +16,10 @@ import { NgForm, NgModel } from '@angular/forms';
 })
 export class OrdenadoresComponent {
   @ViewChild('ordenadorForm', { static: true }) ordenadorForm: NgForm | undefined;
+  public marcaat: Marca = {id: 0, nombre: ''};
+  public marcas: Marca[] = []; 
+  public ubiact: Ubicacion = {id: 0, nombre: ''};
+  public ubis: Ubicacion[] = []; 
   public ordenadorAct: Ordenadores = {
     
     numero: '',
@@ -44,6 +50,8 @@ export class OrdenadoresComponent {
 
   //Distigue que tipo de accion vamos a realizar dentro de la lista
   ngOnInit() {
+    this.traerMarcas();
+    this.traerUbis();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
 
@@ -56,7 +64,40 @@ export class OrdenadoresComponent {
       this.traeOrdenador(this.id);
     }
   }
-
+  private traerMarcas(){
+    this._ordenadoresService.obtengoMarcas().subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.marcas = resultado;
+        } else {
+          this.toastr.error('Error al obtener los roles:', resultado);
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al obtener los roles:', error);
+      },
+      complete: () => {
+        console.log('Operación completada.');
+      },
+    });
+  }
+  private traerUbis(){
+    this._ordenadoresService.obtengoUbicaciones().subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.ubis = resultado;
+        } else {
+          this.toastr.error('Error al obtener los roles:', resultado);
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al obtener los roles:', error);
+      },
+      complete: () => {
+        console.log('Operación completada.');
+      },
+    });
+  }
   //Se cotejan los resultados obtenidos de la api y se agrega el ordenador al listado
   guardaOrdenador(): void {
     console.log('Formulario válido:', this.ordenadorForm?.valid);
@@ -64,7 +105,7 @@ export class OrdenadoresComponent {
     if (this.ordenadorForm!.valid || this.tipo == 2) {
       console.log('Enviando datos al servicio...');
       this.formularioCambiado = false;
-
+      console.log(JSON.stringify(this.ordenadorAct));
       if (this.tipo == 0) {
         this._ordenadoresService.guardaNuevoOrdenador(this.ordenadorAct).subscribe({
           next: (resultado) => {

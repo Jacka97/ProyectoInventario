@@ -7,6 +7,9 @@ import { ToastrService } from 'ngx-toastr';
 import { PeriService } from '../../perifericos.service';
 import { Periferico } from '../../perifericos';
 import { data } from 'jquery';
+import { Ordenadores } from '../../ordenadores';
+import { Marca } from '../../marca';
+import { Ubicacion } from '../../ubicacion';
 
 @Component({
   selector: 'app-user',
@@ -16,8 +19,32 @@ import { data } from 'jquery';
   styleUrl: './perifericos.component.css'
 })
 export class PerifeComponent {
-  @ViewChild('perifeForm', { static: true }) userForm: NgForm | undefined;
-  public periact: Periferico = {nombre: '', ordenador_id: 0, marca_id: 0, precio: 0};
+  @ViewChild('perifeForm', { static: true }) perifeForm: NgForm | undefined;
+  public periact: Periferico = {nombre: '', ordenador_id: 0, marca_id: 0, idUbicacion: 0, precio: 0, numeroSerie: 0};
+  public ordenadorAct: Ordenadores = {
+    id: 0,
+    numero: '',
+    idMarca: 0,
+    modelo: '',
+    idUbicacion: 0,
+    nombre: '',
+    tipo: '',
+    numeroSerie: '',
+    Red: '',
+    MACLAN: '',
+    IPLAN: '',
+    MACWIFI: '',
+    IPWIFI: '',
+    HD1: '',
+    HD2: '',
+    Observaciones: '',
+    precio: 0
+  };
+  public ordenadores: Ordenadores[] = [];
+  public marcaat: Marca = {id: 0, nombre: ''};
+  public marcas: Marca[] = []; 
+  public ubiact: Ubicacion = {id: 0, nombre: ''};
+  public ubis: Ubicacion[] = []; 
   public titulo: string = 'Nuevo Periferico';
   public tipo: number = 0;
   public id: number = 0;
@@ -27,6 +54,9 @@ export class PerifeComponent {
 
   constructor(private _aroute: ActivatedRoute, private _perifeService: PeriService, private _route: Router, private toastr: ToastrService) { }
   ngOnInit() {
+    this.traerMarcas();
+    this.traerOrdenadores();
+    this.traerUbicaciones();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id']; // Recibimos parámetro
     if (this.tipo == 1) {
@@ -38,17 +68,68 @@ export class PerifeComponent {
       this.traePeri(this.id);
     }
   }
+  private traerOrdenadores() {
+    this._perifeService.obtengoOrdenadores().subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.ordenadores = resultado;
+        } else {
+          this.toastr.error('Error al obtener el ordenador:', resultado);
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al obtener el ordenador:', error);
+      },
+      complete: () => {
+        console.log('Operación completada.');
+      },
+    });
+  }
+  private traerUbicaciones() {
+    this._perifeService.obtengoUbicaciones().subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.ubis = resultado;
+        } else {
+          this.toastr.error('Error al obtener la ubicacion:', resultado);
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al obtener la ubicacion:', error);
+      },
+      complete: () => {
+        console.log('Operación completada.');
+      },
+    });
+  }
+  private traerMarcas() {
+    this._perifeService.obtengoMarcas().subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.marcas = resultado;
+        } else {
+          this.toastr.error('Error al obtener las marcas:', resultado);
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al obtener las marcas:', error);
+      },
+      complete: () => {
+        console.log('Operación completada.');
+      },
+    });
+  }
   private traePeri(id: number) {
     this._perifeService.obtengoPeriAPI(id).subscribe({
       next: (resultado) => {
         if (resultado) {
           this.periact = resultado;
         } else {
-          this.toastr.error('Error al obtener el usuario:', resultado);
+          this.toastr.error('Error al obtener el periferico:', resultado);
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el usuario:', error);
+        this.toastr.error('Error al obtener el periferico:', error);
       },
       complete: () => {
         console.log('Operación completada.');
@@ -56,13 +137,15 @@ export class PerifeComponent {
     });
   }
   guardaPeri(): void {
-
+    if (this.perifeForm!.valid || this.tipo == 2) {
+      //El borrado era readonly
+      this.formularioCambiado = false;
   
-    this.formularioCambiado = false;
+      
   
     if (this.tipo === 0) {
       // Crear usuario
-
+      console.log(this.periact);
       // Enviamos el nuevo usuario al API para crearlo en la base de datos
      
       this._perifeService.crearPeriAPI(this.periact).subscribe({
@@ -82,20 +165,23 @@ export class PerifeComponent {
         },
       });
     } else if (this.tipo === 1) {
-      this.toastr.success(`Periferico modificado: ${this.id}`);
-      // Modificar usuario
-     
+      console.log(this.periact);
+
+      console.log(this.id);
       this._perifeService.modificaPeriAPI(this.id, this.periact).subscribe({
         
         next: (resultado) => {
           if (resultado) {
+            
             this.toastr.success("Periferico modificado:", resultado);
             this._route.navigate(["/perifericos"]); // Redirección corregida
           } else {
+            
             this.toastr.error("Error al modificar el periferico:", resultado);
           }
         },
         error: (error) => {
+          console.log(error);
           this.toastr.error("Error al modificar el periferico:", error.error?.errores || error);
         },
         complete: () => {
@@ -126,6 +212,7 @@ export class PerifeComponent {
       
     } else alert("El formulario tiene campos inválidos");
   }
+}
   cambiado(): void {
     this.formularioCambiado = true;
   }
