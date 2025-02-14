@@ -47,6 +47,7 @@
             id="ordenador_id"
             name="ordenador_id"
             class="form-control"
+            
             [(ngModel)]="periact.ordenador_id"
             (ngModelChange)="cambiado()"
             required
@@ -58,7 +59,7 @@
               *ngFor="let ordenador of ordenadores"
               [value]="ordenador.id"
             >
-              {{ ordenador.nombre }}
+              {{ ordenador.ordenador_nombre }}
             </option>
           </select>
         </div>
@@ -70,6 +71,7 @@
             name="marca_id"
             class="form-control"
             [(ngModel)]="periact.marca_id"
+            
             (ngModelChange)="cambiado()"
             required
             [disabled]="tipo == 2"

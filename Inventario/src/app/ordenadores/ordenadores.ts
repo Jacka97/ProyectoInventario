@@ -8,6 +8,7 @@ export class Ordenadores {
         public idUbicacion : number,
         public ubicacion_nombre : string,
         public ordenador_nombre : string, 
+        public nombre: string,
         public tipo : string,
         public numeroSerie : string,
         public Red : string,

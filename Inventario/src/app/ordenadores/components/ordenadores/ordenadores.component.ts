@@ -29,6 +29,7 @@ export class OrdenadoresComponent {
     idUbicacion: 0,
     ubicacion_nombre: '',
     ordenador_nombre: '',
+    nombre: '',
     tipo: '',
     numeroSerie: '',
     Red: '',
