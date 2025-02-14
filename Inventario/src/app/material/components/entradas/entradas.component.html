@@ -1,6 +1,4 @@
-<div
-  class="container-fluid d-flex align-items-center justify-content-center contenedor-listado"
->
+<div class="container-fluid d-flex align-items-center justify-content-center contenedor-listado">
   <div class="col col-md-10">
     <div class="card text-center my-3">
       <div class="card-header titulos">ENTRADAS</div>
@@ -8,64 +6,59 @@
         <div class="d-flex justify-content-between mb-2">
           <h5 class="card-title">Relación de entradas</h5>
           <form action="" class="mt-4">
-            <label for="fechamin">Fecha minima: </label>
+            <label for="fechamin">Fecha mínima: </label>
             <input type="text" id="fechamin" name="fechamin" [(ngModel)]="fechamin">
-            <label for="fechamax">Fecha maxima: </label>
-            <input type="text" id="fechamax" name="fechamax"  [(ngModel)]="fechamax">
+            <label for="fechamax">Fecha máxima: </label>
+            <input type="text" id="fechamax" name="fechamax" [(ngModel)]="fechamax">
             <button (click)="recibirDatos()">Filtrar</button>
           </form>
         </div>
+
+        <!-- Si hay entradas definidas, mostramos el contenido -->
         <div *ngIf="entradas">
-          <h5
-            *ngIf="entradas.length == 0"
-            class="mt-3 mb-5 border p-4 w-75 mx-auto"
-          >
-            No hay datos para mostrar
-          </h5>
-          <div *ngIf="entradas.length > 0" class="table-responsive">
-            <div class="row">
-                <div class="col-2 d-flex ">
-                    <button (click)="descargarPDF()" class="btn btn-danger mt-3 ms-3">
-                        <i class="fa-regular fa-file-pdf"></i>
-                    </button>
-                    <button (click)="descargarExcel()" class="btn btn-success mt-3 ms-2">
-                        <i class="fa-regular fa-file-excel"></i>
-                    </button>
-                </div>
-               
-        </div>
-        <div *ngIf="entradas || entradas.length == 0">
+          
+          <!-- Mostrar mensaje si no hay datos -->
           <h5 *ngIf="entradas.length === 0" class="mt-3 mb-5 border p-4 w-75 mx-auto">
             No hay datos para mostrar
           </h5>
-          
-          <table
-          datatable
-          [dtOptions]="dtOptions"
-          id="tbentradas"
-          class="table table-striped table-hover table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Material</th>
-              <th scope="col">Ubicacion</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">tipoMovimiento</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let elemento of entradas">
-              <th scope="row">{{ elemento.id }}</th>
-              <td>{{ elemento.nombreMaterial }}</td>
-              <td>{{ elemento.nombreUbicacion }}</td>
-              <td>{{ elemento.fecha }}</td>
-              <td>{{ elemento.TipoMovimiento }}</td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
+
+          <!-- Mostrar tabla si hay datos -->
+          <div *ngIf="entradas.length > 0" class="table-responsive">
+            <div class="row">
+              <div class="col-2 d-flex">
+                <button (click)="descargarPDF()" class="btn btn-danger mt-3 ms-3">
+                  <i class="fa-regular fa-file-pdf"></i>
+                </button>
+                <button (click)="descargarExcel()" class="btn btn-success mt-3 ms-2">
+                  <i class="fa-regular fa-file-excel"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Tabla de datos -->
+            <table datatable [dtOptions]="dtOptions" id="tbentradas" class="table table-striped table-hover table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Material</th>
+                  <th scope="col">Ubicación</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Tipo Movimiento</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let elemento of entradas">
+                  <th scope="row">{{ elemento.id }}</th>
+                  <td>{{ elemento.nombreMaterial }}</td>
+                  <td>{{ elemento.nombreUbicacion }}</td>
+                  <td>{{ elemento.fecha }}</td>
+                  <td>{{ elemento.TipoMovimiento }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
+
+        </div> <!-- Cierre de *ngIf="entradas" -->
       </div>
     </div>
   </div>

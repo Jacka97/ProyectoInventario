@@ -14,7 +14,7 @@ import { saveAs } from 'file-saver';
   styleUrl: './entradas.component.css'
 })
 export class EntradasComponent {
-  entradas: any;
+  entradas: any[] = [];
 
   fechamin: string | null = null;
   fechamax: string | null = null;
@@ -48,26 +48,28 @@ export class EntradasComponent {
     //this.recibirDatos();
   }
 
-  recibirDatos(){
-    //vacia array
-    this.entradas = [];
-    //hace la llamada para recibir los datos
-    this._movimientosService.obtengoMovimientosApi(this.tipo,this.fechamin,this.fechamax).subscribe({
+  recibirDatos() {
+    this.entradas = []; // Vacia el array antes de la llamada
+  
+    this._movimientosService.obtengoMovimientosApi(this.tipo, this.fechamin, this.fechamax).subscribe({
       next: (resultado) => {
-        if (resultado) {
-          this.entradas = resultado;
+        if (resultado && Array.isArray(resultado)) {
+          this.entradas = resultado; // Asigna los datos correctamente
         } else {
-          console.error('Error al recibir datos:', resultado.error);
+          console.warn('No hay datos disponibles.');
+          this.entradas = []; // Asegura que el array no sea undefined
         }
       },
       error: (error) => {
         console.error('Error al recibir datos:', error);
+        this.entradas = []; // Asegura que la variable no quede en un estado incorrecto
       },
       complete: () => {
         console.log('Operación completada.');
-      },
+      }
     });
   }
+  
 
 /*descargar pdf */
 descargarPDF() {
