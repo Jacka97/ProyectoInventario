@@ -15,8 +15,10 @@ import { loginGuard } from './login/login.guard';
 import { PerifeComponent } from './perifericos/component/perifericos/perifericos.component';
 import { ListaPerifeComponent } from './perifericos/component/lista/lista.component';
 import { ListaComponent as listadoDispoRed} from './dispositivos-red/components/lista/lista.component';
+import { ListaComponent as listadoMateriales } from './marca/components/lista/lista.component';
+import { EntradasComponent } from './material/components/entradas/entradas.component';
+import { SalidasComponent } from './material/components/salidas/salidas.component';
 import { DispositivosComponent } from './dispositivos-red/components/dispositivos/dispositivos.component';
-import { listadoMateriales } from './material/components/lista/lista.component';
 import { MaterialComponent } from './material/components/material/material.component';
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'ubicaciones/:tipo/:id', component: UbicacionComponent, canActivate: [loginGuard] },
   { path: 'materialesCambioUbicacion', component: MaterialComponent, canActivate: [loginGuard]},
   { path: 'materiales', component: listadoMateriales, canActivate: [loginGuard]},
+  { path: 'entradas', component: EntradasComponent, canActivate: [loginGuard]},
+  { path: 'salidas', component: SalidasComponent, canActivate: [loginGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];

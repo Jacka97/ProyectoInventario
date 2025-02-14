@@ -5,13 +5,17 @@ import { MaterialComponent } from './components/material/material.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DataTablesModule } from 'angular-datatables';
+import { SalidasComponent } from './components/salidas/salidas.component';
+import { EntradasComponent } from './components/entradas/entradas.component';
 
 
 
 @NgModule({
   declarations: [
     listadoMateriales,
-    MaterialComponent
+    MaterialComponent,
+    SalidasComponent,
+    EntradasComponent
   ],
   imports: [
     CommonModule,
