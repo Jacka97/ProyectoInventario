@@ -21,11 +21,36 @@ class consultaOrdenadores{
     
     public static function getAllOrdenadores(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Ordenadores";
+        $sql = "SELECT 
+        Ordenadores.id, 
+        Ordenadores.numero, 
+        Ordenadores.idMarca,
+        Marcas.nombre AS marca_nombre, 
+        Ordenadores.modelo,
+        Ordenadores.idUbicacion,
+        Ubicaciones.nombre AS ubicacion_nombre, 
+        Ordenadores.nombre AS ordenador_nombre, 
+        Ordenadores.tipo, 
+        Ordenadores.numeroSerie, 
+        Ordenadores.Red, 
+        Ordenadores.MACLAN, 
+        Ordenadores.IPLAN, 
+        Ordenadores.MACWIFI, 
+        Ordenadores.IPWIFI, 
+        Ordenadores.HD1, 
+        Ordenadores.HD2, 
+        Ordenadores.Observaciones, 
+        Ordenadores.precio
+    FROM 
+        Ordenadores
+    INNER JOIN 
+        Marcas ON Ordenadores.idMarca = Marcas.id
+    INNER JOIN 
+        Ubicaciones ON Ordenadores.idUbicacion = Ubicaciones.id;";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
-}
+    }
 
     public static function getOrdenadorByID($id){
         $conexion = conexionBD::conectar();
