@@ -25,6 +25,13 @@ export class LoginService {
     return sessionStorage.getItem('token');
   }
 
+  saveRole(rol: number): void {
+    sessionStorage.setItem('userRole', rol.toString()); // Guarda el rol
+  }
+  getUserRole(): number {
+    const role = sessionStorage.getItem('userRole');
+    return role ? +role : 0; // Devuelve el rol como número o 0 si no existe
+  }
   saveToken(token: string): void {
     sessionStorage.setItem('token', token); // Guarda el token
   }
@@ -35,6 +42,8 @@ export class LoginService {
 
   salirAplicacion(): void {
     sessionStorage.removeItem('token'); // Elimina el token
+    sessionStorage.removeItem('userRole'); // Elimina el rol
   }
+
   
 }

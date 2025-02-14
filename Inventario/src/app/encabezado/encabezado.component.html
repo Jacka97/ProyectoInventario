@@ -68,7 +68,7 @@
             Configuración
           </a>
           <ul class="dropdown-menu">
-            <li>
+            <li *ngIf="isAdmin()"> <!-- Solo muestra para administradores -->
               <a
                 class="dropdown-item"
                 href="#"
@@ -77,7 +77,7 @@
                 >Usuarios</a
               >
             </li>
-            <li><hr class="dropdown-divider" /></li>
+            <li *ngIf="isAdmin()"><hr class="dropdown-divider" /></li>
             <li>
               <a
                 class="dropdown-item"
