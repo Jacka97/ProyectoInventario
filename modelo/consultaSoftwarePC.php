@@ -29,7 +29,6 @@ public static function getSoftPCById($id) {
     $result = $stmt->get_result();
     $data = $result->fetch_assoc();
 
-    // 🚀 Depuración: imprimir qué devuelve la consulta
 
     $stmt->close();
     $conexion->close();
