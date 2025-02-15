@@ -14,8 +14,11 @@ switch ($method) {
         if (isset($_GET['tipo'])) {
 
             $tipo = $_GET['tipo'];
-            $fechamin = isset($_GET['fechamin']) ? $_GET['fechamin'] : null;
-            $fechamax = isset($_GET['fechamax']) ? $_GET['fechamax'] : null;
+            $fechamin = filter_input(INPUT_GET, 'fechamin', FILTER_SANITIZE_STRING);
+            $fechamax = filter_input(INPUT_GET, 'fechamax', FILTER_SANITIZE_STRING);
+            
+            $fechamin = ($fechamin !== null && trim($fechamin) !== '') ? $fechamin : null;
+            $fechamax = ($fechamax !== null && trim($fechamax) !== '') ? $fechamax : null;
             
             // Obtener un producto entre dos fechas y por su tipo
             $product = consultaMove::getMoveBeetweenDates($tipo, $fechamin, $fechamax);

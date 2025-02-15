@@ -11,7 +11,26 @@ class consultaPeriferico{
 
     public static function getAllPerifericos(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM Perifericos";
+        $sql = "SELECT 
+	Perifericos.id, 
+	Perifericos.nombre AS periferico_nombre, 
+    Perifericos.ordenador_id, 
+    Ordenadores.nombre AS ordenador_nombre, 
+    Perifericos.marca_id, 
+    Marcas.nombre AS marca_nombre, 
+    Perifericos.idUbicacion, 
+    Ubicaciones.nombre AS ubicacion_nombre, 
+    Perifericos.precio, 
+    Perifericos.numeroSerie
+FROM 
+    Perifericos
+LEFT JOIN 
+    Ordenadores ON Perifericos.ordenador_id = Ordenadores.id
+LEFT JOIN 
+    Marcas ON Perifericos.marca_id = Marcas.id
+LEFT JOIN 
+    Ubicaciones ON Perifericos.idUbicacion = Ubicaciones.id;";
+
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   

@@ -18,7 +18,30 @@ class consultaDispoRed{
 
     public static function getAllDispRed(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT * FROM DispRed";
+        $sql = "SELECT 
+    DispRed.id, 
+    DispRed.nombre AS dispositivo_nombre, 
+    DispRed.idUbicacion, 
+    Ubicaciones.nombre AS ubicacion_nombre, 
+    DispRed.idMarca, 
+    Marcas.nombre AS marca_nombre, 
+    DispRed.modelo, 
+    DispRed.Red, 
+    DispRed.MACWIFI, 
+    DispRed.IPWIFI, 
+    DispRed.MACLAN, 
+    DispRed.IPLAN, 
+    DispRed.tipoConexion, 
+    DispRed.tipoDisp, 
+    DispRed.Observaciones, 
+    DispRed.precio
+FROM 
+    DispRed
+INNER JOIN 
+    Ubicaciones ON DispRed.idUbicacion = Ubicaciones.id
+INNER JOIN 
+    Marcas ON DispRed.idMarca = Marcas.id;";
+
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
