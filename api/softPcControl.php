@@ -54,7 +54,7 @@ switch ($method) {
                 echo json_encode(["error" => "ID y/o datos inválidos"]);
             }
             break;
-
+   
 
     case 'DELETE':
         header("Content-Type: application/json; charset=UTF-8");
