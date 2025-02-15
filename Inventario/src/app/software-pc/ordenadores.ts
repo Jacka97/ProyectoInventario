@@ -1,6 +1,6 @@
 export class Ordenadores {
     constructor (
-        public id : number,
+       
         public numero : string,
         public idMarca : number,
         public modelo : string,
@@ -16,6 +16,10 @@ export class Ordenadores {
         public HD1 : string,
         public HD2 : string,
         public Observaciones : string,
-        public precio : number
+        public precio : number,
+        public marca_nombre : string,
+        public id : number,
+        public ubicacion_nombre : string,
+        public ordenador_nombre : string
     ) {}
 }

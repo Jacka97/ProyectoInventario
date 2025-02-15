@@ -6,34 +6,34 @@
             <form #softwarePcForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaSoftwarePc()">
 
                 <div class="row mb-3">
-                    <label for="software" class="form-label">Software:</label>
+                    <label for="idSoftware" class="form-label">Software:</label>
                     <select
-                      id="software"
-                      name="software"
+                      id="idSoftware"
+                      name="idSoftware"
                       class="form-control"
-                      [(ngModel)]="softwareAct.nombre"
+                      [(ngModel)]="softwarePcAct.idSoftware"
                       
                       (ngModelChange)="cambiado()"
                       required
                       [disabled]="tipo == 2">
-                      <option *ngFor="let softwares of software" [value]="softwares.nombre">
+                      <option *ngFor="let softwares of software" [value]="softwares.id">
                         {{ softwares.nombre }}
                       </option>
                     </select>
                 </div>
                 <div class="row mb-3">
-                    <label for="ordenador" class="form-label">Ordenador:</label>
+                    <label for="idPC" class="form-label">Ordenador:</label>
                     <select
-                      id="ordenador"
-                      name="ordenador"
+                      id="idPC"
+                      name="idPC"
                       class="form-control"
-                      [(ngModel)]="ordenadoresAct.nombre"
+                      [(ngModel)]="softwarePcAct.idPC"
                       
                       (ngModelChange)="cambiado()"
                       required
                       [disabled]="tipo == 2">
                       <option value="">Selecciona un ordenador</option>
-                      <option *ngFor="let ordenador of ordenadores" [value]="ordenador.ordenador_nombre">
+                      <option *ngFor="let ordenador of ordenadores" [value]="ordenador.id">
                         {{ ordenador.ordenador_nombre  }}
                       </option>
                     </select>

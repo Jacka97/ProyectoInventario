@@ -2,10 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm, NgModel } from '@angular/forms';
-import { Ordenadores } from '../../../ordenadores/ordenadores';
+;
 import { Software } from '../../software';
 import { SoftwarePcService } from '../../software-pc.service';
 import { SoftwarePC } from '../../softwarePC';
+import { Ordenadores } from '../../ordenadores';
 
 
 
@@ -33,7 +34,7 @@ export class SoftwarePcComponent {
   }
 
   public ordenadoresAct : Ordenadores = {
-
+    id: 0,
     numero: '',
     idMarca: 0,
     marca_nombre: '',
