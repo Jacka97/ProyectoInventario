@@ -1,0 +1,48 @@
+<div class="container d-flex align-items-center justify-content-center contenedor-formulario">
+    <div class="col-10 col-md-8 card text-center my-3">
+        <div class="card-header titulos">Software</div>
+        <div class="card-body">
+            <h5 class="card-title">Añadir Software</h5>
+            <form #softwarePcForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaSoftwarePc()">
+
+                <div class="row mb-3">
+                    <label for="software" class="form-label">Software:</label>
+                    <select
+                      id="software"
+                      name="software"
+                      class="form-control"
+                      [(ngModel)]="softwareAct.nombre"
+                      
+                      (ngModelChange)="cambiado()"
+                      required
+                      [disabled]="tipo == 2">
+                      <option *ngFor="let softwares of software" [value]="softwares.nombre">
+                        {{ softwares.nombre }}
+                      </option>
+                    </select>
+                </div>
+                <div class="row mb-3">
+                    <label for="ordenador" class="form-label">Ordenador:</label>
+                    <select
+                      id="ordenador"
+                      name="ordenador"
+                      class="form-control"
+                      [(ngModel)]="ordenadoresAct.nombre"
+                      
+                      (ngModelChange)="cambiado()"
+                      required
+                      [disabled]="tipo == 2">
+                      <option value="">Selecciona un ordenador</option>
+                      <option *ngFor="let ordenador of ordenadores" [value]="ordenador.ordenador_nombre">
+                        {{ ordenador.ordenador_nombre  }}
+                      </option>
+                    </select>
+                </div>
+                <div class="my-3 text-center">
+                    <input type="submit" class="btn btn-dark btn-lg" value="{{ txtBtn }}">
+                    <button name="cancelar" class="btn btn-secondary btn-lg me-3" (click)="cancelar($event)">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,10 @@ import { Software } from '../software/software';
 import { Ordenadores } from './ordenadores';
 import { SoftwarePC } from './softwarePC';
 
+@Injectable({
+    providedIn: 'root'
+  })
+
 export class SoftwarePcService {
     urlOrdenadores = 'https://uat-inventarios.proyectos-2daw.es/api/ordeControl.php';
     urlSoftwareApi = 'https://uat-inventarios.proyectos-2daw.es/api/softwControl.php';
@@ -24,6 +28,10 @@ export class SoftwarePcService {
 
     obtengoTodoSoftware(): Observable<any> {
         return this.http.get(`${this.urlSoftwareApi}`);
+    }
+
+    obtengoSoftwarePcID(nsoftware: number): Observable<any> {
+        return this.http.get(`${this.urlSoftwarePcApi}?id=${nsoftware}`);
     }
 
     obtengoTodoSoftwarePc(): Observable<any> {
