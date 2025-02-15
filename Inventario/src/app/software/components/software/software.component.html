@@ -1,0 +1,22 @@
+<div class="container d-flex align-items-center justify-content-center contenedor-formulario">
+    <div class="col-10 col-md-8 card text-center my-3">
+        <div class="card-header titulos">Software</div>
+        <div class="card-body">
+            <h5 class="card-title">Añadir Software</h5>
+            <form #softwareForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaSoftware()">
+
+                <div class="row mb-3">
+                    <div class="col-12 col-md-6">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control"
+                            [(ngModel)]="softwareAct.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
+                    </div>
+                </div>
+                <div class="my-3 text-center">
+                    <input type="submit" class="btn btn-dark btn-lg" value="{{ txtBtn }}">
+                    <button name="cancelar" class="btn btn-secondary btn-lg me-3" (click)="cancelar($event)">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

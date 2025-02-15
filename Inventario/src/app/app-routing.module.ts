@@ -19,6 +19,10 @@ import { EntradasComponent } from './material/components/entradas/entradas.compo
 import { SalidasComponent } from './material/components/salidas/salidas.component';
 import { DispositivosComponent } from './dispositivos-red/components/dispositivos/dispositivos.component';
 import { MaterialComponent } from './material/components/material/material.component';
+import { ListaComponent as listadoSoftware } from './software/components/lista/lista.component';
+import { SoftwareComponent } from './software/components/software/software.component';
+import { SoftwarePcComponent } from './software-pc/components/software-pc/software-pc.component';
+import { ListaComponent as ListaSoftwarePC } from './software-pc/components/lista/lista.component';
 import { listadoMateriales } from './material/components/lista/lista.component';
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
@@ -38,6 +42,10 @@ const routes: Routes = [
   { path: 'ubicaciones/:tipo/:id', component: UbicacionComponent, canActivate: [loginGuard] },
   { path: 'materialesCambioUbicacion', component: MaterialComponent, canActivate: [loginGuard]},
   { path: 'materiales', component: listadoMateriales, canActivate: [loginGuard]},
+  { path: 'software', component: listadoSoftware, canActivate: [loginGuard] },
+  { path: 'software/:tipo/:id', component: SoftwareComponent, canActivate: [loginGuard]},
+  { path: 'software-pc', component: ListaSoftwarePC, canActivate: [loginGuard] },
+  { path: 'software-pc/:tipo/:id', component: SoftwarePcComponent, canActivate: [loginGuard]},
   { path: 'entradas', component: EntradasComponent, canActivate: [loginGuard]},
   { path: 'salidas', component: SalidasComponent, canActivate: [loginGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
