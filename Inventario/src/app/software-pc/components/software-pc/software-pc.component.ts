@@ -33,6 +33,7 @@ export class SoftwarePcComponent {
   }
 
   public ordenadoresAct : Ordenadores = {
+
     numero: '',
     idMarca: 0,
     marca_nombre: '',
