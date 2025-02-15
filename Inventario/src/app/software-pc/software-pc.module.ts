@@ -11,8 +11,8 @@ import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
-    SoftwarePcComponent,
-    ListaSoftwarePC
+    ListaSoftwarePC,
+    SoftwarePcComponent
   ],
   imports: [
     CommonModule,

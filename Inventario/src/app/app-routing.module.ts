@@ -22,7 +22,7 @@ import { MaterialComponent } from './material/components/material/material.compo
 import { ListaComponent as listadoSoftware } from './software/components/lista/lista.component';
 import { SoftwareComponent } from './software/components/software/software.component';
 import { SoftwarePcComponent } from './software-pc/components/software-pc/software-pc.component';
-import { ListaComponent as ListaSoftwarePC} from './software-pc/components/lista/lista.component';
+import { ListaComponent as ListaSoftwarePC } from './software-pc/components/lista/lista.component';
 import { listadoMateriales } from './material/components/lista/lista.component';
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
@@ -45,7 +45,7 @@ const routes: Routes = [
   { path: 'software', component: listadoSoftware, canActivate: [loginGuard] },
   { path: 'software/:tipo/:id', component: SoftwareComponent, canActivate: [loginGuard]},
   { path: 'software-pc', component: ListaSoftwarePC, canActivate: [loginGuard] },
-  { path: 'sofware-pc/:tipo/:id', component: SoftwarePcComponent, canActivate: [loginGuard]},
+  { path: 'software-pc/:tipo/:id', component: SoftwarePcComponent, canActivate: [loginGuard]},
   { path: 'entradas', component: EntradasComponent, canActivate: [loginGuard]},
   { path: 'salidas', component: SalidasComponent, canActivate: [loginGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
