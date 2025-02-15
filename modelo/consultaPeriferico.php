@@ -1,0 +1,86 @@
+<?php
+include "../modelo/dbConex.php";
+class consultaPeriferico{
+    private $id;
+    private $nombre;
+    private $ordenador_id;
+    private $marca;
+    private $precio;
+    private $idUbicacion;
+    private $numeroSerie;
+
+    public static function getAllPerifericos(){
+        $conexion = conexionBD::conectar();
+        $sql = "SELECT 
+	Perifericos.id, 
+	Perifericos.nombre AS periferico_nombre, 
+    Perifericos.ordenador_id, 
+    Ordenadores.nombre AS ordenador_nombre, 
+    Perifericos.marca_id, 
+    Marcas.nombre AS marca_nombre, 
+    Perifericos.idUbicacion, 
+    Ubicaciones.nombre AS ubicacion_nombre, 
+    Perifericos.precio, 
+    Perifericos.numeroSerie
+FROM 
+    Perifericos
+LEFT JOIN 
+    Ordenadores ON Perifericos.ordenador_id = Ordenadores.id
+LEFT JOIN 
+    Marcas ON Perifericos.marca_id = Marcas.id
+LEFT JOIN 
+    Ubicaciones ON Perifericos.idUbicacion = Ubicaciones.id;";
+
+        $result = $conexion->query($sql);
+        $conexion->close();
+        return $result->fetch_all(MYSQLI_ASSOC);   
+}
+
+    public static function getPerifericoById($id){
+        $conexion = conexionBD::conectar();
+        $sql = "SELECT * FROM Perifericos WHERE id = $id";
+        $result = $conexion->query($sql);
+        $conexion->close();
+        return $result->fetch_assoc();
+    }
+    
+    public static function insertarPeriferico($nombre, $numeroSerie, $ordenador_id, $marca, $idUbicacion, $precio){
+        $conexion = conexionBD::conectar();
+       
+        $sql = "INSERT INTO Perifericos (nombre, numeroSerie, ordenador_id, marca_id, idUbicacion, precio) VALUES ('$nombre', '$numeroSerie', $ordenador_id,'$marca', '$idUbicacion', '$precio')";
+       
+        $conexion->query($sql);
+        
+        return $conexion->insert_id;
+        $conexion->close();
+        
+    }
+    public static function actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $idUbicacion,  $precio){
+        $conexion = conexionBD::conectar();
+        
+        $sql = "UPDATE Perifericos SET nombre = '$nombre', ordenador_id = $ordenador_id, marca_id = '$marca_id', idUbicacion = '$idUbicacion', precio = '$precio' WHERE id = '$id';";
+  
+        $conexion->query($sql);
+        return $conexion->affected_rows;  // devuelve el número de filas afectadas por la operación SQL. 0 si no se realizó ninguna actualización. 1 si se realizó una actualización. 2 si se realizó una actualización en más de una fila.  -1 si se produjo un error.  -2 si se produjo un error de sintaxis.  -3 si se produ
+        $conexion->close();
+    }
+    public static function actualizarUbicacion($id, $idUbicacion){
+        $conexion = conexionBD::conectar();
+        $sql = "UPDATE Perifericos SET idUbicacion = '$idUbicacion' WHERE id = $id";
+        $conexion->query($sql);
+        return $conexion->affected_rows;
+        $conexion->close();
+        
+ 
+    }
+    public static function eliminarPeriferico($id){
+        $conexion = conexionBD::conectar();
+        $sql = "DELETE FROM Perifericos WHERE id = $id";
+        $conexion->query($sql);
+        return $conexion->affected_rows;
+        $conexion->close();
+        
+    }
+
+}
+?>
