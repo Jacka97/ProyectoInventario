@@ -12,7 +12,7 @@
                       name="idSoftware"
                       class="form-control"
                       [(ngModel)]="softwarePcAct.idSoftware"
-                      
+
                       (ngModelChange)="cambiado()"
                       required
                       [disabled]="tipo == 2">
@@ -28,7 +28,7 @@
                       name="idPC"
                       class="form-control"
                       [(ngModel)]="softwarePcAct.idPC"
-                      
+
                       (ngModelChange)="cambiado()"
                       required
                       [disabled]="tipo == 2">
@@ -39,7 +39,7 @@
                     </select>
                 </div>
                 <div class="my-3 text-center">
-                    <input type="submit" class="btn btn-dark btn-lg" value="{{ txtBtn }}">
+                    <input type="submit" class="btn btn-primary btn-lg me-3" value="{{ txtBtn }}">
                     <button name="cancelar" class="btn btn-secondary btn-lg me-3" (click)="cancelar($event)">Cancelar</button>
                 </div>
             </form>
