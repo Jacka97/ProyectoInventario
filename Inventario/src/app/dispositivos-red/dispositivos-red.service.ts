@@ -44,7 +44,6 @@ export class DispositivosRedService {
   //Modifica registros de los ordenadores en la api
   modificaDispRedUbicacion(ndispoRed:number, UbicacionId:number): Observable<any> {
     const body = { idUbicacion: UbicacionId };
-    console.log(body);
     return this.http.patch<any>(`${this.urlAPI}/?id=${ndispoRed}`, JSON.stringify(body), this.httpOptions);
   }
 

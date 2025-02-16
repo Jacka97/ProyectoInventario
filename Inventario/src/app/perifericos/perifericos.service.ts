@@ -65,7 +65,6 @@ export class PeriService {
   //Modifica registros de los ordenadores en la api
   modificaPerifericoUbicacion(nper:number, UbicacionId:number): Observable<any> {
     const body = { idUbicacion: UbicacionId };
-    console.log(body);
     return this.http.patch<any>(`${this.urlApi}/?id=${nper}`, JSON.stringify(body), this.httpOptions);
   }
 

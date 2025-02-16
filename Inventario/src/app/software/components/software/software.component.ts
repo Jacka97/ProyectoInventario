@@ -53,7 +53,6 @@ export class SoftwareComponent {
         this.toastr.error(error, 'Error al obtener el ordenador')
       },
       complete: () => {
-        console.log('Operacion completada');
       },
     });
   }
@@ -79,12 +78,9 @@ export class SoftwareComponent {
           },
         });
       } else if (this.tipo == 1) {
-        console.log(this.softwareAct);
         this._softwareService.modificaSoftware(this.id, this.softwareAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              console.log(resultado);
-              console.log(this.softwareAct);
               this.toastr.success('Datos modificados');
               this.router.navigate(['/software']);
             } else {

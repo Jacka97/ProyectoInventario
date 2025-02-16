@@ -98,7 +98,6 @@ export class SoftwarePcComponent {
         this.toastr.error(error, 'Error al obtener el software')
       },
       complete: () => {
-        console.log('Operacion completada');
       },
     });
   }
@@ -117,7 +116,6 @@ export class SoftwarePcComponent {
         this.toastr.error(error, 'Error al obtener el software')
       },
       complete: () => {
-        console.log('Operacion completada');
       },
     });
   }
@@ -136,7 +134,6 @@ export class SoftwarePcComponent {
         this.toastr.error('Error al obtener el ordenador:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
       },
     });
   }
@@ -146,13 +143,10 @@ export class SoftwarePcComponent {
     if (this.softwarePcForm?.valid || this.tipo == 2) {
       this.formularioCambiado = false;
       
-      console.log(this.softwarePcAct);
       if (this.tipo == 0) {
         this._softwarePcService.guardaSoftwarePC(this.softwarePcAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              console.log(resultado);
-              console.log(this.softwarePcAct);
               this.toastr.success('Software agregado');
               this.router.navigate(['/software-pc']);
             } else {

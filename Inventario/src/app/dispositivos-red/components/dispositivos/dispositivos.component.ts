@@ -79,7 +79,6 @@ export class DispositivosComponent {
         this.toastr.error(error, 'Error al obtener el ordenador')
       },
       complete: () => {
-        console.log('Operacion completada');
       },
     });
   }
@@ -98,7 +97,6 @@ export class DispositivosComponent {
         this.toastr.error('Error al obtener los roles:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
       },
     });
   }
@@ -117,7 +115,6 @@ export class DispositivosComponent {
         this.toastr.error('Error al obtener los roles:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
       },
     });
   }
@@ -144,12 +141,9 @@ export class DispositivosComponent {
           },
         });
       } else if (this.tipo == 1) {
-        console.log(this.dispoRedAct);
         this._dispositivosRedService.modificaDispoRed(this.id, this.dispoRedAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              console.log(resultado);
-              console.log(this.dispoRedAct);
               this.toastr.success('Datos modificados');
               this.router.navigate(['/dispositivos-red']);
             } else {

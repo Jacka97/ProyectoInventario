@@ -56,16 +56,13 @@ export class SalidasComponent {
         if (resultado && Array.isArray(resultado)) {
           this.salidas = resultado; // Asigna los datos correctamente
         } else {
-          console.warn('No hay datos disponibles.');
           this.salidas = []; // Asegura que el array no sea undefined
         }
       },
       error: (error) => {
-        console.error('Error al recibir datos:', error);
         this.salidas = []; // Asegura que la variable no quede en un estado incorrecto
       },
       complete: () => {
-        console.log('Operación completada.');
       }
     });
   }

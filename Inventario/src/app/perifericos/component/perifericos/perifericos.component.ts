@@ -88,7 +88,6 @@ export class PerifeComponent {
         this.toastr.error('Error al obtener el ordenador:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
       },
     });
   }
@@ -107,7 +106,6 @@ export class PerifeComponent {
         this.toastr.error('Error al obtener la ubicacion:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
       },
     });
   }
@@ -125,7 +123,6 @@ export class PerifeComponent {
         this.toastr.error('Error al obtener las marcas:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
       },
     });
   }
@@ -148,7 +145,6 @@ export class PerifeComponent {
         this.toastr.error('Error al obtener el periferico:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
       },
     });
   }
@@ -163,7 +159,6 @@ export class PerifeComponent {
   
     if (this.tipo === 0) {
       // Crear usuario
-      console.log(this.periact);
       // Enviamos el nuevo usuario al API para crearlo en la base de datos
      
       this._perifeService.crearPeriAPI(this.periact).subscribe({
@@ -183,9 +178,6 @@ export class PerifeComponent {
         },
       });
     } else if (this.tipo === 1) {
-      console.log(this.periact);
-
-      console.log(this.id);
       this._perifeService.modificaPeriAPI(this.id, this.periact).subscribe({
         
         next: (resultado) => {
@@ -199,7 +191,6 @@ export class PerifeComponent {
           }
         },
         error: (error) => {
-          console.log(error);
           this.toastr.error("Error al modificar el periferico:", error.error?.errores || error);
         },
         complete: () => {
@@ -210,7 +201,6 @@ export class PerifeComponent {
   
     // this.toastr.success(`Usuario modificado: ${this.id}`);
       else if (this.tipo == 2) {
-        console.log(this.id);
         this._perifeService.borraPeriAPI(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {

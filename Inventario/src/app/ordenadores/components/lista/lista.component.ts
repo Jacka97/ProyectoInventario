@@ -50,14 +50,11 @@ export class ListaComponent {
         if (resultado) {
           this.ordenadores = resultado;
         } else {
-          console.error('Error al recibir los datos: ', resultado);
         }
       },
       error: (error) => {
-        console.error('Error al recibir los datos:', error);
       },
       complete: () => {
-        console.log('Operacion completada.');
       },
     });
   }

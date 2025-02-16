@@ -54,7 +54,6 @@ export class ListaComponent {
         console.error('Error al recibir los datos:', error);
       },
       complete: () => {
-        console.log('Operacion completada.');
       },
     });
   }

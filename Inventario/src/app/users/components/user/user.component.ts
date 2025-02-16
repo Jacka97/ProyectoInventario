@@ -52,7 +52,6 @@ export class UsersComponent {
         this.toastr.error('Error al obtener los roles:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
       },
     });
   }
@@ -70,7 +69,6 @@ export class UsersComponent {
         this.toastr.error('Error al obtener el usuario:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
       },
     });
   }
