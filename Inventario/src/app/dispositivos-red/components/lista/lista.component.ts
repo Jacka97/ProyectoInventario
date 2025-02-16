@@ -18,6 +18,7 @@ export class ListaComponent {
 
   constructor(private _dispositivosRedService: DispositivosRedService) { }
 
+  //Montamos la tabla
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -40,6 +41,7 @@ export class ListaComponent {
       },
     };
 
+    //Me traigo el listado de todos los dispositivos de red
     this._dispositivosRedService.obtengoDispoRed().subscribe({
       next: (resultado) => {
         if (resultado) {

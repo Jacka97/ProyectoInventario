@@ -21,6 +21,7 @@ export class ListaComponent {
 
   constructor(private _ordenadoresService: OrdenadoresService) { }
 
+  //Montamos la tabla al iniciar la pagina
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -43,6 +44,7 @@ export class ListaComponent {
       },
     };
 
+    //Traigo los ordenadores llamando a su servicio que este a su vez llama a la funcion configurada para que llame a la api
     this._ordenadoresService.obtengoOrdenadores().subscribe({
       next: (resultado) => {
         if (resultado) {

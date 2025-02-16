@@ -4,7 +4,7 @@
         <div class="card-body">
             <h5 class="card-title">Añadir Software</h5>
             <form #softwarePcForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaSoftwarePc()">
-
+                <!--Desplegable con las id de los software-->
                 <div class="row mb-3">
                     <label for="idSoftware" class="form-label">Software:</label>
                     <select
@@ -16,11 +16,13 @@
                       (ngModelChange)="cambiado()"
                       required
                       [disabled]="tipo == 2">
+                      <!--A traves del id por consulta en la BBDD me puedo traer el nombre del software-->
                       <option *ngFor="let softwares of software" [value]="softwares.id">
                         {{ softwares.nombre }}
                       </option>
                     </select>
                 </div>
+                <!--Desplegable con las id de los ordenadores-->
                 <div class="row mb-3">
                     <label for="idPC" class="form-label">Ordenador:</label>
                     <select
@@ -32,6 +34,7 @@
                       (ngModelChange)="cambiado()"
                       required
                       [disabled]="tipo == 2">
+                      <!--A traves del id por consulta en la BBDD me puedo traer el nombre del ordenador-->
                       <option value="">Selecciona un ordenador</option>
                       <option *ngFor="let ordenador of ordenadores" [value]="ordenador.id">
                         {{ ordenador.ordenador_nombre  }}

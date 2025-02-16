@@ -21,6 +21,7 @@ import { SoftwarePcService } from '../../software-pc.service';
     constructor(private _softwarePcService : SoftwarePcService) {}
 
     ngOnInit () {
+      //Declaracion del datatables y que se muestre en cuanto se inicie la pagina
         this.dtOptions = {
           pagingType: 'full_numbers',
           language: {
@@ -42,6 +43,7 @@ import { SoftwarePcService } from '../../software-pc.service';
           }
         };
     
+        //Me traigo el listado de los software con pc
         this._softwarePcService.obtengoTodoSoftwarePc().subscribe({
           next: (resultado) => {
             if (resultado) {
@@ -71,6 +73,7 @@ import { SoftwarePcService } from '../../software-pc.service';
         doc.save('listadoAsignacionSoftwares.pdf');
       }
     
+      //Descargar la tabla en formato excel
       descargarExcel() {
         let element = document.getElementById('tbsoftwarePc');
     

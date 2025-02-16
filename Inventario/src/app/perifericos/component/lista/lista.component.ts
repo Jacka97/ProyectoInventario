@@ -22,6 +22,7 @@ export class ListaPerifeComponent{
   dtTrigger: Subject<any> = new Subject();
   constructor(private _periService: PeriService) {}
 
+  //Al iniciar la pagina, montamos la tabla
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -44,6 +45,7 @@ export class ListaPerifeComponent{
       }
     };
 
+    //Traemos todo el listado de perifericos
     this._periService.obtengoAllPeriAPI().subscribe({
       next: (resultado) => {
         if (Array.isArray(resultado)) {
