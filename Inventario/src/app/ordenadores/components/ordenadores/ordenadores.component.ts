@@ -198,7 +198,7 @@ export class OrdenadoresComponent {
     //Evitamos enviar datos del formulario en la url cuando cancelamos
     cancelar(event : Event) : void {
       event.preventDefault();
-      this._route.navigate(['/software-pc'], { queryParams: {} });
+      this._route.navigate(['/ordenadores'], { queryParams: {} });
     }
 
   cambiado(): void {

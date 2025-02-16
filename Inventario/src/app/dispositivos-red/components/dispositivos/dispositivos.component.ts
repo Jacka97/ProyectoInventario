@@ -190,7 +190,7 @@ export class DispositivosComponent {
   //Evitamos enviar datos del formulario en la url cuando cancelamos
   cancelar(event : Event) : void {
     event.preventDefault();
-    this.router.navigate(['/software-pc'], { queryParams: {} });
+    this.router.navigate(['/dispositivos-red'], { queryParams: {} });
   }
 
   cambiado(): void {
