@@ -85,11 +85,11 @@ CREATE TABLE Ordenadores (
 );
 (i) Al borrar una marca de la tabla Marcas los ordenadores que tenian esa marca se quedan con idMarca = null, pensar si esto es lo mejor
 
-INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numeroSerie, Red, MACLAN, IPLAN, MACWIFI, IPWIFI, HD1, HD2, Observaciones) VALUES 
-('PC001', 1, 'ThinkPad X1', 1, 'Ordenador1', 'Portátil', 'SN123456', 'LAN1', '00:1A:2B:3C:4D:5E', '192.168.1.10', '00:1A:2B:3C:4D:5F', '192.168.1.20', 'SSD 512GB', 'HDD 1TB', 'Buen estado'),
-('PC002', 2, 'MSI GF63', 2, 'Ordenador2', 'Portátil', 'SN654321', 'LAN2', '00:1A:2B:3C:4D:6E', '192.168.1.11', '00:1A:2B:3C:4D:6F', '192.168.1.21', 'SSD 1TB', 'HDD 2TB', 'Requiere limpieza'),
-('PC003', 3, 'HP EliteBook', 3, 'Ordenador3', 'Portátil', 'SN789012', 'LAN3', '00:1A:2B:3C:4D:7E', '192.168.1.12', '00:1A:2B:3C:4D:7F', '192.168.1.22', 'SSD 256GB', 'N/A', 'En reparación'),
-('PC004', 4, 'ASUS ROG Strix', 4, 'Ordenador4', 'Sobremesa', 'SN345678', 'LAN4', '00:1A:2B:3C:4D:8E', '192.168.1.13', '00:1A:2B:3C:4D:8F', '192.168.1.23', 'SSD 2TB', 'HDD 4TB', 'Uso en proyectos de diseño');
+INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numeroSerie, Red, MACLAN, IPLAN, MACWIFI, IPWIFI, HD1, HD2, Observaciones, precio) VALUES 
+('PC001', 1, 'ThinkPad X1', 1, 'Ordenador1', 'Portátil', 'SN123456', 'LAN1', '00:1A:2B:3C:4D:5E', '192.168.1.10', '00:1A:2B:3C:4D:5F', '192.168.1.20', 'SSD 512GB', 'HDD 1TB', 'Buen estado', 1200.00),
+('PC002', 2, 'MSI GF63', 2, 'Ordenador2', 'Portátil', 'SN654321', 'LAN2', '00:1A:2B:3C:4D:6E', '192.168.1.11', '00:1A:2B:3C:4D:6F', '192.168.1.21', 'SSD 1TB', 'HDD 2TB', 'Requiere limpieza', 1400.00),
+('PC003', 3, 'HP EliteBook', 3, 'Ordenador3', 'Portátil', 'SN789012', 'LAN3', '00:1A:2B:3C:4D:7E', '192.168.1.12', '00:1A:2B:3C:4D:7F', '192.168.1.22', 'SSD 256GB', 'N/A', 'En reparación', 1100.00),
+('PC004', 4, 'ASUS ROG Strix', 4, 'Ordenador4', 'Sobremesa', 'SN345678', 'LAN4', '00:1A:2B:3C:4D:8E', '192.168.1.13', '00:1A:2B:3C:4D:8F', '192.168.1.23', 'SSD 2TB', 'HDD 4TB', 'Uso en proyectos de diseño', 2000.00);
 
 
 CREATE TABLE Software (
