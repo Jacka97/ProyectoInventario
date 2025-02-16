@@ -68,7 +68,8 @@
             Configuración
           </a>
           <ul class="dropdown-menu">
-            <li *ngIf="isAdmin()"> <!-- Solo muestra para administradores -->
+            <li *ngIf="isAdmin()">
+              <!-- Solo muestra para administradores -->
               <a
                 class="dropdown-item"
                 href="#"
@@ -139,8 +140,8 @@
                 >Dispositivos de Red</a
               >
             </li>
-           <!--<li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Otros</a></li>--> 
+            <!--<li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Otros</a></li>-->
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -154,23 +155,34 @@
             Gestión de Material
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" [routerLink]="['/materialesCambioUbicacion']"
-              [routerLinkActive]="['active']">Trasladar Material</a>
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/materialesCambioUbicacion']"
+                [routerLinkActive]="['active']"
+                >Trasladar Material</a
+              >
             </li>
             <li><hr class="dropdown-divider" /></li>
             <li>
-              <a class="dropdown-item" href="#" [routerLink]="['/salidas']" 
-              [routerLinkActive]="['active']">Listar Salidas de Material</a>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/salidas']"
+                [routerLinkActive]="['active']"
+                >Listar Salidas de Material</a
+              >
             </li>
             <li><hr class="dropdown-divider" /></li>
             <li>
-              <a class="dropdown-item" href="#" [routerLink]="['/entradas']"
-              [routerLinkActive]="['active']">Listar Entrada de Material</a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="#"  [routerLink]="['/materiales']"
-              [routerLinkActive]="['active']">Listar Todos los Materiales</a>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/entradas']"
+                [routerLinkActive]="['active']"
+                >Listar Entrada de Material</a
+              >
             </li>
           </ul>
         </li>
@@ -185,14 +197,28 @@
             Gestión de Software
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" [routerLink]="['/software']"
-              [routerLinkActive]="['active']">Softwares</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/software']"
+                [routerLinkActive]="['active']"
+                >Softwares</a
+              >
+            </li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#" [routerLink]="['/software-pc']"
-              [routerLinkActive]="['active']"> Instalar Software</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                href="#"
+                [routerLink]="['/software-pc']"
+                [routerLinkActive]="['active']"
+              >
+                Instalar Software</a
+              >
+            </li>
           </ul>
         </li>
-
 
         <!--<li class="nav-item dropdown">
           <a
@@ -211,8 +237,6 @@
             <li><hr class="dropdown-divider" /></li>
           </ul>
         </li>-->
-
-
 
         <li class="nav-item">
           <a

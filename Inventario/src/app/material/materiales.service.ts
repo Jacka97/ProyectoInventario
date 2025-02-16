@@ -19,27 +19,6 @@ export class MaterialesService {
     console.log(`${this.urlApi}/?tipo=${tmove}&fechamin=${fechamin}&fechamax=${fechamax}`);
     return this.http.get(`${this.urlApi}/?tipo=${tmove}&fechamin=${fechamin}&fechamax=${fechamax}`);
   }
-  
 
-  /*
 
-  //Se almacenan nuevos datos de los movimientos en la api
-  guardaNuevaMovimientoApi(movimiento:Movimiento): Observable<any> {
-    return this.http.post<any>(`${this.urlApi}`, JSON.stringify(movimiento), this.httpOptions);
-  }
-   //Se obtienen datos de los movimientos a traves del id de el movimiento
-  obtengoMovimientoApi(nmove:number):Observable<any> {
-    return this.http.get(`${this.urlApi}/?id=${nmove}`);
-  }
-
-  //Modifica registros de los movimientos en la api
-  modificaMovimientoApi(nmove:number, movimiento:Movimiento): Observable<any>{
-    return this.http.put<any>(`${this.urlApi}/${nmove}`, JSON.stringify(movimiento), this.httpOptions);
-  }
-   //Se borra un movimiento con el id de el movimiento como parametro de la funcion
-  borraMovimientoApi(nmove:number): Observable<any>{
-    return this.http.delete(`${this.urlApi}/?id=${nmove}`);
-  }
-
-  */
 }

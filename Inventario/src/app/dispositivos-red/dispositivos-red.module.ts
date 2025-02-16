@@ -20,6 +20,10 @@ import { ListaComponent as listadoDispoRed} from './components/lista/lista.compo
     RouterModule,
     FormsModule
   ],
+   exports: [
+    DispositivosComponent,
+    listadoDispoRed
+      ],
   providers: [provideHttpClient()]
 })
 export class DispositivosRedModule { }
