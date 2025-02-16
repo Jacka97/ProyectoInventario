@@ -15,7 +15,7 @@
           >
             No hay datos para mostrar
           </h5>
-          <div *ngIf="ordenadores.length > 0 || perifericos>0 || dRed>0" class="table-responsive">
+          <div *ngIf="ordenadores.length > 0 || perifericos > 0 || dRed > 0" class="table-responsive">
             <div class="row">
                 <div class="col-2 d-flex ">
                     <button (click)="descargarPDF()" class="btn btn-danger mt-3 ms-3">
@@ -53,7 +53,6 @@
                   <td>{{ elemento.numeroSerie}}</td>
                   <td>{{ elemento.ubicacion_nombre }}</td>
                   <td>{{ elemento.precio }}</td>
-
                 </tr>
                 <tr *ngFor="let elemento of perifericos">
                     <th scope="row">{{ elemento.id }}</th>
