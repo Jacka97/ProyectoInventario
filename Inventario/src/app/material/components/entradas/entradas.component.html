@@ -7,19 +7,19 @@
           <div class="col-12 col-md-4 text-center text-md-start">
             <h5 class="card-title">Relación de entradas</h5>
           </div>
-      
+
           <div class="col-12 col-md-8">
             <form class="row g-2">
               <div class="col-12 col-sm-5 col-md-4">
                 <label for="fechamin" class="form-label">Fecha mínima:</label>
                 <input type="date" id="fechamin" name="fechamin" [(ngModel)]="fechamin" class="form-control">
               </div>
-      
+
               <div class="col-12 col-sm-5 col-md-4">
                 <label for="fechamax" class="form-label">Fecha máxima:</label>
                 <input type="date" id="fechamax" name="fechamax" [(ngModel)]="fechamax" class="form-control">
               </div>
-      
+
               <div class="col-12 col-sm-2 col-md-4 d-flex align-items-end">
                 <button type="button" (click)="recibirDatos()" class="btn btn-primary w-100">Filtrar</button>
               </div>

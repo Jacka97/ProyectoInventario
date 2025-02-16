@@ -3,101 +3,100 @@
         <div class="card-header titulos">Dispositivos Red - {{ titulo }}</div>
         <div class="card-body">
             <h5 class="card-title">Introduce los datos del dispositivo de red</h5>
-            <form #dispoRedForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaDispositivoRed()" novalidate>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-8">
+            <form #dispoRedForm="ngForm" class="mt-4 text-start d-flex flex-wrap gap-4 justify-content-center" (ngSubmit)="guardaDispositivoRed()" novalidate>
+
+                    <div class="col-12 col-md-5">
                         <label for="nombre" class="formlabel">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" 
+                        <input type="text" id="nombre" name="nombre" class="form-control"
                         [(ngModel)]="dispoRedAct.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                          required />
                     </div>
-                    <div class="col-12 mt-2 col-md-4 mt-md-0">
+                    <div class="col-12 col-md-5">
                         <label for="tipoConexion" class="form-label">Tipo conexion</label>
                         <input type="text" id="tipoConexion" name="tipoConexion" class="form-control"
                          [(ngModel)]="dispoRedAct.tipoConexion"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-6">
+
+
+                    <div class="col-12 col-md-5">
                         <label for="tipoDisp" class="form-label">Tipo de dispositivo</label>
                         <input type="text" id="tipoDisp" name="tipoDips" class="form-control"
                          [(ngModel)]="dispoRedAct.tipoDisp"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-6">
+
+                    <div class="col-12 col-md-5">
                         <label for="modelo" class="form-label">Modelo</label>
                         <input type="text" id="modelo" name="modelo" class="form-control"
                          [(ngModel)]="dispoRedAct.modelo"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-6">
+
+
+                    <div class="col-12 col-md-5">
                         <label for="Red" class="form-label">Red</label>
-                        <input type="text" id="Red" name="Red" class="form-control" 
+                        <input type="text" id="Red" name="Red" class="form-control"
                         [(ngModel)]="dispoRedAct.Red" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                          required />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-6">
+
+
+                    <div class="col-12 col-md-5">
                         <label for="MACLAN" class="form-label">MAC LAN</label>
                         <input type="text" id="MACLAN" name="MACLAN" class="form-control"
                         [(ngModel)]="dispoRedAct.MACLAN"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-6">
+
+
+                    <div class="col-12 col-md-5">
                         <label for="MACWIFI" class="form-label">MAC WIFI</label>
                         <input type="text" id="MACWIFI" name="MACWIFI" class="form-control"
                          [(ngModel)]="dispoRedAct.MACWIFI"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()" />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-6">
+
+
+                    <div class="col-12 col-md-5">
                         <label for="IPWIFI" class="form-label">IP WIFI</label>
                         <input type="text" id="IPWIFI" name="IPWIFI" class="form-control"
                          [(ngModel)]="dispoRedAct.IPWIFI"
                         [readonly]="tipo == 2" (ngModelChange)="cambiado()"  />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-6">
+
+
+                    <div class="col-12 col-md-5">
                         <label for="IPLAN" class="form-label">IP LAN</label>
-                        <input type="text" id="IPLAN" name="IPLAN" class="form-control" 
+                        <input type="text" id="IPLAN" name="IPLAN" class="form-control"
                         [(ngModel)]="dispoRedAct.IPLAN" [readonly]="tipo == 2" (ngModelChange)="cambiado()" />
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-6">
+
+
+                    <div class="col-12  col-md-5">
                         <label for="Observaciones" class="form-label">Observaciones</label>
-                        <textarea id="Observaciones" name="Observaciones" class="form-control" 
+                        <textarea id="Observaciones" name="Observaciones" class="form-control"
                         [(ngModel)]="dispoRedAct.Observaciones" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                         required></textarea>
                     </div>
-                </div>
+
                 <!-- <div class="row mb-3">
                     <div class="col-12 col-md-6">
                         <label for="idMarca" class="form-label">ID marca</label>
-                        <textarea id="idMarca" name="idMarca" class="form-control" 
+                        <textarea id="idMarca" name="idMarca" class="form-control"
                         [(ngModel)]="dispoRedAct.idMarca" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                         required></textarea>
                     </div>
                 </div> -->
-                <div class="col-12 mt-2 col-md-6 mt-md-0">
+                <div class="col-12 mt-2 col-md-5">
                     <label for="idMarca" class="form-label">Marca:</label>
-                    <select 
-                      id="idMarca" 
-                      name="idMarca" 
-                      class="form-control" 
+                    <select
+                      id="idMarca"
+                      name="idMarca"
+                      class="form-control"
                       [(ngModel)]="dispoRedAct.idMarca"
-                      (ngModelChange)="cambiado()" 
-                      required 
+                      (ngModelChange)="cambiado()"
+                      required
                       [disabled]="tipo == 2">
                       <option value="" disabled>Selecciona una marca</option>
                       <option *ngFor="let marca of marcas" [value]="marca.id">{{ marca.nombre }}</option>
@@ -106,38 +105,38 @@
                 <!-- <div class="row mb-3">
                     <div class="col-12 col-md-6">
                         <label for="idUbicacion" class="form-label">ID Ubicacion</label>
-                        <textarea id="idUbicacion" name="idUbicacion" class="form-control" 
+                        <textarea id="idUbicacion" name="idUbicacion" class="form-control"
                         [(ngModel)]="dispoRedAct.idUbicacion" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                         required></textarea>
                     </div>
                 </div> -->
-                <div class="col-12 mt-2 col-md-6 mt-md-0">
+                <div class="col-12 col-md-5 ">
                     <label for="idUbicacion" class="form-label">Ubicacion:</label>
-                    <select 
-                      id="idUbicacion" 
-                      name="idUbicacion" 
-                      class="form-control" 
-                      [(ngModel)]="dispoRedAct.idUbicacion" 
-                      (ngModelChange)="cambiado()" 
-                      required 
+                    <select
+                      id="idUbicacion"
+                      name="idUbicacion"
+                      class="form-control"
+                      [(ngModel)]="dispoRedAct.idUbicacion"
+                      (ngModelChange)="cambiado()"
+                      required
                       [disabled]="tipo == 2">
                       <option value="" disabled>Selecciona una ubicacion</option>
                       <option *ngFor="let ubi of ubis" [value]="ubi.id">{{ ubi.nombre }}</option>
                     </select>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-5">
                         <label for="precio" class="form-label">Precio</label>
-                        <input id="precio" name="precio" class="form-control" 
+                        <input id="precio" name="precio" class="form-control"
                         [(ngModel)]="dispoRedAct.precio" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
                         required>
                     </div>
-                </div>
-                <div class="my-3 text-center">
-                    <input type="submit" class="btn btn-dark btn-lg" value="{{ txtBtn }}">
+
+                <div class=" col-12 text-center">
+                    <input type="submit" class="btn btn-primary btn-lg me-3" value="{{ txtBtn }}">
                     <button name="cancelar" class="btn btn-secondary btn-lg me-3"
                         [routerLink]="['/dispositivos-red']" (click)="cancelar($event)">Cancelar</button>
                 </div>
+
             </form>
         </div>
     </div>
