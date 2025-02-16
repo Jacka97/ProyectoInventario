@@ -20,6 +20,8 @@ export class SoftwareService {
 
   constructor(private http: HttpClient) { }
 
+
+  //Funciones donde se llaman a las apis necesarias
   obtengoOrdenadores(): Observable<any>{
     return this.http.get(`${this.urlOrdenadores}`);
   }

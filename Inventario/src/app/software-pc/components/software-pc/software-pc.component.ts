@@ -19,6 +19,8 @@ import { Ordenadores } from '../../ordenadores';
 export class SoftwarePcComponent {
   @ViewChild('softwarePcForm', { static: true }) softwarePcForm: NgForm | undefined;
 
+  //Me traigo los objetos necesarios para hacer las llamadas pertinentes
+
   public softwarePcAct : SoftwarePC = {
     id : 0,
     idPC : 0,
@@ -67,6 +69,7 @@ export class SoftwarePcComponent {
 
   constructor(private _softwarePcService: SoftwarePcService, private _aroute: ActivatedRoute, private router: Router, private toastr: ToastrService) { }
 
+  //Cuando inicias la pagina a la que entre se trae los ordenadores y los softwares
   ngOnInit() {
     this.traerOrdenadores();
     this.traeSoftware();
@@ -100,6 +103,7 @@ export class SoftwarePcComponent {
     });
   }
 
+  //Me traigo los software llamando a su servicio
   private traeSoftware() {
     this._softwarePcService.obtengoTodoSoftware().subscribe({
       next: (resultado) => {
@@ -118,6 +122,7 @@ export class SoftwarePcComponent {
     });
   }
 
+  //Me traigo los ordenadores llamando a su servicio
   private traerOrdenadores() {
     this._softwarePcService.obtengoOrdenadores().subscribe({
       next: (resultado) => {
@@ -136,6 +141,7 @@ export class SoftwarePcComponent {
     });
   }
 
+  //Controlamos si los datos del formulario se guardan, se modifican o se borran en funcion del tipo que sean declarado mas arriba
   guardaSoftwarePc(): void {
     if (this.softwarePcForm?.valid || this.tipo == 2) {
       this.formularioCambiado = false;
@@ -204,6 +210,7 @@ export class SoftwarePcComponent {
     this.formularioCambiado = true;
   }
 
+  //Evitamos enviar datos del formulario en la url cuando cancelamos
   cancelar(event : Event) : void {
     event.preventDefault();
     this.router.navigate(['/software-pc'], { queryParams: {} });

@@ -14,6 +14,8 @@ import { Marca } from '../../marca';
 })
 export class DispositivosComponent {
   @ViewChild('dispoRedForm', { static: true }) dispoRedForm: NgForm | undefined;
+
+  //Declaracion de los objetos como array para poder gestionar sus datos mas comodamente en el html
   public marcaat: Marca = { id: 0, nombre: '' };
   public marcas: Marca[] = [];
   public ubiact: Ubicacion = { id: 0, nombre: '' };
@@ -63,7 +65,7 @@ export class DispositivosComponent {
     }
   }
 
-
+//Me traigo todo el listado de los dispositivos
   private traeDispRed(id: number) {
     this._dispositivosRedService.obtengoDispoRedID(id).subscribe({
       next: (resultado) => {
@@ -82,6 +84,7 @@ export class DispositivosComponent {
     });
   }
 
+  //Me traigo las marcas para su posterior manejo de los datos recibidos
   private traerMarcas() {
     this._dispositivosRedService.obtengoMarcas().subscribe({
       next: (resultado) => {
@@ -100,6 +103,7 @@ export class DispositivosComponent {
     });
   }
 
+  //Me traigo las ubicaciones para poder manejar los datos que se consideren
   private traerUbis() {
     this._dispositivosRedService.obtengoUbicaciones().subscribe({
       next: (resultado) => {
@@ -122,8 +126,6 @@ export class DispositivosComponent {
   guardaDispositivoRed(): void {
     if (this.dispoRedForm?.valid || this.tipo == 2) {
       this.formularioCambiado = false;
-      console.log('Formulario válido:', this.dispoRedForm?.valid);
-      console.log('Datos del dispositivo:', this.dispoRedAct);
       if (this.tipo == 0) {
         this._dispositivosRedService.guardaNuevoDispoRed(this.dispoRedAct).subscribe({
           next: (resultado) => {
@@ -183,6 +185,12 @@ export class DispositivosComponent {
       this.toastr.error('El formulario tiene campos invalidos');
     }
 
+  }
+
+  //Evitamos enviar datos del formulario en la url cuando cancelamos
+  cancelar(event : Event) : void {
+    event.preventDefault();
+    this.router.navigate(['/software-pc'], { queryParams: {} });
   }
 
   cambiado(): void {

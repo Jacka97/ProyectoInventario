@@ -16,6 +16,8 @@ import { Marca } from '../../marca';
 })
 export class OrdenadoresComponent {
   @ViewChild('ordenadorForm', { static: true }) ordenadorForm: NgForm | undefined;
+
+  //Declaracion de los objetos y almacenarlos en un array para acceder a los datos que consideremos oportunos
   public marcaat: Marca = {id: 0, nombre: ''};
   public marcas: Marca[] = []; 
   public ubiact: Ubicacion = {id: 0, nombre: ''};
@@ -42,6 +44,8 @@ export class OrdenadoresComponent {
     Observaciones: '',
     precio: 0
   };
+
+  //Variables que cambiaran en funcion de las acciones que hagamos en los formularios y en la tabla
   public titulo: string = 'Alta de un nuevo ordenador';
   public txtBtn: string = 'Guardar';
   public formularioCambiado: boolean = false;
@@ -67,6 +71,7 @@ export class OrdenadoresComponent {
       this.traeOrdenador(this.id);
     }
   }
+  //Traigo el listado de las marcas
   private traerMarcas(){
     this._ordenadoresService.obtengoMarcas().subscribe({
       next: (resultado) => {
@@ -84,6 +89,7 @@ export class OrdenadoresComponent {
       },
     });
   }
+  //Traigo el listado de las ubicaciones
   private traerUbis(){
     this._ordenadoresService.obtengoUbicaciones().subscribe({
       next: (resultado) => {
@@ -188,6 +194,12 @@ export class OrdenadoresComponent {
       },
     });
   }
+
+    //Evitamos enviar datos del formulario en la url cuando cancelamos
+    cancelar(event : Event) : void {
+      event.preventDefault();
+      this._route.navigate(['/software-pc'], { queryParams: {} });
+    }
 
   cambiado(): void {
     this.formularioCambiado = true;

@@ -56,6 +56,8 @@ export class PerifeComponent {
   public inputChecked: boolean = false;
 
   constructor(private _aroute: ActivatedRoute, private _perifeService: PeriService, private _route: Router, private toastr: ToastrService) { }
+
+  //Al iniciar la pagina, nos traemos los listados de ubicaciones, marcas y ordenadores y en funcion del tipo de opcion que queramos se cambiara el titulo
   ngOnInit() {
     this.traerMarcas();
     this.traerOrdenadores();
@@ -71,6 +73,8 @@ export class PerifeComponent {
       this.traePeri(this.id);
     }
   }
+
+  //Me traigo el listado de los ordenadores a traves de su servicio
   private traerOrdenadores() {
     this._perifeService.obtengoOrdenadores().subscribe({
       next: (resultado) => {
@@ -88,6 +92,8 @@ export class PerifeComponent {
       },
     });
   }
+
+    //Me traigo el listado de las ubicaciones a traves de su servicio
   private traerUbicaciones() {
     this._perifeService.obtengoUbicaciones().subscribe({
       next: (resultado) => {
@@ -105,6 +111,7 @@ export class PerifeComponent {
       },
     });
   }
+    //Me traigo el listado de las marcas a traves de su servicio
   private traerMarcas() {
     this._perifeService.obtengoMarcas().subscribe({
       next: (resultado) => {
@@ -122,6 +129,8 @@ export class PerifeComponent {
       },
     });
   }
+
+    //Me traigo el listado de los perifericos traves de su servicio
   private traePeri(id: number) {
     this._perifeService.obtengoPeriAPI(id).subscribe({
       next: (resultado) => {
@@ -143,6 +152,8 @@ export class PerifeComponent {
       },
     });
   }
+
+  //Guardamos los nuevos perifericos y controlamos si tambien queremos modificarlos o borrarlos
   guardaPeri(): void {
     if (this.perifeForm!.valid || this.tipo == 2) {
       //El borrado era readonly

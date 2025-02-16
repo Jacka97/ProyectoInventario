@@ -19,6 +19,7 @@ export class ListaComponent {
 
   constructor(private _softwareService : SoftwareService) {}
 
+  //Al inicio de la pagina, formamos la tabla
   ngOnInit () {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -41,6 +42,7 @@ export class ListaComponent {
       }
     };
 
+    //Me traigo el listado de todos los software a traves de las funciones declaradas en el service
     this._softwareService.obtengoTodoSoftware().subscribe({
       next: (resultado) => {
         if (resultado) {

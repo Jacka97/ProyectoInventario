@@ -4,8 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { NgForm, NgModel } from '@angular/forms';
 import { SoftwareService } from '../../software.service';
 import { Software } from '../../software';
-import { event } from 'jquery';
-
 
 @Component({
   selector: 'app-software',
@@ -41,6 +39,7 @@ export class SoftwareComponent {
     }
   }
 
+  //Me traigo el listado de software
   private traeSoftware(id: number) {
     this._softwareService.obtengoSoftwareID(id).subscribe({
       next: (resultado) => {
@@ -58,12 +57,10 @@ export class SoftwareComponent {
       },
     });
   }
-
+  //Controlamos si los datos del formulario se guardan, se modifican o se borran en funcion del tipo que sean declarado mas arriba
   guardaSoftware(): void {
     if (this.softwareForm?.valid || this.tipo == 2) {
       this.formularioCambiado = false;
-      // console.log('Formulario válido:', this.dispoRedForm?.valid);
-      // console.log('Datos del dispositivo:', this.dispoRedAct);
       if (this.tipo == 0) {
         this._softwareService.guardaSoftware(this.softwareAct).subscribe({
           next: (resultado) => {
@@ -128,6 +125,7 @@ export class SoftwareComponent {
     this.formularioCambiado = true;
   }
 
+  //Evitamos enviar datos del formulario en la url cuando cancelamos
   cancelar(event : Event) : void {
     event.preventDefault();
     this.router.navigate(['/software'], { queryParams: {} });
