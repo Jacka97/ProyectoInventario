@@ -116,9 +116,9 @@ CREATE TABLE Software_PC (
 
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
-    FOREIGN KEY (idPC) REFERENCES Ordenadores(id) ON DELETE SET NULL,
+    FOREIGN KEY (idPC) REFERENCES Ordenadores(id) ON DELETE CASCADE,
 
-    FOREIGN KEY (idSoftware) REFERENCES Software(id) ON DELETE SET NULL
+    FOREIGN KEY (idSoftware) REFERENCES Software(id) ON DELETE CASCADE
 
 );
 /* tal vez haga falta un trigger para que al borrar uno de los dos se borren todos los registros de esta tabla */
