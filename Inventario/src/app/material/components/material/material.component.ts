@@ -91,6 +91,7 @@ export class MaterialComponent implements OnInit {
     this.ordenadores = []; //vacío los arrays para que al cargar los datos nuevos como lo hace de forma asíncrona no tenga datos
     this.perifericos = [];
     this.dispRed=[];
+  
     switch (this.opcionSelect) {
       case '1': // Ordenadores
         this._ordenadoresService.obtengoOrdenadores().subscribe({

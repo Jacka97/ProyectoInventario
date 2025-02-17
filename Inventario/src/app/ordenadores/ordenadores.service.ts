@@ -8,9 +8,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class OrdenadoresService {
-  urlUBI='https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
-  urlMAR = 'https://uat-inventarios.proyectos-2daw.es/api/marcaControl.php';
-  urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/ordeControl.php';
+  urlUBI='https://inventarios.proyectos-2daw.es/api/ubiControl.php';
+  urlMAR = 'https://inventarios.proyectos-2daw.es/api/marcaControl.php';
+  urlAPI = 'https://inventarios.proyectos-2daw.es/api/ordeControl.php';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'applicantion/json'

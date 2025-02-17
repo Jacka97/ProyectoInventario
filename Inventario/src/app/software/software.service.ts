@@ -9,8 +9,8 @@ import { SoftwarePC } from '../software-pc/softwarePC';
 })
 export class SoftwareService {
 
-  urlOrdenadores = 'https://uat-inventarios.proyectos-2daw.es/api/ordeControl.php';
-  urlApi = 'https://uat-inventarios.proyectos-2daw.es/api/softwControl.php';
+  urlOrdenadores = 'https://inventarios.proyectos-2daw.es/api/ordeControl.php';
+  urlApi = 'https://inventarios.proyectos-2daw.es/api/softwControl.php';
   
   httpOptions = {
     headers: new HttpHeaders({

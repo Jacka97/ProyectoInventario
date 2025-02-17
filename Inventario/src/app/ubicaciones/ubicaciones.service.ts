@@ -9,7 +9,7 @@ import { Ubicacion } from './ubicacion';
 export class UbicacionesService {
 
  
-  urlApi='https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
+  urlApi='https://inventarios.proyectos-2daw.es/api/ubiControl.php';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':'application/json'

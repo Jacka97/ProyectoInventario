@@ -8,9 +8,9 @@ import { dispositivosRed } from './dispositivos-red';
 })
 export class DispositivosRedService {
 
-  urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/redControl.php';
-  urlUBI='https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
-  urlMAR = 'https://uat-inventarios.proyectos-2daw.es/api/marcaControl.php';
+  urlAPI = 'https://inventarios.proyectos-2daw.es/api/redControl.php';
+  urlUBI='https://inventarios.proyectos-2daw.es/api/ubiControl.php';
+  urlMAR = 'https://inventarios.proyectos-2daw.es/api/marcaControl.php';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'applicantion/json'

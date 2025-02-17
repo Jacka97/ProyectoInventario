@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/login.php';
+  private urlAPI = 'https://inventarios.proyectos-2daw.es/api/login.php';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':'application/json'
