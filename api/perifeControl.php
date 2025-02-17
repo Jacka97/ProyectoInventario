@@ -57,6 +57,7 @@ switch ($method) {
             $nombre = isset($input['nombre']) ? $input['nombre'] : null;
             $ordenador_id = isset($input['ordenador_id']) ? (int) $input['ordenador_id'] : null;
             $marca_id = isset($input['marca_id']) ? (int) $input['marca_id'] : null;
+            $numeroSerie = isset($input['numeroSerie']);
             if ($input['ordenador_id'] == "-1") {
                 $ordenador_id = 'null';
             } else {
