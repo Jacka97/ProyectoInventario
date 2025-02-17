@@ -494,7 +494,7 @@ CREATE TABLE Incidencia (
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
-    idUser INT NOT NULL, 
+    idTecnico INT NOT NULL,
 
     idUbicacion INT NOT NULL, 
 
@@ -506,14 +506,25 @@ CREATE TABLE Incidencia (
 
     fechaCreacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
-    fechaCierre DATETIME NULL,  
+    fechaCierre DATETIME NULL,
 
-    FOREIGN KEY (idUser) REFERENCES Usuarios(id) ON DELETE CASCADE, 
+    EmailEnviado Boolean Not Null Default false,
+
+    FOREIGN KEY (idTecnico) REFERENCES Usuarios(id) ON DELETE CASCADE, 
 
     FOREIGN KEY (idUbicacion) REFERENCES Ubicaciones(id) ON DELETE CASCADE 
 
 ); 
+(!)Este al crearse se le debe asignar el tecnico que menos incidencias tenga, esto no se gestionara con trigger, 
+ya que necesitamos una respuesta para mostrar al cliente de si la incidencia puede crearse o no,
+para ello lo que se hara es una consulta del tecnico con menos incidencias
 
+SELECT count(Incidencia.idTecnico), Usuarios.nombre FROM `Incidencia` left join Usuarios on Incidencia.idTecnico = Usuarios.id where Incidencia.estado != 'resuelto' and Incidencia.estado != 'cerrada'  group by Incidencia.idTecnico
+
+De esta forma solo permitira crear incidencias si existe algun tecnico disponible (creado y activo)
+
+si hay tecnico disponible, se abrira el creador de incidencias
+si no hay tecnico disponible, se mostrara una tarjeta informando y no permitira entrar al creador de incidencias
  
     1) Historico_Movimientos registrara cada movimiento de posicion que se haga en un material, es decir, si un material se 
     mueve de ubicacion este registrara el id del material, la fecha de movimiento y la ubicacion atraves de trigger
