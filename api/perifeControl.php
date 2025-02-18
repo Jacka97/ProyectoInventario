@@ -36,7 +36,7 @@ switch ($method) {
             } else {
                 $ordenador_id = (int) $input['ordenador_id'];
             }
-            $numeroSerie = isset($input['numeroSerie']);
+            $numeroSerie = isset($input['numeroSerie']) ? (int) $input['numeroSerie'] : null;
             $idUbicacion = isset($input['idUbicacion']) ? (int) $input['idUbicacion'] : null;
             $precio = isset($input['precio']) ? (float) $input['precio'] : null;
 
