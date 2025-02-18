@@ -115,7 +115,7 @@
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Modelo</th>
+                  <th scope="col">Nombre</th>
                   <th scope="col">No. Serie</th>
                   <th scope="col">Ubicación Actual</th>
                   <th scope="col">Nueva Ubicación</th>
@@ -126,7 +126,7 @@
 
                 <tr *ngFor="let elemento of perifericos">
                     <th scope="row">{{ elemento.id }}</th>
-                    <td>{{ elemento.nombre }}</td>
+                    <td>{{ elemento.periferico_nombre }}</td>
                     <td>{{ elemento.numeroSerie }}</td>
                     <td>{{ elemento.ubicacion_nombre }}</td>
                     <td><select class="form-select" [(ngModel)]="elemento.nuevaUbicacion">
