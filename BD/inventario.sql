@@ -1,5 +1,19 @@
+
+
 /**********************************/
+
+
+/* TABLAS */
+
 CREATE DATABASE Inventario;
+
+CREATE TABLE Roles ( 
+
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+
+    nombre VARCHAR(255) UNIQUE NOT NULL
+
+); 
 
 /* USUARIOS */
 CREATE TABLE Usuarios ( 
@@ -20,27 +34,22 @@ CREATE TABLE Usuarios (
 
 ); 
 
-INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('admin@admin.com','admin', 'admin', TRUE, 1);
-INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('usuario@usuario.com','usuario', 'usuario', TRUE, 2);
-INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('tecnico@tecnico.com','tecnico', 'tecnico', TRUE, 3);
-  
+CREATE TABLE Marcas (
 
-CREATE TABLE Roles ( 
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    nombre VARCHAR(100) NOT NULL
+
+);
+
+CREATE TABLE Ubicaciones ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
-    nombre VARCHAR(255) UNIQUE NOT NULL
+    nombre VARCHAR(100) NOT NULL UNIQUE 
 
 ); 
 
-INSERT INTO Roles (nombre) VALUES ('administrador'), ('usuario'), ('tecnico'); 
- 
-
-/**********************************/
-/* MATERIALES Y UBICACIONES */
-
-
-/* tabla provisional de ordenadores */
 CREATE TABLE Ordenadores (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -85,13 +94,6 @@ CREATE TABLE Ordenadores (
 );
 (i) Al borrar una marca de la tabla Marcas los ordenadores que tenian esa marca se quedan con idMarca = null, pensar si esto es lo mejor
 
-INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numeroSerie, Red, MACLAN, IPLAN, MACWIFI, IPWIFI, HD1, HD2, Observaciones, precio) VALUES 
-('PC001', 1, 'ThinkPad X1', 1, 'Ordenador1', 'Portátil', 'SN123456', 'LAN1', '00:1A:2B:3C:4D:5E', '192.168.1.10', '00:1A:2B:3C:4D:5F', '192.168.1.20', 'SSD 512GB', 'HDD 1TB', 'Buen estado', 1200.00),
-('PC002', 2, 'MSI GF63', 2, 'Ordenador2', 'Portátil', 'SN654321', 'LAN2', '00:1A:2B:3C:4D:6E', '192.168.1.11', '00:1A:2B:3C:4D:6F', '192.168.1.21', 'SSD 1TB', 'HDD 2TB', 'Requiere limpieza', 1400.00),
-('PC003', 3, 'HP EliteBook', 3, 'Ordenador3', 'Portátil', 'SN789012', 'LAN3', '00:1A:2B:3C:4D:7E', '192.168.1.12', '00:1A:2B:3C:4D:7F', '192.168.1.22', 'SSD 256GB', 'N/A', 'En reparación', 1100.00),
-('PC004', 4, 'ASUS ROG Strix', 4, 'Ordenador4', 'Sobremesa', 'SN345678', 'LAN4', '00:1A:2B:3C:4D:8E', '192.168.1.13', '00:1A:2B:3C:4D:8F', '192.168.1.23', 'SSD 2TB', 'HDD 4TB', 'Uso en proyectos de diseño', 2000.00);
-
-
 CREATE TABLE Software (
 
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -99,11 +101,6 @@ CREATE TABLE Software (
     nombre VARCHAR(100) NOT NULL
 
 );
-
-INSERT INTO Software (nombre) VALUES 
-('Linux'),
-('Windows'),
-('iOS');
 
 /* tabla de relacion entre software y ordenadores, registra el software que tiene cada ordenador y su fecha de instalacion */
 CREATE TABLE Software_PC (
@@ -121,46 +118,7 @@ CREATE TABLE Software_PC (
     FOREIGN KEY (idSoftware) REFERENCES Software(id) ON DELETE CASCADE
 
 );
-/* tal vez haga falta un trigger para que al borrar uno de los dos se borren todos los registros de esta tabla */
-
-INSERT INTO Software_PC (idPC, idSoftware) VALUES 
-(2, 1),
-(2, 2),
-(3, 3);
-
-
-CREATE TABLE Marcas (
-
-    id INT AUTO_INCREMENT PRIMARY KEY,
-
-    nombre VARCHAR(100) NOT NULL
-
-);
-
-INSERT INTO Marcas (nombre) VALUES 
-('Thinkpad'),
-('MSI'),
-('HP'),
-('ASUS'),
-('Dell');
-
-
-CREATE TABLE Ubicaciones ( 
-
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-
-    nombre VARCHAR(100) NOT NULL UNIQUE 
-
-); 
-
-INSERT INTO Ubicaciones (nombre) VALUES 
-('aula1'),
-('aula2'),
-('almacen'),
-('taller1'),
-('taller2'),
-('pasillo1');
-
+(!) se sirve de un trigger para que al borrar uno de los dos se borren todos los registros de esta tabla
 
 CREATE TABLE DispRed (
     
@@ -205,13 +163,6 @@ CREATE TABLE DispRed (
     Switch → Dispositivos que conectan varios ordenadores por cable.
     Access Point → Dispositivos que extienden la red WiFi.
 
-INSERT INTO DispRed (nombre, idUbicacion, idMarca, modelo, Red, MACWIFI, IPWIFI, MACLAN, IPLAN, tipoConexion, tipoDisp, Observaciones, precio) VALUES 
-('Router1', 1, 34, 'TP-Link Archer C7', 'LAN1', '00:1B:2C:3D:4E:5F', '192.168.1.1', NULL, NULL, 'WiFi', 'Router', 'Suministra WiFi al aula', 120.50),
-('Switch1', 2, 35, 'Cisco SG350', 'LAN2', NULL, NULL, '00:1B:2C:3D:4E:6F', '192.168.1.2', 'Cable', 'Switch', 'Conectado a los ordenadores del aula', 250.00),
-('Access Point', 6, 37, 'Ubiquiti UAP-AC-LR', 'LAN3', '00:1B:2C:3D:4E:7F', '192.168.1.3', NULL, NULL, 'WiFi', 'Access Point', 'Extiende la cobertura WiFi', 180.75),
-('Router2', 4, 36, 'MikroTik hEX', 'LAN4', NULL, NULL, '00:1B:2C:3D:4E:8F', '192.168.1.4', 'Cable', 'Router', 'Gestiona la red del taller', 140.00);
-
-
 
 (!) Inserts en esta tabla solo por trigger cuando se haga update en (ordenador, periferico, dispositivo de red) sobre la ubicacion
 CREATE TABLE Historico_Movimientos ( 
@@ -235,8 +186,9 @@ CREATE TABLE Historico_Movimientos (
     nombreUbicacion VARCHAR(100) NOT NULL
 
 ); 
+(!)Historico_Movimientos registrara cada movimiento de posicion que se haga en un material, es decir, si un material se mueve de ubicacion este registrara el id del material, la fecha de movimiento y la ubicacion atraves de trigger
 
-(!)Trigger para su correcto funcionamiento
+(V)Trigger para su correcto funcionamiento
 
 /* En Ordenadores */
 
@@ -389,7 +341,6 @@ END;
 DELIMITER ;
 
 
-
 (!)Si ordenador_id != null entonces idUbicacion == ordenador_id.idUbicacion (trigger)
 CREATE TABLE Perifericos ( 
 
@@ -488,8 +439,6 @@ DELIMITER ;
 
 
 
-/* SIN TERMINAR */
-
 CREATE TABLE Incidencia ( 
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
@@ -530,43 +479,50 @@ De esta forma solo permitira crear incidencias si existe algun tecnico disponibl
 
 si hay tecnico disponible, se abrira el creador de incidencias
 si no hay tecnico disponible, se mostrara una tarjeta informando y no permitira entrar al creador de incidencias
- 
-    1) Historico_Movimientos registrara cada movimiento de posicion que se haga en un material, es decir, si un material se 
-    mueve de ubicacion este registrara el id del material, la fecha de movimiento y la ubicacion atraves de trigger
 
-    2) 
- 
+/**********************************/
+/* INSERCIONES */
 
- 
+INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('admin@admin.com','admin', 'admin', TRUE, 1);
+INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('usuario@usuario.com','usuario', 'usuario', TRUE, 2);
+INSERT INTO Usuarios (correo, pass, nombre, activo, id_rol) VALUES('tecnico@tecnico.com','tecnico', 'tecnico', TRUE, 3);
 
- 
+INSERT INTO Roles (nombre) VALUES ('administrador'), ('usuario'), ('tecnico'); 
 
- 
+INSERT INTO Ordenadores (numero, idMarca, modelo, idUbicacion, nombre, tipo, numeroSerie, Red, MACLAN, IPLAN, MACWIFI, IPWIFI, HD1, HD2, Observaciones, precio) VALUES 
+('PC001', 1, 'ThinkPad X1', 1, 'Ordenador1', 'Portátil', 'SN123456', 'LAN1', '00:1A:2B:3C:4D:5E', '192.168.1.10', '00:1A:2B:3C:4D:5F', '192.168.1.20', 'SSD 512GB', 'HDD 1TB', 'Buen estado', 1200.00),
+('PC002', 2, 'MSI GF63', 2, 'Ordenador2', 'Portátil', 'SN654321', 'LAN2', '00:1A:2B:3C:4D:6E', '192.168.1.11', '00:1A:2B:3C:4D:6F', '192.168.1.21', 'SSD 1TB', 'HDD 2TB', 'Requiere limpieza', 1400.00),
+('PC003', 3, 'HP EliteBook', 3, 'Ordenador3', 'Portátil', 'SN789012', 'LAN3', '00:1A:2B:3C:4D:7E', '192.168.1.12', '00:1A:2B:3C:4D:7F', '192.168.1.22', 'SSD 256GB', 'N/A', 'En reparación', 1100.00),
+('PC004', 4, 'ASUS ROG Strix', 4, 'Ordenador4', 'Sobremesa', 'SN345678', 'LAN4', '00:1A:2B:3C:4D:8E', '192.168.1.13', '00:1A:2B:3C:4D:8F', '192.168.1.23', 'SSD 2TB', 'HDD 4TB', 'Uso en proyectos de diseño', 2000.00);
 
- 
+INSERT INTO Software (nombre) VALUES 
+('Linux'),
+('Windows'),
+('iOS');
 
- 
+INSERT INTO Software_PC (idPC, idSoftware) VALUES 
+(2, 1),
+(2, 2),
+(3, 3);
 
- 
+INSERT INTO Marcas (nombre) VALUES 
+('Thinkpad'),
+('MSI'),
+('HP'),
+('ASUS'),
+('Dell');
 
- 
+INSERT INTO Ubicaciones (nombre) VALUES 
+('aula1'),
+('aula2'),
+('almacen'),
+('taller1'),
+('taller2'),
+('pasillo1');
 
- 
+INSERT INTO DispRed (nombre, idUbicacion, idMarca, modelo, Red, MACWIFI, IPWIFI, MACLAN, IPLAN, tipoConexion, tipoDisp, Observaciones, precio) VALUES 
+('Router1', 1, 34, 'TP-Link Archer C7', 'LAN1', '00:1B:2C:3D:4E:5F', '192.168.1.1', NULL, NULL, 'WiFi', 'Router', 'Suministra WiFi al aula', 120.50),
+('Switch1', 2, 35, 'Cisco SG350', 'LAN2', NULL, NULL, '00:1B:2C:3D:4E:6F', '192.168.1.2', 'Cable', 'Switch', 'Conectado a los ordenadores del aula', 250.00),
+('Access Point', 6, 37, 'Ubiquiti UAP-AC-LR', 'LAN3', '00:1B:2C:3D:4E:7F', '192.168.1.3', NULL, NULL, 'WiFi', 'Access Point', 'Extiende la cobertura WiFi', 180.75),
+('Router2', 4, 36, 'MikroTik hEX', 'LAN4', NULL, NULL, '00:1B:2C:3D:4E:8F', '192.168.1.4', 'Cable', 'Router', 'Gestiona la red del taller', 140.00);
 
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
-
- 
