@@ -74,7 +74,7 @@ switch ($method) {
             }
 
             // Llamar a la función para actualizar
-            $result = consultaPeriferico::actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $idUbicacion, $precio);
+            $result = consultaPeriferico::actualizarPeriferico($id, $numeroSerie, $nombre, $ordenador_id, $marca_id, $idUbicacion, $precio);
 
             // Verificar si la actualización fue exitosa
             if ($result) {
