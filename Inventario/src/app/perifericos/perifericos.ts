@@ -2,7 +2,7 @@ export class Periferico {
     constructor(
         public periferico_nombre: string,
         public nombre: string,
-        public numeroSerie : number,
+        public numeroSerie : string,
         public ordenador_id: number,
         public ordenador_nombre: string,
         public marca_id: number,
