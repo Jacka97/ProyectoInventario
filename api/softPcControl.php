@@ -32,11 +32,16 @@ switch ($method) {
 
         case 'POST':
             header("Content-Type: application/json; charset=UTF-8");
-            if (!empty($input) && isset($input['idPC'], $input['idSoftware'])) {
+            if (!empty($input) && isset($input['idPC'], $input['idUbicacion'], $input['idSoftware'])) {
                 $idPC = $input['idPC'];
                 $idSoftware = $input['idSoftware'];
+                $idUbicacion = $input['idUbicacion'];
         
-                $result = consultaSoft::insertarSoftwarePC($idSoftware, $idPC); // Asegurar orden correcto
+                if($idPC != 0){
+                    $result = consultaSoft::insertarSoftwarePC($idSoftware, $idPC); // Asegurar orden correcto
+                }else{
+                    $result = consultaSoft::insertarSoftwareUbicacion($idSoftware, $idUbicacion); // Asegurar orden correcto
+                }
         
                 if ($result) {
                     echo json_encode(["id" => $result]); // Devolver el ID insertado
@@ -77,6 +82,6 @@ switch ($method) {
 
     default:
         echo json_encode(["error" => "Método no soportado"]);
-        break;
+        break;
 }
 ?>

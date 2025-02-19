@@ -46,6 +46,20 @@ public static function getSoftPCById($id) {
         
     }
 
+    
+    public static function insertarSoftwareUbicacion($idSoft, $idUbicacion){
+        $conexion = conexionBD::conectar();
+        $sql = "INSERT INTO Software_PC (idSoftware, idPC)
+            SELECT Ordenadores.id, '$idSoft'
+            FROM Ordenadores
+            WHERE Ordenadores.idUbicacion = $idPC;
+            ";
+        $conexion->query($sql);
+        return $conexion->insert_id;
+        $conexion->close();
+        
+    }
+
     public static function modificarSoftwPC($id, $idPC, $idSoft){
         $conexion = conexionBD::conectar();
         $sql = "UPDATE Software_PC SET idPC = '$idPC', idSoftware = '$idSoft' WHERE id = " . $id;
@@ -59,8 +73,8 @@ public static function getSoftPCById($id) {
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
-        
-    }
+        
+    }
 
 }
 ?>
