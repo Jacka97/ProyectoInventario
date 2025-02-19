@@ -16,6 +16,8 @@ import { MaterialModule } from './material/material.module';
 import { DispositivosRedModule } from './dispositivos-red/dispositivos-red.module';
 import { SoftwareModule } from './software/software.module';
 import { SoftwarePcModule } from './software-pc/software-pc.module';
+import { MatsUbiComponent } from './mats-ubi/mats-ubi.component';
+
 
 
 
@@ -24,6 +26,7 @@ import { SoftwarePcModule } from './software-pc/software-pc.module';
     AppComponent,
     BienvenidoComponent,
     EncabezadoComponent,
+    MatsUbiComponent,
   ],
   imports: [
     BrowserModule,
