@@ -182,6 +182,13 @@ export class SoftwarePcComponent {
       this.formularioCambiado = false;
       
       console.log(this.softwarePcAct);
+
+      if(this.enAula){
+        this.softwarePcAct.idPC = 0;
+      }else{
+        this.softwarePcAct.idUbicacion = 0;
+      }
+
       if (this.tipo == 0) {
         this._softwarePcService.guardaSoftwarePC(this.softwarePcAct).subscribe({
           next: (resultado) => {
