@@ -1,8 +1,8 @@
-export class Ubicacion{
+export class Lista{
     constructor(
     public tipo : string,
     public nombre: string,
-    public nombre_ubicacion : string,
-    public idUbicacion: number;
+    public nombreUbicacion : string,
+    public idUbicacion: number,
     ){}
 }

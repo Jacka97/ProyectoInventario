@@ -30,7 +30,6 @@ public idSeleccionado: number = 0;
   constructor(private _aroute: ActivatedRoute, private _noubisService: MatsUbiService, private _route: Router, private toastr: ToastrService) { }
   ngOnInit() {
     this.traerUbicaciones();
-    // quiero sacar el id de un select, que sera lo que cargue el array de ubicaciones, value es el id y label es el nombre
 
    
   }
