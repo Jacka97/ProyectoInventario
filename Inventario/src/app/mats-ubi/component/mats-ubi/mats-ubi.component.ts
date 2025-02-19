@@ -18,7 +18,7 @@ export class MatsUbiComponent {
 public noubisact: NOUbi = {idUbicacionActual: 0, idUbicacionNueva: 0};
 public ubiact: Ubicacion = {id: 0, nombre: ""}; 
 public ubis: Ubicacion[] = [];
-public listadoact: Lista = { tipo: "", nombre: "", idUbicacion: 0, nombreUbicacion: ""};
+public listadoact: Lista[] = [];
 public titulo: string = 'Modificar Ubicacion';
 public tipo: number = 0;
 public id: number = 0;

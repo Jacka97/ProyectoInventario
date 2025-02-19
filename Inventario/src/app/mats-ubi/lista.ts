@@ -1,4 +1,4 @@
-export class Ubicacion{
+export class Lista{
     constructor(
     public tipo : string,
     public nombre: string,

@@ -14,13 +14,13 @@ export class MatsUbiService {
   constructor(private http: HttpClient) { }
   
   getUbicacionesIdUbicaion(idUbicacion: number) {
-    return this.http.get(`${this.urlAPI}?idUbicacion=${idUbicacion}`);
+    return this.http.get<any>(`${this.urlAPI}?idUbicacion=${idUbicacion}`);
   }
   modAllUbis(ubis: NOUbi) {
-    return this.http.post(`${this.urlAPI}` ,JSON.stringify(ubis),  this.httpOptions);
+    return this.http.post<any>(`${this.urlAPI}` ,JSON.stringify(ubis),  this.httpOptions);
   } 
   getAllUbis(){
-    return this.http.get(`${this.urlUBI}`);
+    return this.http.get<any>(`${this.urlUBI}`);
   }
   
 }
