@@ -42,4 +42,4 @@ class consultaMarca{
         $conexion->close();
         
     }
-}?>usuControl.
+}?>

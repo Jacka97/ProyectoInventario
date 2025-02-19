@@ -9,7 +9,22 @@ class consultaUbiMats{
         $conexion = conexionBD::conectar();
     
         // Consulta SQL con placeholders
-        $sql = "SELECT 'Periferico' as tipo, nombre, idUbicacion from Perifericos WHERE idUbicacion = " .$idUbicacion. " UNION ALL SELECT 'Ordenador' as tipo, nombre, idUbicacion from Ordenadores WHERE idUbicacion = ". $idUbicacion." UNION ALL SELECT 'Dispositivo de Red' as tipo, nombre, idUbicacion from DispRed WHERE idUbicacion = ". $idUbicacion;
+        $sql = "SELECT 'Periferico' as tipo, nombre, idUbicacion, 
+        (SELECT nombre FROM Ubicaciones WHERE Ubicaciones.id = Perifericos.idUbicacion) as nombreUbicacion 
+        FROM Perifericos WHERE idUbicacion = " .$idUbicacion. " 
+
+        UNION ALL 
+
+        SELECT 'Ordenador' as tipo, nombre, idUbicacion, 
+        (SELECT nombre FROM Ubicaciones WHERE Ubicaciones.id = Ordenadores.idUbicacion) as nombreUbicacion 
+        FROM Ordenadores WHERE idUbicacion = " .$idUbicacion. " 
+
+        UNION ALL 
+
+        SELECT 'Dispositivo de Red' as tipo, nombre, idUbicacion, 
+        (SELECT nombre FROM Ubicaciones WHERE Ubicaciones.id = DispRed.idUbicacion) as nombreUbicacion 
+        FROM DispRed WHERE idUbicacion = " .$idUbicacion;
+
 
         // Ejecutar la consulta
             $result = $conexion->query($sql);

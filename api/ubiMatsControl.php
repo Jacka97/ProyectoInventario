@@ -51,5 +51,4 @@ else {
     echo json_encode(["error" => "Método no permitido"]);
 }
 
-$conexion->close();
 ?>
