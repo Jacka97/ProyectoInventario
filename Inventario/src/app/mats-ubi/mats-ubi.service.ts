@@ -22,6 +22,7 @@ export class MatsUbiService {
   getMaterialesPorUbicacion(idUbicacion: number): Observable<any> {
     return this.http.get<any>(`${this.urlAPI}?idUbicacion=${idUbicacion}`);
   }
+  
 
   // 🔹 Modifica la ubicación de todos los materiales en una ubicación
   updateUbicacionMateriales(ubis: NOUbi): Observable<any> {

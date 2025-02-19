@@ -18,13 +18,17 @@ export class MatsUbiComponent {
   public ubis: Ubicacion[] = [];
   public listadoact: Lista[] = [];
   public titulo: string = 'Modificar Ubicación';
-  public idSeleccionado: number = 0;
+  public idSeleccionado: number = -1;
+
+
+
   public mostrarFormulario: boolean = false;
 
   constructor(private _noubisService: MatsUbiService, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.traerUbicaciones();
+    this.onUbicacionSeleccionada();
   }
 
   // 🔹 Obtiene todas las ubicaciones disponibles
@@ -33,6 +37,7 @@ export class MatsUbiComponent {
       next: (resultado) => {
         if (Array.isArray(resultado)) {
           this.ubis = resultado;
+          this.idSeleccionado = -1; // Valor inicial para el select
         } else {
           console.error('Error: la respuesta no es un array válido', resultado);
         }
@@ -46,6 +51,7 @@ export class MatsUbiComponent {
       }
     });
   }
+  
 
   // 🔹 Obtiene los materiales de una ubicación específica
   // onUbicacionSeleccionada() {
@@ -67,43 +73,49 @@ export class MatsUbiComponent {
   //   }
   // }
   onUbicacionSeleccionada() {
-    if (this.idSeleccionado) {
-      console.log('🔍 Solicitando datos para ID:', this.idSeleccionado);
-  
-      this._noubisService.getMaterialesPorUbicacion(this.idSeleccionado).subscribe({
-        next: (resultado) => {
-          console.log('📌 Respuesta API:', resultado);
-          
-          if (Array.isArray(resultado)) {
-            this.listadoact = resultado;
-            console.log('✅ Datos guardados correctamente:', this.listadoact);
-          } else {
-            console.error('❌ API no devolvió un array válido', resultado);
-            this.toastr.error('La API no devolvió datos correctos.');
-          }
-        },
-        error: (error) => {
-          console.error('❌ Error al recibir datos:', error);
-          if (error.status === 500) {
-            console.error('🔥 Error interno en el servidor');
-            this.toastr.error('Error interno en la API.');
-          } else {
-            this.toastr.error('Error al obtener los datos.');
-          }
-        },
-        complete: () => {
-          console.log('✅ Operación completada.');
-        }
-      });
+    if (this.idSeleccionado === -1) {
+      return; // Salir de la función si idSeleccionado es -1
     }
+  
+    console.log('🔍 Solicitando datos para ID:', this.idSeleccionado);
+  
+    this._noubisService.getMaterialesPorUbicacion(this.idSeleccionado).subscribe({
+      next: (resultado) => {
+        console.log('📌 Respuesta API:', resultado);
+  
+        if (Array.isArray(resultado)) {
+          this.listadoact = resultado;
+          console.log('✅ Datos guardados correctamente:', this.listadoact);
+        } else {
+          console.error('❌ API no devolvió un array válido', resultado);
+          this.toastr.error('La API no devolvió datos correctos.');
+        }
+      },
+      error: (error) => {
+        console.error('❌ Error al recibir datos:', error);
+        if (error.status === 500) {
+          console.error('🔥 Error interno en el servidor');
+          this.toastr.error('Error interno en la API.');
+        } else {
+          this.toastr.error('Error al obtener los datos.');
+        }
+      },
+      complete: () => {
+        console.log('✅ Operación completada.');
+      }
+    });
   }
+  
+  
+  
+  
   
 
   // 🔹 Modifica la ubicación de los materiales
   modificarUbicacion() {
     this.noubisact.idUbicacionActual = this.idSeleccionado;
-
-    if (this.noubisact.idUbicacionNueva > 0) {
+  
+    if (this.noubisact.idUbicacionNueva !== null && this.noubisact.idUbicacionNueva !== undefined && this.noubisact.idUbicacionNueva >= 0) {
       this._noubisService.updateUbicacionMateriales(this.noubisact).subscribe({
         next: (resultado) => {
           if (resultado) {
@@ -126,4 +138,6 @@ export class MatsUbiComponent {
       this.toastr.warning('Seleccione una nueva ubicación válida.');
     }
   }
+  
+  
 }
