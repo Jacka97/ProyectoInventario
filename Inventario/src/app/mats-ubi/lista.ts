@@ -3,6 +3,6 @@ export class Ubicacion{
     public tipo : string,
     public nombre: string,
     public nombre_ubicacion : string,
-    public idUbicacion: number;
+    public idUbicacion: number,
     ){}
 }
