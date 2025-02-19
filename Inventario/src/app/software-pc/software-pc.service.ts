@@ -12,6 +12,7 @@ import { SoftwarePC } from './softwarePC';
 export class SoftwarePcService {
     //Variables con los links a las apis pertinentes
     urlOrdenadores = 'https://uat-inventarios.proyectos-2daw.es/api/ordeControl.php';
+    urlUbicaciones = 'https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
     urlSoftwareApi = 'https://uat-inventarios.proyectos-2daw.es/api/softwControl.php';
     urlSoftwarePcApi = 'https://uat-inventarios.proyectos-2daw.es/api/softPcControl.php';
 
@@ -26,6 +27,10 @@ export class SoftwarePcService {
     //Funciones para llamar a las diferentes funcionalidades de las api y para los objetos que necesito
     obtengoOrdenadores(): Observable<any>{
         return this.http.get(`${this.urlOrdenadores}`);
+    }
+
+    obtengoUbicacionesApi(): Observable<any> {
+        return this.http.get(`${this.urlUbicaciones}`);
     }
 
     obtengoTodoSoftware(): Observable<any> {

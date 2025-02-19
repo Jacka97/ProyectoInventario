@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm, NgModel } from '@angular/forms';
-;
+
+import { Ubicacion } from '../../ubicacion';
 import { Software } from '../../software';
 import { SoftwarePcService } from '../../software-pc.service';
 import { SoftwarePC } from '../../softwarePC';
@@ -27,7 +28,8 @@ export class SoftwarePcComponent {
     idSoftware : 0,
     fecha : '',
     softnombre : '',
-    pcnombre : ''
+    pcnombre : '',
+    idUbicacion : 0,
   }
 
   public softwareAct: Software = {
@@ -58,20 +60,30 @@ export class SoftwarePcComponent {
     precio: 0
   }
 
+  public ubicacionact: Ubicacion = { id: 0, nombre: '' };
+
   public titulo: string = 'Asignar un software a un PC';
   public txtBtn: string = 'Guardar';
   public formularioCambiado: boolean = false;
   public tipo: number = 0;
   public id: number = 0;
   public ordenadores : Ordenadores[] = [];
+  public ubicaciones : Ubicacion[] = [];
   public software : Software[] = [];
   public softwarePc : SoftwarePC[] = [];
+  public enAula: boolean = false;
+
+  toggleSwitch() {
+    this.enAula = !this.enAula;
+    console.log("Estado actualizado:", this.enAula);
+  }
 
   constructor(private _softwarePcService: SoftwarePcService, private _aroute: ActivatedRoute, private router: Router, private toastr: ToastrService) { }
 
   //Cuando inicias la pagina a la que entre se trae los ordenadores y los softwares
   ngOnInit() {
     this.traerOrdenadores();
+    this.traeUbicaciones();
     this.traeSoftware();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
@@ -136,6 +148,29 @@ export class SoftwarePcComponent {
         this.toastr.error('Error al obtener el ordenador:', error);
       },
       complete: () => {
+        console.log('Operación completada.');
+      },
+    });
+  }
+
+  // Llamada al servicio para obtener las ubicaciones desde la API
+  private traeUbicaciones() {
+    this._softwarePcService.obtengoUbicacionesApi().subscribe({
+      next: (resultado) => {        
+        // Si se recibe un resultado válido, se asigna a la variable ubicaciones
+        if (resultado) {
+          this.ubicaciones = resultado;
+        } else {
+          // Si hay un error en los datos recibidos, se muestra en la consola
+          console.error('Error al recibir datos:', resultado.error);
+        }
+      },
+      error: (error) => {
+        // Si ocurre un error en la petición, se muestra en la consola
+        console.error('Error al recibir datos:', error);
+      },
+      complete: () => {
+        // Mensaje de confirmación cuando la operación ha finalizado correctamente
         console.log('Operación completada.');
       },
     });
