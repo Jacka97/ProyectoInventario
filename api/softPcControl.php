@@ -35,9 +35,13 @@ switch ($method) {
         if (!empty($input) && isset($input['idPC'], $input['idSoftware'])) {
             $idPC = $input['idPC'];
             $idSoftware = $input['idSoftware'];
-            //$idUbicacion = $input['idUbicacion'];
+            $idUbicacion = $input['idUbicacion'];
 
-            $result = consultaSoft::insertarSoftwarePC($idSoftware, $idPC); // Asegurar orden correcto
+            if($idPC == 0){
+                $result = consultaSoft::insertarSoftwareUbicacion($idSoftware, $idUbicacion); // Asegurar orden correcto
+            }else{
+                $result = consultaSoft::insertarSoftwarePC($idSoftware, $idPC); // Asegurar orden correcto
+            }
 
             if ($result) {
                 echo json_encode(["id" => $result]); // Devolver el ID insertado
