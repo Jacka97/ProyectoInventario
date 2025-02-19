@@ -1,1 +1,70 @@
-<p>mats-ubi works!</p>
+<div class="container mt-4">
+    <h2 class="text-center">{{ titulo }}</h2>
+  
+    <!-- 🔽 Select para elegir la ubicación -->
+    <div class="mb-3">
+      <label for="ubicacionSelect" class="form-label">Selecciona una ubicación:</label>
+      <select 
+        id="ubicacionSelect" 
+        class="form-control" 
+        [(ngModel)]="idSeleccionado" 
+        (change)="onUbicacionSeleccionada()">
+        <option value="" disabled>Selecciona un ordenador</option>
+        <option *ngFor="let ubi of ubis" [value]="ubi.id">
+          {{ ubi.nombre }}
+        </option>
+      </select>
+    </div>
+  
+    <!-- 🔽 Tabla de materiales (Solo se muestra si hay elementos en listadoact) -->
+    <div *ngIf="listadoact.length > 0">
+      <h4 class="mt-3">Materiales en esta ubicación</h4>
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Tipo</th>
+            <th>Nombre</th>
+            <th>Ubicación Actual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mat of listadoact">
+            <td>{{ mat.tipo }}</td>
+            <td>{{ mat.nombre }}</td>
+            <td>{{ mat.nombreUbicacion }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- 🔽 Botón para modificar la ubicación -->
+      <button class="btn btn-primary mt-3" (click)="mostrarFormulario = !mostrarFormulario">
+        Modificar Ubicación
+      </button>
+    </div>
+  
+    <!-- 🔽 Formulario para cambiar ubicación (Solo aparece si mostrarFormulario es true) -->
+    <div *ngIf="mostrarFormulario" class="mt-3">
+      <form #NOUbis="ngForm" (ngSubmit)="modificarUbicacion()" class="card p-3">
+        <h5 class="text-center">Cambiar Ubicación</h5>
+  
+        <div class="mb-3">
+          <label class="form-label">Ubicación Nueva:</label>
+          <select 
+            class="form-control" 
+            [(ngModel)]="noubisact.idUbicacionNueva" 
+            name="idUbicacionNueva" required>
+            <option value="" disabled>Seleccione una nueva ubicación</option>
+            <option *ngFor="let ubi of ubis" [value]="ubi.id">
+              {{ ubi.nombre }}
+            </option>
+          </select>
+        </div>
+  
+        <div class="text-center">
+          <button type="submit" class="btn btn-success me-2">Guardar</button>
+          <button type="button" class="btn btn-danger" (click)="mostrarFormulario = false">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
