@@ -457,7 +457,7 @@ CREATE TABLE Incidencia (
 
     fechaCierre DATETIME NULL,
 
-    EmailEnviado Boolean Not Null Default false,
+    
 
     FOREIGN KEY (idTecnico) REFERENCES Usuarios(id) ON DELETE CASCADE, 
 
@@ -479,6 +479,22 @@ De esta forma solo permitira crear incidencias si existe algun tecnico disponibl
 
 si hay tecnico disponible, se abrira el creador de incidencias
 si no hay tecnico disponible, se mostrara una tarjeta informando y no permitira entrar al creador de incidencias
+
+DELIMITER //
+
+CREATE TRIGGER trg_set_fecha_cierre
+BEFORE UPDATE ON Incidencia
+FOR EACH ROW
+BEGIN
+    IF NEW.estado = 'cerrada' AND NEW.fechaCierre IS NULL THEN
+        SET NEW.fechaCierre = NOW();
+    END IF;
+END;
+
+//
+
+DELIMITER ;
+
 
 /**********************************/
 /* INSERCIONES */
@@ -971,7 +987,7 @@ CREATE TABLE Incidencia (
 
     fechaCierre DATETIME NULL,
 
-    EmailEnviado Boolean Not Null Default false,
+    
 
     FOREIGN KEY (idTecnico) REFERENCES Usuarios(id) ON DELETE CASCADE, 
 
@@ -979,6 +995,20 @@ CREATE TABLE Incidencia (
 
 ); 
 
+DELIMITER //
+
+CREATE TRIGGER trg_set_fecha_cierre
+BEFORE UPDATE ON Incidencia
+FOR EACH ROW
+BEGIN
+    IF NEW.estado = 'cerrada' AND NEW.fechaCierre IS NULL THEN
+        SET NEW.fechaCierre = NOW();
+    END IF;
+END;
+
+//
+
+DELIMITER ;
 
 
 /************** INSERCIONES ************************************************/
