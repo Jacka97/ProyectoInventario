@@ -37,7 +37,7 @@ export class MatsUbiComponent {
       next: (resultado) => {
         if (Array.isArray(resultado)) {
           this.ubis = resultado;
-          this.idSeleccionado = -1; // Valor inicial para el select
+          //this.idSeleccionado = -1; // Valor inicial para el select
         } else {
           console.error('Error: la respuesta no es un array válido', resultado);
         }

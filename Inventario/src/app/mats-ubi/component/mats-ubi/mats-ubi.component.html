@@ -9,7 +9,7 @@
       class="form-control" 
       [(ngModel)]="idSeleccionado" 
       (change)="onUbicacionSeleccionada()">
-      <option [ngValue]="-1" disabled>Selecciona una ubicación</option>
+      <option value="-1" disabled>Selecciona una ubicación</option>
       <option *ngFor="let ubi of ubis" [value]="ubi.id">
         {{ ubi.nombre }}
       </option>
