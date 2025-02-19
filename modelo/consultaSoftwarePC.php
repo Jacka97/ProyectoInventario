@@ -48,8 +48,8 @@ public static function getSoftPCById($id) {
 
     public static function insertarSoftwareUbicacion($idSoft, $idUbicacion){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Software_PC (idSoftware, idPC)
-            SELECT Ordenadores.id, '$idSoft'
+        $sql = "INSERT INTO Software_PC (idPC, idSoftware)
+            SELECT Ordenadores.id, $idSoft
             FROM Ordenadores
             WHERE Ordenadores.idUbicacion = $idUbicacion;
             ";

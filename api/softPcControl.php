@@ -32,12 +32,20 @@ switch ($method) {
 
     case 'POST':
         header("Content-Type: application/json; charset=UTF-8");
-        if (!empty($input) && isset($input['idPC'], $input['idSoftware'])) {
+        if (!empty($input) && isset($input['idPC'], $input['idUbicacion'], $input['idSoftware'])) {
             $idPC = $input['idPC'];
             $idSoftware = $input['idSoftware'];
             $idUbicacion = $input['idUbicacion'];
 
-            if($idPC == 0){
+            if (isset($idPC) && $idPC == 0){
+                if ($idUbicacion === null) {
+                    echo json_encode(["error" => "idUbicacion es requerido cuando idPC es 0"]);
+                    exit;
+                }
+                if (!method_exists('consultaSoft', 'insertarSoftwareUbicacion')) {
+                    echo json_encode(["error" => "Método insertarSoftwareUbicacion no existe"]);
+                    exit;
+                }
                 $result = consultaSoft::insertarSoftwareUbicacion($idSoftware, $idUbicacion); // Asegurar orden correcto
             }else{
                 $result = consultaSoft::insertarSoftwarePC($idSoftware, $idPC); // Asegurar orden correcto
