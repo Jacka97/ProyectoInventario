@@ -14,7 +14,7 @@ class modelIncidencias{
 
     public static function getIncidenciaByID($id){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT Incidencia.id, Incidencia.idTecnico, Incidencia.idUbicacion, Incidencia.asunto, Incidencia.descripcion, Incidencia.estado, Incidencia.fechaCreacion, Incidencia.fechaCierre,Ubicaciones.nombre as nombreUbicacion FROM Incidencia Inner join Ubicaciones on Incidencia.idUbicacion = Ubicaciones.id WHERE Incidencia.id = " . $id;
+        $sql = "SELECT Incidencia.id, Incidencia.comentarioTecnico, Incidencia.emailEnviado, Incidencia.idTecnico, Incidencia.idUbicacion, Incidencia.asunto, Incidencia.descripcion, Incidencia.estado, Incidencia.fechaCreacion, Incidencia.fechaCierre,Ubicaciones.nombre as nombreUbicacion FROM Incidencia Inner join Ubicaciones on Incidencia.idUbicacion = Ubicaciones.id WHERE Incidencia.id = " . $id;
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_assoc();
@@ -27,9 +27,9 @@ class modelIncidencias{
         $conexion->close();
         
     }
-    public static function modificarIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion, $estado){
+    public static function modificarIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion, $estado, $comentarioTecnico){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Incidencia SET idTecnico = $idTecnico, idUbicacion = $idUbicacion, asunto = '$asunto', descripcion = '$descripcion', estado = '$estado'";
+        $sql = "UPDATE Incidencia SET idTecnico = $idTecnico, comentarioTecnico = $comentarioTecnico idUbicacion = $idUbicacion, asunto = '$asunto', descripcion = '$descripcion', estado = '$estado'";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();

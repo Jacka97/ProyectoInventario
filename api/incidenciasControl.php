@@ -32,14 +32,17 @@ switch ($method) {
         header("Content-Type: application/json; charset=UTF-8");
         $tecnico = modelIncidencias::getTecnicoMenosIncidencias(); //busco al técnico que se le va a asignar la incidencia
 
-        if (!empty($input) && isset($input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['emailUsuario'] )) {
+        if (!empty($input) && isset($input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['emailUsuario'], $input['emailEnviado'] )) {
 
             // Extraer datos del JSON recibido
             $idTecnico = $tecnico['idTecnico'];
             $idUbicacion = $input['idUbicacion'];
             $asunto = $input['asunto'];
             $descripcion = $input['descripcion'];
-            $emailUsuario=$input['emailUsuario']; //recibe el email del usuario que crea la incidencia                 
+            $emailUsuario=$input['emailUsuario']; //recibe el email del usuario que crea la incidencia 
+            $comentarioTecnico = $input['comentarioTecnico'];
+            $emailEnviado = $input['emailEnviado'];
+
 
 
             // Llamar a la función para insertar el ordenador
@@ -60,7 +63,7 @@ switch ($method) {
     case 'PUT':
         header("Content-Type: application/json; charset=UTF-8");
 
-        if (!empty($input) && isset($input['id'], $input['idTecnico'], $input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['estado'])) {
+        if (!empty($input) && isset($input['id'], $input['idTecnico'], $input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['estado'], $input['comentarioTecnico'])) {
 
             // Extraer y sanitizar datos
             $id = (int) $input['id'];
@@ -69,9 +72,10 @@ switch ($method) {
             $asunto = $input['asunto'];
             $descripcion = $input['descripcion'];
             $estado = $input['estado'];
+            $comentarioTecnico = $input['comentarioTecnico'];
             
             // Llamar a la función de actualización
-            $result = modelIncidencias::modificarIncidencia($id, $idTecnico, $idUbicacion, $asunto, $descripcion, $estado);
+            $result = modelIncidencias::modificarIncidencia($id, $idTecnico, $idUbicacion, $asunto, $descripcion, $estado, $comentarioTecnico);
 
             // Verificar el resultado
             if ($result) {
