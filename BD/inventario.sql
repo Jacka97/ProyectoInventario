@@ -453,6 +453,10 @@ CREATE TABLE Incidencia (
 
     estado ENUM('pendiente', 'en trámite', 'resuelto', 'cerrada') NOT NULL DEFAULT 'pendiente', 
 
+    emailEnviado VARCHAR(100) NOT NULL,
+
+    comentarioTecnico TEXT NULL, 
+
     fechaCreacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
 
     fechaCierre DATETIME NULL,
@@ -1064,6 +1068,6 @@ INSERT INTO Perifericos (nombre, ordenador_id, marca_id, idUbicacion, precio, nu
 ('Raton Gaming', 1, 1, 1, 20.00, 'SN48809');
 
 -- Insertar incidencias
-INSERT INTO Incidencia (idTecnico, idUbicacion, asunto, descripcion, estado, fechaCreacion, fechaCierre, EmailEnviado) VALUES
-(2, 1, 'Problema de red', 'No hay conexión a internet en la oficina.', 'pendiente', NOW(), NULL, false),
-(2, 2, 'Pantalla azul', 'Ordenador muestra pantalla azul al encender.', 'en trámite', NOW(), NULL, false);
+INSERT INTO Incidencia (idTecnico, idUbicacion, asunto, descripcion, estado, fechaCreacion, fechaCierre, emailEnviado) VALUES
+(2, 1, 'Problema de red', 'No hay conexión a internet en la oficina.', 'pendiente', NOW(), NULL, "admin@admin.com"),
+(2, 2, 'Pantalla azul', 'Ordenador muestra pantalla azul al encender.', 'en trámite', NOW(), NULL, "usuario@usuario.com");
