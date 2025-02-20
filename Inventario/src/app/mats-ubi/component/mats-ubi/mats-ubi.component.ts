@@ -85,7 +85,7 @@ users: any;
         this.toastr.error('Error al obtener las ubicaciones');
       },
       complete: () => {
-        console.log('Operación completada - Ubicaciones cargadas');
+
       }
     });
   }
@@ -116,7 +116,7 @@ users: any;
       return;
     }
   
-    console.log('🔍 Solicitando datos para ID:', this.idSeleccionado);
+
   
     this._noubisService.getMaterialesPorUbicacion(this.idSeleccionado).subscribe({
       next: (resultado) => {
@@ -127,19 +127,15 @@ users: any;
             this.listadoact = [...resultado]; //  Forzar la detección de cambios
             this.reiniciarDataTable(); //  Reinicializar DataTables
           }, 0);
-  
-          console.log(' Datos guardados correctamente:', this.listadoact);
+
         } else {
-          console.error('API no devolvió un array válido', resultado);
-          this.toastr.error('La API no devolvió datos correctos.');
+          this.toastr.error('No hay datos disponibles en esta ubicación.');
         }
       },
       error: (error) => {
-        console.error(' Error al recibir datos:', error);
         this.toastr.error('Error al obtener los datos.');
       },
       complete: () => {
-        console.log(' Operación completada.');
       }
     });
   }
