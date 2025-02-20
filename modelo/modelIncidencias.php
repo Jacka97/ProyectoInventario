@@ -19,9 +19,9 @@ class modelIncidencias{
         $conexion->close();
         return $result->fetch_assoc();
     }
-    public static function altaIncidencia( $idTecnico, $idUbicacion, $asunto, $descripcion, $estado){
+    public static function altaIncidencia( $idTecnico, $idUbicacion, $asunto, $descripcion){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Incidencia(idTecnico, idUbicacion, asunto, descripcion, estado) VALUES ('$idTecnico','$idUbicacion','$asunto','$descripcion','$estado')";
+        $sql = "INSERT INTO Incidencia(idTecnico, idUbicacion, asunto, descripcion) VALUES ($idTecnico,$idUbicacion,'$asunto','$descripcion')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();
@@ -59,7 +59,7 @@ class modelIncidencias{
     public static function getTecnicoMenosIncidencias(){
     $conexion = conexionBD::conectar();
     $sql = "SELECT u.id AS idTecnico, u.correo AS correo, u.nombre, COUNT(i.id) AS cantidad_incidencias
-    FROM usuarios u
+    FROM Usuarios u
     LEFT JOIN Incidencia i ON u.id = i.idTecnico AND i.estado != 'cerrado'
     WHERE u.id_rol = 3 AND u.activo = 1
     GROUP BY u.id

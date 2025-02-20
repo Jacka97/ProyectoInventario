@@ -32,19 +32,18 @@ switch ($method) {
         header("Content-Type: application/json; charset=UTF-8");
         $tecnico = modelIncidencias::getTecnicoMenosIncidencias(); //busco al técnico que se le va a asignar la incidencia
 
-        if (!empty($input) && isset($input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['estado'], $input['emailUsuario'] )) {
+        if (!empty($input) && isset($input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['emailUsuario'] )) {
 
             // Extraer datos del JSON recibido
             $idTecnico = $tecnico['idTecnico'];
             $idUbicacion = $input['idUbicacion'];
             $asunto = $input['asunto'];
             $descripcion = $input['descripcion'];
-            $estado = $input['estado'];
             $emailUsuario=$input['emailUsuario']; //recibe el email del usuario que crea la incidencia                 
 
 
             // Llamar a la función para insertar el ordenador
-            $result = modelIncidencias::altaIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion, $estado);
+            $result = modelIncidencias::altaIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion);
 
             if ($result) {
                 //si se crea la incidencia se informa por correo al técnico que la va a gestionar y al usuario que la creó
