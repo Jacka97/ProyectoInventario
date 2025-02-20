@@ -17,6 +17,7 @@ import { DispositivosRedModule } from './dispositivos-red/dispositivos-red.modul
 import { SoftwareModule } from './software/software.module';
 import { SoftwarePcModule } from './software-pc/software-pc.module';
 import { MatsUbiModule } from './mats-ubi/mats-ubi.module';
+import { IncidenciasModule } from './incidencias/incidencias.module';
 
 
 
@@ -42,8 +43,8 @@ import { MatsUbiModule } from './mats-ubi/mats-ubi.module';
     MaterialModule,
     DispositivosRedModule,
     SoftwareModule,
-    SoftwarePcModule,
-    MatsUbiModule
+    IncidenciasModule,
+    SoftwarePcModule
   ],
   providers: [],
   bootstrap: [AppComponent]

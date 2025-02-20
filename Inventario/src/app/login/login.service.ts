@@ -36,6 +36,12 @@ export class LoginService {
     sessionStorage.setItem('token', token); // Guarda el token
   }
 
+  saveEmail(correo:string): void {
+    sessionStorage.setItem('correo', correo); // Guarda el rol
+  }
+  getemailRole(): string {
+    return sessionStorage.getItem('correo') ?? '';
+}
   estaIdentificado(): boolean {
     return this.getToken() !== null; // Verifica si el token existe
   }
@@ -43,7 +49,8 @@ export class LoginService {
   salirAplicacion(): void {
     sessionStorage.removeItem('token'); // Elimina el token
     sessionStorage.removeItem('userRole'); // Elimina el rol
+    sessionStorage.removeItem('correo'); // Elimina el rol
   }
 
-  
+
 }
