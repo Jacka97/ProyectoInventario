@@ -23,6 +23,8 @@ import { ListaComponent as listadoSoftware } from './software/components/lista/l
 import { SoftwareComponent } from './software/components/software/software.component';
 import { SoftwarePcComponent } from './software-pc/components/software-pc/software-pc.component';
 import { ListaComponent as ListaSoftwarePC } from './software-pc/components/lista/lista.component';
+import { ListaComponentIncidencias } from './incidencias/components/lista/lista.component';
+import { IncidenciaComponent } from './incidencias/components/incidencia/incidencia.component';
 
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
@@ -47,6 +49,8 @@ const routes: Routes = [
   { path: 'software-pc/:tipo/:id', component: SoftwarePcComponent, canActivate: [loginGuard]},
   { path: 'entradas', component: EntradasComponent, canActivate: [loginGuard]},
   { path: 'salidas', component: SalidasComponent, canActivate: [loginGuard]},
+  { path: 'incidencia', component: ListaComponentIncidencias, canActivate: [loginGuard] },
+  { path: 'incidencia/:tipo/:id', component: IncidenciaComponent, canActivate: [loginGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];

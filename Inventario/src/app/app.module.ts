@@ -16,6 +16,7 @@ import { MaterialModule } from './material/material.module';
 import { DispositivosRedModule } from './dispositivos-red/dispositivos-red.module';
 import { SoftwareModule } from './software/software.module';
 import { SoftwarePcModule } from './software-pc/software-pc.module';
+import { IncidenciasModule } from './incidencias/incidencias.module';
 
 
 
@@ -41,7 +42,8 @@ import { SoftwarePcModule } from './software-pc/software-pc.module';
     MaterialModule,
     DispositivosRedModule,
     SoftwareModule,
-    SoftwarePcModule
+    SoftwarePcModule,
+    IncidenciasModule
   ],
   providers: [],
   bootstrap: [AppComponent]
