@@ -7,11 +7,11 @@ import { Incidencia } from './incidencia';
   providedIn: 'root'
 })
 export class IncidenciaService {
- // urlUBI='https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
- // urlMAR = 'https://uat-inventarios.proyectos-2daw.es/api/marcaControl.php';
- // urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/controlIncidencias.php';
- urlUBI='http://localhost/Proyectos_clase_PHP/ProyectoInventario-modelos/api/ubiControl.php';
- urlAPI="http://localhost/Proyectos_clase_PHP/ProyectoInventario-modelos/api/apiIncidencias.php";
+
+  urlUBI='https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
+  urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/incidenciasControl.php';
+// urlUBI='http://localhost/Proyectos_clase_PHP/ProyectoInventario-modelos/api/ubiControl.php';
+// urlAPI="http://localhost/Proyectos_clase_PHP/ProyectoInventario-modelos/api/apiIncidencias.php";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'applicantion/json'

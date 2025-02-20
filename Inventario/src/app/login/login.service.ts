@@ -36,6 +36,13 @@ export class LoginService {
     sessionStorage.setItem('token', token); // Guarda el token
   }
 
+  saveEmail(correo:string): void {
+    sessionStorage.setItem('correo', correo); // Guarda el rol
+  }
+  /*getemailRole(): number {
+    const role = sessionStorage.getItem('correo');
+    return role ? +role : 0; // Devuelve el rol como número o 0 si no existe
+  }*/
   estaIdentificado(): boolean {
     return this.getToken() !== null; // Verifica si el token existe
   }
@@ -43,7 +50,8 @@ export class LoginService {
   salirAplicacion(): void {
     sessionStorage.removeItem('token'); // Elimina el token
     sessionStorage.removeItem('userRole'); // Elimina el rol
+    sessionStorage.removeItem('correo'); // Elimina el rol
   }
 
-  
+
 }
