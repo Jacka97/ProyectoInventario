@@ -85,60 +85,57 @@ users: any;
         this.toastr.error('Error al obtener las ubicaciones');
       },
       complete: () => {
-        console.log('Operación completada - Ubicaciones cargadas');
+
       }
     });
   }
   
 
-  // 🔹 Obtiene los materiales de una ubicación específica
+  //  Obtiene los materiales de una ubicación específica
   // onUbicacionSeleccionada() {
   //   if (this.idSeleccionado) {
   //     this._noubisService.getMaterialesPorUbicacion(this.idSeleccionado).subscribe({
   //       next: (resultado) => {
-  //         console.log('📌 API Response:', resultado);
+  //         console.log(' API Response:', resultado);
   //         if (!resultado || resultado.length === 0) {
-  //           console.warn('⚠️ La API no devolvió datos.');
+  //           console.warn(' La API no devolvió datos.');
   //           this.toastr.warning('No hay datos disponibles para esta ubicación.');
   //         } else {
   //           this.listadoact = resultado;
   //         }
   //       },
   //       error: (error) => {
-  //         console.error('❌ Error al recibir datos:', error);
+  //         console.error(' Error al recibir datos:', error);
   //       }
   //     });
   //   }
   // }
   onUbicacionSeleccionada() {
+    this.listadoact = [];
     if (this.idSeleccionado === -1) {
       return;
     }
   
-    console.log('🔍 Solicitando datos para ID:', this.idSeleccionado);
+
   
     this._noubisService.getMaterialesPorUbicacion(this.idSeleccionado).subscribe({
       next: (resultado) => {
-        console.log('📌 Respuesta API:', resultado);
+        console.log(resultado);
   
         if (Array.isArray(resultado)) {
           setTimeout(() => {
-            this.listadoact = [...resultado]; // 🔹 Forzar la detección de cambios
-            this.reiniciarDataTable(); // 🔹 Reinicializar DataTables
+            this.listadoact = [...resultado]; //  Forzar la detección de cambios
+            this.reiniciarDataTable(); //  Reinicializar DataTables
           }, 0);
-  
-          console.log('✅ Datos guardados correctamente:', this.listadoact);
+
         } else {
-          console.error('❌ API no devolvió un array válido', resultado);
-          this.toastr.error('La API no devolvió datos correctos.');
+          this.toastr.error('No hay datos disponibles en esta ubicación.');
         }
       },
       error: (error) => {
-        console.error('❌ Error al recibir datos:', error);
         this.toastr.error('Error al obtener los datos.');
       },
       complete: () => {
-        console.log('✅ Operación completada.');
       }
     });
   }
@@ -169,10 +166,10 @@ users: any;
             this.toastr.success('Ubicación modificada con éxito');
             this.mostrarFormulario = false;
   
-            // 🔹 Actualizar la lista
+            //  Actualizar la lista
             location.reload();
   
-            // 🔹 Reinicializar DataTables
+            // Reinicializar DataTables
             this.reiniciarDataTable();
           } else {
             console.error('Error: No se pudo modificar la ubicación', resultado);
