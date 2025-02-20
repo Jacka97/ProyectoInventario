@@ -9,7 +9,9 @@
                     <div class="col-12 col-md-6">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" id="nombre" name="nombre" class="form-control"
-                            [(ngModel)]="softwareAct.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
+                            [(ngModel)]="softwareAct.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()" required #descModel="ngModel"
+                            [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"/>
+                        <span *ngIf="descModel.touched && descModel.invalid" class="text-danger">El campo es obligatorio</span>
                     </div>
                 </div>
                 <div class="my-3 text-center">
