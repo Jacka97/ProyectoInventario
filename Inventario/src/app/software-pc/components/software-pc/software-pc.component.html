@@ -17,14 +17,14 @@
                       required
                       [disabled]="tipo == 2">
                       <!--A traves del id por consulta en la BBDD me puedo traer el nombre del software-->
-                      <option value="NaN">Selecciona un software</option>
+                      <option disabled value="NaN">Selecciona un software</option>
                       <option *ngFor="let softwares of software" [value]="softwares.id">
                         {{ softwares.nombre }}
                       </option>
                     </select>
                 </div>
 
-                <div class="form-check form-switch"  *ngIf="tipo == 0">
+                <div class="form-check form-switch" *ngIf="tipo == 0">
                   <input 
                     class="form-check-input" 
                     type="checkbox" 
@@ -48,7 +48,7 @@
                     [(ngModel)]="softwarePcAct.idUbicacion"
                     (ngModelChange)="cambiado()"
                     required>
-                    <option value="NaN">Selecciona una ubicación</option>
+                    <option disabled value="NaN">Selecciona una ubicación</option>
                     <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
                       {{ ubicacion.nombre }}
                     </option>
@@ -75,7 +75,11 @@
                 
 
                 <div class="my-3 text-center">
-                    <input type="submit" class="btn btn-primary btn-lg me-3" value="{{ txtBtn }}">
+                  <input 
+                  type="submit" 
+                  class="btn btn-primary btn-lg me-3" 
+                  value="{{ txtBtn }}" 
+                  [disabled]="esInvalido()">
                     <button name="cancelar" class="btn btn-secondary btn-lg me-3" (click)="cancelar($event)">Cancelar</button>
                 </div>
             </form>

@@ -87,7 +87,6 @@ export class SoftwarePcComponent {
     this.traeSoftware();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
-    this.softwarePcAct.idUbicacion = -1;
     if (this.tipo == 1) {
       this.titulo = 'Modificar Asignacion (' + this.id + ')';
       this.traeSoftwarePc(this.id);
@@ -248,6 +247,14 @@ export class SoftwarePcComponent {
       this.toastr.error('El formulario tiene campos invalidos');
     }
   }
+
+  esInvalido(): boolean {
+    return (
+      Number.isNaN(this.softwarePcAct.idSoftware)|| 
+      (this.enAula && Number.isNaN(this.softwarePcAct.idUbicacion)) || 
+      (!this.enAula && Number.isNaN(this.softwarePcAct.idPC))
+    );
+  }  
 
   cambiado(): void {
     this.formularioCambiado = true;
