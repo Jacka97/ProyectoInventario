@@ -77,11 +77,10 @@ users: any;
           this.ubis = resultado;
           //this.idSeleccionado = -1; // Valor inicial para el select
         } else {
-          console.error('Error: la respuesta no es un array válido', resultado);
+          // console.error('Error: la respuesta no es un array válido', resultado);
         }
       },
       error: (error) => {
-        console.error('Error al recibir datos:', error);
         this.toastr.error('Error al obtener las ubicaciones');
       },
       complete: () => {
@@ -216,7 +215,7 @@ users: any;
       
       // Crear un libro de Excel y añadir la hoja
       const workbook: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de Perifericos');
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de Materiales');
     
       // Guardar el archivo
       const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });

@@ -18,18 +18,18 @@ export class MatsUbiService {
 
   constructor(private http: HttpClient) {}
 
-  // 🔹 Obtiene los materiales de una ubicación por ID
+  //  Obtiene los materiales de una ubicación por ID
   getMaterialesPorUbicacion(idUbicacion: number): Observable<any> {
     return this.http.get<any>(`${this.urlAPI}?idUbicacion=${idUbicacion}`);
   }
   
 
-  // 🔹 Modifica la ubicación de todos los materiales en una ubicación
+  //  Modifica la ubicación de todos los materiales en una ubicación
   updateUbicacionMateriales(ubis: NOUbi): Observable<any> {
     return this.http.put<any>(this.urlAPI, JSON.stringify(ubis), this.httpOptions);
   }
 
-  // 🔹 Obtiene todas las ubicaciones disponibles
+  //  Obtiene todas las ubicaciones disponibles
   getAllUbis(): Observable<any> {
     return this.http.get<any>(this.urlUBI);
   }

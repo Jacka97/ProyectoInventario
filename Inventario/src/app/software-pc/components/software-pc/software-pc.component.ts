@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm, NgModel } from '@angular/forms';
-;
+
+import { Ubicacion } from '../../ubicacion';
 import { Software } from '../../software';
 import { SoftwarePcService } from '../../software-pc.service';
 import { SoftwarePC } from '../../softwarePC';
@@ -23,11 +24,12 @@ export class SoftwarePcComponent {
 
   public softwarePcAct : SoftwarePC = {
     id : 0,
-    idPC : 0,
-    idSoftware : 0,
+    idPC : NaN,
+    idSoftware : NaN,
     fecha : '',
     softnombre : '',
-    pcnombre : ''
+    pcnombre : '',
+    idUbicacion : NaN,
   }
 
   public softwareAct: Software = {
@@ -58,23 +60,34 @@ export class SoftwarePcComponent {
     precio: 0
   }
 
+  public ubicacionact: Ubicacion = { id: 0, nombre: '' };
+
   public titulo: string = 'Asignar un software a un PC';
   public txtBtn: string = 'Guardar';
   public formularioCambiado: boolean = false;
   public tipo: number = 0;
   public id: number = 0;
   public ordenadores : Ordenadores[] = [];
+  public ubicaciones : Ubicacion[] = [];
   public software : Software[] = [];
   public softwarePc : SoftwarePC[] = [];
+  public enAula: boolean = false;
+
+  toggleSwitch() {
+    this.enAula = !this.enAula;
+    console.log("Estado actualizado:", this.enAula);
+  }
 
   constructor(private _softwarePcService: SoftwarePcService, private _aroute: ActivatedRoute, private router: Router, private toastr: ToastrService) { }
 
   //Cuando inicias la pagina a la que entre se trae los ordenadores y los softwares
   ngOnInit() {
     this.traerOrdenadores();
+    this.traeUbicaciones();
     this.traeSoftware();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
+    this.softwarePcAct.idUbicacion = -1;
     if (this.tipo == 1) {
       this.titulo = 'Modificar Asignacion (' + this.id + ')';
       this.traeSoftwarePc(this.id);
@@ -141,12 +154,42 @@ export class SoftwarePcComponent {
     });
   }
 
+  // Llamada al servicio para obtener las ubicaciones desde la API
+  private traeUbicaciones() {
+    this._softwarePcService.obtengoUbicacionesApi().subscribe({
+      next: (resultado) => {        
+        // Si se recibe un resultado válido, se asigna a la variable ubicaciones
+        if (resultado) {
+          this.ubicaciones = resultado;
+        } else {
+          // Si hay un error en los datos recibidos, se muestra en la consola
+          console.error('Error al recibir datos:', resultado.error);
+        }
+      },
+      error: (error) => {
+        // Si ocurre un error en la petición, se muestra en la consola
+        console.error('Error al recibir datos:', error);
+      },
+      complete: () => {
+        // Mensaje de confirmación cuando la operación ha finalizado correctamente
+        console.log('Operación completada.');
+      },
+    });
+  }
+
   //Controlamos si los datos del formulario se guardan, se modifican o se borran en funcion del tipo que sean declarado mas arriba
   guardaSoftwarePc(): void {
     if (this.softwarePcForm?.valid || this.tipo == 2) {
       this.formularioCambiado = false;
       
       console.log(this.softwarePcAct);
+
+      if(this.enAula){
+        this.softwarePcAct.idPC = 0;
+      }else{
+        this.softwarePcAct.idUbicacion = 0;
+      }
+
       if (this.tipo == 0) {
         this._softwarePcService.guardaSoftwarePC(this.softwarePcAct).subscribe({
           next: (resultado) => {
