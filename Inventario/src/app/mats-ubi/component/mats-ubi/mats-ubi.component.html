@@ -10,9 +10,12 @@
               <div class="mb-3">
                   <label for="ubicacionSelect" class="form-label">Selecciona una ubicación:</label>
                   <select id="ubicacionSelect" class="form-control" [(ngModel)]="idSeleccionado" (change)="onUbicacionSeleccionada()">
-                      <option value="-1" disabled>Selecciona una ubicación</option>
-                      <option *ngFor="let ubi of ubis" [value]="ubi.id">{{ ubi.nombre }}</option>
-                  </select>
+                    <option value="-1" disabled>Selecciona una ubicación</option>
+                    <option *ngFor="let ubi of ubis" [value]="ubi.id">{{ ubi.nombre }}</option>
+                </select>
+                
+                <p>📌 ID Seleccionado: {{ idSeleccionado }}</p>
+                
               </div>
 
               <div *ngIf="listadoact.length > 0">
@@ -48,7 +51,8 @@
 
                       <div class="col-12">
                           <div class="table-responsive mt-3">
-                              <table id="materiales" datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered">
+                            <table id="materiales" datatable [dtOptions]="dtOptions" class="table table-striped table-hover table-bordered">
+
                                   <thead>
                                       <tr>
                                           <th scope="col">Tipo</th>

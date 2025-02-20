@@ -1,4 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+
 import { NgForm } from '@angular/forms';
 import { NOUbi } from '../../ubisO&N';
 import { Ubicacion } from '../../ubicacion';
@@ -11,6 +13,7 @@ import { Config } from 'datatables.net';
 import { Subject } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mats-ubi',
@@ -19,6 +22,10 @@ import { saveAs } from 'file-saver';
 })
 export class MatsUbiComponent {
   @ViewChild('NOUbis', { static: true }) NOUbis: NgForm | undefined;
+  @ViewChild(DataTableDirective, { static: false })
+dtElement!: DataTableDirective;
+dtTrigger: Subject<any> = new Subject();
+
 
   public noubisact: NOUbi = { idUbicacionActual: 0, idUbicacionNueva: 0 };
   public ubis: Ubicacion[] = [];
@@ -29,14 +36,17 @@ export class MatsUbiComponent {
 
 users: any;
   dtOptions: Config = {}; // Cambia de Config a DataTables.Settings
-  dtTrigger: Subject<any> = new Subject();
   public mostrarFormulario: boolean = false;
 
-  constructor(private _noubisService: MatsUbiService, private toastr: ToastrService) {}
+  constructor(private _noubisService: MatsUbiService, private toastr: ToastrService, private _route: Router, private _aroute: ActivatedRoute,) {}
 
   ngOnInit() {
-    this.traerUbicaciones();
-    this.onUbicacionSeleccionada();
+
+      this.traerUbicaciones();
+      this.onUbicacionSeleccionada();
+      this.dtTrigger.next(null);
+
+    
     this.dtOptions = {
       pagingType: 'full_numbers',
       language: {
@@ -102,7 +112,7 @@ users: any;
   // }
   onUbicacionSeleccionada() {
     if (this.idSeleccionado === -1) {
-      return; // Salir de la función si idSeleccionado es -1
+      return;
     }
   
     console.log('🔍 Solicitando datos para ID:', this.idSeleccionado);
@@ -112,7 +122,11 @@ users: any;
         console.log('📌 Respuesta API:', resultado);
   
         if (Array.isArray(resultado)) {
-          this.listadoact = resultado;
+          setTimeout(() => {
+            this.listadoact = [...resultado]; // 🔹 Forzar la detección de cambios
+            this.reiniciarDataTable(); // 🔹 Reinicializar DataTables
+          }, 0);
+  
           console.log('✅ Datos guardados correctamente:', this.listadoact);
         } else {
           console.error('❌ API no devolvió un array válido', resultado);
@@ -121,25 +135,30 @@ users: any;
       },
       error: (error) => {
         console.error('❌ Error al recibir datos:', error);
-        if (error.status === 500) {
-          console.error('🔥 Error interno en el servidor');
-          this.toastr.error('Error interno en la API.');
-        } else {
-          this.toastr.error('Error al obtener los datos.');
-        }
+        this.toastr.error('Error al obtener los datos.');
       },
       complete: () => {
         console.log('✅ Operación completada.');
       }
     });
   }
+  reiniciarDataTable() {
+    if (this.dtElement) {
+      this.dtElement.dtInstance.then((dtInstance: any) => {
+        dtInstance.destroy();
+        this.dtTrigger.next(null);
+      });
+    } else {
+      this.dtTrigger.next(null);
+    }
+  }
   
   
   
   
   
-
-  // 🔹 Modifica la ubicación de los materiales
+  
+  
   modificarUbicacion() {
     this.noubisact.idUbicacionActual = this.idSeleccionado;
   
@@ -149,7 +168,12 @@ users: any;
           if (resultado) {
             this.toastr.success('Ubicación modificada con éxito');
             this.mostrarFormulario = false;
-            this.onUbicacionSeleccionada(); // Recargar lista de materiales
+  
+            // 🔹 Actualizar la lista
+            location.reload();
+  
+            // 🔹 Reinicializar DataTables
+            this.reiniciarDataTable();
           } else {
             console.error('Error: No se pudo modificar la ubicación', resultado);
           }
@@ -166,6 +190,12 @@ users: any;
       this.toastr.warning('Seleccione una nueva ubicación válida.');
     }
   }
+  
+  
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+  
   descargarPDF() {
     const doc = new jsPDF(); // Crear instancia de jsPDF
     // Agregar título o texto opcional
