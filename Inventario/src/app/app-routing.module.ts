@@ -25,6 +25,7 @@ import { SoftwarePcComponent } from './software-pc/components/software-pc/softwa
 import { ListaComponent as ListaSoftwarePC } from './software-pc/components/lista/lista.component';
 import { ListaComponentIncidencias } from './incidencias/components/lista/lista.component';
 import { IncidenciaComponent } from './incidencias/components/incidencia/incidencia.component';
+import { MatsUbiComponent } from './mats-ubi/component/mats-ubi/mats-ubi.component';
 
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'ubicaciones', component: ListaUbicaciones , canActivate: [loginGuard] },
   { path: 'ubicaciones/:tipo/:id', component: UbicacionComponent, canActivate: [loginGuard] },
   { path: 'materialesCambioUbicacion', component: MaterialComponent, canActivate: [loginGuard]},
+  { path: 'mats-ubi', component: MatsUbiComponent, canActivate: [loginGuard]},
   { path: 'software', component: listadoSoftware, canActivate: [loginGuard] },
   { path: 'software/:tipo/:id', component: SoftwareComponent, canActivate: [loginGuard]},
   { path: 'software-pc', component: ListaSoftwarePC, canActivate: [loginGuard] },
