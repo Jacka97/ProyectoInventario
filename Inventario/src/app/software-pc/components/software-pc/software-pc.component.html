@@ -47,7 +47,7 @@
                     [(ngModel)]="softwarePcAct.idUbicacion"
                     (ngModelChange)="cambiado()"
                     required>
-                    <option value="">Selecciona una ubicación</option>
+                    <option value="-1">Selecciona una ubicación</option>
                     <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
                       {{ ubicacion.nombre }}
                     </option>

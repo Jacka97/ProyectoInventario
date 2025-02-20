@@ -87,6 +87,7 @@ export class SoftwarePcComponent {
     this.traeSoftware();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
+    this.softwarePcAct.idUbicacion = -1;
     if (this.tipo == 1) {
       this.titulo = 'Modificar Asignacion (' + this.id + ')';
       this.traeSoftwarePc(this.id);
