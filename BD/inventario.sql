@@ -468,12 +468,12 @@ CREATE TABLE Incidencia (
 ya que necesitamos una respuesta para mostrar al cliente de si la incidencia puede crearse o no,
 para ello lo que se hara es una consulta del tecnico con menos incidencias
 
-SELECT count(Incidencia.idTecnico) as cantidad_incidencias, Usuarios.nombre , Usuarios.id FROM `Incidencia` 
-left join Usuarios on Incidencia.idTecnico = Usuarios.id 
-WHERE Incidencia.estado != 'resuelto' and Incidencia.estado != 'cerrada' 
-group by Incidencia.idTecnico 
-ORDER BY cantidad_incidencias ASC 
-LIMIT 1
+SELECT u.id AS idTecnico, u.correo AS correo, u.nombre, COUNT(i.id) AS cantidad_incidencias FROM usuarios u
+    LEFT JOIN Incidencia i ON u.id = i.idTecnico AND i.estado != 'cerrado'
+    WHERE u.id_rol = 3 AND u.activo = 1
+    GROUP BY u.id
+    ORDER BY cantidad_incidencias ASC, u.id ASC
+    LIMIT 1;
 
 De esta forma solo permitira crear incidencias si existe algun tecnico disponible (creado y activo)
 
