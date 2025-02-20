@@ -1,0 +1,95 @@
+<div
+  class="container d-flex align-items-center justify-content-center contenedor-formulario"
+>
+  <div class="col-10 col-md-8 card text-center my-3">
+    <div class="card-header titulos">Incidencias - {{ titulo }}</div>
+    <div class="card-body">
+      <h5 class="card-title">Introduce los datos de la incidencia</h5>
+      <form
+        #incidenciaForm="ngForm"
+        class="mt-4 text-start d-flex flex-wrap gap-3 justify-content-center"
+        (ngSubmit)="guardaIncidencia()"
+        novalidate
+      >
+        <div class="col-12 col-md-3">
+          <label for="idUbicacion" class="form-label">Ubicacion:</label>
+          <select
+            id="idUbicacion"
+            name="idUbicacion"
+            class="form-control"
+            [(ngModel)]="incidenciaAct.idUbicacion"
+            (ngModelChange)="cambiado()"
+            required
+            [disabled]="tipo == 2"
+          >
+            <option value="" disabled>Selecciona una ubicacion</option>
+            <option *ngFor="let ubi of ubis" [value]="ubi.id">
+              {{ ubi.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-3">
+          <label for="asunto" class="form-label">Asunto</label>
+          <input
+            type="text"
+            id="asunto"
+            name="asunto"
+            class="form-control"
+            [(ngModel)]="incidenciaAct.asunto"
+            [readonly]="tipo == 2"
+            (ngModelChange)="cambiado()"
+            required
+            [disabled]="tipo == 2"
+          />
+        </div>
+
+        <div class="col-12 col-md-3">
+          <label for="descripcion" class="form-label">Detalles</label>
+          <input
+            type="text"
+            id="descripcion"
+            name="descripcion"
+            class="form-control"
+            [(ngModel)]="incidenciaAct.descripcion"
+            [readonly]="tipo == 2"
+            (ngModelChange)="cambiado()"
+            required
+          />
+        </div>
+
+        <!--El email lo cogeremos del usuario que está autenticado-->
+        <div class="col-12 col-md-3">
+          <label for="emailUsuario" class="form-label">Email Usuario:</label>
+        <input
+          type="text"
+          id="emailUsuario"
+          name="emailUsuario"
+          class="form-control"
+          [(ngModel)]="incidenciaAct.emailUsuario"
+          [readonly]="true"
+          value="{{emailUser}}"
+          placeholder="{{emailUser}}"
+        />
+      </div>
+        <div class="col-12">
+          <div class="my-3 text-center">
+            <input
+              type="submit"
+              class="btn btn-primary btn-lg me-3"
+              value="{{ txtBtn }}"
+            />
+            <button
+              name="cancelar"
+              class="btn btn-secondary btn-lg me-3"
+              [routerLink]="['/incidencia']"
+              (click)="cancelar($event)"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
