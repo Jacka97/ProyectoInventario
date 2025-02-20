@@ -2,7 +2,7 @@
 include '../modelo/modelIncidencias.php';
 include '../modelo/enviarEmail.php';
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE");
+header("Access-Control-Allow-Methods: GET, POST, PATCH, DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 
@@ -40,8 +40,7 @@ switch ($method) {
             $asunto = $input['asunto'];
             $descripcion = $input['descripcion'];
             $emailUsuario=$input['emailUsuario']; //recibe el email del usuario que crea la incidencia 
-            $comentarioTecnico = $input['comentarioTecnico'];
-            $emailEnviado = $input['emailEnviado'];
+            
 
 
 
@@ -50,7 +49,7 @@ switch ($method) {
 
             if ($result) {
                 //si se crea la incidencia se informa por correo al técnico que la va a gestionar y al usuario que la creó
-                //$enviadoEmail=enviarEmail::enviarCorreo( $tecnico['correo'],$emailUsuario,$asunto,$incidencia);
+                //$enviadoEmail=enviarEmail::enviarCorreo( $tecnico['correo'],$emailUsuario,$asunto,$descripcion);
                 echo json_encode(["id" => $result]);
             } else {
                 echo json_encode(["error" => "No se pudo crear la incidencia"]);
@@ -60,33 +59,36 @@ switch ($method) {
         }
         break;
 
-    case 'PUT':
-        header("Content-Type: application/json; charset=UTF-8");
+    // case 'PUT':
+    //     header("Content-Type: application/json; charset=UTF-8");
 
-        if (!empty($input) && isset($input['id'], $input['idTecnico'], $input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['estado'], $input['comentarioTecnico'])) {
+    //     if (!empty($input) && isset($input['id'], $input['idTecnico'], $input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['estado'], $input['comentarioTecnico'], $input['emailUsuario'])) {
 
-            // Extraer y sanitizar datos
-            $id = (int) $input['id'];
-            $idTecnico = $input['idTecnico'];
-            $idUbicacion = $input['idUbicacion'];
-            $asunto = $input['asunto'];
-            $descripcion = $input['descripcion'];
-            $estado = $input['estado'];
-            $comentarioTecnico = $input['comentarioTecnico'];
+    //         // Extraer y sanitizar datos
+    //         $id = (int) $input['id'];
+    //         $idTecnico = $input['idTecnico'];
+    //         $idUbicacion = $input['idUbicacion'];
+    //         $asunto = $input['asunto'];
+    //         $descripcion = $input['descripcion'];
+    //         $estado = $input['estado'];
+    //         $comentarioTecnico = $input['comentarioTecnico'];
+    //         $emailUsuario=$input['emailUsuario'];
             
-            // Llamar a la función de actualización
-            $result = modelIncidencias::modificarIncidencia($id, $idTecnico, $idUbicacion, $asunto, $descripcion, $estado, $comentarioTecnico);
+    //         // Llamar a la función de actualización
+    //         $result = modelIncidencias::modificarIncidencia($id, $idTecnico, $idUbicacion, $asunto, $descripcion, $estado);
 
-            // Verificar el resultado
-            if ($result) {
-                echo json_encode(["success" => true]);
-            } else {
-                echo json_encode(["error" => "No se pudo actualizar la incidencia"]);
-            }
-        } else {
-            echo json_encode(["error" => "Datos inválidos o incompletos"]);
-        }
-        break;
+    //         // Verificar el resultado
+    //         if ($result) {
+    //             //si se modifica la incidencia, se manda el correo al
+    //             //$enviadoEmail=enviarEmail::enviarCorreoUsuario($emailUsuario,$asunto,$incidencia);
+    //             echo json_encode(["success" => true]);
+    //         } else {
+    //             echo json_encode(["error" => "No se pudo actualizar la incidencia"]);
+    //         }
+    //     } else {
+    //         echo json_encode(["error" => "Datos inválidos o incompletos"]);
+    //     }
+    //     break;
 
     case 'PATCH':
         header("Content-Type: application/json; charset=UTF-8");
@@ -94,12 +96,19 @@ switch ($method) {
             // Actualizar una incidencia por ID.
             $id = (int) $_GET['id'];
             $input = json_decode(file_get_contents('php://input'), true);
-
+            $emailUsuario = modelIncidencias::correoConsulta($id);
             // Extraer y sanitizar datos
 
             $estado = $input['estado'];
-            $result = modelIncidencias::actualizarEstado($id, $estado);
+            $comentarioTecnico = $input['comentarioTecnico'];
+            $result = modelIncidencias::actualizarEstado($id, $estado, $comentarioTecnico);
+            if($result){
+              
+            //$enviadoEmail=enviarEmail::enviarCorreoUsuario($emailUsuario,$asunto,$descripcion);
             echo json_encode(["success" => $result]);
+            }else{
+                echo json_encode(["error" => "No se pudo actualizar el estado de la incidencia"]);
+            }
         } else {
             echo json_encode(["error" => "ID no proporcionado"]);
         }

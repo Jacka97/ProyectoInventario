@@ -24,25 +24,32 @@ class modelIncidencias{
         $sql = "INSERT INTO Incidencia(idTecnico, idUbicacion, asunto, descripcion) VALUES ($idTecnico,$idUbicacion,'$asunto','$descripcion')";
         $conexion->query($sql);
         return $conexion->insert_id;
-        $conexion->close();
-        
+        $conexion->close();   
     }
-    public static function modificarIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion, $estado, $comentarioTecnico){
-        $conexion = conexionBD::conectar();
-        $sql = "UPDATE Incidencia SET idTecnico = $idTecnico, comentarioTecnico = $comentarioTecnico idUbicacion = $idUbicacion, asunto = '$asunto', descripcion = '$descripcion', estado = '$estado'";
-        $conexion->query($sql);
-        return $conexion->affected_rows;
-        $conexion->close();
+    // public static function modificarIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion, $estado, $comentarioTecnico){
+    //     $conexion = conexionBD::conectar();
+    //     $sql = "UPDATE Incidencia SET idTecnico = $idTecnico, comentarioTecnico = $comentarioTecnico idUbicacion = $idUbicacion, asunto = '$asunto', descripcion = '$descripcion', estado = '$estado'";
+    //     $conexion->query($sql);
+    //     return $conexion->affected_rows;
+    //     $conexion->close();
         
-    }
-    public static function actualizarEstado($id, $estado){
+    // }
+    public static function actualizarEstado($id, $estado, $comentarioTecnico){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Incidencia SET estado = '$estado' WHERE id = $id";
+        $sql = "UPDATE Incidencia SET estado = '$estado', comentarioTecnico = '$comentarioTecnico' WHERE id = $id";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
         
  
+    }
+    public static function correoConsulta($id){
+        $conexion = conexionBD::conectar();
+        //select de las incidencias para obtener el correo que creo dicha indicencia
+        $sql = "SELECT emailEnviado FROM Incidencia WHERE id = $id";
+        $result = $conexion->query($sql);
+        $conexion->close();
+        return $result->fetch_assoc()['emailEnviado'];
     }
    
     public static function eliminarIncidencia($id){
