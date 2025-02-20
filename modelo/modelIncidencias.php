@@ -6,7 +6,7 @@ class modelIncidencias{
 
     public static function getAllIncidencias(){
         $conexion = conexionBD::conectar();
-        $sql = "SELECT Incidencia.id, Incidencia.idTecnico, Incidencia.idUbicacion, Incidencia.asunto, Incidencia.descripcion, Incidencia.estado, Incidencia.fechaCreacion, Incidencia.fechaCierre,Ubicaciones.nombre as nombreUbicacion FROM Incidencia Inner join Ubicaciones on Incidencia.idUbicacion = Ubicaciones.id;";
+        $sql = "SELECT Incidencia.id, Incidencia.comentarioTecnico, Incidencia.emailEnviado, Incidencia.idTecnico, Incidencia.idUbicacion, Incidencia.asunto, Incidencia.descripcion, Incidencia.estado, Incidencia.fechaCreacion, Incidencia.fechaCierre,Ubicaciones.nombre as nombreUbicacion FROM Incidencia Inner join Ubicaciones on Incidencia.idUbicacion = Ubicaciones.id;";
         $result = $conexion->query($sql);
         $conexion->close();
         return $result->fetch_all(MYSQLI_ASSOC);   
