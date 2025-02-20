@@ -26,6 +26,7 @@ import { ListaComponent as ListaSoftwarePC } from './software-pc/components/list
 import { ListaComponentIncidencias } from './incidencias/components/lista/lista.component';
 import { IncidenciaComponent } from './incidencias/components/incidencia/incidencia.component';
 import { MatsUbiComponent } from './mats-ubi/component/mats-ubi/mats-ubi.component';
+import { ModificarEstadoComponent } from './incidencias/components/modificar-estado/modificar-estado.component';
 
 const routes: Routes = [
   { path : 'login', component: LoginComponent },
@@ -53,6 +54,7 @@ const routes: Routes = [
   { path: 'salidas', component: SalidasComponent, canActivate: [loginGuard]},
   { path: 'incidencia', component: ListaComponentIncidencias, canActivate: [loginGuard] },
   { path: 'incidencia/:tipo/:id', component: IncidenciaComponent, canActivate: [loginGuard]},
+  { path: 'modificaincidencia/:tipo/:id', component: ModificarEstadoComponent, canActivate: [loginGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];
