@@ -23,7 +23,7 @@
                     </select>
                 </div>
 
-                <div class="form-check form-switch">
+                <div class="form-check form-switch"  *ngIf="tipo == 0">
                   <input 
                     class="form-check-input" 
                     type="checkbox" 
@@ -33,12 +33,12 @@
                     (change)="enAula = !enAula">
                     
                   <label class="form-check-label" for="flexSwitchCheckChecked">
-                    {{ enAula ? "aula" : "ordenador" }}
+                    {{ enAula ? " instalar en los ordenadores de un aula " : " instalar en un ordenador " }}
                   </label>
                 </div>
                 
                 <!-- Si el switch está activado (enAula = true), muestra el desplegable de ubicaciones -->
-                <div class="row mb-3" *ngIf="enAula">
+                <div class="row mb-3" *ngIf="enAula && tipo == 0">
                   <label for="idUbicacion" class="form-label">Ubicación:</label>
                   <select
                     id="idUbicacion"
@@ -46,8 +46,7 @@
                     class="form-control"
                     [(ngModel)]="softwarePcAct.idUbicacion"
                     (ngModelChange)="cambiado()"
-                    required
-                    [disabled]="tipo == 2">
+                    required>
                     <option value="">Selecciona una ubicación</option>
                     <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
                       {{ ubicacion.nombre }}
