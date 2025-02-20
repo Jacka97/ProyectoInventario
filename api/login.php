@@ -25,7 +25,7 @@ if ($method === 'POST') {
         //forzar correo como string
         $correo = (string) $correo;
         $tipo = consultaUsu::getRolByCorreo($correo);
-        echo json_encode(["success" => true, "message" => "Login exitoso", "Rol" => $tipo]);
+        echo json_encode(["success" => true, "message" => "Login exitoso", "Rol" => $tipo, "correo" => $correo]);
     } else {
         echo json_encode(["success" => false, "message" => "Correo o contraseña incorrectos"]);
     }
