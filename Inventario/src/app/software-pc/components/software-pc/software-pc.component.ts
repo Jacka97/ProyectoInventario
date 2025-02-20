@@ -24,12 +24,12 @@ export class SoftwarePcComponent {
 
   public softwarePcAct : SoftwarePC = {
     id : 0,
-    idPC : 0,
-    idSoftware : 0,
+    idPC : NaN,
+    idSoftware : NaN,
     fecha : '',
     softnombre : '',
     pcnombre : '',
-    idUbicacion : 0,
+    idUbicacion : NaN,
   }
 
   public softwareAct: Software = {

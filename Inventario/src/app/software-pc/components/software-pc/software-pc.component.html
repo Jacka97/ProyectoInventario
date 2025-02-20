@@ -17,6 +17,7 @@
                       required
                       [disabled]="tipo == 2">
                       <!--A traves del id por consulta en la BBDD me puedo traer el nombre del software-->
+                      <option value="NaN">Selecciona un software</option>
                       <option *ngFor="let softwares of software" [value]="softwares.id">
                         {{ softwares.nombre }}
                       </option>
@@ -47,7 +48,7 @@
                     [(ngModel)]="softwarePcAct.idUbicacion"
                     (ngModelChange)="cambiado()"
                     required>
-                    <option value="-1">Selecciona una ubicación</option>
+                    <option value="NaN">Selecciona una ubicación</option>
                     <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
                       {{ ubicacion.nombre }}
                     </option>
@@ -65,7 +66,7 @@
                     (ngModelChange)="cambiado()"
                     required
                     [disabled]="tipo == 2">
-                    <option value="">Selecciona un ordenador</option>
+                    <option value="NaN">Selecciona un ordenador</option>
                     <option *ngFor="let ordenador of ordenadores" [value]="ordenador.id">
                       {{ ordenador.ordenador_nombre }}
                     </option>
