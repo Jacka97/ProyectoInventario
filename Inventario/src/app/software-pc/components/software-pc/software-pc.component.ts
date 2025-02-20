@@ -89,6 +89,7 @@ export class SoftwarePcComponent {
     this.id = +this._aroute.snapshot.params['id'];
     if (this.tipo == 1) {
       this.titulo = 'Modificar Asignacion (' + this.id + ')';
+      this.txtBtn = 'Modificar';
       this.traeSoftwarePc(this.id);
     } else if (this.tipo == 2) {
       this.titulo = 'Borrar Asignacion (' + this.id + ')';
