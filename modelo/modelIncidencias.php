@@ -27,9 +27,9 @@ class modelIncidencias{
         $conexion->close();
         
     }
-    public static function modificarIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion, $estado, $EmailEnviado){
+    public static function modificarIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion, $estado){
         $conexion = conexionBD::conectar();
-        $sql = "UPDATE Incidencia SET idTecnico = '$idTecnico', idUbicacion = '$idUbicacion', asunto = '$asunto', descripcion = '$descripcion', estado = '$estado'";
+        $sql = "UPDATE Incidencia SET idTecnico = $idTecnico, idUbicacion = $idUbicacion, asunto = '$asunto', descripcion = '$descripcion', estado = '$estado'";
         $conexion->query($sql);
         return $conexion->affected_rows;
         $conexion->close();
