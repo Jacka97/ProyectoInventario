@@ -25,62 +25,63 @@ switch ($method) {
         break;
 
     case 'POST':
-        header("Content-Type: application/json; charset=UTF-8");
         if (!empty($input)) {
-            // Crear un nuevo producto.
+            // Obtener los datos
             $nombre = isset($input['nombre']) ? $input['nombre'] : null;
+            $numeroSerie = isset($input['numeroSerie']) ? $input['numeroSerie'] : null;
             $ordenador_id = isset($input['ordenador_id']) ? (int) $input['ordenador_id'] : null;
             $marca_id = isset($input['marca_id']) ? (int) $input['marca_id'] : null;
-            if ($input['ordenador_id'] == "-1") {
-                $ordenador_id = 'null';
-            } else {
-                $ordenador_id = (int) $input['ordenador_id'];
-            }
-            $numeroSerie = isset($input['numeroSerie']) ? $input['numeroSerie'] : null;
             $idUbicacion = isset($input['idUbicacion']) ? (int) $input['idUbicacion'] : null;
             $precio = isset($input['precio']) ? (float) $input['precio'] : null;
 
+            // Manejar el caso especial de ordenador_id = -1
+            if ($ordenador_id === -1) {
+                $ordenador_id = null;
+            }
+
+            
+
+            // Insertar en la base de datos
             $result = consultaPeriferico::insertarPeriferico($nombre, $numeroSerie, $ordenador_id, $marca_id, $idUbicacion, $precio);
-            echo json_encode(["id" => $result]);
+            
+            if ($result > 0) {
+                echo json_encode(["success" => true, "id" => $result]);
+            } else {
+                echo json_encode(["error" => "Error al insertar el periférico"]);
+            }
         } else {
             echo json_encode(["error" => "Datos inválidos"]);
         }
         break;
-        // $nombre, $ordenador_id, $marca,  $precio, $fechaCompra
 
     case 'PUT':
-        header("Content-Type: application/json; charset=UTF-8");
-
-        // Verificar que el JSON se haya recibido correctamente
         if (!empty($input) && isset($_GET['id'])) {
-            $id = (int) $_GET['id']; // ID desde el JSON
+            $id = (int) $_GET['id']; // Obtener ID desde la URL
             $nombre = isset($input['nombre']) ? $input['nombre'] : null;
+            $numeroSerie = isset($input['numeroSerie']) ? $input['numeroSerie'] : null;
             $ordenador_id = isset($input['ordenador_id']) ? (int) $input['ordenador_id'] : null;
             $marca_id = isset($input['marca_id']) ? (int) $input['marca_id'] : null;
-            $numeroSerie = isset($input['numeroSerie']);
-            if ($input['ordenador_id'] == "-1") {
-                $ordenador_id = 'null';
-            } else {
-                $ordenador_id = (int) $input['ordenador_id'];
-            }
-
             $idUbicacion = isset($input['idUbicacion']) ? (int) $input['idUbicacion'] : null;
             $precio = isset($input['precio']) ? (float) $input['precio'] : null;
 
-            // Validar que el ID sea válido
+            // Manejar el caso especial de ordenador_id = -1
+            if ($ordenador_id === -1) {
+                $ordenador_id = null;
+            }
+
+            // Validar ID
             if ($id <= 0) {
                 echo json_encode(["error" => "ID inválido"]);
                 exit();
             }
 
             // Llamar a la función para actualizar
-            $result = consultaPeriferico::actualizarPeriferico($id, $numeroSerie, $nombre, $ordenador_id, $marca_id, $idUbicacion, $precio);
+            $result = consultaPeriferico::actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $idUbicacion, $numeroSerie, $precio);
 
-            // Verificar si la actualización fue exitosa
-            if ($result) {
+            if ($result > 0) {
                 echo json_encode(["success" => true, "message" => "Periférico actualizado correctamente"]);
             } else {
-                echo json_encode(["error" => "Error al actualizar el periférico", "data" => $result]);
+                echo json_encode(["error" => "No se realizaron cambios o hubo un error", "data" => $result]);
             }
         } else {
             echo json_encode(["error" => "Datos inválidos o incompletos"]);

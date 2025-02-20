@@ -46,10 +46,13 @@ LEFT JOIN
     
     public static function insertarPeriferico($nombre, $numeroSerie, $ordenador_id, $marca, $idUbicacion, $precio){
         $conexion = conexionBD::conectar();
-       
+        if($ordenador_id === null){
+            $ordenador_id = "NULL";
+        }
         $sql = "INSERT INTO Perifericos (nombre, numeroSerie, ordenador_id, marca_id, idUbicacion, precio) VALUES ('$nombre', '$numeroSerie', $ordenador_id,'$marca', '$idUbicacion', '$precio')";
-       
+        
         $conexion->query($sql);
+    
         
         return $conexion->insert_id;
         $conexion->close();
@@ -57,7 +60,9 @@ LEFT JOIN
     }
     public static function actualizarPeriferico($id, $nombre, $ordenador_id, $marca_id, $idUbicacion, $numeroSerie,  $precio){
         $conexion = conexionBD::conectar();
-        
+        if($ordenador_id === null){
+            $ordenador_id = "NULL";
+        }
         $sql = "UPDATE Perifericos SET nombre = '$nombre', numeroSerie = '$numeroSerie', ordenador_id = $ordenador_id, marca_id = '$marca_id', idUbicacion = '$idUbicacion', precio = '$precio' WHERE id = '$id';";
   
         $conexion->query($sql);
