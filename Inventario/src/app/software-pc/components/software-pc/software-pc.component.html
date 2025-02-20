@@ -1,8 +1,8 @@
 <div class="container d-flex align-items-center justify-content-center contenedor-formulario">
     <div class="col-10 col-md-8 card text-center my-3">
-        <div class="card-header titulos">Software</div>
+        <div class="card-header titulos">Software a PC</div>
         <div class="card-body">
-            <h5 class="card-title">Añadir Software</h5>
+            <h5 class="card-title">{{this.titulo}}</h5>
             <form #softwarePcForm="ngForm" class="mt-4 text-start" (ngSubmit)="guardaSoftwarePc()">
                 <!--Desplegable con las id de los software-->
                 <div class="row mb-3">
@@ -17,32 +17,69 @@
                       required
                       [disabled]="tipo == 2">
                       <!--A traves del id por consulta en la BBDD me puedo traer el nombre del software-->
+                      <option disabled value="NaN">Selecciona un software</option>
                       <option *ngFor="let softwares of software" [value]="softwares.id">
                         {{ softwares.nombre }}
                       </option>
                     </select>
                 </div>
-                <!--Desplegable con las id de los ordenadores-->
-                <div class="row mb-3">
-                    <label for="idPC" class="form-label">Ordenador:</label>
-                    <select
-                      id="idPC"
-                      name="idPC"
-                      class="form-control"
-                      [(ngModel)]="softwarePcAct.idPC"
 
-                      (ngModelChange)="cambiado()"
-                      required
-                      [disabled]="tipo == 2">
-                      <!--A traves del id por consulta en la BBDD me puedo traer el nombre del ordenador-->
-                      <option value="">Selecciona un ordenador</option>
-                      <option *ngFor="let ordenador of ordenadores" [value]="ordenador.id">
-                        {{ ordenador.ordenador_nombre  }}
-                      </option>
-                    </select>
+                <div class="form-check form-switch" *ngIf="tipo == 0">
+                  <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    role="switch" 
+                    id="flexSwitchCheckChecked" 
+                    [checked]="enAula"
+                    (change)="enAula = !enAula">
+                    
+                  <label class="form-check-label" for="flexSwitchCheckChecked">
+                    {{ enAula ? " instalar en los ordenadores de un aula " : " instalar en un ordenador " }}
+                  </label>
                 </div>
+                
+                <!-- Si el switch está activado (enAula = true), muestra el desplegable de ubicaciones -->
+                <div class="row mb-3" *ngIf="enAula && tipo == 0">
+                  <label for="idUbicacion" class="form-label">Ubicación:</label>
+                  <select
+                    id="idUbicacion"
+                    name="idUbicacion"
+                    class="form-control"
+                    [(ngModel)]="softwarePcAct.idUbicacion"
+                    (ngModelChange)="cambiado()"
+                    required>
+                    <option disabled value="NaN">Selecciona una ubicación</option>
+                    <option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">
+                      {{ ubicacion.nombre }}
+                    </option>
+                  </select>
+                </div>
+                
+                <!-- Si el switch está desactivado (enAula = false), muestra el desplegable de ordenadores -->
+                <div class="row mb-3" *ngIf="!enAula">
+                  <label for="idPC" class="form-label">Ordenador:</label>
+                  <select
+                    id="idPC"
+                    name="idPC"
+                    class="form-control"
+                    [(ngModel)]="softwarePcAct.idPC"
+                    (ngModelChange)="cambiado()"
+                    required
+                    [disabled]="tipo == 2">
+                    <option value="NaN">Selecciona un ordenador</option>
+                    <option *ngFor="let ordenador of ordenadores" [value]="ordenador.id">
+                      {{ ordenador.ordenador_nombre }}
+                    </option>
+                  </select>
+                </div>
+                
+
                 <div class="my-3 text-center">
-                    <input type="submit" class="btn btn-primary btn-lg me-3" value="{{ txtBtn }}">
+                  <input 
+                  type="submit" 
+                  class="btn btn-primary btn-lg me-3" 
+                  value="{{ txtBtn }}" 
+                  [disabled]="esInvalido()">
                     <button name="cancelar" class="btn btn-secondary btn-lg me-3" (click)="cancelar($event)">Cancelar</button>
                 </div>
             </form>

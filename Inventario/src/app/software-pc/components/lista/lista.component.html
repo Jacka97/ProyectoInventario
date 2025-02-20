@@ -35,15 +35,15 @@
                                             <th scope="col" class="text-center">Software</th>
                                             <th scope="col" class="text-center">Ordenador</th>
                                             <th scope="col" class="text-center">Fecha de instalacion</th>
-                                            <!-- <th scope="col">Acciones</th>
-                                        </tr> -->
+                                            <th scope="col">Acciones</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let elemento of softwarePc">
                                             <td>{{ elemento.softnombre }}</td>
                                             <td>{{ elemento.pcnombre }}</td>
                                             <td class="text-center">{{ elemento.fecha }}</td>
-                                            <!-- <td>
+                                            <td>
                                                 <button class="btn btn-sm btn-warning ms-1" 
                                                         data-bs-toggle="tooltip" 
                                                         title="Modificar {{ elemento.id }}" 
@@ -56,7 +56,7 @@
                                                         [routerLink]="['/software-pc', 2, elemento.id]">
                                                     <i class="fa-regular fa-trash-can"></i>
                                                 </button>
-                                            </td> -->
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
