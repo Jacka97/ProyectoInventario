@@ -39,10 +39,9 @@ export class LoginService {
   saveEmail(correo:string): void {
     sessionStorage.setItem('correo', correo); // Guarda el rol
   }
-  /*getemailRole(): number {
-    const role = sessionStorage.getItem('correo');
-    return role ? +role : 0; // Devuelve el rol como número o 0 si no existe
-  }*/
+  getemailRole(): string {
+    return sessionStorage.getItem('correo') ?? '';
+}
   estaIdentificado(): boolean {
     return this.getToken() !== null; // Verifica si el token existe
   }

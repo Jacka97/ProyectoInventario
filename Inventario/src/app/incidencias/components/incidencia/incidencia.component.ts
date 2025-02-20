@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm, NgModel } from '@angular/forms';
 import { Ubicacion } from '../../../ubicaciones/ubicacion';
+import { LoginService } from '../../../login/login.service';
 
 @Component({
   selector: 'app-incidencia',
@@ -13,7 +14,7 @@ import { Ubicacion } from '../../../ubicaciones/ubicacion';
 })
 export class IncidenciaComponent {
  @ViewChild('incidenciaForm', { static: true }) incidenciaForm: NgForm | undefined;
-
+ constructor(private _incidenciasService: IncidenciaService, private _aroute: ActivatedRoute, private _route: Router, private toastr: ToastrService,private _loginService: LoginService) { }
 
   public ubiact: Ubicacion = {id: 0, nombre: ''};
   public ubis: Ubicacion[] = [];
@@ -36,8 +37,8 @@ export class IncidenciaComponent {
   public formularioCambiado: boolean = false;
   public tipo: number = 0;
   public id: number = 0;
+ public emailUser:string= this._loginService.getemailRole();
 
-  constructor(private _incidenciasService: IncidenciaService, private _aroute: ActivatedRoute, private _route: Router, private toastr: ToastrService) { }
 
 
   //Distigue que tipo de accion vamos a realizar dentro de la lista
