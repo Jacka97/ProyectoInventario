@@ -36,7 +36,7 @@ switch ($method) {
             $macWifi = isset($input['MACWIFI']) ? $input['MACWIFI'] : null;
             $ipWifi = isset($input['IPWIFI']) ? $input['IPWIFI'] : null;
             $macLAN = isset($input['MACLAN']) ? $input['MACLAN'] : null;
-            $ipLan = isset($input['IPLAN']) ? $input['IPLAN'] : null;
+            $ipLAN = isset($input['IPLAN']) ? $input['IPLAN'] : null;
             $tipoConexion = isset($input['tipoConexion']) ? $input['tipoConexion'] : null;
             $tipoDisp = isset($input['tipoDisp']) ? $input['tipoDisp'] : null;
             $observaciones = isset($input['Observaciones']) ? $input['Observaciones'] : null;
@@ -68,7 +68,7 @@ switch ($method) {
             $macWifi = isset($input['MACWIFI']) ? $input['MACWIFI'] : null;
             $ipWifi = isset($input['IPWIFI']) ? $input['IPWIFI'] : null;
             $macLAN = isset($input['MACLAN']) ? $input['MACLAN'] : null;
-            $ipLan = isset($input['IPLAN']) ? $input['IPLAN'] : null;
+            $ipLAN = isset($input['IPLAN']) ? $input['IPLAN'] : null;
             $tipoConexion = isset($input['tipoConexion']) ? $input['tipoConexion'] : null;
             $tipoDisp = isset($input['tipoDisp']) ? $input['tipoDisp'] : null;
             $observaciones = isset($input['Observaciones']) ? $input['Observaciones'] : null;
