@@ -84,5 +84,13 @@ export class ModificarEstadoComponent {
     };
   }
 
+  isAdmin():boolean{
+    if(this._loginService.getUserRole()==1)
+    {
+      return true;
+    }
+    return false;
+  }
+
 }
 

@@ -210,7 +210,7 @@
               [routerLinkActive]="['active']">Poner incidencia</a></li>
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#"  [routerLink]="['/incidencia']"
-              [routerLinkActive]="['active']">Incidencias</a></li>
+              [routerLinkActive]="['active']" *ngIf="isAdmin() || isTecnico() ">Incidencias</a></li>
           </ul>
         </li>
 
