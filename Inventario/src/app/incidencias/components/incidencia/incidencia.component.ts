@@ -15,7 +15,7 @@ import { LoginService } from '../../../login/login.service';
 export class IncidenciaComponent {
  @ViewChild('incidenciaForm', { static: true }) incidenciaForm: NgForm | undefined;
  constructor(private _incidenciasService: IncidenciaService, private _aroute: ActivatedRoute, private _route: Router, private toastr: ToastrService,private _loginService: LoginService) { }
-
+ public emailUsuario:string= this._loginService.getemailRole();
   public ubiact: Ubicacion = {id: 0, nombre: ''};
   public ubis: Ubicacion[] = [];
   public incidenciaAct: Incidencia = {
@@ -28,7 +28,7 @@ export class IncidenciaComponent {
     fechaCreacion: '',
     fechaCierre: '',
     idUbicacion: 0,
-    emailUsuario: ''
+    emailUsuario: this.emailUsuario,
   };
 
   //Variables que cambiaran en funcion de las acciones que hagamos en los formularios y en la tabla
@@ -37,7 +37,6 @@ export class IncidenciaComponent {
   public formularioCambiado: boolean = false;
   public tipo: number = 0;
   public id: number = 0;
- public emailUser:string= this._loginService.getemailRole();
 
 
 

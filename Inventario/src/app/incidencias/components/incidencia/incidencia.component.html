@@ -58,20 +58,19 @@
           />
         </div>
 
-        <!--El email lo cogeremos del usuario que está autenticado-->
         <div class="col-12 col-md-3">
           <label for="emailUsuario" class="form-label">Email Usuario:</label>
-        <input
-          type="text"
-          id="emailUsuario"
-          name="emailUsuario"
-          class="form-control"
-          [(ngModel)]="incidenciaAct.emailUsuario"
-          [readonly]="true"
-          value="{{emailUser}}"
-          placeholder="{{emailUser}}"
-        />
-      </div>
+          <input
+            type="text"
+            id="emailUsuario"
+            name="emailUsuario"
+            class="form-control"
+            [(ngModel)]="incidenciaAct.emailUsuario"
+            [readonly]="true"
+            placeholder="{{emailUsuario}}"
+          />
+        </div>
+        
         <div class="col-12">
           <div class="my-3 text-center">
             <input
