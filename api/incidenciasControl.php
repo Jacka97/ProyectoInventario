@@ -45,7 +45,7 @@ switch ($method) {
 
 
             // Llamar a la función para insertar el ordenador
-            $result = modelIncidencias::altaIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion);
+            $result = modelIncidencias::altaIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion, $emailUsuario);
 
             if ($result) {
                 //si se crea la incidencia se informa por correo al técnico que la va a gestionar y al usuario que la creó
@@ -59,36 +59,7 @@ switch ($method) {
         }
         break;
 
-    // case 'PUT':
-    //     header("Content-Type: application/json; charset=UTF-8");
-
-    //     if (!empty($input) && isset($input['id'], $input['idTecnico'], $input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['estado'], $input['comentarioTecnico'], $input['emailUsuario'])) {
-
-    //         // Extraer y sanitizar datos
-    //         $id = (int) $input['id'];
-    //         $idTecnico = $input['idTecnico'];
-    //         $idUbicacion = $input['idUbicacion'];
-    //         $asunto = $input['asunto'];
-    //         $descripcion = $input['descripcion'];
-    //         $estado = $input['estado'];
-    //         $comentarioTecnico = $input['comentarioTecnico'];
-    //         $emailUsuario=$input['emailUsuario'];
-            
-    //         // Llamar a la función de actualización
-    //         $result = modelIncidencias::modificarIncidencia($id, $idTecnico, $idUbicacion, $asunto, $descripcion, $estado);
-
-    //         // Verificar el resultado
-    //         if ($result) {
-    //             //si se modifica la incidencia, se manda el correo al
-    //             //$enviadoEmail=enviarEmail::enviarCorreoUsuario($emailUsuario,$asunto,$incidencia);
-    //             echo json_encode(["success" => true]);
-    //         } else {
-    //             echo json_encode(["error" => "No se pudo actualizar la incidencia"]);
-    //         }
-    //     } else {
-    //         echo json_encode(["error" => "Datos inválidos o incompletos"]);
-    //     }
-    //     break;
+   
 
     case 'PATCH':
         header("Content-Type: application/json; charset=UTF-8");

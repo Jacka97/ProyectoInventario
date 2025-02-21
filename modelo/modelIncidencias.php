@@ -19,21 +19,14 @@ class modelIncidencias{
         $conexion->close();
         return $result->fetch_assoc();
     }
-    public static function altaIncidencia( $idTecnico, $idUbicacion, $asunto, $descripcion){
+    public static function altaIncidencia( $idTecnico, $idUbicacion, $asunto, $descripcion, $emailEnviado){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Incidencia(idTecnico, idUbicacion, asunto, descripcion ) VALUES ($idTecnico,$idUbicacion,'$asunto','$descripcion')";
+        $sql = "INSERT INTO Incidencia(idTecnico, idUbicacion, asunto, descripcion, emailEnviado ) VALUES ($idTecnico,$idUbicacion,'$asunto','$descripcion', '$emailEnviado')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();   
     }
-    // public static function modificarIncidencia($idTecnico, $idUbicacion, $asunto, $descripcion, $estado, $comentarioTecnico){
-    //     $conexion = conexionBD::conectar();
-    //     $sql = "UPDATE Incidencia SET idTecnico = $idTecnico, comentarioTecnico = $comentarioTecnico idUbicacion = $idUbicacion, asunto = '$asunto', descripcion = '$descripcion', estado = '$estado'";
-    //     $conexion->query($sql);
-    //     return $conexion->affected_rows;
-    //     $conexion->close();
-        
-    // }
+
     public static function actualizarEstado($id, $estado, $comentarioTecnico){
         $conexion = conexionBD::conectar();
         $sql = "UPDATE Incidencia SET estado = '$estado', comentarioTecnico = '$comentarioTecnico' WHERE id = $id";
