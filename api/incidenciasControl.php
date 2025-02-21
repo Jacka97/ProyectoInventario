@@ -32,7 +32,7 @@ switch ($method) {
         header("Content-Type: application/json; charset=UTF-8");
         $tecnico = modelIncidencias::getTecnicoMenosIncidencias(); //busco al técnico que se le va a asignar la incidencia
 
-        if (!empty($input) && isset($input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['emailUsuario'], $input['emailEnviado'] )) {
+        if (!empty($input) && isset($input['idUbicacion'], $input['asunto'], $input['descripcion'], $input['emailUsuario'])) {
 
             // Extraer datos del JSON recibido
             $idTecnico = $tecnico['idTecnico'];
