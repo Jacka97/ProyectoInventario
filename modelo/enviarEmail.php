@@ -43,7 +43,7 @@ public static function enviarCorreo($email_tecnico, $email_usuario, $asunto,$inc
        echo "Error: {$mail->ErrorInfo}";
         }
 }
-public static function enviarCorreoUsuario($email_usuario, $asunto, $incidencia) {
+public static function enviarCorreoUsuario($email_usuario, $asunto, $incidencia, $estado) {
     $mail = new PHPMailer(true);
 
     try {
@@ -66,7 +66,7 @@ public static function enviarCorreoUsuario($email_usuario, $asunto, $incidencia)
         // Asunto y cuerpo del correo
       
         $mail->Subject = "Actualizacion de la incidencia: $asunto";
-        $mail->Body    =  "Detalles: $incidencia\n\nEl técnico asignado ha modificado su incidencia.";
+        $mail->Body    =  "Estado de la incidencia: " . $estado . "\n\nDetalles: $incidencia\n\nEl técnico asignado ha modificado su incidencia.";
 
         // Enviar el correo
         $mail->send();

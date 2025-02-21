@@ -75,7 +75,7 @@ switch ($method) {
             $result = modelIncidencias::actualizarEstado($id, $estado, $comentarioTecnico);
             if($result){
               
-            //$enviadoEmail=enviarEmail::enviarCorreoUsuario($emailUsuario,$asunto,$descripcion);
+            //$enviadoEmail=enviarEmail::enviarCorreoUsuario($emailUsuario,$asunto,$descripcion, $estado);
             echo json_encode(["success" => $result]);
             }else{
                 echo json_encode(["error" => "No se pudo actualizar el estado de la incidencia"]);
