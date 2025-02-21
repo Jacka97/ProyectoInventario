@@ -840,15 +840,55 @@ DELIMITER ;
 /*update*/
 DELIMITER //
 
-CREATE TRIGGER after_ordenadores_update
+CREATE TRIGGER after_update_Ordenadores
 AFTER UPDATE ON Ordenadores
 FOR EACH ROW
 BEGIN
-    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, "Ordenador", NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
-END;
+    -- Verificar si el campo idUbicacion ha cambiado
+    IF OLD.idUbicacion <> NEW.idUbicacion THEN
+        -- Registro de SALIDA (ubicación antigua)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'salida', 
+            CURDATE(), 
+            OLD.id, 
+            OLD.nombre, 
+            'Ordenador', 
+            OLD.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = OLD.idUbicacion;
 
-//
+        -- Registro de ENTRADA (ubicación nueva)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'entrada', 
+            CURDATE(), 
+            NEW.id, 
+            NEW.nombre, 
+            'Ordenador', 
+            NEW.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = NEW.idUbicacion;
+    END IF;
+END //
 
 DELIMITER ;
 
@@ -890,16 +930,55 @@ DELIMITER ;
 /*update*/
 DELIMITER //
 
-CREATE TRIGGER after_dispred_update
+CREATE TRIGGER after_update_DispRed
 AFTER UPDATE ON DispRed
 FOR EACH ROW
 BEGIN
-    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, "Dispositivo de Red", NEW.idUbicacion, 
-            (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
-END;
+    -- Verificar si el campo idUbicacion ha cambiado
+    IF OLD.idUbicacion <> NEW.idUbicacion THEN
+        -- Registro de SALIDA (ubicación antigua)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'salida', 
+            CURDATE(), 
+            OLD.id, 
+            OLD.nombre, 
+            'DispRed', 
+            OLD.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = OLD.idUbicacion;
 
-//
+        -- Registro de ENTRADA (ubicación nueva)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'entrada', 
+            CURDATE(), 
+            NEW.id, 
+            NEW.nombre, 
+            'DispRed', 
+            NEW.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = NEW.idUbicacion;
+    END IF;
+END //
 
 DELIMITER ;
 
@@ -941,16 +1020,55 @@ DELIMITER ;
 /*update*/
 DELIMITER //
 
-CREATE TRIGGER after_perifericos_update
+CREATE TRIGGER after_update_Perifericos
 AFTER UPDATE ON Perifericos
 FOR EACH ROW
 BEGIN
-    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, 'Periférico', NEW.idUbicacion, 
-            (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
-END;
+    -- Verificar si el campo idUbicacion ha cambiado
+    IF OLD.idUbicacion <> NEW.idUbicacion THEN
+        -- Registro de SALIDA (ubicación antigua)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'salida', 
+            CURDATE(), 
+            OLD.id, 
+            OLD.nombre, 
+            'Periferico', 
+            OLD.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = OLD.idUbicacion;
 
-//
+        -- Registro de ENTRADA (ubicación nueva)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'entrada', 
+            CURDATE(), 
+            NEW.id, 
+            NEW.nombre, 
+            'Periferico', 
+            NEW.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = NEW.idUbicacion;
+    END IF;
+END //
 
 DELIMITER ;
 
