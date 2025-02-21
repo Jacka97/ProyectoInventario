@@ -10,8 +10,8 @@ import { Rol } from './Roles';
 })
 export class UserService {
   // URL del API donde se encuentran los usuarios.  (https://uat-inventarios.proyectos-2daw.es/api/usuControl.php)
-  urlROL = 'https://uat-inventarios.proyectos-2daw.es/api/rolControl.php';
-  urlApi = 'https://uat-inventarios.proyectos-2daw.es/api/usuControl.php';
+  urlROL = 'https://inventarios.proyectos-2daw.es/api/rolControl.php';
+  urlApi = 'https://inventarios.proyectos-2daw.es/api/usuControl.php';
   // Cabeceras HTTP para el uso del API.  (Content-Type: application/json)
   httpOptions = {
     headers: new HttpHeaders({

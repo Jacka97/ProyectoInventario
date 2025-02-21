@@ -7,7 +7,7 @@ import { Movimiento } from './movimiento';
   providedIn: 'root'
 })
 export class MaterialesService {
-  urlApi='https://uat-inventarios.proyectos-2daw.es/api/moveControl.php';
+  urlApi='https://inventarios.proyectos-2daw.es/api/moveControl.php';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':'application/json'

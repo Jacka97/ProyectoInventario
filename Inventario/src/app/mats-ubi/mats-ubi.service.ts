@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MatsUbiService {
-  private urlAPI = 'https://uat-inventarios.proyectos-2daw.es/api/ubiMatsControl.php';
-  private urlUBI = 'https://uat-inventarios.proyectos-2daw.es/api/ubiControl.php';
+  private urlAPI = 'https://inventarios.proyectos-2daw.es/api/ubiMatsControl.php';
+  private urlUBI = 'https://inventarios.proyectos-2daw.es/api/ubiControl.php';
 
   private httpOptions = {
     headers: new HttpHeaders({
