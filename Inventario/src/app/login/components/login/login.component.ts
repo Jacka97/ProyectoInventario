@@ -52,7 +52,6 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this._loginService.login(this.loginForm.get('email')?.value, this.loginForm.get('contrasenya')?.value).subscribe({
         next: (resultado) => {
-          console.log(resultado);
           if(resultado.success){
             this._loginService.saveToken(resultado.token);
             sessionStorage.setItem('userRole', resultado.Rol.toString());
