@@ -21,10 +21,10 @@
             [(ngModel)]="periact.nombre"
             [readonly]="tipo == 2"
             (ngModelChange)="cambiado()"
-            minlength="3"
-            maxlength="50"
+            #nombre="ngModel"
             required
-          />
+            [ngClass]="validClasses(nombre, 'is-valid', 'is-invalid')"/>
+            <span *ngIf="nombre.touched && nombre.invalid" class="text-danger">El campo es obligatorio</span>
         </div>
 
         <div class="col-12 col-md-5">
@@ -38,7 +38,10 @@
             [readonly]="tipo == 2"
             (ngModelChange)="cambiado()"
             required
+            #numSerie="ngModel"
+            [ngClass]="validClasses(numSerie, 'is-valid', 'is-invalid')"
           />
+          <span *ngIf="numSerie.touched && numSerie.invalid" class="text-danger">El campo es obligatorio</span>
         </div>
 
         <div class="col-12 col-md-5">
@@ -112,7 +115,10 @@
             [readonly]="tipo == 2"
             (ngModelChange)="cambiado()"
             required
+            #precio="ngModel"
+            [ngClass]="validClasses(precio, 'is-valid', 'is-invalid')"
           />
+          <span *ngIf="precio.touched && precio.invalid" class="text-danger">El campo es obligatorio</span>
         </div>
 
         <div class="col-12">

@@ -8,20 +8,26 @@
                 <div class="row mb-3">
                     <div class="col-12 col-md-6">
                         <label for="correo" class="form-label">Correo</label>
-                        <input type="text" id="correo" name="correo" class="form-control"
-                            [(ngModel)]="useract.correo" [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
+                        <input type="email" id="correo" name="correo" class="form-control"
+                            [(ngModel)]="useract.correo" [readonly]="tipo == 2" (ngModelChange)="cambiado()" required pattern="^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$"
+                            #email="ngModel" [ngClass]="validClasses(email, 'is-valid', 'is-invalid')"
+                            />
+                        <span *ngIf="email.touched && email.invalid" class="text-danger">El campo deber ser de tipo email (Ej. ejemplo&#64;ejemplo.com)</span>    
                     </div>
                     <div class="col-12 mt-2 col-md-6 mt-md-0">
                         <label for="pass" class="form-label">Password:</label>
                         <input type="password" id="pass" name="pass" class="form-control" [(ngModel)]="useract.pass" required
-                            [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
+                            [readonly]="tipo == 2" (ngModelChange)="cambiado()" #pass="ngModel" [ngClass]="validClasses(pass, 'is-valid', 'is-invalid')" />
+                        <span *ngIf="pass.touched && pass.invalid" class="text-danger">El campo es obligatorio</span>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 mt-2 col-md-6 mt-md-0">
                         <label for="nombre" class="form-label">Nombre:</label>
                         <input type="text" id="nombre" name="nombre" class="form-control" [(ngModel)]="useract.nombre"
-                            [readonly]="tipo == 2" (ngModelChange)="cambiado()" required>
+                            [readonly]="tipo == 2" (ngModelChange)="cambiado()" required #nombre="ngModel" 
+                            [ngClass]="validClasses(nombre, 'is-valid', 'is-invalid')"/>
+                        <span *ngIf="nombre.touched && nombre.invalid" class="text-danger">El campo es obligatorio</span>    
                     </div>
                              <div class="col-12 mt-2 col-md-6 mt-md-0">
                             <label for="id_rol" class="form-label">Rol:</label>

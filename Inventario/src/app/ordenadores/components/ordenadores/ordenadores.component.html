@@ -10,13 +10,17 @@
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" id="nombre" name="nombre" class="form-control"
                         [(ngModel)]="ordenadorAct.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
-                         required />
+                         required #descModel="ngModel"
+                         [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"/>
+                        <span *ngIf="descModel.touched && descModel.invalid" class="text-danger">El campo es obligatorio</span> 
                     </div>
                     <div class="col-12 col-md-3 ">
                         <label for="numero" class="form-label">Numero</label>
                         <input type="text" id="numero" name="numero" class="form-control"
                          [(ngModel)]="ordenadorAct.numero"
-                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
+                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required #numero="ngModel"
+                        [ngClass]="validClasses(numero, 'is-valid', 'is-invalid')"/>
+                       <span *ngIf="numero.touched && numero.invalid" class="text-danger">El campo es obligatorio</span> 
                     </div>
 
 
@@ -24,7 +28,9 @@
                         <label for="tipo" class="form-label">Tipo</label>
                         <input type="text" id="tipo" name="tipo" class="form-control"
                          [(ngModel)]="ordenadorAct.tipo"
-                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
+                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required #tipoOrde="ngModel"
+                        [ngClass]="validClasses(tipoOrde, 'is-valid', 'is-invalid')"/>
+                       <span *ngIf="tipoOrde.touched && tipoOrde.invalid" class="text-danger">El campo es obligatorio</span> 
                     </div>
 
 
@@ -32,7 +38,9 @@
                         <label for="modelo" class="form-label">Modelo</label>
                         <input type="text" id="modelo" name="modelo" class="form-control"
                          [(ngModel)]="ordenadorAct.modelo"
-                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
+                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required #modelo="ngModel"
+                        [ngClass]="validClasses(modelo, 'is-valid', 'is-invalid')"/>
+                       <span *ngIf="modelo.touched && modelo.invalid" class="text-danger">El campo es obligatorio</span> 
                     </div>
 
 
@@ -40,7 +48,9 @@
                         <label for="numeroSerie" class="form-label">Nº de serie</label>
                         <input type="text" id="numeroSerie" name="numeroSerie" class="form-control"
                          [(ngModel)]="ordenadorAct.numeroSerie"
-                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
+                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required #numSerie="ngModel"
+                        [ngClass]="validClasses(numSerie, 'is-valid', 'is-invalid')"/>
+                       <span *ngIf="numSerie.touched && numSerie.invalid" class="text-danger">El campo es obligatorio</span> 
                     </div>
 
 
@@ -48,31 +58,36 @@
                         <label for="Red" class="form-label">Red</label>
                         <input type="text" id="Red" name="Red" class="form-control"
                         [(ngModel)]="ordenadorAct.Red" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
-                         required />
+                         required #red="ngModel"
+                         [ngClass]="validClasses(red, 'is-valid', 'is-invalid')"/>
+                        <span *ngIf="red.touched && red.invalid" class="text-danger">El campo es obligatorio</span> 
                     </div>
-
 
                     <div class="col-12 col-md-3">
                         <label for="MACLAN" class="form-label">MAC LAN</label>
                         <input type="text" id="MACLAN" name="MACLAN" class="form-control"
-                        [(ngModel)]="ordenadorAct.MACLAN"
-                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
+                        [(ngModel)]="ordenadorAct.MACLAN" 
+                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" #maclan="ngModel" required pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+                        [ngClass]="validClasses(maclan, 'is-valid', 'is-invalid')"/>
+                        <span *ngIf="maclan.touched && maclan.invalid" class="text-danger">El campo no cumple con el patrón de una direccion MAC (Ej. A1:B2:C3:D4:E5:F6)</span>
                     </div>
 
 
                     <div class="col-12 col-md-3">
                         <label for="MACWIFI" class="form-label">MAC WIFI</label>
                         <input type="text" id="MACWIFI" name="MACWIFI" class="form-control"
-                         [(ngModel)]="ordenadorAct.MACWIFI"
-                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
+                         [(ngModel)]="ordenadorAct.MACWIFI" #macwifi="ngModel" required pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"
+                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" [ngClass]="validClasses(macwifi, 'is-valid', 'is-invalid')"/>
+                        <span *ngIf="macwifi.touched && macwifi.invalid" class="text-danger">El campo no cumple con el patrón de una direccion MAC (Ej. A1:B2:C3:D4:E5:F6)</span>
                     </div>
 
 
                     <div class="col-12 col-md-3">
                         <label for="IPWIFI" class="form-label">IP WIFI</label>
                         <input type="text" id="IPWIFI" name="IPWIFI" class="form-control"
-                         [(ngModel)]="ordenadorAct.IPWIFI"
-                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
+                         [(ngModel)]="ordenadorAct.IPWIFI" #ipwifi="ngModel" required pattern="^([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3})$"
+                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" [ngClass]="validClasses(ipwifi, 'is-valid', 'is-invalid')"/>
+                        <span *ngIf="ipwifi.touched && ipwifi.invalid" class="text-danger">El campo no cumple con el patrón de una IP (Ej. 192.168.0.1)</span>
                     </div>
 
 
@@ -80,7 +95,9 @@
                         <label for="IPLAN" class="form-label">IP LAN</label>
                         <input type="text" id="IPLAN" name="IPLAN" class="form-control"
                         [(ngModel)]="ordenadorAct.IPLAN" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
-                        required />
+                        #iplan="ngModel" required pattern="^([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3})$" 
+                        [ngClass]="validClasses(iplan, 'is-valid', 'is-invalid')"/>
+                        <span *ngIf="iplan.touched && iplan.invalid" class="text-danger">El campo no cumple con el patrón de una IP (Ej. 192.168.0.1)</span>
                     </div>
 
 
@@ -88,7 +105,9 @@
                         <label for="HD1" class="form-label">HD 1</label>
                         <input type="text" id="HD1" name="HD1" class="form-control"
                         [(ngModel)]="ordenadorAct.HD1"
-                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required />
+                        [readonly]="tipo == 2" (ngModelChange)="cambiado()" required #hd1="ngModel"
+                        [ngClass]="validClasses(hd1, 'is-valid', 'is-invalid')"/>
+                       <span *ngIf="hd1.touched && hd1.invalid" class="text-danger">El campo es obligatorio</span> 
                     </div>
 
 
@@ -96,7 +115,9 @@
                         <label for="hd2" class="form-label">HD 2</label>
                         <input type="text" id="hd2" name="hd2" class="form-control"
                          [(ngModel)]="ordenadorAct.HD2"
-                        [readonly]="tipo == 2" (ngModelChange)="cambiado()"  required />
+                        [readonly]="tipo == 2" (ngModelChange)="cambiado()"  required #hd2="ngModel"
+                        [ngClass]="validClasses(hd2, 'is-valid', 'is-invalid')"/>
+                       <span *ngIf="hd2.touched && hd2.invalid" class="text-danger">El campo es obligatorio</span>
                     </div>
 
                 <div class="col-12 col-md-3">
@@ -130,15 +151,15 @@
                 </div>
                     <div class="col-12 col-md-3">
                         <label for="precio" class="form-label">Precio</label>
-                        <input id="precio" name="precio" class="form-control"
+                        <input id="precio" name="precio" class="form-control" #precio="ngModel"
                         [(ngModel)]="ordenadorAct.precio" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
-                        required>
+                        required [ngClass]="validClasses(precio, 'is-valid', 'is-invalid')"/>
+                        <span *ngIf="precio.touched && precio.invalid" class="text-danger">El campo es obligatorio</span> 
                     </div>
                     <div class="col-12 col-md-8">
                       <label for="Observaciones" class="form-label">Observaciones</label>
                       <textarea id="Observaciones" name="Observaciones" class="form-control"
-                      [(ngModel)]="ordenadorAct.Observaciones" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
-                      required></textarea>
+                      [(ngModel)]="ordenadorAct.Observaciones" [readonly]="tipo == 2" (ngModelChange)="cambiado()"></textarea>
                   </div>
                 <div class="col-12">
                 <div class="my-3 text-center">
