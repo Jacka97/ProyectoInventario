@@ -51,14 +51,14 @@ export class ListaPerifeComponent{
         if (Array.isArray(resultado)) {
           this.users = resultado; // Asigna la lista de usuarios
         } else {
-          console.error('Error: la respuesta no es un array válido', resultado);
+   
         }
       },
       error: (error) => {
-        console.error('Error al recibir datos:', error);
+   
       },
       complete: () => {
-        console.log('Operación completada');
+      
       }
     });
 

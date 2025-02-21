@@ -111,7 +111,7 @@ export class SoftwarePcComponent {
         this.toastr.error(error, 'Error al obtener el software')
       },
       complete: () => {
-        console.log('Operacion completada');
+    
       },
     });
   }
@@ -130,7 +130,7 @@ export class SoftwarePcComponent {
         this.toastr.error(error, 'Error al obtener el software')
       },
       complete: () => {
-        console.log('Operacion completada');
+       
       },
     });
   }
@@ -149,7 +149,7 @@ export class SoftwarePcComponent {
         this.toastr.error('Error al obtener el ordenador:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
+      
       },
     });
   }
@@ -163,16 +163,16 @@ export class SoftwarePcComponent {
           this.ubicaciones = resultado;
         } else {
           // Si hay un error en los datos recibidos, se muestra en la consola
-          console.error('Error al recibir datos:', resultado.error);
+        
         }
       },
       error: (error) => {
         // Si ocurre un error en la petición, se muestra en la consola
-        console.error('Error al recibir datos:', error);
+
       },
       complete: () => {
         // Mensaje de confirmación cuando la operación ha finalizado correctamente
-        console.log('Operación completada.');
+
       },
     });
   }

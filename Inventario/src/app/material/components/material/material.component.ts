@@ -66,16 +66,16 @@ export class MaterialComponent implements OnInit {
           this.ubicaciones = resultado;
         } else {
           // Si hay un error en los datos recibidos, se muestra en la consola
-          console.error('Error al recibir datos:', resultado.error);
+      
         }
       },
       error: (error) => {
         // Si ocurre un error en la petición, se muestra en la consola
-        console.error('Error al recibir datos:', error);
+
       },
       complete: () => {
         // Mensaje de confirmación cuando la operación ha finalizado correctamente
-        console.log('Operación completada.');
+       
       },
     });
 
@@ -106,8 +106,8 @@ export class MaterialComponent implements OnInit {
             this.cdRef.detectChanges(); // Fuerza que detecte los cambios al producirse el cambio en el checbox (al generarse el
             //evento. Tengo que hacerlo dentro del subscribe()
           },
-          error: (error) => console.error('Error al recibir los datos:', error),
-          complete: () => console.log('Carga de ordenadores completada'),
+          error: (error) => {},
+          complete: () => {},
         });
         break;
 
@@ -117,8 +117,8 @@ export class MaterialComponent implements OnInit {
             this.perifericos = resultado;
             this.cdRef.detectChanges();
           },
-          error: (error) => console.error('Error al recibir datos:', error),
-          complete: () => console.log('Carga de periféricos completada'),
+          error: (error) => {},
+          complete: () => {},
         });
         break;
 
@@ -129,14 +129,14 @@ export class MaterialComponent implements OnInit {
             this.dispRed = resultado;
             this.cdRef.detectChanges();
           } else {
-            console.error('Error al recibir los datos: ', resultado);
+            
           }
         },
         error: (error) => {
-          console.error('Error al recibir los datos:', error);
+         
         },
         complete: () => {
-          console.log('Operacion completada.');
+         
         },
       });
         break;

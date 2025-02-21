@@ -49,14 +49,14 @@ import { SoftwarePcService } from '../../software-pc.service';
             if (resultado) {
               this.softwarePc = resultado;
             } else {
-              console.error('Error al recibir los datos: ', resultado);
+              
             }
           },
           error: (error) => {
-            console.error('Error al recibir los datos: ', error);
+            
           },
           complete: () => {
-            console.log('Operacion completada');
+
           },
         })
     }

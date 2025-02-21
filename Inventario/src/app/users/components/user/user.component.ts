@@ -45,11 +45,11 @@ export class UsersComponent {
         if (resultado) {
           this.roles = resultado;
         } else {
-          this.toastr.error('Error al obtener los roles:', resultado);
+          this.toastr.error('Error al obtener los roles');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener los roles:', error);
+        this.toastr.error('Error al obtener los roles');
       },
       complete: () => {
         console.log('Operación completada.');
@@ -63,11 +63,11 @@ export class UsersComponent {
           this.useract = resultado;
           this.inputChecked = this.useract.activo == 1;
         } else {
-          this.toastr.error('Error al obtener el usuario:', resultado);
+          this.toastr.error('Error al obtener el usuario');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el usuario:', error);
+        this.toastr.error('Error al obtener el usuario');
       },
       complete: () => {
         console.log('Operación completada.');
@@ -87,21 +87,21 @@ export class UsersComponent {
         this._usersService.crearUserApi(this.useract).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Usuario creado:', resultado);
+              this.toastr.success('Usuario creado');
               this._route.navigate(['/users']);
             } else {
-              this.toastr.error('Error al crear el usuario:', resultado);
+              this.toastr.error('Error al crear el usuario');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al crear el usuario:', error.error?.errores || error);
+            this.toastr.error('Error al crear el usuario');
           },
           complete: () => {
             this.toastr.success('Operación completada.');
           },
         });
       } else if (this.tipo === 1) {
-        this.toastr.success(`Usuario modificado: ${this.id}`);
+        this.toastr.success(`Usuario modificado`);
         this.useract.activo = this.inputChecked ? 1 : 0;
         this._usersService.modificaUserApi(this.id, this.useract).subscribe({
           next: (resultado) => {
@@ -109,11 +109,11 @@ export class UsersComponent {
               this.toastr.success('Usuario modificado:', resultado);
               this._route.navigate(['/users']);
             } else {
-              this.toastr.error('Error al modificar el usuario:', resultado);
+              this.toastr.error('Error al modificar el usuario');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al modificar el usuario:', error.error?.errores || error);
+            this.toastr.error('Error al modificar el usuario');
           },
           complete: () => {
             this.toastr.success('Operación completada.');
@@ -124,10 +124,10 @@ export class UsersComponent {
         this._usersService.borraUserApi(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Valor eliminado:', resultado);
+              this.toastr.success('Valor eliminado');
               this._route.navigate(['/users']);
             } else {
-              this.toastr.error('Error al eliminar el usuario:', resultado);
+              this.toastr.error('Error al eliminar el usuario');
             }
           },
           error: (error) => {

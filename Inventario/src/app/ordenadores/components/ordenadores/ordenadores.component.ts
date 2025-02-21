@@ -85,7 +85,7 @@ export class OrdenadoresComponent {
         this.toastr.error('Error al obtener los roles:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
+
       },
     });
   }
@@ -103,16 +103,15 @@ export class OrdenadoresComponent {
         this.toastr.error('Error al obtener los roles:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
+       
       },
     });
   }
   //Se cotejan los resultados obtenidos de la api y se agrega el ordenador al listado
   guardaOrdenador(): void {
-    console.log('Formulario válido:', this.ordenadorForm?.valid);
-    console.log('Datos del ordenador:', this.ordenadorAct);
+
     if (this.ordenadorForm!.valid || this.tipo == 2) {
-      console.log('Enviando datos al servicio...');
+
       this.formularioCambiado = false;
       console.log(JSON.stringify(this.ordenadorAct));
       if (this.tipo == 0) {
@@ -136,8 +135,7 @@ export class OrdenadoresComponent {
         this._ordenadoresService.modificaOrdenador(this.id, this.ordenadorAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              console.log(resultado);
-              console.log(this.ordenadorAct);
+      
               this.toastr.success('Datos modificados');
               this._route.navigate(['/ordenadores']);
             } else {
@@ -181,7 +179,7 @@ export class OrdenadoresComponent {
       next: (resultado) => {
         if (resultado) {
           this.ordenadorAct = resultado;
-          console.log(resultado);
+
         } else {
           this.toastr.error(resultado, 'Error obteniendo el ordenador');
         }
@@ -190,7 +188,7 @@ export class OrdenadoresComponent {
         this.toastr.error(error, 'Error al obtener el ordenador')
       },
       complete: () => {
-        console.log('Operacion completada');
+
       },
     });
   }
