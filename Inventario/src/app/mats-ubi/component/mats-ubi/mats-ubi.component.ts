@@ -14,6 +14,7 @@ import { Subject } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-mats-ubi',
@@ -38,7 +39,8 @@ users: any;
   dtOptions: Config = {}; // Cambia de Config a DataTables.Settings
   public mostrarFormulario: boolean = false;
 
-  constructor(private _noubisService: MatsUbiService, private toastr: ToastrService, private _route: Router, private _aroute: ActivatedRoute,) {}
+
+  constructor(private _noubisService: MatsUbiService, private toastr: ToastrService, private _route: Router, private _aroute: ActivatedRoute, private location: Location) {}
 
   ngOnInit() {
 
@@ -126,7 +128,7 @@ users: any;
           setTimeout(() => {
             this.listadoact = [...resultado]; //  Forzar la detección de cambios
             this.reiniciarDataTable(); //  Reinicializar DataTables
-          }, 0);
+          }, 500);
 
         } else {
           this.toastr.error('No hay datos disponibles en esta ubicación.');
@@ -140,10 +142,11 @@ users: any;
     });
   }
   reiniciarDataTable() {
-    if (this.dtElement) {
+    if (this.dtElement && this.dtElement.dtInstance) {
       this.dtElement.dtInstance.then((dtInstance: any) => {
-        dtInstance.destroy();
-        this.dtTrigger.next(null);
+        dtInstance.clear(); // Limpia los datos de la tabla
+        dtInstance.destroy(); // Destruye la instancia de DataTables
+        this.dtTrigger.next(null); // Vuelve a inicializar DataTables
       });
     } else {
       this.dtTrigger.next(null);
@@ -166,25 +169,24 @@ users: any;
             this.toastr.success('Ubicación modificada con éxito');
             this.mostrarFormulario = false;
   
-            //  Actualizar la lista a la fuerza
-            location.reload();
+            this.listadoact = []; // Vacía la tabla
+            this.reiniciarDataTable(); // Destruye la tabla para volver a inicializarla
   
-            // Reinicializar DataTables
-            this.reiniciarDataTable();
-          } else {
-           
+            setTimeout(() => {
+              this.idSeleccionado = this.noubisact.idUbicacionNueva; // Valor inicial para el select
+              this.onUbicacionSeleccionada(); // Vuelve a cargar los datos
+            }, 500); // Pequeño delay para evitar conflictos con DataTables
           }
         },
-        error: (error) => {
+        error: () => {
           this.toastr.error('Error al modificar la ubicación');
-        },
-        complete: () => {
         }
       });
     } else {
       this.toastr.warning('Seleccione una nueva ubicación válida.');
     }
   }
+  
   
   
   ngOnDestroy(): void {
