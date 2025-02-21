@@ -20,9 +20,7 @@
             [(ngModel)]="incidenciaAct.idUbicacion"
             (ngModelChange)="cambiado()"
             required
-            #ubicacion="ngModel"
             [disabled]="tipo == 2"
-            [ngClass]="validClasses(ubicacion, 'is-valid', 'is-invalid')"
           >
             <option value="" disabled>Selecciona una ubicacion</option>
             <option *ngFor="let ubi of ubis" [value]="ubi.id">
@@ -30,7 +28,6 @@
             </option>
           </select>
         </div>
-        <span *ngIf="ubicacion.touched && ubicacion.invalid" class="text-danger">El campo es obligatorio</span>
 
         <div class="col-12 col-md-5">
           <label for="asunto" class="form-label">Asunto</label>
