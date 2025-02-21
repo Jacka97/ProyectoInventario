@@ -3,11 +3,11 @@
       <div class="card text-center my-3">
           <div class="card-header titulos">{{ titulo }}</div>
           <div class="card-body">
-              <div class="d-flex justify-content-between mb-2 flex-wrap">
+              <div class="col-12">
                   <h5 class="card-title">Materiales en esta ubicación</h5>
               </div>
-
-              <div class="mb-3">
+              <div class="row d-flex justify-content-center">
+              <div class="col-5">
                   <label for="ubicacionSelect" class="form-label">Selecciona una ubicación:</label>
                   <select id="ubicacionSelect" class="form-control" [(ngModel)]="idSeleccionado" (change)="onUbicacionSeleccionada()">
                     <option value="-1" disabled>Selecciona una ubicación</option>
@@ -15,10 +15,10 @@
                 </select>
                 
               </div>
-
+            </div>
               <div *ngIf="listadoact.length > 0">
-                  <div class="row">
-                      <div class="col-12 col-md-2 d-flex flex-wrap">
+                  <div class="row d-flex justify-content-between">
+                      <div class="col-12 col-sm-2 ">
                           <button (click)="descargarPDF()" class="btn btn-danger mt-3 ms-3">
                               <i class="fa-regular fa-file-pdf"></i>
                           </button>
@@ -26,10 +26,10 @@
                               <i class="fa-regular fa-file-excel"></i>
                           </button>
                       </div>
-                      <button class="btn btn-primary mt-3" (click)="mostrarFormulario = !mostrarFormulario">
-                        Modificar Ubicación
-                    </button>
-      
+                      <div class="col-5 mt-3">
+                      <button class="btn btn-primary " (click)="mostrarFormulario = !mostrarFormulario">Modificar Ubicación</button>
+                    </div>
+                </div>
                     <div *ngIf="mostrarFormulario" class="mt-3">
                         <form #NOUbis="ngForm" (ngSubmit)="modificarUbicacion()" class="card p-3">
                             <h5 class="text-center">Cambiar Ubicación</h5>
@@ -68,7 +68,6 @@
                               </table>
                           </div>
                       </div>
-                  </div>
               </div>
 
               
