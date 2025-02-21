@@ -18,14 +18,14 @@ public static function enviarCorreo($email_tecnico, $email_usuario, $asunto,$inc
         $mail->isSMTP();
         $mail->Host       = 'smtp-mail.outlook.com'; // Servidor SMTP (Gmail, Outlook, etc.)
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'equTrabajo@outlook.es'; // Tu correo real
+        $mail->Username   = 'cualquiera@outlook.es'; // Tu correo real
         $mail->Password   = ''; // Tu contraseña real o contraseña de aplicación
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->SMTPDebug = 2;
 
         // Configuración del correo
-        $mail->setFrom('equTrabajo@outlook.es', 'Soporte Técnico');
+        $mail->setFrom('cualquiera@outlook.es', 'Soporte Técnico');
         
         // Agregar los destinatarios reales
         $mail->addAddress($email_tecnico, 'Técnico');
@@ -51,14 +51,14 @@ public static function enviarCorreoUsuario($email_usuario, $asunto, $incidencia,
         $mail->isSMTP();
         $mail->Host       = 'smtp-mail.outlook.com'; // Servidor SMTP (Gmail, Outlook, etc.)
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'equTrabajo@outlook.es'; // Tu correo real
+        $mail->Username   = 'cualquiera@outlook.es'; // Tu correo real
         $mail->Password   = ''; // Tu contraseña real o contraseña de aplicación
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->SMTPDebug = 2;
 
         // Configuración del correo
-        $mail->setFrom('equTrabajo@outlook.es', 'Soporte Técnico');
+        $mail->setFrom('cualquiera@outlook.es', 'Soporte Técnico');
         
         // Agregar los destinatarios reales
         $mail->addAddress($email_usuario, 'Usuario');
