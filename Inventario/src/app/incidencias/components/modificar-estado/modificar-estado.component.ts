@@ -44,7 +44,7 @@ export class ModificarEstadoComponent {
         this._incidenciasService.modificaIncidenciaEstado(this.id,this.estado,this.comentarioTecnico).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Estado modificado');
+              this.toastr.success('Estado modificado, notificación enviada por email');
               this._route.navigate(['/incidencia']);
             } else {
               this.toastr.error('Error al modificar la incidencia');
