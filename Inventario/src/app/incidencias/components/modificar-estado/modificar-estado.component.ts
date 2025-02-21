@@ -4,6 +4,7 @@ import { IncidenciaService } from '../../incidencia.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../../login/login.service';
+import { Incidencia } from '../../incidencia';
 
 
 @Component({
@@ -26,14 +27,31 @@ export class ModificarEstadoComponent {
   public comentarioTecnico='';
   public emailUser:string= this._loginService.getemailRole();
 
-
-
   //Distigue que tipo de accion vamos a realizar dentro de la lista
   ngOnInit() {
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
+    this.traeIncidencia(this.id);
   }
 
+  private traeIncidencia(id: number) {
+    this._incidenciasService.obtengoIncidencia(id).subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.comentarioTecnico = resultado.comentarioTecnico;
+          console.log(resultado);
+        } else {
+          this.toastr.error(resultado, 'Error obteniendo la incidencia');
+        }
+      },
+      error: (error) => {
+        this.toastr.error(error, 'Error al obtener la incidencia')
+      },
+      complete: () => {
+        console.log('Operacion completada');
+      },
+    });
+  }
 
   //Se cotejan los resultados obtenidos de la api y se agrega el ordenador al listado
   modificarEstado(): void {
@@ -82,6 +100,14 @@ export class ModificarEstadoComponent {
       [validClass]: ngModel.touched && ngModel.valid,
       [errorClass]: ngModel.touched && ngModel.invalid
     };
+  }
+
+  isAdmin():boolean{
+    if(this._loginService.getUserRole()==1)
+    {
+      return true;
+    }
+    return false;
   }
 
 }

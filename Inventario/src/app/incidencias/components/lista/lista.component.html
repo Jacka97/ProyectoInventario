@@ -61,10 +61,10 @@
                         <button
                           class="btn btn-sm btn-warning ms-1"
                           data-bs-toggle="tooltip"
-                          title="Modificar {{ elemento.id }}"
+                          title="Cambiar estado {{ elemento.id }}"
                           [routerLink]="['/modificaincidencia', 0, elemento.id]"
                         >
-                          <i class="fa-regular fa-pen-to-square"></i>
+                        <i class="fa-solid fa-wrench"></i>
                         </button>
                         <button
                           class="btn btn-sm btn-danger ms-1"
@@ -80,7 +80,7 @@
                       <td>{{ elemento.descripcion }}</td>
                       <td>{{ elemento.idTecnico }}</td>
                       <td>{{ elemento.nombreUbicacion }}</td>
-                      <td>{{ elemento.estado }}</td>
+                      <td [ngStyle]="{'background-color': elemento.estado=== 'cerrada' ? 'red' :elemento.estado=== 'resuelto' ? 'rgb(39, 204, 204)' : 'white'}">{{ elemento.estado }}</td>
                       <td>{{ elemento.fechaCreacion }}</td>
                       <td>{{ elemento.fechaCierre }}</td>
                       <td>{{ elemento.comentarioTecnico }}</td>

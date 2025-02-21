@@ -38,7 +38,7 @@
             <option  value="pendiente">Pendiente </option>
             <option  value="en trámite">En trámite </option>
             <option  value="resuelto">Resuelto</option>
-            <option  value="cerrada">Cerrada</option>
+            <option  value="cerrada" *ngIf=" isAdmin()" >Cerrada</option>
 
           </select>
         </div>
