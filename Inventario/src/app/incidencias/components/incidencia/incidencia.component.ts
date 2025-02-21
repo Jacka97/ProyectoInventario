@@ -28,7 +28,7 @@ export class IncidenciaComponent {
     fechaCreacion: '',
     fechaCierre: '',
     idUbicacion: 0,
-    emailUsuario: this.emailUsuario,
+    emailUsuario: this.emailUsuario
   };
 
   //Variables que cambiaran en funcion de las acciones que hagamos en los formularios y en la tabla
