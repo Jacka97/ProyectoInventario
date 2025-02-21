@@ -150,7 +150,7 @@ export class DispositivosComponent {
           },
         });
       } else if (this.tipo == 1) {
-        console.log(this.dispoRedAct);
+    
         this._dispositivosRedService.modificaDispoRed(this.id, this.dispoRedAct).subscribe({
           next: (resultado) => {
             if (resultado) {
