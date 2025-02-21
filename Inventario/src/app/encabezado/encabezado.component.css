@@ -6,9 +6,12 @@
 
 /* Estilos para el logo */
 .logo-navbar {
-    max-width: 70px;
-    height: auto;
+    width: 70px; /* Ajusta el tamaño del logo según lo desees */
+    height: 70px; /* Ajusta el tamaño del logo según lo desees */
+    border-radius: 50%; /* Esto hace que la imagen sea un círculo */
+    object-fit: cover; /* Asegura que la imagen se recorte bien sin deformarse */
 }
+
 
 /* Estilo para los enlaces del navbar */
 .navbar-nav .nav-link {
