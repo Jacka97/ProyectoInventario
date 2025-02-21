@@ -39,7 +39,7 @@ export class ModificarEstadoComponent {
       next: (resultado) => {
         if (resultado) {
           this.comentarioTecnico = resultado.comentarioTecnico;
-          console.log(resultado);
+    
         } else {
           this.toastr.error(resultado, 'Error obteniendo la incidencia');
         }
@@ -48,7 +48,7 @@ export class ModificarEstadoComponent {
         this.toastr.error(error, 'Error al obtener la incidencia')
       },
       complete: () => {
-        console.log('Operacion completada');
+       
       },
     });
   }

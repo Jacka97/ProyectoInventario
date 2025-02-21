@@ -182,7 +182,7 @@ export class SoftwarePcComponent {
     if (this.softwarePcForm?.valid || this.tipo == 2) {
       this.formularioCambiado = false;
       
-      console.log(this.softwarePcAct);
+
 
       if(this.enAula){
         this.softwarePcAct.idPC = 0;
@@ -194,8 +194,6 @@ export class SoftwarePcComponent {
         this._softwarePcService.guardaSoftwarePC(this.softwarePcAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              console.log(resultado);
-              console.log(this.softwarePcAct);
               this.toastr.success('Software agregado');
               this.router.navigate(['/software-pc']);
             } else {

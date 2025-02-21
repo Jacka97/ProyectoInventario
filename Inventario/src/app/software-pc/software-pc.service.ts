@@ -50,11 +50,9 @@ export class SoftwarePcService {
     }
 
     guardaSoftwarePC(softwarePc: SoftwarePC): Observable<any> {
-        let objeto = JSON.stringify(softwarePc);
 
         let variable = this.http.post<any>(this.urlSoftwarePcApi, JSON.stringify(softwarePc), this.httpOptions);
-        console.log("variable = "+variable);
-        console.log("objeto = "+objeto);
+
 
         return variable;
     }

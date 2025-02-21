@@ -47,14 +47,13 @@ export class ListaComponentIncidencias {
         if (resultado) {
           this.incidencias = resultado;
         } else {
-          console.error('Error al recibir los datos: ', resultado);
         }
       },
       error: (error) => {
-        console.error('Error al recibir los datos:', error);
+  
       },
       complete: () => {
-        console.log('Operacion completada.');
+      
       },
     });
   }

@@ -57,7 +57,7 @@ export class PeriService {
 
   // Funcion para modificar un usuario. (nuser: number, user: User) es el id del usuario y el objeto User con los nuevos datos del usuario.  (removeUserWrapper es una función que se encarga de quitar el "user" que viene en la respuesta del API y devolver solo el objeto User.)  (JSON.stringify convierte un objeto a una cadena de texto)  (this.httpOptions es las cabec
   modificaPeriAPI(nper: number, per: Periferico): Observable<any> {
-    console.log(JSON.stringify(per));
+
     return this.http.put<any>(`${this.urlApi}?id=${nper}`, JSON.stringify(per), this.httpOptions);
   }
 
@@ -65,7 +65,7 @@ export class PeriService {
   //Modifica registros de los ordenadores en la api
   modificaPerifericoUbicacion(nper:number, UbicacionId:number): Observable<any> {
     const body = { idUbicacion: UbicacionId };
-    console.log(body);
+
     return this.http.patch<any>(`${this.urlApi}/?id=${nper}`, JSON.stringify(body), this.httpOptions);
   }
 

@@ -70,7 +70,7 @@ export class IncidenciaComponent {
         this.toastr.error('Error al obtener los roles:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
+
       },
     });
   }
@@ -128,7 +128,7 @@ export class IncidenciaComponent {
       next: (resultado) => {
         if (resultado) {
           this.incidenciaAct = resultado;
-          console.log(resultado);
+
         } else {
           this.toastr.error(resultado, 'Error obteniendo la incidencia');
         }
@@ -137,7 +137,7 @@ export class IncidenciaComponent {
         this.toastr.error(error, 'Error al obtener la incidencia')
       },
       complete: () => {
-        console.log('Operacion completada');
+
       },
     });
   }

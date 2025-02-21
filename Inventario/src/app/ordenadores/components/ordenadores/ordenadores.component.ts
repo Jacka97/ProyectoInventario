@@ -113,7 +113,7 @@ export class OrdenadoresComponent {
     if (this.ordenadorForm!.valid || this.tipo == 2) {
 
       this.formularioCambiado = false;
-      console.log(JSON.stringify(this.ordenadorAct));
+
       if (this.tipo == 0) {
         this._ordenadoresService.guardaNuevoOrdenador(this.ordenadorAct).subscribe({
           next: (resultado) => {

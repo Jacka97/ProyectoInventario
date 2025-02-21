@@ -124,7 +124,7 @@ export class UsersComponent {
         this._usersService.borraUserApi(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Valor eliminado');
+              this.toastr.success('Usuario eliminado');
               this._route.navigate(['/users']);
             } else {
               this.toastr.error('Error al eliminar el usuario');
