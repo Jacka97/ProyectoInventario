@@ -169,11 +169,11 @@ CREATE TABLE Historico_Movimientos (
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
-    TipoMovimiento ENUM('insercion', 'actualizacion', 'borrado') NOT NULL DEFAULT 'insercion', 
+    TipoMovimiento ENUM('entrada', 'salida') NOT NULL DEFAULT 'entrada', 
 
     fecha DATE NOT NULL, 
 
-    /* datos del material a registrar en el historico (se ponen por trigger para evitar borrado) */
+    /* datos del material a registrar en el historico (se ponen por trigger para evitar salida) */
 
     idMaterial INT NOT NULL, 
 
@@ -195,12 +195,12 @@ CREATE TABLE Historico_Movimientos (
 /*insert*/
 DELIMITER //
 
-CREATE TRIGGER after_ordenadores_insert
+CREATE TRIGGER HM_after_ordenadores_insert
 AFTER INSERT ON Ordenadores
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, "Ordenador", NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
+    VALUES ('entrada', CURDATE(), NEW.id, NEW.nombre, "Ordenador", NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
 END;
 
 //
@@ -210,27 +210,67 @@ DELIMITER ;
 /*update*/
 DELIMITER //
 
-CREATE TRIGGER after_ordenadores_update
+CREATE TRIGGER HM_after_update_Ordenadores
 AFTER UPDATE ON Ordenadores
 FOR EACH ROW
 BEGIN
-    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, "Ordenador", NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
-END;
+    -- Verificar si el campo idUbicacion ha cambiado
+    IF OLD.idUbicacion <> NEW.idUbicacion THEN
+        -- Registro de SALIDA (ubicación antigua)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'salida', 
+            CURDATE(), 
+            OLD.id, 
+            OLD.nombre, 
+            'Ordenador', 
+            OLD.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = OLD.idUbicacion;
 
-//
+        -- Registro de ENTRADA (ubicación nueva)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'entrada', 
+            CURDATE(), 
+            NEW.id, 
+            NEW.nombre, 
+            'Ordenador', 
+            NEW.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = NEW.idUbicacion;
+    END IF;
+END //
 
 DELIMITER ;
 
 /*delete*/
 DELIMITER //
 
-CREATE TRIGGER after_ordenadores_delete
+CREATE TRIGGER HM_after_ordenadores_delete
 AFTER DELETE ON Ordenadores
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, "Ordenador", OLD.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
+    VALUES ('salida', CURDATE(), OLD.id, OLD.nombre, "Ordenador", OLD.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
 END;
 
 //
@@ -244,12 +284,12 @@ DELIMITER ;
 /*insert*/
 DELIMITER //
 
-CREATE TRIGGER after_dispred_insert
+CREATE TRIGGER HM_after_dispred_insert
 AFTER INSERT ON DispRed
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, "Dispositivo de Red", NEW.idUbicacion, 
+    VALUES ('entrada', CURDATE(), NEW.id, NEW.nombre, "Dispositivo de Red", NEW.idUbicacion, 
             (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
 END;
 
@@ -258,30 +298,70 @@ END;
 DELIMITER ;
 
 /*update*/
+
 DELIMITER //
 
-CREATE TRIGGER after_dispred_update
+CREATE TRIGGER HM_after_update_DispRed
 AFTER UPDATE ON DispRed
 FOR EACH ROW
 BEGIN
-    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, "Dispositivo de Red", NEW.idUbicacion, 
-            (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
-END;
+    -- Verificar si el campo idUbicacion ha cambiado
+    IF OLD.idUbicacion <> NEW.idUbicacion THEN
+        -- Registro de SALIDA (ubicación antigua)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'salida', 
+            CURDATE(), 
+            OLD.id, 
+            OLD.nombre, 
+            'DispRed', 
+            OLD.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = OLD.idUbicacion;
 
-//
+        -- Registro de ENTRADA (ubicación nueva)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'entrada', 
+            CURDATE(), 
+            NEW.id, 
+            NEW.nombre, 
+            'DispRed', 
+            NEW.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = NEW.idUbicacion;
+    END IF;
+END //
 
 DELIMITER ;
 
 /*delete*/
 DELIMITER //
 
-CREATE TRIGGER after_dispred_delete
+CREATE TRIGGER HM_after_dispred_delete
 AFTER DELETE ON DispRed
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, "Dispositivo de Red", OLD.idUbicacion, 
+    VALUES ('salida', CURDATE(), OLD.id, OLD.nombre, "Dispositivo de Red", OLD.idUbicacion, 
             (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
 END;
 
@@ -295,12 +375,12 @@ DELIMITER ;
 /*insert*/
 DELIMITER //
 
-CREATE TRIGGER after_perifericos_insert
+CREATE TRIGGER HM_after_perifericos_insert
 AFTER INSERT ON Perifericos
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, 'Periférico', NEW.idUbicacion, 
+    VALUES ('entrada', CURDATE(), NEW.id, NEW.nombre, 'Periférico', NEW.idUbicacion, 
             (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
 END;
 
@@ -311,28 +391,67 @@ DELIMITER ;
 /*update*/
 DELIMITER //
 
-CREATE TRIGGER after_perifericos_update
+CREATE TRIGGER HM_after_update_Perifericos
 AFTER UPDATE ON Perifericos
 FOR EACH ROW
 BEGIN
-    INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('actualizacion', CURDATE(), NEW.id, NEW.nombre, 'Periférico', NEW.idUbicacion, 
-            (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
-END;
+    -- Verificar si el campo idUbicacion ha cambiado
+    IF OLD.idUbicacion <> NEW.idUbicacion THEN
+        -- Registro de SALIDA (ubicación antigua)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'salida', 
+            CURDATE(), 
+            OLD.id, 
+            OLD.nombre, 
+            'Periferico', 
+            OLD.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = OLD.idUbicacion;
 
-//
+        -- Registro de ENTRADA (ubicación nueva)
+        INSERT INTO Historico_Movimientos (
+            TipoMovimiento, 
+            fecha, 
+            idMaterial, 
+            nombreMaterial, 
+            tipoMaterial, 
+            idUbicacion, 
+            nombreUbicacion
+        )
+        SELECT 
+            'entrada', 
+            CURDATE(), 
+            NEW.id, 
+            NEW.nombre, 
+            'Periferico', 
+            NEW.idUbicacion, 
+            U.nombre
+        FROM Ubicaciones U
+        WHERE U.id = NEW.idUbicacion;
+    END IF;
+END //
 
 DELIMITER ;
 
 /*delete*/
 DELIMITER //
 
-CREATE TRIGGER after_perifericos_delete
+CREATE TRIGGER HM_after_perifericos_delete
 AFTER DELETE ON Perifericos
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, 'Periférico', OLD.idUbicacion, 
+    VALUES ('salida', CURDATE(), OLD.id, OLD.nombre, 'Periférico', OLD.idUbicacion, 
             (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
 END;
 
@@ -368,7 +487,7 @@ CREATE TABLE Perifericos (
 /*Para Perifericos*/
 /*insert*/
 DELIMITER $$
-CREATE TRIGGER before_insert_perifericos
+CREATE TRIGGER HM_before_insert_perifericos
 BEFORE INSERT ON Perifericos
 FOR EACH ROW
 BEGIN
@@ -393,7 +512,7 @@ DELIMITER ;
 /*update*/
 DELIMITER $$
 
-CREATE TRIGGER hm_before_update_perifericos
+CREATE TRIGGER HM_before_update_perifericos
 BEFORE UPDATE ON Perifericos
 FOR EACH ROW
 BEGIN
@@ -422,7 +541,7 @@ DELIMITER ;
 /*Para Ordenador*/
 DELIMITER $$
 
-CREATE TRIGGER after_update_ordenador_ubicacion
+CREATE TRIGGER HM_after_update_ordenador_ubicacion
 AFTER UPDATE ON Ordenadores
 FOR EACH ROW
 BEGIN
@@ -802,11 +921,11 @@ CREATE TABLE Historico_Movimientos (
 
     id INT AUTO_INCREMENT PRIMARY KEY, 
 
-    TipoMovimiento ENUM('insercion', 'actualizacion', 'borrado') NOT NULL DEFAULT 'insercion', 
+    TipoMovimiento ENUM('entrada', 'salida') NOT NULL DEFAULT 'entrada', 
 
     fecha DATE NOT NULL, 
 
-    /* datos del material a registrar en el historico (se ponen por trigger para evitar borrado) */
+    /* datos del material a registrar en el historico (se ponen por trigger para evitar salida) */
 
     idMaterial INT NOT NULL, 
 
@@ -825,12 +944,12 @@ CREATE TABLE Historico_Movimientos (
 /*insert*/
 DELIMITER //
 
-CREATE TRIGGER after_ordenadores_insert
+CREATE TRIGGER HM_after_ordenadores_insert
 AFTER INSERT ON Ordenadores
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, "Ordenador", NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
+    VALUES ('entrada', CURDATE(), NEW.id, NEW.nombre, "Ordenador", NEW.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
 END;
 
 //
@@ -840,7 +959,7 @@ DELIMITER ;
 /*update*/
 DELIMITER //
 
-CREATE TRIGGER after_update_Ordenadores
+CREATE TRIGGER HM_after_update_Ordenadores
 AFTER UPDATE ON Ordenadores
 FOR EACH ROW
 BEGIN
@@ -895,12 +1014,12 @@ DELIMITER ;
 /*delete*/
 DELIMITER //
 
-CREATE TRIGGER after_ordenadores_delete
+CREATE TRIGGER HM_after_ordenadores_delete
 AFTER DELETE ON Ordenadores
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, "Ordenador", OLD.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
+    VALUES ('salida', CURDATE(), OLD.id, OLD.nombre, "Ordenador", OLD.idUbicacion, (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
 END;
 
 //
@@ -914,12 +1033,12 @@ DELIMITER ;
 /*insert*/
 DELIMITER //
 
-CREATE TRIGGER after_dispred_insert
+CREATE TRIGGER HM_after_dispred_insert
 AFTER INSERT ON DispRed
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, "Dispositivo de Red", NEW.idUbicacion, 
+    VALUES ('entrada', CURDATE(), NEW.id, NEW.nombre, "Dispositivo de Red", NEW.idUbicacion, 
             (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
 END;
 
@@ -930,7 +1049,7 @@ DELIMITER ;
 /*update*/
 DELIMITER //
 
-CREATE TRIGGER after_update_DispRed
+CREATE TRIGGER HM_after_update_DispRed
 AFTER UPDATE ON DispRed
 FOR EACH ROW
 BEGIN
@@ -985,12 +1104,12 @@ DELIMITER ;
 /*delete*/
 DELIMITER //
 
-CREATE TRIGGER after_dispred_delete
+CREATE TRIGGER HM_after_dispred_delete
 AFTER DELETE ON DispRed
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, "Dispositivo de Red", OLD.idUbicacion, 
+    VALUES ('salida', CURDATE(), OLD.id, OLD.nombre, "Dispositivo de Red", OLD.idUbicacion, 
             (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
 END;
 
@@ -1004,12 +1123,12 @@ DELIMITER ;
 /*insert*/
 DELIMITER //
 
-CREATE TRIGGER after_perifericos_insert
+CREATE TRIGGER HM_after_perifericos_insert
 AFTER INSERT ON Perifericos
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('insercion', CURDATE(), NEW.id, NEW.nombre, 'Periférico', NEW.idUbicacion, 
+    VALUES ('entrada', CURDATE(), NEW.id, NEW.nombre, 'Periférico', NEW.idUbicacion, 
             (SELECT nombre FROM Ubicaciones WHERE id = NEW.idUbicacion));
 END;
 
@@ -1020,7 +1139,7 @@ DELIMITER ;
 /*update*/
 DELIMITER //
 
-CREATE TRIGGER after_update_Perifericos
+CREATE TRIGGER HM_after_update_Perifericos
 AFTER UPDATE ON Perifericos
 FOR EACH ROW
 BEGIN
@@ -1075,12 +1194,12 @@ DELIMITER ;
 /*delete*/
 DELIMITER //
 
-CREATE TRIGGER after_perifericos_delete
+CREATE TRIGGER HM_after_perifericos_delete
 AFTER DELETE ON Perifericos
 FOR EACH ROW
 BEGIN
     INSERT INTO Historico_Movimientos (TipoMovimiento, fecha, idMaterial, nombreMaterial, tipoMaterial, idUbicacion, nombreUbicacion)
-    VALUES ('borrado', CURDATE(), OLD.id, OLD.nombre, 'Periférico', OLD.idUbicacion, 
+    VALUES ('salida', CURDATE(), OLD.id, OLD.nombre, 'Periférico', OLD.idUbicacion, 
             (SELECT nombre FROM Ubicaciones WHERE id = OLD.idUbicacion));
 END;
 
@@ -1133,7 +1252,7 @@ END;
 DELIMITER ;
 
 
-/************** INSERCIONES ************************************************/
+/************** entradaES ************************************************/
 
 -- Insertar roles
 INSERT INTO Roles (nombre) VALUES ('administrador'), ('usuario'), ('tecnico'); 
