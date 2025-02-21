@@ -11,7 +11,7 @@
         (ngSubmit)="guardaIncidencia()"
         novalidate
       >
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-5">
           <label for="idUbicacion" class="form-label">Ubicacion:</label>
           <select
             id="idUbicacion"
@@ -29,7 +29,7 @@
           </select>
         </div>
 
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-5">
           <label for="asunto" class="form-label">Asunto</label>
           <input
             type="text"
@@ -44,10 +44,9 @@
           />
         </div>
 
-        <div class="col-12 col-md-3">
+        <div class="col-10">
           <label for="descripcion" class="form-label">Detalles</label>
-          <input
-            type="text"
+          <textarea
             id="descripcion"
             name="descripcion"
             class="form-control"
@@ -55,7 +54,7 @@
             [readonly]="tipo == 2"
             (ngModelChange)="cambiado()"
             required
-          />
+          ></textarea>         
         </div>
 
         <div class="col-12 col-md-3">
@@ -67,10 +66,10 @@
             class="form-control"
             [(ngModel)]="incidenciaAct.emailUsuario"
             [readonly]="true"
-            placeholder="{{emailUsuario}}"
+            placeholder="{{ emailUsuario }}"
           />
         </div>
-        
+
         <div class="col-12">
           <div class="my-3 text-center">
             <input
