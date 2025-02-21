@@ -31,7 +31,7 @@
             </div>
 
             <!-- Tabla Responsive -->
-            <div class="col-12">
+            <div class="col-12 ">
               <div class="table-responsive">
                 <table
                   datatable
@@ -80,7 +80,7 @@
                       <td>{{ elemento.descripcion }}</td>
                       <td>{{ elemento.idTecnico }}</td>
                       <td>{{ elemento.nombreUbicacion }}</td>
-                      <td [ngStyle]="{'background-color': elemento.estado=== 'cerrada' ? 'red' :elemento.estado=== 'resuelto' ? 'rgb(39, 204, 204)' : 'white'}">{{ elemento.estado }}</td>
+                      <td [ngStyle]="{'background-color': elemento.estado=== 'cerrada' ? 'red' :elemento.estado=== 'resuelto' ? 'rgb(39, 204, 204)':elemento.estado=== 'en trámite' ? 'rgb(248, 216, 174)' : 'white'}">{{ elemento.estado }}</td>
                       <td>{{ elemento.fechaCreacion }}</td>
                       <td>{{ elemento.fechaCierre }}</td>
                       <td>{{ elemento.comentarioTecnico }}</td>
