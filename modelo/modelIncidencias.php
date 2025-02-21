@@ -21,7 +21,7 @@ class modelIncidencias{
     }
     public static function altaIncidencia( $idTecnico, $idUbicacion, $asunto, $descripcion){
         $conexion = conexionBD::conectar();
-        $sql = "INSERT INTO Incidencia(idTecnico, idUbicacion, asunto, descripcion) VALUES ($idTecnico,$idUbicacion,'$asunto','$descripcion')";
+        $sql = "INSERT INTO Incidencia(idTecnico, idUbicacion, asunto, descripcion ) VALUES ($idTecnico,$idUbicacion,'$asunto','$descripcion')";
         $conexion->query($sql);
         return $conexion->insert_id;
         $conexion->close();   
