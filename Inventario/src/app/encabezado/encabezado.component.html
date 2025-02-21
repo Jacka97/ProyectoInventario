@@ -1,228 +1,85 @@
-
-<nav class="navbar navbar-expand-lg" style="background-color: #023e73">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary encabezado">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"   [routerLink]="['/bienvenido']"
-    [routerLinkActive]="['active']">
-      <img
-        src="../../assets/images/logo.png"
-        alt="Logo"
-        class="d-inline-block align-text-top"
-        style="max-width: 70px"
-    /></a>
-    <button
-      class="navbar-toggler bg-white"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center" [routerLink]="['/bienvenido']" [routerLinkActive]="'active'">
+      <img src="../../assets/images/logo.png" alt="Logo" class="logo-navbar">
+    </a>
+
+    <!-- Botón de menú en móviles -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+    <!-- Menú -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <!-- Configuración -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle text-light"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Configuración
-          </a>
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Configuración</a>
           <ul class="dropdown-menu">
             <li *ngIf="isAdmin()">
-              <!-- Solo muestra para administradores -->
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/users']"
-                [routerLinkActive]="['active']"
-                >Usuarios</a
-              >
+              <a class="dropdown-item" [routerLink]="['/users']">Usuarios</a>
+              <hr class="dropdown-divider">
             </li>
-            <li *ngIf="isAdmin()"><hr class="dropdown-divider" /></li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/marcas']"
-                [routerLinkActive]="['active']"
-                >Marcas</a
-              >
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/ubicaciones']"
-                [routerLinkActive]="['active']"
-                >Ubicaciones</a
-              >
-            </li>
+            <li><a class="dropdown-item" [routerLink]="['/marcas']">Marcas</a></li>
+            <hr class="dropdown-divider">
+            <li><a class="dropdown-item" [routerLink]="['/ubicaciones']">Ubicaciones</a></li>
           </ul>
         </li>
+
+        <!-- Activos -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle text-light"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Activos
-          </a>
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Activos</a>
           <ul class="dropdown-menu">
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/ordenadores']"
-                [routerLinkActive]="['active']"
-                >Ordenadores</a
-              >
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/perifericos']"
-                [routerLinkActive]="['active']"
-                >Periféricos</a
-              >
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/dispositivos-red']"
-                [routerLinkActive]="['active']"
-                >Dispositivos de Red</a
-              >
-            </li>
-            <!--<li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Otros</a></li>-->
+            <li><a class="dropdown-item" [routerLink]="['/ordenadores']">Ordenadores</a></li>
+            <hr class="dropdown-divider">
+            <li><a class="dropdown-item" [routerLink]="['/perifericos']">Periféricos</a></li>
+            <hr class="dropdown-divider">
+            <li><a class="dropdown-item" [routerLink]="['/dispositivos-red']">Dispositivos de Red</a></li>
           </ul>
         </li>
+
+        <!-- Gestión de Material -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle text-light"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Gestión de Material
-          </a>
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Gestión de Material</a>
           <ul class="dropdown-menu">
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/materialesCambioUbicacion']"
-                [routerLinkActive]="['active']"
-                >Trasladar Material</a
-              >
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/salidas']"
-                [routerLinkActive]="['active']"
-                >Listar Salidas de Material</a
-              >
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/entradas']"
-                [routerLinkActive]="['active']"
-                >Listar Entrada de Material</a
-              >
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/mats-ubi']"
-                [routerLinkActive]="['active']"
-                >Cambiar todo el material de aula</a
-              >
-            </li>
+            <li><a class="dropdown-item" [routerLink]="['/materialesCambioUbicacion']">Trasladar Material</a></li>
+            <hr class="dropdown-divider">
+            <li><a class="dropdown-item" [routerLink]="['/salidas']">Listar Salidas</a></li>
+            <hr class="dropdown-divider">
+            <li><a class="dropdown-item" [routerLink]="['/entradas']">Listar Entradas</a></li>
+            <hr class="dropdown-divider">
+            <li><a class="dropdown-item" [routerLink]="['/mats-ubi']">Cambiar Material de Aula</a></li>
           </ul>
         </li>
+
+        <!-- Gestión de Software -->
         <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle text-light"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Gestión de Software
-          </a>
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Gestión de Software</a>
           <ul class="dropdown-menu">
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/software']"
-                [routerLinkActive]="['active']"
-                >Softwares</a
-              >
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a
-                class="dropdown-item"
-                href="#"
-                [routerLink]="['/software-pc']"
-                [routerLinkActive]="['active']"
-              >
-                Instalar Software</a
-              >
+            <li><a class="dropdown-item" [routerLink]="['/software']">Softwares</a></li>
+            <hr class="dropdown-divider">
+            <li><a class="dropdown-item" [routerLink]="['/software-pc']">Instalar Software</a></li>
+          </ul>
+        </li>
+
+        <!-- Gestión de Incidencias -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Gestión de Incidencias</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['/incidencia', 0, 0]">Poner Incidencia</a></li>
+            <li *ngIf="isAdmin() || isTecnico()">
+              <hr class="dropdown-divider">
+              <a class="dropdown-item" [routerLink]="['/incidencia']">Incidencias</a>
             </li>
           </ul>
         </li>
 
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle text-light"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Gestión de Incidencias
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"   [routerLink]="['/incidencia', 0, 0]"
-              [routerLinkActive]="['active']">Poner incidencia</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#"  [routerLink]="['/incidencia']"
-              [routerLinkActive]="['active']" *ngIf="isAdmin() || isTecnico() ">Incidencias</a></li>
-          </ul>
-        </li>
-
+        <!-- Botón de Logout -->
         <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            href="#"
-            [routerLink]="['/logout']"
-            [routerLinkActive]="['active']"
-            ><i class="fa-solid fa-power-off text-danger"></i
-          ></a>
+          <a class="nav-link text-danger" [routerLink]="['/logout']">
+            <i class="fa-solid fa-power-off fa-fw text-danger"></i>
+          </a>
         </li>
       </ul>
     </div>
