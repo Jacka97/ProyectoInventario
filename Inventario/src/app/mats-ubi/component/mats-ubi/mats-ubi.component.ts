@@ -77,10 +77,11 @@ users: any;
           this.ubis = resultado;
           //this.idSeleccionado = -1; // Valor inicial para el select
         } else {
-          // console.error('Error: la respuesta no es un array válido', resultado);
+
         }
       },
       error: (error) => {
+   
         this.toastr.error('Error al obtener las ubicaciones');
       },
       complete: () => {
@@ -165,21 +166,19 @@ users: any;
             this.toastr.success('Ubicación modificada con éxito');
             this.mostrarFormulario = false;
   
-            //  Actualizar la lista
+            //  Actualizar la lista a la fuerza
             location.reload();
   
             // Reinicializar DataTables
             this.reiniciarDataTable();
           } else {
-            console.error('Error: No se pudo modificar la ubicación', resultado);
+           
           }
         },
         error: (error) => {
-          console.error('Error al modificar ubicación:', error);
           this.toastr.error('Error al modificar la ubicación');
         },
         complete: () => {
-          console.log('Operación completada - Ubicación modificada');
         }
       });
     } else {

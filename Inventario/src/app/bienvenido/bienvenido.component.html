@@ -2,36 +2,76 @@
     <div id="bienv" class="col-10 text-center">
         <h1>Bienvenido a GII <p>Gestión de Inventarios e Incidencias</p></h1>
     </div>
-    <div class="col-3  d-none d-md-block">
-        <img src="../../assets/images/almacen.jpg" class="img-thumbnail" alt="gestion almacen">
+    
+  <!-- Imágenes en pantallas grandes -->
+  <div class="row d-none d-md-flex justify-content-center align-items-stretch mt-4">
+    <div class="col-3">
+        <a  class="image-wrapper">
+            <img src="../../assets/images/almacen.jpg" class="img-thumbnail w-100 h-100" alt="Gestión de Activos">
+            <div class="overlay">Gestión de Activos</div>
+        </a>
     </div>
-    <div class="col-3 d-none d-md-block">
-        <img src="../../assets/images/inventario.jpg " class="img-thumbnail" alt="inventario">
+    <div class="col-3">
+        <a  class="image-wrapper">
+            <img src="../../assets/images/inventario.jpg" class="img-thumbnail w-100 h-100" alt="Inventario">
+            <div class="overlay">Inventario</div>
+        </a>
     </div>
-    <div class="col-3  d-none d-md-block">
-        <img src="../../assets/images/software.jpg" class="img-thumbnail" alt="software">
+    <div class="col-3">
+        <a  class="image-wrapper">
+            <img src="../../assets/images/software.jpg" class="img-thumbnail w-100 h-100" alt="Software">
+            <div class="overlay">Software</div>
+        </a>
     </div>
-    <div class="col-3 d-none d-md-block ">
-        <img src="../../assets/images/almacen.jpg" class="img-thumbnail" alt="gestion almacen">
+    <div class="col-3">
+        <a  class="image-wrapper">
+            <img src="../../assets/images/incidencias.png" class="img-thumbnail w-100 h-100" alt="Incidencias">
+            <div class="overlay">Incidencias</div>
+        </a>
     </div>
-    <div class="d-md-none">
-      <div id="carouselExample" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="../../assets/images/inventario.jpg" class="d-block w-100" alt="gestion almacen">
+</div>
+
+<!-- Carrusel para pantallas pequeñas -->
+<div class="row d-md-none mt-4">
+  <div class="col-12">
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <a  class="carousel-image-wrapper">
+                      <img src="../../assets/images/almacen.jpg" class="d-block w-100 carousel-img" alt="Gestión de Activos">
+                      <div class="overlay">Gestión de Activos</div>
+                  </a>
+              </div>
+              <div class="carousel-item">
+                  <a class="carousel-image-wrapper">
+                      <img src="../../assets/images/inventario.jpg" class="d-block w-100 carousel-img" alt="Inventario">
+                      <div class="overlay">Inventario</div>
+                  </a>
+              </div>
+              <div class="carousel-item">
+                  <a  class="carousel-image-wrapper">
+                      <img src="../../assets/images/software.jpg" class="d-block w-100 carousel-img" alt="Software">
+                      <div class="overlay">Software</div>
+                  </a>
+              </div>
+              <div class="carousel-item">
+                  <a  class="carousel-image-wrapper">
+                      <img src="../../assets/images/incidencias.png" class="d-block w-100 carousel-img" alt="Incidencias">
+                      <div class="overlay">Incidencias</div>
+                  </a>
+              </div>
           </div>
-                   <div class="carousel-item">
-            <img src="../../assets/images/software.jpg" class="d-block w-100" alt="software">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+          </button>
       </div>
-    </div>
+  </div>
+</div>
+
+
 </div>

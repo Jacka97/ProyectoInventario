@@ -19,7 +19,7 @@ export class EntradasComponent {
   fechamin: string = "";
   fechamax: string = "";
 
-  tipo = "insercion";
+  tipo = "entrada";
 
   dtOptions: Config = {};
   constructor(private _movimientosService: MaterialesService) { }
@@ -56,16 +56,16 @@ export class EntradasComponent {
         if (resultado && Array.isArray(resultado)) {
           this.entradas = resultado; // Asigna los datos correctamente
         } else {
-          console.warn('No hay datos disponibles.');
+      
           this.entradas = []; // Asegura que el array no sea undefined
         }
       },
       error: (error) => {
-        console.error('Error al recibir datos:', error);
+       
         this.entradas = []; // Asegura que la variable no quede en un estado incorrecto
       },
       complete: () => {
-        console.log('Operación completada.');
+       
       }
     });
   }

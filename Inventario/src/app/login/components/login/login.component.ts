@@ -52,7 +52,6 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this._loginService.login(this.loginForm.get('email')?.value, this.loginForm.get('contrasenya')?.value).subscribe({
         next: (resultado) => {
-          console.log(resultado);
           if(resultado.success){
             this._loginService.saveToken(resultado.token);
             sessionStorage.setItem('userRole', resultado.Rol.toString());
@@ -69,7 +68,7 @@ export class LoginComponent {
 
         },
         error: (error) => {
-          console.error('Error al hacer el login:', error);
+   
           this.toastr.error("Datos introducidos no válidos", 'Error de validación');
           this.loginForm.setValue({
             usuario: '',
@@ -77,7 +76,7 @@ export class LoginComponent {
           });
         },
         complete: () => {
-          console.log('Operación completada.');
+       
         },
       });
     } else {

@@ -11,7 +11,7 @@
         (ngSubmit)="guardaIncidencia()"
         novalidate
       >
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-5">
           <label for="idUbicacion" class="form-label">Ubicacion:</label>
           <select
             id="idUbicacion"
@@ -20,7 +20,9 @@
             [(ngModel)]="incidenciaAct.idUbicacion"
             (ngModelChange)="cambiado()"
             required
+            #ubicacion="ngModel"
             [disabled]="tipo == 2"
+            [ngClass]="validClasses(ubicacion, 'is-valid', 'is-invalid')"
           >
             <option value="" disabled>Selecciona una ubicacion</option>
             <option *ngFor="let ubi of ubis" [value]="ubi.id">
@@ -28,8 +30,9 @@
             </option>
           </select>
         </div>
+        <span *ngIf="ubicacion.touched && ubicacion.invalid" class="text-danger">El campo es obligatorio</span>
 
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-5">
           <label for="asunto" class="form-label">Asunto</label>
           <input
             type="text"
@@ -39,38 +42,43 @@
             [(ngModel)]="incidenciaAct.asunto"
             [readonly]="tipo == 2"
             (ngModelChange)="cambiado()"
+            #asunto="ngModel"
             required
+            [disabled]="tipo == 2"
+            [ngClass]="validClasses(asunto, 'is-valid', 'is-invalid')"
           />
+          <span *ngIf="asunto.touched && asunto.invalid" class="text-danger">El campo es obligatorio</span>
         </div>
 
-        <div class="col-12 col-md-3">
+        <div class="col-10">
           <label for="descripcion" class="form-label">Detalles</label>
-          <input
-            type="text"
+          <textarea
             id="descripcion"
             name="descripcion"
             class="form-control"
             [(ngModel)]="incidenciaAct.descripcion"
             [readonly]="tipo == 2"
             (ngModelChange)="cambiado()"
+            #detalles="ngModel"
             required
+            [ngClass]="validClasses(detalles, 'is-valid', 'is-invalid')"
+          ></textarea>         
+          <span *ngIf="detalles.touched && detalles.invalid" class="text-danger">El campo es obligatorio</span>
+        </div>
+
+        <div class="col-12 col-md-3">
+          <label for="emailUsuario" class="form-label">Email Usuario:</label>
+          <input
+            type="text"
+            id="emailUsuario"
+            name="emailUsuario"
+            class="form-control"
+            [(ngModel)]="incidenciaAct.emailUsuario"
+            [readonly]="true"
+            placeholder="{{ emailUsuario }}"
           />
         </div>
 
-        <!--El email lo cogeremos del usuario que está autenticado-->
-        <div class="col-12 col-md-3">
-          <label for="emailUsuario" class="form-label">Email Usuario:</label>
-        <input
-          type="text"
-          id="emailUsuario"
-          name="emailUsuario"
-          class="form-control"
-          [(ngModel)]="incidenciaAct.emailUsuario"
-          [readonly]="true"
-          value="{{emailUser}}"
-          placeholder="{{emailUser}}"
-        />
-      </div>
         <div class="col-12">
           <div class="my-3 text-center">
             <input

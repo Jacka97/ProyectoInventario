@@ -7,12 +7,6 @@
       <div class="card-body">
         <div class="d-flex justify-content-between mb-2 flex-wrap">
           <h5 class="card-title">Listado de Incidencias</h5>
-          <button
-          class="btn btn-primary mt-2 mt-md-0"
-          [routerLink]="['/incidencia', 0, 0]"
-        >
-          <i class="fa-solid fa-square-plus"></i> Cambiar Estado
-        </button>
         </div>
 
         <div *ngIf="incidencias">
@@ -37,7 +31,7 @@
             </div>
 
             <!-- Tabla Responsive -->
-            <div class="col-12">
+            <div class="col-12 ">
               <div class="table-responsive">
                 <table
                   datatable
@@ -56,20 +50,22 @@
                       <th scope="col">Estado</th>
                       <th scope="col">Fecha de Creación</th>
                       <th scope="col">Fecha de Cierre</th>
+                      <th scope="col">Comentario Técnico</th>
+                      <th scope="col">Email Enviado</th>
                      <!-- <th scope="col d-md-table-cell">Email Enviado</th>-->
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let elemento of incidencias">
                       <td>
-                      <!--  <button
+                        <button
                           class="btn btn-sm btn-warning ms-1"
                           data-bs-toggle="tooltip"
-                          title="Modificar {{ elemento.id }}"
-                          [routerLink]="['/incidencia', 1, elemento.id]"
+                          title="Cambiar estado {{ elemento.id }}"
+                          [routerLink]="['/modificaincidencia', 0, elemento.id]"
                         >
-                          <i class="fa-regular fa-pen-to-square"></i>
-                        </button>-->
+                        <i class="fa-solid fa-wrench"></i>
+                        </button>
                         <button
                           class="btn btn-sm btn-danger ms-1"
                           data-bs-toggle="tooltip"
@@ -84,9 +80,11 @@
                       <td>{{ elemento.descripcion }}</td>
                       <td>{{ elemento.idTecnico }}</td>
                       <td>{{ elemento.nombreUbicacion }}</td>
-                      <td>{{ elemento.estado }}</td>
+                      <td [ngStyle]="{'background-color': elemento.estado=== 'cerrada' ? 'red' :elemento.estado=== 'resuelto' ? 'rgb(39, 204, 204)':elemento.estado=== 'en trámite' ? 'rgb(248, 216, 174)' : 'white'}">{{ elemento.estado }}</td>
                       <td>{{ elemento.fechaCreacion }}</td>
                       <td>{{ elemento.fechaCierre }}</td>
+                      <td>{{ elemento.comentarioTecnico }}</td>
+                      <td>{{ elemento.emailEnviado }}</td>
                       <!--<td>{{ elemento.EmailEnviado }}</td>-->
                     </tr>
                   </tbody>

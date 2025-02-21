@@ -44,8 +44,8 @@ export class IncidenciaService {
   }
 
   //Modifica registros de las incidencias en la api
-  modificaIncidenciaEstado(nincidencia:number, estado:string): Observable<any> {
-    const body = { estado: estado };
+  modificaIncidenciaEstado(nincidencia:number, estado:string, comentarioTecnico:string): Observable<any> {
+    const body = { estado: estado, comentarioTecnico:comentarioTecnico};
     return this.http.patch<any>(`${this.urlAPI}/?id=${nincidencia}`, JSON.stringify(body), this.httpOptions);
   }
 

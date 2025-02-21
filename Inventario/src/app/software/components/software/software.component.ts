@@ -53,7 +53,7 @@ export class SoftwareComponent {
         this.toastr.error(error, 'Error al obtener el ordenador')
       },
       complete: () => {
-        console.log('Operacion completada');
+        
       },
     });
   }

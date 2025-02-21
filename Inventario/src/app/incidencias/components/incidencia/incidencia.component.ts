@@ -15,7 +15,7 @@ import { LoginService } from '../../../login/login.service';
 export class IncidenciaComponent {
  @ViewChild('incidenciaForm', { static: true }) incidenciaForm: NgForm | undefined;
  constructor(private _incidenciasService: IncidenciaService, private _aroute: ActivatedRoute, private _route: Router, private toastr: ToastrService,private _loginService: LoginService) { }
-
+ public emailUsuario:string= this._loginService.getemailRole();
   public ubiact: Ubicacion = {id: 0, nombre: ''};
   public ubis: Ubicacion[] = [];
   public incidenciaAct: Incidencia = {
@@ -28,7 +28,7 @@ export class IncidenciaComponent {
     fechaCreacion: '',
     fechaCierre: '',
     idUbicacion: 0,
-    emailUsuario: ''
+    emailUsuario: this.emailUsuario
   };
 
   //Variables que cambiaran en funcion de las acciones que hagamos en los formularios y en la tabla
@@ -37,7 +37,6 @@ export class IncidenciaComponent {
   public formularioCambiado: boolean = false;
   public tipo: number = 0;
   public id: number = 0;
- public emailUser:string= this._loginService.getemailRole();
 
 
 
@@ -86,7 +85,7 @@ export class IncidenciaComponent {
         this._incidenciasService.guardaNuevaIncidencia(this.incidenciaAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Incidencia Agregada');
+              this.toastr.success('Incidencia creada, notificación enviada por email');
               this._route.navigate(['/incidencia']);
             } else {
               this.toastr.error('Error al agregar la incidencia');
@@ -99,30 +98,11 @@ export class IncidenciaComponent {
             this.toastr.success('Operacion completada');
           },
         });
-      } else if (this.tipo == 1) {
-        this._incidenciasService.modificaIncidencia(this.id, this.incidenciaAct).subscribe({
-          next: (resultado) => {
-            if (resultado) {
-              console.log(resultado);
-              console.log(this.incidenciaAct);
-              this.toastr.success('Datos modificados');
-              this._route.navigate(['/incidencia']);
-            } else {
-              this.toastr.error('Error al modificar la incidencia');
-            }
-          },
-          error: (error) => {
-            this.toastr.error('Error al modificar la incidencia: ', error);
-          },
-          complete: () => {
-            this.toastr.success('Modificacion completada');
-          },
-        });
       } else if (this.tipo == 2) {
         this._incidenciasService.borraIncidencia(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Incidencia eliminada');
+              this.toastr.success('Incidencia eliminada, notificación enviada por email');
               this._route.navigate(['/incidencia']);
             } else {
               this.toastr.error('Error al eliminar la incidencia');

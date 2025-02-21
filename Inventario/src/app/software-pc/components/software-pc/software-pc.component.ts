@@ -87,9 +87,9 @@ export class SoftwarePcComponent {
     this.traeSoftware();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
-    this.softwarePcAct.idUbicacion = -1;
     if (this.tipo == 1) {
       this.titulo = 'Modificar Asignacion (' + this.id + ')';
+      this.txtBtn = 'Modificar';
       this.traeSoftwarePc(this.id);
     } else if (this.tipo == 2) {
       this.titulo = 'Borrar Asignacion (' + this.id + ')';
@@ -111,7 +111,7 @@ export class SoftwarePcComponent {
         this.toastr.error(error, 'Error al obtener el software')
       },
       complete: () => {
-        console.log('Operacion completada');
+    
       },
     });
   }
@@ -130,7 +130,7 @@ export class SoftwarePcComponent {
         this.toastr.error(error, 'Error al obtener el software')
       },
       complete: () => {
-        console.log('Operacion completada');
+       
       },
     });
   }
@@ -149,7 +149,7 @@ export class SoftwarePcComponent {
         this.toastr.error('Error al obtener el ordenador:', error);
       },
       complete: () => {
-        console.log('Operación completada.');
+      
       },
     });
   }
@@ -163,16 +163,16 @@ export class SoftwarePcComponent {
           this.ubicaciones = resultado;
         } else {
           // Si hay un error en los datos recibidos, se muestra en la consola
-          console.error('Error al recibir datos:', resultado.error);
+        
         }
       },
       error: (error) => {
         // Si ocurre un error en la petición, se muestra en la consola
-        console.error('Error al recibir datos:', error);
+
       },
       complete: () => {
         // Mensaje de confirmación cuando la operación ha finalizado correctamente
-        console.log('Operación completada.');
+
       },
     });
   }
@@ -248,6 +248,14 @@ export class SoftwarePcComponent {
       this.toastr.error('El formulario tiene campos invalidos');
     }
   }
+
+  esInvalido(): boolean {
+    return (
+      Number.isNaN(this.softwarePcAct.idSoftware)|| 
+      (this.enAula && Number.isNaN(this.softwarePcAct.idUbicacion)) || 
+      (!this.enAula && Number.isNaN(this.softwarePcAct.idPC))
+    );
+  }  
 
   cambiado(): void {
     this.formularioCambiado = true;

@@ -42,14 +42,14 @@ this._marcasService.obtengoMarcasApi().subscribe({
     if (resultado){
       this.marcas = resultado;
     }else{
-      console.error('Error al recibir datos:', resultado.error);
+  
     }
   },
   error: (error) => {
-    console.error('Error al recibir datos:', error);
+   
   },
   complete: () => {
-    console.log('Operación completada.');
+  
   },
 });
 }

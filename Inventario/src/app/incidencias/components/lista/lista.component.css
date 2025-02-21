@@ -1,0 +1,10 @@
+.table-responsive {
+    overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
+    }
+    th {
+        white-space: nowrap;
+      
+      }
+      td {
+        white-space: normal; 
+      }

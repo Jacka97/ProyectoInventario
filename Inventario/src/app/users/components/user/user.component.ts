@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { User } from '../../Users';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../users.service';
@@ -15,8 +15,8 @@ import { Rol } from '../../Roles';
 })
 export class UsersComponent {
   @ViewChild('userForm', { static: true }) userForm: NgForm | undefined;
-  public useract: User = {correo: '', pass: '', nombre: '', activo: 0, id_rol: 2,};
-  public rolact: Rol = {id: "", nombre: ''};
+  public useract: User = { correo: '', pass: '', nombre: '', activo: 0, id_rol: 2, };
+  public rolact: Rol = { id: "", nombre: '' };
   public roles: Rol[] = [];  // Asegúrate de que la variable esté correctamente tipada como un array de objetos Rol
   public titulo: string = 'Nuevo Comentario';
   public tipo: number = 0;
@@ -39,17 +39,17 @@ export class UsersComponent {
       this.traeUsuario(this.id);
     }
   }
-  private traerRoles(){
+  private traerRoles() {
     this._usersService.obtengoAllRolesApi().subscribe({
       next: (resultado) => {
         if (resultado) {
           this.roles = resultado;
         } else {
-          this.toastr.error('Error al obtener los roles:', resultado);
+          this.toastr.error('Error al obtener los roles');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener los roles:', error);
+        this.toastr.error('Error al obtener los roles');
       },
       complete: () => {
         console.log('Operación completada.');
@@ -63,11 +63,11 @@ export class UsersComponent {
           this.useract = resultado;
           this.inputChecked = this.useract.activo == 1;
         } else {
-          this.toastr.error('Error al obtener el usuario:', resultado);
+          this.toastr.error('Error al obtener el usuario');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el usuario:', error);
+        this.toastr.error('Error al obtener el usuario');
       },
       complete: () => {
         console.log('Operación completada.');
@@ -78,30 +78,30 @@ export class UsersComponent {
     // Verificar si el formulario es válido
     if (this.userForm?.valid) {
       this.formularioCambiado = false;
-  
+
       if (this.tipo === 0) {
         // Crear usuario
         this.useract.activo = this.inputChecked ? 1 : 0;
-  
+
         // Enviar usuario al API para crearlo
         this._usersService.crearUserApi(this.useract).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Usuario creado:', resultado);
+              this.toastr.success('Usuario creado');
               this._route.navigate(['/users']);
             } else {
-              this.toastr.error('Error al crear el usuario:', resultado);
+              this.toastr.error('Error al crear el usuario');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al crear el usuario:', error.error?.errores || error);
+            this.toastr.error('Error al crear el usuario');
           },
           complete: () => {
             this.toastr.success('Operación completada.');
           },
         });
       } else if (this.tipo === 1) {
-        this.toastr.success(`Usuario modificado: ${this.id}`);
+        this.toastr.success(`Usuario modificado`);
         this.useract.activo = this.inputChecked ? 1 : 0;
         this._usersService.modificaUserApi(this.id, this.useract).subscribe({
           next: (resultado) => {
@@ -109,11 +109,11 @@ export class UsersComponent {
               this.toastr.success('Usuario modificado:', resultado);
               this._route.navigate(['/users']);
             } else {
-              this.toastr.error('Error al modificar el usuario:', resultado);
+              this.toastr.error('Error al modificar el usuario');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al modificar el usuario:', error.error?.errores || error);
+            this.toastr.error('Error al modificar el usuario');
           },
           complete: () => {
             this.toastr.success('Operación completada.');
@@ -124,10 +124,10 @@ export class UsersComponent {
         this._usersService.borraUserApi(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Valor eliminado:', resultado);
+              this.toastr.success('Valor eliminado');
               this._route.navigate(['/users']);
             } else {
-              this.toastr.error('Error al eliminar el usuario:', resultado);
+              this.toastr.error('Error al eliminar el usuario');
             }
           },
           error: (error) => {
@@ -142,7 +142,7 @@ export class UsersComponent {
       this.toastr.error('El formulario tiene campos inválidos');
     }
   }
-  
+
   cambiado(): void {
     this.formularioCambiado = true;
   }
@@ -158,6 +158,13 @@ export class UsersComponent {
   cancelar(event: Event): void {
     event.preventDefault(); // Previene que el formulario intente enviarse
     this._route.navigate(['/users'], { queryParams: {} });
-    }
+  }
+
+  validClasses(ngModel: NgModel, validClass: string, errorClass: string) {
+    return {
+      [validClass]: ngModel.touched && ngModel.valid,
+      [errorClass]: ngModel.touched && ngModel.invalid,
+    };
+  }
 
 }

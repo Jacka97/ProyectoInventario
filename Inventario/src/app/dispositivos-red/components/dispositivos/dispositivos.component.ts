@@ -15,6 +15,8 @@ import { Marca } from '../../marca';
 export class DispositivosComponent {
   @ViewChild('dispoRedForm', { static: true }) dispoRedForm: NgForm | undefined;
 
+
+
   //Declaracion de los objetos como array para poder gestionar sus datos mas comodamente en el html
   public marcaat: Marca = { id: 0, nombre: '' };
   public marcas: Marca[] = [];
@@ -46,7 +48,11 @@ export class DispositivosComponent {
   public tipo: number = 0;
   public id: number = 0;
 
-  constructor(private _dispositivosRedService: DispositivosRedService, private _aroute: ActivatedRoute, private router: Router, private toastr: ToastrService) { }
+  constructor(private _dispositivosRedService: DispositivosRedService, 
+    private _aroute: ActivatedRoute, 
+    private router: Router, 
+    private toastr: ToastrService
+  ) {}
 
   //Distigue que tipo de accion vamos a realizar dentro de la lista
   ngOnInit() {
@@ -65,7 +71,7 @@ export class DispositivosComponent {
     }
   }
 
-//Me traigo todo el listado de los dispositivos
+  //Me traigo todo el listado de los dispositivos
   private traeDispRed(id: number) {
     this._dispositivosRedService.obtengoDispoRedID(id).subscribe({
       next: (resultado) => {
@@ -188,7 +194,7 @@ export class DispositivosComponent {
   }
 
   //Evitamos enviar datos del formulario en la url cuando cancelamos
-  cancelar(event : Event) : void {
+  cancelar(event: Event): void {
     event.preventDefault();
     this.router.navigate(['/dispositivos-red'], { queryParams: {} });
   }
@@ -198,10 +204,10 @@ export class DispositivosComponent {
   }
 
   //Funcion para poder realizar validaciones en los formularios de forma visual
-  validClasses(ngModel: NgModel, validClass: string, errorClass: string) {
-    return {
-      [validClass]: ngModel.touched && ngModel.valid,
-      [errorClass]: ngModel.touched && ngModel.invalid
-    };
-  }
+    validClasses(ngModel: NgModel, validClass: string, errorClass: string) {
+      return {
+        [validClass]: ngModel.touched && ngModel.valid,
+        [errorClass]: ngModel.touched && ngModel.invalid
+      };
+    }
 }

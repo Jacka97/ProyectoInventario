@@ -52,7 +52,7 @@ export class MarcaComponent {
         this.toastr.error(error, 'Error al obtener la marca');
       },
       complete: () => {
-        console.log('Operación completada.');
+
       },
     });
   }
@@ -79,7 +79,7 @@ export class MarcaComponent {
             this.toastr.error(error.error/*.errores*/, 'Error guardando marca');
           },
           complete: () => {
-            console.log('Operación completada.');
+  
           },
         });
       } else if (this.tipo == 1) {
@@ -100,7 +100,7 @@ export class MarcaComponent {
             this.toastr.error(error.error, 'Error modificando marca');
           },
           complete: () => {
-            console.log('Operación completada.');
+          
           },
         });
       } else if (this.tipo == 2) {
@@ -120,7 +120,7 @@ export class MarcaComponent {
             this.toastr.error(error.error, 'Error eliminando marca');
           },
           complete: () => {
-            console.log('Operación completada.');
+       
           },
         });
       }

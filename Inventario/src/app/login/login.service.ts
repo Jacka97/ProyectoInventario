@@ -52,5 +52,12 @@ export class LoginService {
     sessionStorage.removeItem('correo'); // Elimina el rol
   }
 
+  isUsuarioSimple():boolean{
+    if(this.getUserRole()==2)
+    {
+      return true;
+    }
+    return false;
+  }
 
 }

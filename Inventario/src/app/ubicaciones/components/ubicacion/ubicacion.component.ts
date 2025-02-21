@@ -52,7 +52,7 @@ export class UbicacionComponent {
         this.toastr.error(error, 'Error al obtener la ubicacion');
       },
       complete: () => {
-        console.log('Operación completada.');
+       
       },
     });
   }
@@ -81,7 +81,7 @@ export class UbicacionComponent {
               this.toastr.error(error.error, 'Error guardando ubicacion');
             },
             complete: () => {
-              console.log('Operación completada.');
+        
             },
           });
       } else if (this.tipo == 1) {
@@ -103,7 +103,7 @@ export class UbicacionComponent {
               this.toastr.error(error.error, 'Error modificando ubicacion');
             },
             complete: () => {
-              console.log('Operación completada.');
+     
             },
           });
       } else if (this.tipo == 2) {
@@ -123,7 +123,7 @@ export class UbicacionComponent {
             this.toastr.error(error.error, 'Error eliminando ubicacion');
           },
           complete: () => {
-            console.log('Operación completada.');
+     
           },
         });
       }
