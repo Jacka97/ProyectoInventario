@@ -40,7 +40,7 @@
 /* Iconos con ancho fijo para alineación */
 .fa-fw {
     width: 1em;
-    font-size: x-large;
+    font-size: larger;
 }
 
 /* Estilo para el div contenedor */
@@ -60,7 +60,6 @@
 .container-fluid {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
 }
 
@@ -68,9 +67,16 @@
 .navbar-nav {
     display: flex;
     justify-content: center; /* Centra los elementos dentro de navbar-nav */
+    /*justify-content: space-around;*/
     width: 100%; /* Ocupa todo el espacio disponible */
 }
 
 .nav-item {
-    margin: 0 15px; /* Espaciado entre los elementos de la lista */
+    margin: 0; /* Espaciado entre los elementos de la lista */
+    padding: 0 0.5vh;
+}
+
+.salir{
+    justify-self:right;
+    font-size: x-large;
 }
