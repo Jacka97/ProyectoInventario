@@ -13,7 +13,7 @@
 /* Estilo para los enlaces del navbar */
 .navbar-nav .nav-link {
     color: white !important;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 /* Efecto hover */
@@ -42,3 +42,10 @@
     border-bottom-left-radius: 15px;  /* Redondea la esquina inferior izquierda */
     border-bottom-right-radius: 15px; /* Redondea la esquina inferior derecha */
 }  
+
+/* Efecto de hover para iluminar el ícono */
+.nav-item a:hover .fa-power-off {
+    color: red; /* Mantén el color rojo */
+    text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red; /* Añadir el resplandor */
+    transition: all 0.3s ease-in-out; /* Transición suave */
+}
