@@ -12,7 +12,7 @@
         novalidate
       >
 
-      <div class="col-12 col-md-3">
+      <div class="col-12 col-md-5">
         <label for="id" class="form-label">Id Incidencia:</label>
         <input
         type="number"
@@ -24,7 +24,7 @@
         required
       />
       </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-5">
           <label for="idUbicacion" class="form-label">Estado:</label>
           <select
             id="estado"
@@ -43,17 +43,13 @@
           </select>
         </div>
 
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-10">
           <label for="comentarioTecnico" class="form-label">Comentario Técnico</label>
-          <input
-            type="text"
-            id="comentarioTecnico"
-            name="comentarioTecnico"
-            class="form-control"
-            [(ngModel)]="comentarioTecnico"
-            (ngModelChange)="cambiado()"
-            required
-          />
+          <textarea name="comentarioTecnico"
+          id="comentarioTecnico"
+          class="form-control" 
+          [(ngModel)]="comentarioTecnico" 
+          (ngModelChange)="cambiado()"></textarea>
         </div>
 
 

@@ -20,7 +20,9 @@
             [(ngModel)]="incidenciaAct.idUbicacion"
             (ngModelChange)="cambiado()"
             required
+            #ubicacion="ngModel"
             [disabled]="tipo == 2"
+            [ngClass]="validClasses(ubicacion, 'is-valid', 'is-invalid')"
           >
             <option value="" disabled>Selecciona una ubicacion</option>
             <option *ngFor="let ubi of ubis" [value]="ubi.id">
@@ -28,6 +30,7 @@
             </option>
           </select>
         </div>
+        <span *ngIf="ubicacion.touched && ubicacion.invalid" class="text-danger">El campo es obligatorio</span>
 
         <div class="col-12 col-md-5">
           <label for="asunto" class="form-label">Asunto</label>
@@ -39,9 +42,12 @@
             [(ngModel)]="incidenciaAct.asunto"
             [readonly]="tipo == 2"
             (ngModelChange)="cambiado()"
+            #asunto="ngModel"
             required
             [disabled]="tipo == 2"
+            [ngClass]="validClasses(asunto, 'is-valid', 'is-invalid')"
           />
+          <span *ngIf="asunto.touched && asunto.invalid" class="text-danger">El campo es obligatorio</span>
         </div>
 
         <div class="col-10">
@@ -53,8 +59,11 @@
             [(ngModel)]="incidenciaAct.descripcion"
             [readonly]="tipo == 2"
             (ngModelChange)="cambiado()"
+            #detalles="ngModel"
             required
+            [ngClass]="validClasses(detalles, 'is-valid', 'is-invalid')"
           ></textarea>         
+          <span *ngIf="detalles.touched && detalles.invalid" class="text-danger">El campo es obligatorio</span>
         </div>
 
         <div class="col-12 col-md-3">

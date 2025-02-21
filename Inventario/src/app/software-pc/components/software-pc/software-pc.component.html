@@ -66,7 +66,7 @@
                     (ngModelChange)="cambiado()"
                     required
                     [disabled]="tipo == 2">
-                    <option value="NaN">Selecciona un ordenador</option>
+                    <option disabled value="NaN">Selecciona un ordenador</option>
                     <option *ngFor="let ordenador of ordenadores" [value]="ordenador.id">
                       {{ ordenador.ordenador_nombre }}
                     </option>
