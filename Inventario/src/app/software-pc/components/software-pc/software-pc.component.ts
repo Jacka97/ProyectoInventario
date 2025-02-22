@@ -83,7 +83,7 @@ export class SoftwarePcComponent {
   //Cuando inicias la pagina a la que entre se trae los ordenadores y los softwares
   ngOnInit() {
     this.traerOrdenadores();
-    this.traeUbicaciones();
+    // this.traeUbicaciones();
     this.traeSoftware();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
