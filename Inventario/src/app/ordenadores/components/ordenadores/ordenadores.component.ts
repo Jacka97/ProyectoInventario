@@ -129,7 +129,6 @@ export class OrdenadoresComponent {
         this._ordenadoresService.modificaOrdenador(this.id, this.ordenadorAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Datos modificados');
               this._route.navigate(['/ordenadores']);
             } else {
               this.toastr.error('Error al modificar el ordenador');
