@@ -122,7 +122,7 @@ users: any;
   
     this._noubisService.getMaterialesPorUbicacion(this.idSeleccionado).subscribe({
       next: (resultado) => {
-        console.log(resultado);
+        
   
         if (Array.isArray(resultado)) {
           setTimeout(() => {
