@@ -34,7 +34,6 @@ export class IncidenciaService {
 
   //Se almacenan nuevos datos de los incidencias en la api
   guardaNuevaIncidencia(incidencia: Incidencia): Observable<any> {
-    console.log(JSON.stringify(incidencia));
     return this.http.post<any>(`${this.urlAPI}`, JSON.stringify(incidencia), this.httpOptions);
   }
 
