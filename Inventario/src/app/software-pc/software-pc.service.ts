@@ -53,7 +53,6 @@ export class SoftwarePcService {
 
         let variable = this.http.post<any>(this.urlSoftwarePcApi, JSON.stringify(softwarePc), this.httpOptions);
 
-
         return variable;
     }
 

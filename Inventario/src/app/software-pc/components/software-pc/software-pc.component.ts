@@ -98,37 +98,20 @@ export class SoftwarePcComponent {
     }
   }
 
-  //Me traigo el listado de las ubicaciones a traves de su servicio
-  private traeUbicaciones() {
-    this._softwarePcService.obtengoUbicacionesApi().subscribe({
-      next: (resultado) => {
-        if (resultado) {
-          this.ubicaciones = resultado;
-        } else {
-          this.toastr.error('Error al obtener la ubicacion');
-        }
-      },
-      error: (error) => {
-        this.toastr.error('Error al obtener la ubicacion', error);
-      },
-      complete: () => {
-      },
-    });
-  }
-
   private traeSoftwarePc(id : number) {
     this._softwarePcService.obtengoSoftwarePcID(id).subscribe({
       next: (resultado) => {
         if (resultado) {
           this.softwarePcAct = resultado;
         } else {
-          this.toastr.error('Error obteniendo software');
+          this.toastr.error(resultado, 'Error obteniendo software');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el software', error)
+        this.toastr.error(error, 'Error al obtener el software')
       },
       complete: () => {
+    
       },
     });
   }
@@ -140,13 +123,14 @@ export class SoftwarePcComponent {
         if (resultado) {
           this.software = resultado;
         } else {
-          this.toastr.error('Error obteniendo el software');
+          this.toastr.error(resultado, 'Error obteniendo el software');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el software', error)
+        this.toastr.error(error, 'Error al obtener el software')
       },
       complete: () => {
+       
       },
     });
   }
@@ -158,13 +142,37 @@ export class SoftwarePcComponent {
         if (resultado) {
           this.ordenadores = resultado;
         } else {
-          this.toastr.error('Error al obtener el ordenador');
+          this.toastr.error('Error al obtener el ordenador:', resultado);
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el ordenador', error);
+        this.toastr.error('Error al obtener el ordenador:', error);
       },
       complete: () => {
+      
+      },
+    });
+  }
+
+  // Llamada al servicio para obtener las ubicaciones desde la API
+  private traeUbicaciones() {
+    this._softwarePcService.obtengoUbicacionesApi().subscribe({
+      next: (resultado) => {        
+        // Si se recibe un resultado válido, se asigna a la variable ubicaciones
+        if (resultado) {
+          this.ubicaciones = resultado;
+        } else {
+          // Si hay un error en los datos recibidos, se muestra en la consola
+        
+        }
+      },
+      error: (error) => {
+        // Si ocurre un error en la petición, se muestra en la consola
+
+      },
+      complete: () => {
+        // Mensaje de confirmación cuando la operación ha finalizado correctamente
+
       },
     });
   }
@@ -174,33 +182,43 @@ export class SoftwarePcComponent {
     if (this.softwarePcForm?.valid || this.tipo == 2) {
       this.formularioCambiado = false;
       
+
+
+      if(this.enAula){
+        this.softwarePcAct.idPC = 0;
+      }else{
+        this.softwarePcAct.idUbicacion = 0;
+      }
+
       if (this.tipo == 0) {
         this._softwarePcService.guardaSoftwarePC(this.softwarePcAct).subscribe({
           next: (resultado) => {
             if (resultado) {
+              this.toastr.success('Software agregado');
               this.router.navigate(['/software-pc']);
             } else {
               this.toastr.error('Error al agregar el software');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al agregar el software', error);
+            this.toastr.error('Error al agregar el software: ', error);
           },
           complete: () => {
-            this.toastr.success('Software agregado');
+            this.toastr.success('Operacion completada');
           },
         });
       } else if (this.tipo == 1) {
         this._softwarePcService.modificaSoftwarePC(this.id, this.softwarePcAct).subscribe({
           next: (resultado) => {
             if (resultado) {
+              this.toastr.success('Datos modificados');
               this.router.navigate(['/software-pc']);
             } else {
               this.toastr.error('Error al modificar el software');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al modificar el software', error);
+            this.toastr.error('Error al modificar el software: ', error);
           },
           complete: () => {
             this.toastr.success('Modificacion completada');
@@ -210,16 +228,17 @@ export class SoftwarePcComponent {
         this._softwarePcService.borraSoftwarePC(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
+              this.toastr.success('Asignacion eliminada');
               this.router.navigate(['/software-pc']);
             } else {
               this.toastr.error('Error al eliminar la asignacion');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al eliminar la asignacion', error);
+            this.toastr.error('Error al eliminar la asignacion:', error);
           },
           complete: () => {
-            this.toastr.success('Asignacion eliminada');
+            this.toastr.success('Borrado realizado');
           },
         });
       }
