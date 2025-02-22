@@ -28,9 +28,9 @@ export class SoftwarePcService {
         return this.http.get(`${this.urlOrdenadores}`);
     }
 
-    obtengoUbicacionesApi(): Observable<any> {
-        return this.http.get(`${this.urlUbicaciones}`);
-    }
+    // obtengoUbicacionesApi(): Observable<any> {
+    //     return this.http.get(`${this.urlUbicaciones}`);
+    // }
 
     obtengoTodoSoftware(): Observable<any> {
         return this.http.get(`${this.urlSoftwareApi}`);
