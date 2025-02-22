@@ -19,7 +19,7 @@ export class EntradasComponent {
   fechamin: string = "";
   fechamax: string = "";
 
-  tipo = "insercion";
+  tipo = "entrada";
 
   dtOptions: Config = {};
   constructor(private _movimientosService: MaterialesService) { }

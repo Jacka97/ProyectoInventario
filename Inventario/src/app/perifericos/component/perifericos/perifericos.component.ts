@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -20,7 +20,7 @@ import { Ubicacion } from '../../ubicacion';
 })
 export class PerifeComponent {
   @ViewChild('perifeForm', { static: true }) perifeForm: NgForm | undefined;
-  public periact: Periferico = {periferico_nombre: '', nombre:'', ordenador_id: 0, ordenador_nombre: '', marca_nombre: '', marca_id: 0, idUbicacion: 0, ubicacion_nombre:'', precio: 0, numeroSerie: 0};
+  public periact: Periferico = { periferico_nombre: '', nombre: '', ordenador_id: 0, ordenador_nombre: '', marca_nombre: '', marca_id: 0, idUbicacion: 0, ubicacion_nombre: '', precio: 0, numeroSerie: "0" };
   public ordenadorAct: Ordenadores = {
     id: 0,
     numero: '',
@@ -44,10 +44,10 @@ export class PerifeComponent {
     precio: 0
   };
   public ordenadores: Ordenadores[] = [];
-  public marcaat: Marca = {id: 0, nombre: ''};
-  public marcas: Marca[] = []; 
-  public ubiact: Ubicacion = {id: 0, nombre: ''};
-  public ubis: Ubicacion[] = []; 
+  public marcaat: Marca = { id: 0, nombre: '' };
+  public marcas: Marca[] = [];
+  public ubiact: Ubicacion = { id: 0, nombre: '' };
+  public ubis: Ubicacion[] = [];
   public titulo: string = 'Nuevo Periferico';
   public tipo: number = 0;
   public id: number = 0;
@@ -92,7 +92,7 @@ export class PerifeComponent {
     });
   }
 
-    //Me traigo el listado de las ubicaciones a traves de su servicio
+  //Me traigo el listado de las ubicaciones a traves de su servicio
   private traerUbicaciones() {
     this._perifeService.obtengoUbicaciones().subscribe({
       next: (resultado) => {
@@ -109,7 +109,7 @@ export class PerifeComponent {
       },
     });
   }
-    //Me traigo el listado de las marcas a traves de su servicio
+  //Me traigo el listado de las marcas a traves de su servicio
   private traerMarcas() {
     this._perifeService.obtengoMarcas().subscribe({
       next: (resultado) => {
@@ -127,7 +127,7 @@ export class PerifeComponent {
     });
   }
 
-    //Me traigo el listado de los perifericos traves de su servicio
+  //Me traigo el listado de los perifericos traves de su servicio
   private traePeri(id: number) {
     this._perifeService.obtengoPeriAPI(id).subscribe({
       next: (resultado) => {
@@ -136,7 +136,7 @@ export class PerifeComponent {
           if (this.periact.ordenador_id === null) {
             this.periact.ordenador_id = -1;
           }
-          
+
         } else {
           this.toastr.error('Error al obtener el periferico:', resultado);
         }
@@ -217,10 +217,10 @@ export class PerifeComponent {
             this.toastr.success('Operación completada.');
           },
         });
-      
-    } else alert("El formulario tiene campos inválidos");
+
+      } else alert("El formulario tiene campos inválidos");
+    }
   }
-}
   cambiado(): void {
     this.formularioCambiado = true;
   }
@@ -236,6 +236,13 @@ export class PerifeComponent {
   cancelar(event: Event): void {
     event.preventDefault(); // Previene que el formulario intente enviarse
     this._route.navigate(['/perifericos'], { queryParams: {} });
-    }
+  }
+
+  validClasses(ngModel: NgModel, validClass: string, errorClass: string) {
+    return {
+      [validClass]: ngModel.touched && ngModel.valid,
+      [errorClass]: ngModel.touched && ngModel.invalid
+    };
+  }
 
 }

@@ -1,0 +1,76 @@
+/* Estilo general del navbar */
+.navbar {
+    background-color: #023e73 !important;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between; /* Espaciado entre el logo y el logout */
+    align-items: center; /* Alinea los elementos verticalmente */
+}
+
+/* Estilos para el logo */
+.logo-navbar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Estilo para los enlaces del navbar */
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: 400;
+}
+
+/* Efecto hover */
+.navbar-nav .nav-link:hover {
+    color: #f8d210 !important;
+}
+
+/* Menú desplegable */
+.dropdown-menu {
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+/* Divider dentro del dropdown */
+.dropdown-divider {
+    margin: 5px 0;
+}
+
+/* Iconos con ancho fijo para alineación */
+.fa-fw {
+    width: 1em;
+    font-size: x-large;
+}
+
+/* Estilo para el div contenedor */
+.encabezado {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* Efecto de hover para iluminar el ícono */
+.nav-item a:hover .fa-power-off {
+    color: red;
+    text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Asegúrate de que los elementos del navbar estén distribuidos y centrados */
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Asegura que los enlaces estén centrados y distribuidos */
+.navbar-nav {
+    display: flex;
+    justify-content: center; /* Centra los elementos dentro de navbar-nav */
+    width: 100%; /* Ocupa todo el espacio disponible */
+}
+
+.nav-item {
+    margin: 0 15px; /* Espaciado entre los elementos de la lista */
+}

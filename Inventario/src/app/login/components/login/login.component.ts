@@ -20,12 +20,12 @@ export class LoginComponent {
   successMessage: string = '';
   rol: number = 0;
   //Funcion que corrobora que estas identificado, como esta creado en el service lo traes aqui para que pueda ser llamado desde el html de este component.
- 
-  
+
+
 
   //Valida los campos del formulario
   public loginForm: FormGroup;
-  constructor(private _loginService: LoginService, private _route:Router, private _fb: FormBuilder, private toastr: ToastrService) { 
+  constructor(private _loginService: LoginService, private _route:Router, private _fb: FormBuilder, private toastr: ToastrService) {
     this.loginForm = this._fb.group({
       email: ['', [Validators.required, emailValidator()]],
       contrasenya: ['', [Validators.required, Validators.minLength(3)]]
@@ -55,6 +55,7 @@ export class LoginComponent {
           if(resultado.success){
             this._loginService.saveToken(resultado.token);
             sessionStorage.setItem('userRole', resultado.Rol.toString());
+            this._loginService.saveEmail(resultado.correo);
             this.toastr.success('Usuario autentificado correctamente', 'Bienvenido',  {positionClass: 'toast-bottom-right'});
             this._route.navigate(['/bienvenido']);
           }else{

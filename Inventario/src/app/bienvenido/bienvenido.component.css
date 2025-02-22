@@ -1,12 +1,76 @@
-
-#bienvenido{
-    height: 89.7vh;
+/* Sección de Bienvenida */
+#bienvenido {
+    height: 90vh; /* Ajuste para mayor estabilidad */
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-#bienv{
-    background-color: #023E73;
 
+#bienv {
+    background-color: #023E73;
+    padding: 20px;
+    border-radius: 10px;
 }
-h1{
+
+h1 {
     color: white;
+}
+
+/* ----- Estilos Generales para Imágenes ----- */
+img {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* ----- Imágenes Estáticas ----- */
+.image-wrapper {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    height: 25vh; /* Altura ajustable */
+    overflow: hidden; /* Evita desbordamientos */
+}
+
+.image-wrapper img {
+    height: 100%;
+    transition: filter 0.3s ease-in-out;
+}
+
+.image-wrapper:hover img {
+    filter: brightness(0.6); /* Oscurece la imagen al hacer hover */
+}
+
+/* ----- Imágenes con Miniaturas ----- */
+.img-thumbnail {
+    height: 40vh;
+    max-height: 300px; /* Máximo tamaño para evitar desbordes */
+    border-radius: 10px; /* Bordes más suaves */
+}
+
+/* ----- Carrusel ----- */
+.carousel-img {
+    height: 50vh; /* Mantiene altura uniforme */
+    max-height: 350px; /* Altura máxima en pantallas grandes */
+    object-fit: cover;
+}
+
+/* ----- Efecto Hover con Texto ----- */
+.overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.image-wrapper:hover .overlay,
+.carousel-image-wrapper:hover .overlay {
+    opacity: 1; /* Muestra el texto al hacer hover */
 }

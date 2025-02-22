@@ -19,7 +19,7 @@ export class SalidasComponent {
   fechamin: string = "";
   fechamax: string = "";
 
-  tipo = "borrado";
+  tipo = "salida";
 
   dtOptions: Config = {};
   constructor(private _movimientosService: MaterialesService) { }

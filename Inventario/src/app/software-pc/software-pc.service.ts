@@ -28,6 +28,10 @@ export class SoftwarePcService {
         return this.http.get(`${this.urlOrdenadores}`);
     }
 
+    obtengoUbicacionesApi(): Observable<any> {
+        return this.http.get(`${this.urlUbicaciones}`);
+    }
+
     obtengoTodoSoftware(): Observable<any> {
         return this.http.get(`${this.urlSoftwareApi}`);
     }
@@ -45,7 +49,13 @@ export class SoftwarePcService {
     }
 
     guardaSoftwarePC(softwarePc: SoftwarePC): Observable<any> {
-        return this.http.post<any>(this.urlSoftwarePcApi, JSON.stringify(softwarePc), this.httpOptions);
+        let objeto = JSON.stringify(softwarePc);
+
+        let variable = this.http.post<any>(this.urlSoftwarePcApi, JSON.stringify(softwarePc), this.httpOptions);
+        console.log("variable = "+variable);
+        console.log("objeto = "+objeto);
+
+        return variable;
     }
 
     modificaSoftwarePC(nsoftware: number, softwarepc: SoftwarePC): Observable<any> {

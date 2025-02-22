@@ -5,6 +5,7 @@ export class SoftwarePC {
         public idSoftware : number,
         public fecha : string,
         public softnombre : string,
-        public pcnombre : string
+        public pcnombre : string,
+        public idUbicacion : number,
     ) {}
 }

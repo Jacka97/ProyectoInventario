@@ -62,9 +62,9 @@ export class ListaComponent {
   descargarPDF() {
     const doc = new jsPDF('l', 'pt', 'a4'); //Doy formato al documento para que se muestre en tipo landscape y el tamaño de folio estandar (Din-A4)
     doc.text('Listado de ordenadores', 50, 30);
-    
+
     autoTable(doc, {
-      html: '#tbordenadores', 
+      html: '#tbordenadores',
       startY: 50,
       styles: {fontSize: 8}
     });
@@ -76,7 +76,7 @@ export class ListaComponent {
 
     const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
-    
+
     const workbook: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de ordenadores');
 

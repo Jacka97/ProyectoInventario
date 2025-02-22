@@ -10,10 +10,9 @@
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Introduce nombre"
                             [(ngModel)]="marcaact.nombre" [readonly]="tipo == 2" (ngModelChange)="cambiado()"
-                            minlength="2" maxlength="60" required #descModel="ngModel"
-                            [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')">
-                            <span *ngIf="descModel.touched && descModel.invalid">(Debe tener como mínimo 2
-                            caracteres)</span>
+                            required #descModel="ngModel"
+                            [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"/>
+                            <span *ngIf="descModel.touched && descModel.invalid" class="text-danger">El campo es obligatorio</span>
                     </div>
 
                 </div>
