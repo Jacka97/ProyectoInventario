@@ -871,7 +871,7 @@ DELIMITER ;
 /*update*/
 DELIMITER $$
 
-CREATE TRIGGER hm_before_update_perifericos
+CREATE TRIGGER before_update_perifericos
 BEFORE UPDATE ON Perifericos
 FOR EACH ROW
 BEGIN
