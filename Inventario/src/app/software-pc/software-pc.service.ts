@@ -14,6 +14,7 @@ export class SoftwarePcService {
     urlOrdenadores = 'https://inventarios.proyectos-2daw.es/api/ordeControl.php';
     urlSoftwareApi = 'https://inventarios.proyectos-2daw.es/api/softwControl.php';
     urlSoftwarePcApi = 'https://inventarios.proyectos-2daw.es/api/softPcControl.php';
+    urlUbicaciones = 'https://inventarios.proyectos-2daw.es/api/ubiControl.php';
 
     httpOptions = {
         headers: new HttpHeaders({
@@ -28,9 +29,9 @@ export class SoftwarePcService {
         return this.http.get(`${this.urlOrdenadores}`);
     }
 
-    // obtengoUbicacionesApi(): Observable<any> {
-    //     return this.http.get(`${this.urlUbicaciones}`);
-    // }
+    obtengoUbicacionesApi(): Observable<any> {
+        return this.http.get(`${this.urlUbicaciones}`);
+    }
 
     obtengoTodoSoftware(): Observable<any> {
         return this.http.get(`${this.urlSoftwareApi}`);

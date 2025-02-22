@@ -164,14 +164,14 @@ export class PerifeComponent {
       this._perifeService.crearPeriAPI(this.periact).subscribe({
         next: (resultado) => {
           if (resultado) {
-            this.toastr.success("Periferico creado:", resultado);
+            // this.toastr.success("Periferico creado:", resultado);
             this._route.navigate(["/perifericos"]); // Redirección corregida
           } else {
-            this.toastr.error("Error al crear el periferico:", resultado);
+            this.toastr.error("Error al crear el periferico");
           }
         },
         error: (error) => {
-          this.toastr.error("Error al crear el periferico:", error.error?.errores || error);
+          this.toastr.error("Error al crear el periferico");
         },
         complete: () => {
           this.toastr.success("Operación completada.");
@@ -183,15 +183,15 @@ export class PerifeComponent {
         next: (resultado) => {
           if (resultado) {
             
-            this.toastr.success("Periferico modificado:", resultado);
+            // this.toastr.success("Periferico modificado:", resultado);
             this._route.navigate(["/perifericos"]); // Redirección corregida
           } else {
             
-            this.toastr.error("Error al modificar el periferico:", resultado);
+            this.toastr.error("Error al modificar el periferico");
           }
         },
         error: (error) => {
-          this.toastr.error("Error al modificar el periferico:", error.error?.errores || error);
+          this.toastr.error("Error al modificar el periferico");
         },
         complete: () => {
           this.toastr.success("Operación completada.");
@@ -204,14 +204,14 @@ export class PerifeComponent {
         this._perifeService.borraPeriAPI(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Valor eliminado:', resultado);
+              // this.toastr.success('Valor eliminado:', resultado);
               this._route.navigate(['/perifericos']);
             } else {
-              this.toastr.error('Error al eliminar el periferico:', resultado);
+              this.toastr.error('Error al eliminar el periferico');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al borrar el periferico:', error.error.errores);
+            this.toastr.error('Error al borrar el periferico');
           },
           complete: () => {
             this.toastr.success('Operación completada.');

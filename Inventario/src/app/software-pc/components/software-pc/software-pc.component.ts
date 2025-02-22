@@ -83,7 +83,7 @@ export class SoftwarePcComponent {
   //Cuando inicias la pagina a la que entre se trae los ordenadores y los softwares
   ngOnInit() {
     this.traerOrdenadores();
-    // this.traeUbicaciones();
+    this.traeUbicaciones();
     this.traeSoftware();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
@@ -96,6 +96,24 @@ export class SoftwarePcComponent {
       this.txtBtn = 'Borrar';
       this.traeSoftwarePc(this.id);
     }
+  }
+
+  //Me traigo el listado de las ubicaciones a traves de su servicio
+  private traeUbicaciones() {
+    this._softwarePcService.obtengoUbicacionesApi().subscribe({
+      next: (resultado) => {
+        if (resultado) {
+          this.ubicaciones = resultado;
+        } else {
+          this.toastr.error('Error al obtener la ubicacion:', resultado);
+        }
+      },
+      error: (error) => {
+        this.toastr.error('Error al obtener la ubicacion:', error);
+      },
+      complete: () => {
+      },
+    });
   }
 
   private traeSoftwarePc(id : number) {
