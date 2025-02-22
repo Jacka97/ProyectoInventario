@@ -81,11 +81,11 @@ export class PerifeComponent {
         if (resultado) {
           this.ordenadores = resultado;
         } else {
-          this.toastr.error('Error al obtener el ordenador:', resultado);
+          this.toastr.error('Error al obtener el ordenador');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el ordenador:', error);
+        this.toastr.error('Error al obtener el ordenador', error);
       },
       complete: () => {
       },
@@ -99,11 +99,11 @@ export class PerifeComponent {
         if (resultado) {
           this.ubis = resultado;
         } else {
-          this.toastr.error('Error al obtener la ubicacion:', resultado);
+          this.toastr.error('Error al obtener la ubicacion');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener la ubicacion:', error);
+        this.toastr.error('Error al obtener la ubicacion', error);
       },
       complete: () => {
       },
@@ -116,11 +116,11 @@ export class PerifeComponent {
         if (resultado) {
           this.marcas = resultado;
         } else {
-          this.toastr.error('Error al obtener las marcas:', resultado);
+          this.toastr.error('Error al obtener las marcas');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener las marcas:', error);
+        this.toastr.error('Error al obtener las marcas', error);
       },
       complete: () => {
       },
@@ -138,11 +138,11 @@ export class PerifeComponent {
           }
 
         } else {
-          this.toastr.error('Error al obtener el periferico:', resultado);
+          this.toastr.error('Error al obtener el periferico');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el periferico:', error);
+        this.toastr.error('Error al obtener el periferico', error);
       },
       complete: () => {
       },
@@ -171,7 +171,7 @@ export class PerifeComponent {
           }
         },
         error: (error) => {
-          this.toastr.error("Error al crear el periferico");
+          this.toastr.error("Error al crear el periferico", error);
         },
         complete: () => {
           this.toastr.success("Operación completada.");
@@ -191,7 +191,7 @@ export class PerifeComponent {
           }
         },
         error: (error) => {
-          this.toastr.error("Error al modificar el periferico");
+          this.toastr.error("Error al modificar el periferico", error);
         },
         complete: () => {
           this.toastr.success("Operación completada.");
@@ -211,7 +211,7 @@ export class PerifeComponent {
             }
           },
           error: (error) => {
-            this.toastr.error('Error al borrar el periferico');
+            this.toastr.error('Error al borrar el periferico', error);
           },
           complete: () => {
             this.toastr.success('Operación completada.');

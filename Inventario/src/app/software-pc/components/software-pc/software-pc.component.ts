@@ -105,11 +105,11 @@ export class SoftwarePcComponent {
         if (resultado) {
           this.ubicaciones = resultado;
         } else {
-          this.toastr.error('Error al obtener la ubicacion:', resultado);
+          this.toastr.error('Error al obtener la ubicacion');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener la ubicacion:', error);
+        this.toastr.error('Error al obtener la ubicacion', error);
       },
       complete: () => {
       },
@@ -122,11 +122,11 @@ export class SoftwarePcComponent {
         if (resultado) {
           this.softwarePcAct = resultado;
         } else {
-          this.toastr.error(resultado, 'Error obteniendo software');
+          this.toastr.error('Error obteniendo software');
         }
       },
       error: (error) => {
-        this.toastr.error(error, 'Error al obtener el software')
+        this.toastr.error('Error al obtener el software', error)
       },
       complete: () => {
       },
@@ -140,11 +140,11 @@ export class SoftwarePcComponent {
         if (resultado) {
           this.software = resultado;
         } else {
-          this.toastr.error(resultado, 'Error obteniendo el software');
+          this.toastr.error('Error obteniendo el software');
         }
       },
       error: (error) => {
-        this.toastr.error(error, 'Error al obtener el software')
+        this.toastr.error('Error al obtener el software', error)
       },
       complete: () => {
       },
@@ -158,11 +158,11 @@ export class SoftwarePcComponent {
         if (resultado) {
           this.ordenadores = resultado;
         } else {
-          this.toastr.error('Error al obtener el ordenador:', resultado);
+          this.toastr.error('Error al obtener el ordenador');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el ordenador:', error);
+        this.toastr.error('Error al obtener el ordenador', error);
       },
       complete: () => {
       },
@@ -178,31 +178,29 @@ export class SoftwarePcComponent {
         this._softwarePcService.guardaSoftwarePC(this.softwarePcAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Software agregado');
               this.router.navigate(['/software-pc']);
             } else {
               this.toastr.error('Error al agregar el software');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al agregar el software: ', error);
+            this.toastr.error('Error al agregar el software', error);
           },
           complete: () => {
-            this.toastr.success('Operacion completada');
+            this.toastr.success('Software agregado');
           },
         });
       } else if (this.tipo == 1) {
         this._softwarePcService.modificaSoftwarePC(this.id, this.softwarePcAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Datos modificados');
               this.router.navigate(['/software-pc']);
             } else {
               this.toastr.error('Error al modificar el software');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al modificar el software: ', error);
+            this.toastr.error('Error al modificar el software', error);
           },
           complete: () => {
             this.toastr.success('Modificacion completada');
@@ -212,17 +210,16 @@ export class SoftwarePcComponent {
         this._softwarePcService.borraSoftwarePC(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Asignacion eliminada');
               this.router.navigate(['/software-pc']);
             } else {
               this.toastr.error('Error al eliminar la asignacion');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al eliminar la asignacion:', error);
+            this.toastr.error('Error al eliminar la asignacion', error);
           },
           complete: () => {
-            this.toastr.success('Borrado realizado');
+            this.toastr.success('Asignacion eliminada');
           },
         });
       }

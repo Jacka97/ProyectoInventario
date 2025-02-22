@@ -49,7 +49,7 @@ export class UsersComponent {
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener los roles');
+        this.toastr.error('Error al obtener los roles', error);
       },
       complete: () => {
       },
@@ -66,7 +66,7 @@ export class UsersComponent {
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener el usuario');
+        this.toastr.error('Error al obtener el usuario', error);
       },
       complete: () => {
       },
@@ -85,17 +85,16 @@ export class UsersComponent {
         this._usersService.crearUserApi(this.useract).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Usuario creado');
               this._route.navigate(['/users']);
             } else {
               this.toastr.error('Error al crear el usuario');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al crear el usuario');
+            this.toastr.error('Error al crear el usuario', error);
           },
           complete: () => {
-            this.toastr.success('Operación completada.');
+            this.toastr.success('Usuario creado');
           },
         });
       } else if (this.tipo === 1) {
@@ -104,17 +103,16 @@ export class UsersComponent {
         this._usersService.modificaUserApi(this.id, this.useract).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Usuario modificado:', resultado);
               this._route.navigate(['/users']);
             } else {
               this.toastr.error('Error al modificar el usuario');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al modificar el usuario');
+            this.toastr.error('Error al modificar el usuario', error);
           },
           complete: () => {
-            this.toastr.success('Operación completada.');
+            this.toastr.success('Usuario modificado');
           },
         });
       } else if (this.tipo === 2) {
@@ -122,7 +120,6 @@ export class UsersComponent {
         this._usersService.borraUserApi(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Usuario eliminado');
               this._route.navigate(['/users']);
             } else {
               this.toastr.error('Error al eliminar el usuario');
@@ -132,7 +129,7 @@ export class UsersComponent {
             this.toastr.error('Error al borrar el usuario:', error.error.errores);
           },
           complete: () => {
-            this.toastr.success('Operación completada.');
+            this.toastr.success('Usuario eliminado');
           },
         });
       }

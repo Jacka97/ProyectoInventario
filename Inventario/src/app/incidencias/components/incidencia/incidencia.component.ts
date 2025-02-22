@@ -76,43 +76,38 @@ export class IncidenciaComponent {
   }
   //Se cotejan los resultados obtenidos de la api y se agrega el ordenador al listado
   guardaIncidencia(): void {
-    console.log('Formulario válido:', this.incidenciaForm?.valid);
-    console.log('Datos del ordenador:', this.incidenciaAct);
     if (this.incidenciaForm!.valid || this.tipo == 2) {
       this.formularioCambiado = false;
-      console.log(JSON.stringify(this.incidenciaAct));
       if (this.tipo == 0) {
         this._incidenciasService.guardaNuevaIncidencia(this.incidenciaAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Incidencia creada, notificación enviada por email');
               this._route.navigate(['/incidencia']);
             } else {
               this.toastr.error('Error al agregar la incidencia');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al agregar la incidencia: ', error);
+            this.toastr.error('Error al agregar la incidencia');
           },
           complete: () => {
-            this.toastr.success('Operacion completada');
+            this.toastr.success('Incidencia creada, notificación enviada por email');
           },
         });
       } else if (this.tipo == 2) {
         this._incidenciasService.borraIncidencia(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Incidencia eliminada, notificación enviada por email');
               this._route.navigate(['/incidencia']);
             } else {
               this.toastr.error('Error al eliminar la incidencia');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al eliminar la incidencia:', error);
+            this.toastr.error('Error al eliminar la incidencia');
           },
           complete: () => {
-            this.toastr.success('Borrado realizado');
+            this.toastr.success('Incidencia eliminada, notificación enviada por email');
           },
         });
       }

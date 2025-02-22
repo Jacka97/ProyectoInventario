@@ -78,11 +78,11 @@ export class OrdenadoresComponent {
         if (resultado) {
           this.marcas = resultado;
         } else {
-          this.toastr.error('Error al obtener los roles:', resultado);
+          this.toastr.error('Error al obtener los roles');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener los roles:', error);
+        this.toastr.error('Error al obtener los roles', error);
       },
       complete: () => {
       },
@@ -95,11 +95,11 @@ export class OrdenadoresComponent {
         if (resultado) {
           this.ubis = resultado;
         } else {
-          this.toastr.error('Error al obtener los roles:', resultado);
+          this.toastr.error('Error al obtener los roles');
         }
       },
       error: (error) => {
-        this.toastr.error('Error al obtener los roles:', error);
+        this.toastr.error('Error al obtener los roles', error);
       },
       complete: () => {
       },
@@ -113,17 +113,16 @@ export class OrdenadoresComponent {
         this._ordenadoresService.guardaNuevoOrdenador(this.ordenadorAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Ordenador Agregado');
               this._route.navigate(['/ordenadores']);
             } else {
               this.toastr.error('Error al agregar el ordenador');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al agregar el ordenador: ', error);
+            this.toastr.error('Error al agregar el ordenador', error);
           },
           complete: () => {
-            this.toastr.success('Operacion completada');
+            this.toastr.success('Ordenador Agregado');
           },
         });
       } else if (this.tipo == 1) {
@@ -137,27 +136,26 @@ export class OrdenadoresComponent {
             }
           },
           error: (error) => {
-            this.toastr.error('Error al modificar el ordenador: ', error);
+            this.toastr.error('Error al modificar el ordenador', error);
           },
           complete: () => {
-            this.toastr.success('Modificacion completada');
+            this.toastr.success('Datos modificados');
           },
         });
       } else if (this.tipo == 2) {
         this._ordenadoresService.borraOrdenador(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Ordenador eliminado');
               this._route.navigate(['/ordenadores']);
             } else {
               this.toastr.error('Error al eliminar el ordenador');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al eliminar el ordenador:', error);
+            this.toastr.error('Error al eliminar el ordenador', error);
           },
           complete: () => {
-            this.toastr.success('Borrado realizado');
+            this.toastr.success('Ordenador eliminado');
           },
         });
       }    
@@ -174,11 +172,11 @@ export class OrdenadoresComponent {
         if (resultado) {
           this.ordenadorAct = resultado;
         } else {
-          this.toastr.error(resultado, 'Error obteniendo el ordenador');
+          this.toastr.error('Error obteniendo el ordenador');
         }
       },
       error: (error) => {
-        this.toastr.error(error, 'Error al obtener el ordenador')
+        this.toastr.error('Error al obtener el ordenador', error)
       },
       complete: () => {
       },

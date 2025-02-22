@@ -46,11 +46,11 @@ export class SoftwareComponent {
         if (resultado) {
           this.softwareAct = resultado;
         } else {
-          this.toastr.error(resultado, 'Error obteniendo el ordenador');
+          this.toastr.error('Error obteniendo el ordenador');
         }
       },
       error: (error) => {
-        this.toastr.error(error, 'Error al obtener el ordenador')
+        this.toastr.error('Error al obtener el ordenador', error)
       },
       complete: () => {
       },
@@ -64,41 +64,38 @@ export class SoftwareComponent {
         this._softwareService.guardaSoftware(this.softwareAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Software agregado');
               this.router.navigate(['/software']);
             } else {
               this.toastr.error('Error al agregar el software');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al agregar el software: ', error);
+            this.toastr.error('Error al agregar el software', error);
           },
           complete: () => {
-            this.toastr.success('Operacion completada');
+            this.toastr.success('Software agregado');
           },
         });
       } else if (this.tipo == 1) {
         this._softwareService.modificaSoftware(this.id, this.softwareAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Datos modificados');
               this.router.navigate(['/software']);
             } else {
               this.toastr.error('Error al modificar el software');
             }
           },
           error: (error) => {
-            this.toastr.error('Error al modificar el software: ', error);
+            this.toastr.error('Error al modificar el software', error);
           },
           complete: () => {
-            this.toastr.success('Modificacion completada');
+            this.toastr.success('Datos modificados');
           },
         });
       } else if (this.tipo == 2) {
         this._softwareService.borraSoftware(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Dispositivo red eliminado');
               this.router.navigate(['/software']);
             } else {
               this.toastr.error('Error al eliminar el dispositivo de red');
@@ -108,7 +105,7 @@ export class SoftwareComponent {
             this.toastr.error('Error al eliminar el dispositivo de red:', error);
           },
           complete: () => {
-            this.toastr.success('Borrado realizado');
+            this.toastr.success('Dispositivo red eliminado');
           },
         });
       }
