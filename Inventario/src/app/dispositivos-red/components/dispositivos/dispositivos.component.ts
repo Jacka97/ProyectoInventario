@@ -133,7 +133,6 @@ export class DispositivosComponent {
         this._dispositivosRedService.guardaNuevoDispoRed(this.dispoRedAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Dispositivo de red agregado');
               this.router.navigate(['/dispositivos-red']);
             } else {
               this.toastr.error('Error al agregar el dispositivo de red');
@@ -143,14 +142,13 @@ export class DispositivosComponent {
             this.toastr.error('Error al agregar el dispositivo de red: ', error);
           },
           complete: () => {
-            this.toastr.success('Operacion completada');
+            this.toastr.success('Dispositivo de red agregado');
           },
         });
       } else if (this.tipo == 1) {
         this._dispositivosRedService.modificaDispoRed(this.id, this.dispoRedAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Datos modificados');
               this.router.navigate(['/dispositivos-red']);
             } else {
               this.toastr.error('Error al modificar el dispositivo de red');
@@ -160,14 +158,13 @@ export class DispositivosComponent {
             this.toastr.error('Error al modificar el dispositivo de red: ', error);
           },
           complete: () => {
-            this.toastr.success('Modificacion completada');
+            this.toastr.success('Datos modificados');
           },
         });
       } else if (this.tipo == 2) {
         this._dispositivosRedService.borraDispoRed(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {
-              this.toastr.success('Dispositivo red eliminado');
               this.router.navigate(['/dispositivos-red']);
             } else {
               this.toastr.error('Error al eliminar el dispositivo de red');
@@ -177,7 +174,7 @@ export class DispositivosComponent {
             this.toastr.error('Error al eliminar el dispositivo de red:', error);
           },
           complete: () => {
-            this.toastr.success('Borrado realizado');
+            this.toastr.success('Dispositivo red eliminado');
           },
         });
       }
