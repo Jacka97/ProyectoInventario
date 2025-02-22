@@ -48,14 +48,11 @@ export class ListaComponent {
         if (resultado) {
           this.software = resultado;
         } else {
-          
         }
       },
       error: (error) => {
-       
       },
       complete: () => {
-      
       },
     })
   }

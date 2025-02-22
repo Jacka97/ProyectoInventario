@@ -65,17 +65,11 @@ export class MaterialComponent implements OnInit {
         if (resultado) {
           this.ubicaciones = resultado;
         } else {
-          // Si hay un error en los datos recibidos, se muestra en la consola
-      
         }
       },
       error: (error) => {
-        // Si ocurre un error en la petición, se muestra en la consola
-
       },
       complete: () => {
-        // Mensaje de confirmación cuando la operación ha finalizado correctamente
-       
       },
     });
 
@@ -97,6 +91,7 @@ export class MaterialComponent implements OnInit {
     this.ordenadores = []; //vacío los arrays para que al cargar los datos nuevos como lo hace de forma asíncrona no tenga datos
     this.perifericos = [];
     this.dispRed=[];
+  
     switch (this.opcionSelect) {
       case '1': // Ordenadores
         this._ordenadoresService.obtengoOrdenadores().subscribe({
@@ -129,14 +124,11 @@ export class MaterialComponent implements OnInit {
             this.dispRed = resultado;
             this.cdRef.detectChanges();
           } else {
-            
           }
         },
         error: (error) => {
-         
         },
         complete: () => {
-         
         },
       });
         break;

@@ -58,17 +58,11 @@ export class ListaComponent {
         if (resultado) {
           this.ubicaciones = resultado;
         } else {
-          // Si hay un error en los datos recibidos, se muestra en la consola
- 
         }
       },
       error: (error) => {
-        // Si ocurre un error en la petición, se muestra en la consola
-   
       },
       complete: () => {
-        // Mensaje de confirmación cuando la operación ha finalizado correctamente
-     
       },
     });
   }

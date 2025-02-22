@@ -53,7 +53,6 @@ export class SoftwareComponent {
         this.toastr.error(error, 'Error al obtener el ordenador')
       },
       complete: () => {
-        
       },
     });
   }
@@ -79,7 +78,6 @@ export class SoftwareComponent {
           },
         });
       } else if (this.tipo == 1) {
-  
         this._softwareService.modificaSoftware(this.id, this.softwareAct).subscribe({
           next: (resultado) => {
             if (resultado) {

@@ -88,7 +88,6 @@ export class PerifeComponent {
         this.toastr.error('Error al obtener el ordenador:', error);
       },
       complete: () => {
-  
       },
     });
   }
@@ -107,7 +106,6 @@ export class PerifeComponent {
         this.toastr.error('Error al obtener la ubicacion:', error);
       },
       complete: () => {
-  
       },
     });
   }
@@ -125,7 +123,6 @@ export class PerifeComponent {
         this.toastr.error('Error al obtener las marcas:', error);
       },
       complete: () => {
-
       },
     });
   }
@@ -148,7 +145,6 @@ export class PerifeComponent {
         this.toastr.error('Error al obtener el periferico:', error);
       },
       complete: () => {
-    
       },
     });
   }
@@ -158,57 +154,53 @@ export class PerifeComponent {
     if (this.perifeForm!.valid || this.tipo == 2) {
       //El borrado era readonly
       this.formularioCambiado = false;
-
-
-
-      if (this.tipo === 0) {
-        // Crear usuario
-
-        // Enviamos el nuevo usuario al API para crearlo en la base de datos
-
-        this._perifeService.crearPeriAPI(this.periact).subscribe({
-          next: (resultado) => {
-            if (resultado) {
-              this.toastr.success("Periferico creado:", resultado);
-              this._route.navigate(["/perifericos"]); // Redirección corregida
-            } else {
-              this.toastr.error("Error al crear el periferico:", resultado);
-            }
-          },
-          error: (error) => {
-            this.toastr.error("Error al crear el periferico:", error.error?.errores || error);
-          },
-          complete: () => {
-            this.toastr.success("Operación completada.");
-          },
-        });
-      } else if (this.tipo === 1) {
   
-        this._perifeService.modificaPeriAPI(this.id, this.periact).subscribe({
-
-          next: (resultado) => {
-            if (resultado) {
-
-              this.toastr.success("Periferico modificado:", resultado);
-              this._route.navigate(["/perifericos"]); // Redirección corregida
-            } else {
-
-              this.toastr.error("Error al modificar el periferico:", resultado);
-            }
-          },
-          error: (error) => {
-   
-            this.toastr.error("Error al modificar el periferico:", error.error?.errores || error);
-          },
-          complete: () => {
-            this.toastr.success("Operación completada.");
-          },
-        });
-      }
-
-      // this.toastr.success(`Usuario modificado: ${this.id}`);
+      
+  
+    if (this.tipo === 0) {
+      // Crear usuario
+      // Enviamos el nuevo usuario al API para crearlo en la base de datos
+     
+      this._perifeService.crearPeriAPI(this.periact).subscribe({
+        next: (resultado) => {
+          if (resultado) {
+            this.toastr.success("Periferico creado:", resultado);
+            this._route.navigate(["/perifericos"]); // Redirección corregida
+          } else {
+            this.toastr.error("Error al crear el periferico:", resultado);
+          }
+        },
+        error: (error) => {
+          this.toastr.error("Error al crear el periferico:", error.error?.errores || error);
+        },
+        complete: () => {
+          this.toastr.success("Operación completada.");
+        },
+      });
+    } else if (this.tipo === 1) {
+      this._perifeService.modificaPeriAPI(this.id, this.periact).subscribe({
+        
+        next: (resultado) => {
+          if (resultado) {
+            
+            this.toastr.success("Periferico modificado:", resultado);
+            this._route.navigate(["/perifericos"]); // Redirección corregida
+          } else {
+            
+            this.toastr.error("Error al modificar el periferico:", resultado);
+          }
+        },
+        error: (error) => {
+          this.toastr.error("Error al modificar el periferico:", error.error?.errores || error);
+        },
+        complete: () => {
+          this.toastr.success("Operación completada.");
+        },
+      });
+    }
+  
+    // this.toastr.success(`Usuario modificado: ${this.id}`);
       else if (this.tipo == 2) {
-
         this._perifeService.borraPeriAPI(this.id).subscribe({
           next: (resultado) => {
             if (resultado) {

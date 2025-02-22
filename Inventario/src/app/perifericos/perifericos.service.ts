@@ -10,7 +10,7 @@ import { Marca } from '../marca/marca';
   providedIn: 'root'
 })
 export class PeriService {
-  // URL del API donde se encuentran los usuarios.  (https://uat-inventarios.proyectos-2daw.es/api/usuControl.php)
+  // URL del API donde se encuentran los usuarios.  (https://inventarios.proyectos-2daw.es/api/usuControl.php)
 
   urlApi = 'https://inventarios.proyectos-2daw.es/api/perifeControl.php';
   urlMarcas = 'https://inventarios.proyectos-2daw.es/api/marcaControl.php';
@@ -65,7 +65,6 @@ export class PeriService {
   //Modifica registros de los ordenadores en la api
   modificaPerifericoUbicacion(nper:number, UbicacionId:number): Observable<any> {
     const body = { idUbicacion: UbicacionId };
-
     return this.http.patch<any>(`${this.urlApi}/?id=${nper}`, JSON.stringify(body), this.httpOptions);
   }
 

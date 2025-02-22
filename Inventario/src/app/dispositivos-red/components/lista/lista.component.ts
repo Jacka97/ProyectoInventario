@@ -54,7 +54,6 @@ export class ListaComponent {
 
       },
       complete: () => {
-
       },
     });
   }

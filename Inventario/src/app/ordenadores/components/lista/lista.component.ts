@@ -50,14 +50,11 @@ export class ListaComponent {
         if (resultado) {
           this.ordenadores = resultado;
         } else {
- 
         }
       },
       error: (error) => {
-     
       },
       complete: () => {
-
       },
     });
   }

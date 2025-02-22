@@ -85,7 +85,6 @@ export class OrdenadoresComponent {
         this.toastr.error('Error al obtener los roles:', error);
       },
       complete: () => {
-
       },
     });
   }
@@ -103,17 +102,13 @@ export class OrdenadoresComponent {
         this.toastr.error('Error al obtener los roles:', error);
       },
       complete: () => {
-       
       },
     });
   }
   //Se cotejan los resultados obtenidos de la api y se agrega el ordenador al listado
   guardaOrdenador(): void {
-
     if (this.ordenadorForm!.valid || this.tipo == 2) {
-
       this.formularioCambiado = false;
-
       if (this.tipo == 0) {
         this._ordenadoresService.guardaNuevoOrdenador(this.ordenadorAct).subscribe({
           next: (resultado) => {
@@ -135,7 +130,6 @@ export class OrdenadoresComponent {
         this._ordenadoresService.modificaOrdenador(this.id, this.ordenadorAct).subscribe({
           next: (resultado) => {
             if (resultado) {
-      
               this.toastr.success('Datos modificados');
               this._route.navigate(['/ordenadores']);
             } else {
@@ -179,7 +173,6 @@ export class OrdenadoresComponent {
       next: (resultado) => {
         if (resultado) {
           this.ordenadorAct = resultado;
-
         } else {
           this.toastr.error(resultado, 'Error obteniendo el ordenador');
         }
@@ -188,7 +181,6 @@ export class OrdenadoresComponent {
         this.toastr.error(error, 'Error al obtener el ordenador')
       },
       complete: () => {
-
       },
     });
   }

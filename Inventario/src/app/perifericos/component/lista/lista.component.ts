@@ -51,14 +51,11 @@ export class ListaPerifeComponent{
         if (Array.isArray(resultado)) {
           this.users = resultado; // Asigna la lista de usuarios
         } else {
-   
         }
       },
       error: (error) => {
-   
       },
       complete: () => {
-      
       }
     });
 

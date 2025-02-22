@@ -56,16 +56,13 @@ export class EntradasComponent {
         if (resultado && Array.isArray(resultado)) {
           this.entradas = resultado; // Asigna los datos correctamente
         } else {
-      
           this.entradas = []; // Asegura que el array no sea undefined
         }
       },
       error: (error) => {
-       
         this.entradas = []; // Asegura que la variable no quede en un estado incorrecto
       },
       complete: () => {
-       
       }
     });
   }

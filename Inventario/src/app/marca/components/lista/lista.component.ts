@@ -42,14 +42,11 @@ this._marcasService.obtengoMarcasApi().subscribe({
     if (resultado){
       this.marcas = resultado;
     }else{
-  
     }
   },
   error: (error) => {
-   
   },
   complete: () => {
-  
   },
 });
 }

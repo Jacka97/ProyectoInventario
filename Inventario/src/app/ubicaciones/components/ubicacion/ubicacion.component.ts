@@ -52,7 +52,6 @@ export class UbicacionComponent {
         this.toastr.error(error, 'Error al obtener la ubicacion');
       },
       complete: () => {
-       
       },
     });
   }
@@ -81,7 +80,6 @@ export class UbicacionComponent {
               this.toastr.error(error.error, 'Error guardando ubicacion');
             },
             complete: () => {
-        
             },
           });
       } else if (this.tipo == 1) {
@@ -103,7 +101,6 @@ export class UbicacionComponent {
               this.toastr.error(error.error, 'Error modificando ubicacion');
             },
             complete: () => {
-     
             },
           });
       } else if (this.tipo == 2) {
@@ -123,7 +120,6 @@ export class UbicacionComponent {
             this.toastr.error(error.error, 'Error eliminando ubicacion');
           },
           complete: () => {
-     
           },
         });
       }

@@ -83,7 +83,7 @@ export class SoftwarePcComponent {
   //Cuando inicias la pagina a la que entre se trae los ordenadores y los softwares
   ngOnInit() {
     this.traerOrdenadores();
-    this.traeUbicaciones();
+    // this.traeUbicaciones();
     this.traeSoftware();
     this.tipo = +this._aroute.snapshot.params['tipo'];
     this.id = +this._aroute.snapshot.params['id'];
@@ -111,7 +111,6 @@ export class SoftwarePcComponent {
         this.toastr.error(error, 'Error al obtener el software')
       },
       complete: () => {
-    
       },
     });
   }
@@ -130,7 +129,6 @@ export class SoftwarePcComponent {
         this.toastr.error(error, 'Error al obtener el software')
       },
       complete: () => {
-       
       },
     });
   }
@@ -149,30 +147,6 @@ export class SoftwarePcComponent {
         this.toastr.error('Error al obtener el ordenador:', error);
       },
       complete: () => {
-      
-      },
-    });
-  }
-
-  // Llamada al servicio para obtener las ubicaciones desde la API
-  private traeUbicaciones() {
-    this._softwarePcService.obtengoUbicacionesApi().subscribe({
-      next: (resultado) => {        
-        // Si se recibe un resultado válido, se asigna a la variable ubicaciones
-        if (resultado) {
-          this.ubicaciones = resultado;
-        } else {
-          // Si hay un error en los datos recibidos, se muestra en la consola
-        
-        }
-      },
-      error: (error) => {
-        // Si ocurre un error en la petición, se muestra en la consola
-
-      },
-      complete: () => {
-        // Mensaje de confirmación cuando la operación ha finalizado correctamente
-
       },
     });
   }
@@ -182,14 +156,6 @@ export class SoftwarePcComponent {
     if (this.softwarePcForm?.valid || this.tipo == 2) {
       this.formularioCambiado = false;
       
-
-
-      if(this.enAula){
-        this.softwarePcAct.idPC = 0;
-      }else{
-        this.softwarePcAct.idUbicacion = 0;
-      }
-
       if (this.tipo == 0) {
         this._softwarePcService.guardaSoftwarePC(this.softwarePcAct).subscribe({
           next: (resultado) => {

@@ -49,14 +49,11 @@ import { SoftwarePcService } from '../../software-pc.service';
             if (resultado) {
               this.softwarePc = resultado;
             } else {
-              
             }
           },
           error: (error) => {
-            
           },
           complete: () => {
-
           },
         })
     }

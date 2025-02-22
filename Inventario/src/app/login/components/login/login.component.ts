@@ -68,7 +68,6 @@ export class LoginComponent {
 
         },
         error: (error) => {
-   
           this.toastr.error("Datos introducidos no válidos", 'Error de validación');
           this.loginForm.setValue({
             usuario: '',
@@ -76,7 +75,6 @@ export class LoginComponent {
           });
         },
         complete: () => {
-       
         },
       });
     } else {
@@ -89,6 +87,5 @@ export class LoginComponent {
   }
 
   updateNotifMethod(notif: any) {
-    // console.log(notif);
   }
 }

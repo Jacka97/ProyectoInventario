@@ -12,7 +12,6 @@ import { SoftwarePC } from './softwarePC';
 export class SoftwarePcService {
     //Variables con los links a las apis pertinentes
     urlOrdenadores = 'https://inventarios.proyectos-2daw.es/api/ordeControl.php';
-    urlUbicaciones = 'https://inventarios.proyectos-2daw.es/api/ubiControl.php';
     urlSoftwareApi = 'https://inventarios.proyectos-2daw.es/api/softwControl.php';
     urlSoftwarePcApi = 'https://inventarios.proyectos-2daw.es/api/softPcControl.php';
 
@@ -29,9 +28,9 @@ export class SoftwarePcService {
         return this.http.get(`${this.urlOrdenadores}`);
     }
 
-    obtengoUbicacionesApi(): Observable<any> {
-        return this.http.get(`${this.urlUbicaciones}`);
-    }
+    // obtengoUbicacionesApi(): Observable<any> {
+    //     return this.http.get(`${this.urlUbicaciones}`);
+    // }
 
     obtengoTodoSoftware(): Observable<any> {
         return this.http.get(`${this.urlSoftwareApi}`);
