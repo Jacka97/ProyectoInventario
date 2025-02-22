@@ -45,7 +45,7 @@
                                             <th scope="row">{{ elemento.id }}</th>
                                             <td class="text-nowrap">{{ elemento.correo }}</td>
                                             <td class="text-nowrap">{{ elemento.nombre }}</td>
-                                            <td>{{ elemento.activo }}</td>
+                                            <td>{{ (elemento.activo)?"activo":"no activo" }}</td>
                                             <td>{{ elemento.rol }}</td>
                                             <td>
                                                 <button class="btn btn-sm btn-warning ms-1" 
