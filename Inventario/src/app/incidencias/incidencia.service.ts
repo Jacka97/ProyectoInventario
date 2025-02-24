@@ -10,8 +10,7 @@ export class IncidenciaService {
 
   urlUBI='https://inventarios.proyectos-2daw.es/api/ubiControl.php';
   urlAPI = 'https://inventarios.proyectos-2daw.es/api/incidenciasControl.php';
-// urlUBI='http://localhost/Proyectos_clase_PHP/ProyectoInventario-modelos/api/ubiControl.php';
-// urlAPI="http://localhost/Proyectos_clase_PHP/ProyectoInventario-modelos/api/apiIncidencias.php";
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'applicantion/json'
@@ -20,9 +19,7 @@ export class IncidenciaService {
 
   constructor(private http: HttpClient) { }
 
-  /*obtengoMarcas(): Observable<any>{
-    return this.http.get(`${this.urlMAR}`);
-  }*/
+  
   obtengoUbicaciones(): Observable<any>{
     return this.http.get(`${this.urlUBI}`);
   }

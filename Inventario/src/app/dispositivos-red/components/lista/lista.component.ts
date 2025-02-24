@@ -77,7 +77,7 @@ export class ListaComponent {
 
     
     const workbook: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Listado de los dispositivos de red');
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Dispositivos de red');
 
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
     const data: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
