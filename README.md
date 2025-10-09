@@ -68,7 +68,7 @@ Salvador Gomez (@Desock)
 2. Install frontend dependencies:
     cd Inventario
     npm install
-- Configure the backend on your local server (PHP + MySQL).
+- Configure the backend on your local server (PHP + MySQL).  
   On branch basededatos (/ProyectoInventario/BD) is located the sql file with the code of the db.
   
 - Import the database from inventario.sql into phpMyAdmin.
