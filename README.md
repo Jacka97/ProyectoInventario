@@ -35,10 +35,10 @@ It allows registering hardware, installed operating systems, classroom locations
 
 ## 👥 Development Team
 Developed collaboratively by a team of **4 developers**.
-Sandra Furet (@SFuret)
-Anthony Abril (@AnthonyAbril)
-Daniel Zaragoza (@Jacka97)
-Salvador Gomez (@Desock)
+Sandra Furet (@SFuret)  
+Anthony Abril (@AnthonyAbril)  
+Daniel Zaragoza (@Jacka97)  
+Salvador Gomez (@Desock)  
 
 ---
 
