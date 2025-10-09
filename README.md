@@ -106,7 +106,7 @@ ProyectoInventario/
 ---
 
 ## 🖼️ Logo
-![GII Logo](assets/images/logo.png)
+![GII Logo](Inventario/src/assets/images/logo.png)
 
 ---
 
