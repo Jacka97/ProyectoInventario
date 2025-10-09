@@ -87,10 +87,10 @@ Salvador Gomez (@Desock)
 
 ## 🧭 Project Structure
 ProyectoInventario/
-├── Inventario/           # Angular v17 + Bootstrap
-├── apis/                 # PHP APIs
-├── BD/                   # SQL scripts and schema
-├── assets/               # Logo and graphic resources
+├── Inventario/           # Angular v17 + Bootstrap  
+├── apis/                 # PHP APIs  
+├── BD/                   # SQL scripts and schema  
+├── assets/               # Logo and graphic resources  
 └── README.md
 
 ---
