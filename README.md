@@ -1,6 +1,5 @@
 # 📦 GII – Gestión de Inventario e Incidencias
 
-[![Status](https://img.shields.io/badge/status-in%20development-yellow)]()
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Angular](https://img.shields.io/badge/angular-v17-DD0031?logo=angular&logoColor=white)]()
 [![Bootstrap](https://img.shields.io/badge/bootstrap-5-7952B3?logo=bootstrap&logoColor=white)]()
